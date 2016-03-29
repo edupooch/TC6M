@@ -1,0 +1,22 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".controle.MainActivity">
+    <item
+        android:id="@+id/action_lista"
+        android:orderInCategory="100"
+        android:title="Lista"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_perfil"
+        android:orderInCategory="100"
+        android:title="Perfil"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_teste"
+        android:orderInCategory="100"
+        android:title="Teste"
+        app:showAsAction="never" />
+
+</menu>

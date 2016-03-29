@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="cor1VerdeEscuro">#607848</color>
+    <color name="cor2Verde">#789048</color>
+    <color name="cor3VerdeClaro">#C0D860</color>
+    <color name="cor4Branco">#F0F0D8</color>
+    <color name="cor5Marrom">#604848</color>
+    <color name="accent_material_light_1">#789048</color>
+    <color name="accent_material_light_2">#ff40cf</color>
+    <color name="laranja700">#f57c00</color>
+    <color name="vermelho800">#e23d3d</color>
+</resources>
