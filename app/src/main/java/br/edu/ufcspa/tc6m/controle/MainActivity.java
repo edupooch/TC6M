@@ -48,10 +48,13 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(getApplicationContext(), ListaPacientesActivity.class));
                 break;
             case R.id.action_perfil:
-                startActivity(new Intent(getApplicationContext(), ScrollingActivity.class));
+                startActivity(new Intent(getApplicationContext(), PerfilActivity.class));
                 break;
             case R.id.action_teste:
                 startActivity(new Intent(getApplicationContext(), PerfilActivity.class));
+                break;
+            case R.id.action_cronometro:
+                startActivity(new Intent(getApplicationContext(), TesteActivity.class));
                 break;
 
         }

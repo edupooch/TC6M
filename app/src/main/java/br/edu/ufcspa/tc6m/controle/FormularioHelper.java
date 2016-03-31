@@ -12,6 +12,7 @@ import br.edu.ufcspa.tc6m.modelo.Paciente;
  */
 public class FormularioHelper {
 
+    ;
     private Paciente paciente;
     private final EditText campoNome;
     private final EditText campoData;
@@ -19,6 +20,7 @@ public class FormularioHelper {
     private final EditText campoPeso;
     private final EditText campoEmail;
     private final EditText campoTelefone;
+    private final EditText campoObs;
     private RadioButton btnMasculino;
     private RadioButton btnFeminino;
 
@@ -34,6 +36,8 @@ public class FormularioHelper {
         campoPeso = (EditText) activity.findViewById(R.id.edTextPeso);
         campoEmail = (EditText) activity.findViewById(R.id.edTextEmail);
         campoTelefone= (EditText) activity.findViewById(R.id.edTextTelefone);
+        campoObs= (EditText) activity.findViewById(R.id.edTextObs);
+
 
     }
 
@@ -46,6 +50,7 @@ public class FormularioHelper {
         paciente.setPeso(Double.valueOf(campoPeso.getText().toString()));
         paciente.setTelefone(campoTelefone.getText().toString());
         paciente.setEmail(campoEmail.getText().toString());
+        paciente.setObs(campoObs.getText().toString());
         if (btnMasculino.isChecked()) {
             paciente.setGenero(0);
         }if (btnFeminino.isChecked()) {
@@ -68,6 +73,7 @@ public class FormularioHelper {
         campoAltura.setText(String.valueOf(paciente.getAltura()));
         campoTelefone.setText(paciente.getTelefone());
         campoEmail.setText(paciente.getEmail());
+        campoObs.setText(paciente.getObs());
         this.paciente = paciente;
 
     }

@@ -39,6 +39,15 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="br.edu.ufcspa.tc6m.controle.ListaPacientesActivity" />
         </activity>
+        <activity
+            android:name=".controle.TesteActivity"
+            android:label="@string/title_activity_teste"
+            android:parentActivityName=".controle.PerfilActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="br.edu.ufcspa.tc6m.controle.PerfilActivity" />
+        </activity>
     </application>
 
 </manifest>

@@ -41,9 +41,16 @@ public class ListaPacientesActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> lista, View item, int position, long id) {
                 Paciente paciente = (Paciente) listaPacientes.getItemAtPosition(position);
                 // paciente clicado
+
+               /*
                 Intent intentVaiProFormulario = new Intent(ListaPacientesActivity.this, FormularioActivity.class);
                 intentVaiProFormulario.putExtra("paciente", paciente);
                 startActivity(intentVaiProFormulario);
+                */
+
+                Intent intentVaiProPerfil = new Intent(ListaPacientesActivity.this, PerfilActivity.class);
+                intentVaiProPerfil.putExtra("paciente",paciente);
+                startActivity(intentVaiProPerfil);
             }
         });
 

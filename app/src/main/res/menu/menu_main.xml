@@ -18,5 +18,10 @@
         android:orderInCategory="100"
         android:title="Teste"
         app:showAsAction="never" />
+    <item
+        android:id="@+id/action_cronometro"
+        android:orderInCategory="100"
+        android:title="Cronometro"
+        app:showAsAction="never" />
 
 </menu>

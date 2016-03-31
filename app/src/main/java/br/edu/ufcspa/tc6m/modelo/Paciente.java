@@ -23,9 +23,10 @@ public class Paciente implements Serializable {
     private double altura;
     private String dataNascimento;
     private int genero;
+    private String obs;
 
 
-    public Paciente(Long id, String nome, String telefone, String email, double peso, double altura, String dataNascimento, int genero) {
+    public Paciente(Long id, String nome, String telefone, String email, double peso, double altura, String dataNascimento, int genero, String obs) {
         this.id = id;
         this.nome = nome;
         this.telefone = telefone;
@@ -34,6 +35,7 @@ public class Paciente implements Serializable {
         this.altura = altura;
         this.dataNascimento = dataNascimento;
         this.genero = genero;
+        this.obs = obs;
 
     }
 
@@ -155,5 +157,13 @@ public class Paciente implements Serializable {
 
     public void setGenero(int genero) {
         this.genero = genero;
+    }
+
+    public String getObs() {
+        return obs;
+    }
+
+    public void setObs(String obs) {
+        this.obs = obs;
     }
 }

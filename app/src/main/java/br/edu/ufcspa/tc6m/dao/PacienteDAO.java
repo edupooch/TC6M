@@ -24,7 +24,7 @@ public class PacienteDAO extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String sql = "CREATE TABLE Pacientes (id INTEGER PRIMARY KEY, nome TEXT NOT NULL, data TEXT NOT NULL, peso FLOAT NOT NULL, altura TEXT NOT NULL, telefone TEXT, email TEXT);";
+        String sql = "CREATE TABLE Pacientes (id INTEGER PRIMARY KEY, nome TEXT NOT NULL, data TEXT NOT NULL, peso FLOAT NOT NULL, altura TEXT NOT NULL, telefone TEXT, email TEXT, obs TEXT);";
         db.execSQL(sql);
     }
 
@@ -52,6 +52,7 @@ public class PacienteDAO extends SQLiteOpenHelper {
         dados.put("altura", paciente.getAltura());
         dados.put("telefone", paciente.getTelefone());
         dados.put("email", paciente.getEmail());
+        dados.put("obs", paciente.getObs());
         return dados;
     }
 
@@ -73,7 +74,7 @@ public class PacienteDAO extends SQLiteOpenHelper {
             paciente.setAltura(c.getDouble(c.getColumnIndex("altura")));
             paciente.setTelefone(c.getString(c.getColumnIndex("telefone")));
             paciente.setEmail(c.getString(c.getColumnIndex("email")));
-
+            paciente.setObs(c.getString(c.getColumnIndex("obs")));
             pacientes.add(paciente);
 
         }

@@ -9,4 +9,8 @@
     <color name="accent_material_light_2">#ff40cf</color>
     <color name="laranja700">#f57c00</color>
     <color name="vermelho800">#e23d3d</color>
+    <color name="corPrimaria">#53BA83</color>
+    <color name="corPrimariaEscura">#3a9665</color>
+    <color name="colorAccent">#e74c3c</color>
+
 </resources>
