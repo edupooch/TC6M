@@ -8,16 +8,7 @@
         android:title="Lista"
         app:showAsAction="never" />
 
-    <item
-        android:id="@+id/action_perfil"
-        android:orderInCategory="100"
-        android:title="Perfil"
-        app:showAsAction="never" />
-    <item
-        android:id="@+id/action_teste"
-        android:orderInCategory="100"
-        android:title="Teste"
-        app:showAsAction="never" />
+
     <item
         android:id="@+id/action_cronometro"
         android:orderInCategory="100"

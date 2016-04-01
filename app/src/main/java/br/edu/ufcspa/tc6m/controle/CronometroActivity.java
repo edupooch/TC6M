@@ -8,35 +8,29 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Chronometer;
-import android.widget.Toast;
-
-import com.shinelw.library.ColorArcProgressBar;
 
 import br.edu.ufcspa.tc6m.R;
 
-public class TesteActivity extends AppCompatActivity {
+public class CronometroActivity extends AppCompatActivity {
 
 
-private Chronometer crono;
-
-    public TesteActivity(Chronometer crono) {
-        this.crono = crono;
-    }
+    private Chronometer crono;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_teste);
+        setContentView(R.layout.activity_cronometro);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar.setVisibility(View.GONE);
         setSupportActionBar(toolbar);
 
 
-        crono.start();
-        Button btn = (Button)findViewById(R.id.btn_get_time);
-        btn.setOnClickListener(new View.OnClickListener() {
+        crono = (Chronometer) findViewById(R.id.cronometro);
+        Button btStart = (Button)findViewById(R.id.btStart);
+        btStart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getApplicationContext(), "Tempo: " + crono.getBase(), Toast.LENGTH_LONG).show();
+                crono.start();
             }
         });
 

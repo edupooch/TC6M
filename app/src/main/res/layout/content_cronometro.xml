@@ -9,20 +9,26 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="br.edu.ufcspa.tc6m.controle.TesteActivity"
-    tools:showIn="@layout/activity_teste">
-
-<Button android:id="@+id/btn_get_time"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="get time"
-    />
+    tools:context="br.edu.ufcspa.tc6m.controle.CronometroActivity"
+    tools:showIn="@layout/activity_cronometro"
+    android:background="@color/corPrimaria"
+    >
 
     <Chronometer
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/chronometer"
+        android:id="@+id/cronometro"
+        android:textSize="20sp"
+        android:textColor="#FFFFFFFF"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true" />
+
+    <ImageView
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:background="@drawable/circulo2"
+        android:layout_centerInParent="true"
+        />
+
 
 </RelativeLayout>

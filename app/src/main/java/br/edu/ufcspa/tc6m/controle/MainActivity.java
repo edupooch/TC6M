@@ -41,23 +41,5 @@ public class MainActivity extends AppCompatActivity {
         return super.onCreateOptionsMenu(menu);
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.action_lista:
-                startActivity(new Intent(getApplicationContext(), ListaPacientesActivity.class));
-                break;
-            case R.id.action_perfil:
-                startActivity(new Intent(getApplicationContext(), PerfilActivity.class));
-                break;
-            case R.id.action_teste:
-                startActivity(new Intent(getApplicationContext(), PerfilActivity.class));
-                break;
-            case R.id.action_cronometro:
-                startActivity(new Intent(getApplicationContext(), TesteActivity.class));
-                break;
-
-        }
-        return super.onOptionsItemSelected(item);
-        }
+   
 }
