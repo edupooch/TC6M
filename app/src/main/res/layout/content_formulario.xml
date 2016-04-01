@@ -44,7 +44,6 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
-                        android:fontFamily="sans-serif-condensed"
                         android:hint="Nome do Paciente"
                         android:inputType="textCapWords" />
 
@@ -58,7 +57,6 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:fontFamily="sans-serif-condensed"
                             android:hint="Data de nascimento"
                             android:inputType="date"
                             android:theme="@style/AppTheme" />
@@ -83,7 +81,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:fontFamily="sans-serif-condensed"
                     android:text="Gênero"
                     android:textSize="12sp"
 
@@ -107,7 +104,6 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:fontFamily="sans-serif-condensed"
                         android:text="Masculino" />
 
                     <RadioButton
@@ -116,7 +112,6 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:fontFamily="sans-serif-condensed"
                         android:text="Feminino" />
                 </info.hoang8f.android.segmented.SegmentedGroup>
             </LinearLayout>
@@ -136,8 +131,6 @@
                     android:id="@+id/edTextPeso"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp"
-                    android:fontFamily="sans-serif-condensed"
                     android:hint="Massa corporal (em kg)"
                     android:inputType="numberDecimal" />
             </LinearLayout>
@@ -147,20 +140,22 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp">
 
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginTop="5dp"
+                    android:background="@drawable/icon_altura" />
+
                 <EditText
                     android:id="@+id/edTextAltura"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="5dp"
                     android:layout_weight="1"
-                    android:fontFamily="sans-serif-condensed"
                     android:hint="Estatura (em cm)"
                     android:inputType="numberDecimal" />
 
-                <ImageView
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:background="@drawable/icon_altura" />
+
             </LinearLayout>
 
             <LinearLayout
@@ -170,15 +165,13 @@
                 <ImageView
                     android:layout_width="30dp"
                     android:layout_height="30dp"
-                    android:background="@drawable/icon_obs"
-                    />
+                    android:layout_marginTop="5dp"
+                    android:background="@drawable/icon_obs" />
 
                 <EditText
                     android:id="@+id/edTextObs"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="5dp"
-                    android:fontFamily="sans-serif-condensed"
                     android:hint="Observações" />
             </LinearLayout>
 
@@ -189,7 +182,6 @@
                 android:layout_marginBottom="4dp"
                 android:layout_marginTop="15dp"
                 android:autoText="false"
-                android:fontFamily="sans-serif-condensed"
                 android:text="CONTATO"
                 android:textColor="@color/cor1VerdeEscuro" />
 
@@ -209,7 +201,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="5dp"
-                    android:fontFamily="sans-serif-condensed"
                     android:hint="Telefone"
                     android:inputType="phone"
                     android:textStyle="italic" />
@@ -223,7 +214,6 @@
                 <ImageView
                     android:layout_width="30dp"
                     android:layout_height="28dp"
-                    android:layout_marginRight="5dp"
                     android:layout_marginTop="8dp"
                     android:background="@drawable/icon_mail" />
 
@@ -231,7 +221,6 @@
                     android:id="@+id/edTextEmail"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:fontFamily="sans-serif-condensed"
                     android:hint="E-mail"
                     android:inputType="textEmailAddress"
                     android:textStyle="italic" />

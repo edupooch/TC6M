@@ -12,11 +12,7 @@
             android:name=".controle.MainActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".controle.FormularioActivity"
@@ -25,7 +21,16 @@
         <activity
             android:name=".controle.ListaPacientesActivity"
             android:label="@string/title_activity_lista_pacientes"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar">
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+        </activity>
+
         <activity
             android:name=".controle.ScrollingActivity"
             android:label="@string/title_activity_scrolling"

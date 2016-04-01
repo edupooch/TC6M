@@ -48,7 +48,6 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:gravity="center"
-                    android:text="74kg"
                     android:textSize="15sp" />
 
                 <TextView
@@ -57,7 +56,6 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:gravity="center"
-                    android:text="184cm"
                     android:textSize="15sp" />
 
                 <TextView
@@ -66,7 +64,6 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:gravity="center"
-                    android:text="IMC 22,1"
                     android:textSize="15sp" />
 
             </LinearLayout>
@@ -109,7 +106,6 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:gravity="center"
-                    android:text="(51) 9963-2310"
                     android:textSize="17sp" />
 
                 <TextView
@@ -118,7 +114,6 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:gravity="center"
-                    android:text="edupooch@gmail.com"
                     android:textSize="12sp" />
 
             </LinearLayout>
@@ -146,10 +141,7 @@
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_gravity="center"
-                android:layout_marginBottom="10dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:layout_marginTop="10dp"
+                android:layout_margin="20dp"
                 android:background="@drawable/icon_obs" />
 
             <LinearLayout
@@ -159,20 +151,20 @@
                 android:orientation="vertical"
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="5dp"
+                android:layout_marginRight="5dp"
                 >
 
                 <TextView
                     android:id="@+id/text_data"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="23/10/1997"
                     android:textSize="17sp" />
 
                 <TextView
                     android:id="@+id/text_obs"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Obervações: Paciente com Doença Pulmonar Obstrutiva Crônica." />
+                    />
 
             </LinearLayout>
         </LinearLayout>

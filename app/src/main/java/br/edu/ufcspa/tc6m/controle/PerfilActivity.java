@@ -73,7 +73,7 @@ public class PerfilActivity extends AppCompatActivity {
         textoTelefone.setText(paciente.getTelefone());
         textoEmail.setText(paciente.getEmail());
         textoData.setText(paciente.getDataNascimento());
-        textoObs.setText(paciente.getObs());
+        textoObs.setText("Obs: " + paciente.getObs());
 
     }
 

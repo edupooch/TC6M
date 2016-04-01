@@ -1,5 +1,8 @@
 package br.edu.ufcspa.tc6m.controle;
 
+import android.telephony.PhoneNumberFormattingTextWatcher;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.widget.EditText;
 import android.widget.RadioButton;
@@ -36,6 +39,7 @@ public class FormularioHelper {
         campoPeso = (EditText) activity.findViewById(R.id.edTextPeso);
         campoEmail = (EditText) activity.findViewById(R.id.edTextEmail);
         campoTelefone= (EditText) activity.findViewById(R.id.edTextTelefone);
+        campoTelefone.addTextChangedListener(new PhoneNumberFormattingTextWatcher());
         campoObs= (EditText) activity.findViewById(R.id.edTextObs);
 
 
@@ -72,6 +76,7 @@ public class FormularioHelper {
         campoPeso.setText(String.valueOf(paciente.getPeso()));
         campoAltura.setText(String.valueOf(paciente.getAltura()));
         campoTelefone.setText(paciente.getTelefone());
+
         campoEmail.setText(paciente.getEmail());
         campoObs.setText(paciente.getObs());
         this.paciente = paciente;
