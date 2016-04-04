@@ -15,4 +15,10 @@
         android:title="Cronometro"
         app:showAsAction="never" />
 
+    <item
+        android:id="@+id/action_basais"
+        android:orderInCategory="100"
+        android:title="Cronometro"
+        app:showAsAction="never" />
+
 </menu>

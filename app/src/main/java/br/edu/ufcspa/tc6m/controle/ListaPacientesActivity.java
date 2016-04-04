@@ -116,8 +116,9 @@ public class ListaPacientesActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.action_lista:
-                startActivity(new Intent(getApplicationContext(), ListaPacientesActivity.class));
+
+            case R.id.action_basais:
+                startActivity(new Intent(getApplicationContext(), ValoresBasaisActivity.class));
                 break;
 
             case R.id.action_cronometro:

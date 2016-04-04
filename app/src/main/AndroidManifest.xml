@@ -11,7 +11,15 @@
         <activity
             android:name=".controle.MainActivity"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" >
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+        </activity>
         <activity
             android:name=".controle.FormularioActivity"
             android:label="@string/title_activity_formulario"
@@ -20,11 +28,7 @@
             android:name=".controle.ListaPacientesActivity"
             android:label="@string/title_activity_lista_pacientes"
             android:theme="@style/AppTheme.NoActionBar">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".controle.ScrollingActivity"
@@ -51,7 +55,16 @@
         <activity
             android:name=".controle.CronometroActivity"
             android:label="@string/title_activity_cronometro"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".controle.ValoresBasaisActivity"
+            android:label="@string/title_activity_valores_basais"
+            android:parentActivityName=".controle.PerfilActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="br.edu.ufcspa.tc6m.controle.PerfilActivity" />
+        </activity>
     </application>
 
 </manifest>
