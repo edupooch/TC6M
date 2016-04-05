@@ -36,8 +36,7 @@ public class PerfilActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                startActivity(new Intent(getApplicationContext(), ValoresBasaisActivity.class));
             }
         });
 
@@ -45,7 +44,7 @@ public class PerfilActivity extends AppCompatActivity {
         fab2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                Snackbar.make(view, "Resultados dos testes anteriores", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
         });
