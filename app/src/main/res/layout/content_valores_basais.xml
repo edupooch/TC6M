@@ -105,7 +105,9 @@
             <com.github.florent37.materialtextfield.MaterialTextField
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1">
+                android:layout_weight="1"
+                app:mtf_image="@drawable/icon_sangue"
+                >
 
                 <EditText
                     android:layout_width="match_parent"
@@ -195,12 +197,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
+            app:mtf_image="@drawable/icon_mmii"
             >
 
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="FAD. MMII"
+                android:hint="Fadiga Membros Inferiores"
                 android:textColor="#333"
                 android:textColorHint="#666"
                 android:textSize="15sp" />

@@ -15,6 +15,7 @@
     tools:showIn="@layout/activity_cronometro">
 
     <ImageButton
+        android:id="@+id/btnFechar"
         android:layout_width="17dp"
         android:layout_height="17dp"
         android:background="@drawable/icon_fechar" />
@@ -27,6 +28,7 @@
 
         <Chronometer
             android:id="@+id/cronometro"
+
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
@@ -49,55 +51,27 @@
         android:layout_height="wrap_content">
 
         <LinearLayout
+
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <LinearLayout
-                android:id="@+id/cardApoio"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/layoutCronometro"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="2dp"
-                    android:text="    Frase de apoio"
-                    android:textColor="#64000000" />
-
-                <LinearLayout
-
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/round_edge">
-
-                    <TextView
-                        android:id="@+id/textApoio"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="10dp"
-                        android:text="Você está indo bem. Ainda restam 5 minutos." />
-
-                </LinearLayout>
-
-
-            </LinearLayout>
 
             <LinearLayout
+
+                android:id="@+id/layoutDados"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/cardApoio"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="20dp"
                 android:orientation="vertical">
 
                 <TextView
                     android:id="@+id/textDadosMinuto"
+                    android:layout_marginLeft="10dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="2dp"
-                    android:text="    Dados 1'"
+                    android:text="Dados do 1º minuto"
                     android:textColor="#64000000" />
 
 
@@ -172,6 +146,42 @@
 
 
                     </LinearLayout>
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/layoutFrase"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_below="@id/layoutCronometro"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="2dp"
+                        android:layout_marginLeft="10dp"
+                        android:text="Frase de apoio"
+                        android:textColor="#64000000" />
+
+                    <LinearLayout
+
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/round_edge">
+
+                        <TextView
+                            android:id="@+id/textApoio"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="10dp"
+                            android:text="Você está indo bem. Ainda restam 5 minutos." />
+
+                    </LinearLayout>
+
+
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>
