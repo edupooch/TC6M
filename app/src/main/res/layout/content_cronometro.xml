@@ -14,17 +14,36 @@
     tools:context="br.edu.ufcspa.tc6m.controle.CronometroActivity"
     tools:showIn="@layout/activity_cronometro">
 
-    <ImageButton
-        android:id="@+id/btnFechar"
-        android:layout_width="17dp"
-        android:layout_height="17dp"
-        android:background="@drawable/icon_fechar" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageButton
+            android:id="@+id/btnFechar"
+            android:layout_width="17dp"
+            android:layout_height="17dp"
+            android:background="@drawable/icon_fechar" />
+
+        <TextView
+            android:id="@+id/textNomePaciente"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Eduardo H P Pooch"
+            android:textColor="#FFFFFF"
+            android:layout_centerHorizontal="true"
+            android:fontFamily="sans-serif-light"
+            />
+
+    </RelativeLayout>
 
     <RelativeLayout
         android:id="@+id/layoutCronometro"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="15dp">
+
+      
 
         <Chronometer
             android:id="@+id/cronometro"
@@ -48,12 +67,12 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="180dp">
 
         <LinearLayout
 
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
             android:orientation="vertical">
 
 
@@ -67,10 +86,10 @@
 
                 <TextView
                     android:id="@+id/textDadosMinuto"
-                    android:layout_marginLeft="10dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="2dp"
+                    android:layout_marginLeft="10dp"
                     android:text="Dados do 1º minuto"
                     android:textColor="#64000000" />
 
@@ -78,7 +97,8 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/round_edge">
+                    android:background="@drawable/round_edge"
+                    android:orientation="vertical">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -131,60 +151,63 @@
                             android:hint="FAD MMII"
                             android:textSize="14sp" />
 
-                        <ImageView
-                            android:layout_width="1dp"
-                            android:layout_height="30dp"
-                            android:layout_gravity="center"
-                            android:background="#a3a3a3" />
 
-                        <EditText
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:hint="DP"
-                            android:textSize="14sp" />
+
+
 
 
                     </LinearLayout>
-
 
                 </LinearLayout>
 
+                <TextView
+                    android:id="@+id/btSalvarDados"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="2dp"
+                    android:fontFamily="sans-serif-condensed"
+                    android:text="SALVAR"
+                    android:textStyle="bold" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layoutFrase"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/layoutCronometro"
+
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="2dp"
+                    android:layout_marginLeft="10dp"
+                    android:text="Frase de apoio"
+                    android:textColor="#64000000" />
+
                 <LinearLayout
-                    android:id="@+id/layoutFrase"
+
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:layout_below="@id/layoutCronometro"
-                    android:orientation="vertical">
+                    android:background="@drawable/round_edge">
 
                     <TextView
+                        android:id="@+id/textApoio"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="2dp"
-                        android:layout_marginLeft="10dp"
-                        android:text="Frase de apoio"
-                        android:textColor="#64000000" />
-
-                    <LinearLayout
-
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/round_edge">
-
-                        <TextView
-                            android:id="@+id/textApoio"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="10dp"
-                            android:text="Você está indo bem. Ainda restam 5 minutos." />
-
-                    </LinearLayout>
-
+                        android:layout_margin="10dp"
+                        android:text="Você está indo bem. Ainda restam 5 minutos." />
 
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>
+
     </ScrollView>
+
 
 </LinearLayout>

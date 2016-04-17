@@ -1,5 +1,6 @@
 package br.edu.ufcspa.tc6m.controle;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.support.design.widget.FloatingActionButton;
@@ -18,15 +19,17 @@ public class CronometroActivity extends AppCompatActivity {
 
     private FloatingActionButton btAdicionarVolta;
     private Chronometer crono;
-    private TextView textDistancia;
     private LinearLayout layoutFrase;
+    private LinearLayout layoutDados;
+    private TextView textDistancia;
     private TextView textFrase;
     private TextView textDadosMinuto;
+    private TextView btSalvar;
     ////////////////////////////////
     private long miliseconds;
     private int metros;
     private int volta;
-
+    ///////////////////////////////
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +48,9 @@ public class CronometroActivity extends AppCompatActivity {
         ////////////////////////////////////////////////////////////////////////////////////////////
         textFrase = (TextView) findViewById(R.id.textApoio);
         textDadosMinuto = (TextView) findViewById(R.id.textDadosMinuto);
+        btSalvar = (TextView) findViewById(R.id.btSalvarDados);
+        textDistancia = (TextView) findViewById(R.id.textMetros);
+
         ////////////////////////////////////////////////////////////////////////////////////////////
         miliseconds = 0;
         metros = 0;
@@ -83,7 +89,6 @@ public class CronometroActivity extends AppCompatActivity {
         });
 
         ////////////////////////////////////////////////////////////////////////////////////////////
-        textDistancia = (TextView) findViewById(R.id.textMetros);
 
         btAdicionarVolta = (FloatingActionButton) findViewById(R.id.btAdicionarVolta);
         btAdicionarVolta.setOnClickListener(new View.OnClickListener() {
@@ -98,11 +103,19 @@ public class CronometroActivity extends AppCompatActivity {
         ////////////////////////////////////////////////////////////////////////////////////////////
 
         layoutFrase = (LinearLayout) findViewById(R.id.layoutFrase);
-
         layoutFrase.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 layoutFrase.setVisibility(View.GONE);
+            }
+        });
+        ////////////////////////////////////////////////////////////////////////////////////////////
+        layoutDados = (LinearLayout) findViewById(R.id.layoutDados);
+
+        btSalvar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                layoutDados.setVisibility(View.GONE);
             }
         });
     }
@@ -119,7 +132,6 @@ public class CronometroActivity extends AppCompatActivity {
     private void doisMinutos() {
         textFrase.setText(R.string.frase2);
         textDadosMinuto.setText(R.string.dados2);
-
         layoutFrase.setVisibility(View.VISIBLE);
     }
 
