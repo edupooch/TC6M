@@ -65,7 +65,9 @@
                     android:hint="FC"
                     android:textColor="#333"
                     android:textColorHint="#666"
-                    android:textSize="15sp" />
+                    android:textSize="15sp"
+                    android:inputType="number"
+                    />
 
             </com.github.florent37.materialtextfield.MaterialTextField>
 
@@ -113,6 +115,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="GC"
+                    android:inputType="number"
                     android:textColor="#333"
                     android:textColorHint="#666"
                     android:textSize="15sp" />
@@ -135,6 +138,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="SpO2"
+                    android:inputType="number"
                     android:textColor="#333"
                     android:textColorHint="#666"
                     android:textSize="15sp" />
@@ -163,6 +167,7 @@
                     android:layout_height="wrap_content"
                     android:hint="O2 Supl."
                     android:textColor="#333"
+                    android:inputType="number"
                     android:textColorHint="#666"
                     android:textSize="15sp" />
 
@@ -183,8 +188,9 @@
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="DISPNEIA"
+                    android:hint="Dispneia"
                     android:textColor="#333"
+                    android:inputType="number"
                     android:textColorHint="#666"
                     android:textSize="15sp" />
 
@@ -203,23 +209,27 @@
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Fadiga Membros Inferiores"
+                android:hint="Fadiga dos Membros Inferiores"
                 android:textColor="#333"
                 android:textColorHint="#666"
+                android:inputType="number"
                 android:textSize="15sp" />
 
         </com.github.florent37.materialtextfield.MaterialTextField>
 
-
-        <android.support.design.widget.FloatingActionButton
-            android:id="@+id/btNext"
-            android:layout_width="wrap_content"
+        <Button
+            android:id="@+id/btComecarTeste"
+            android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:layout_gravity="bottom|end"
-            android:layout_margin="16dp"
-            android:src="@drawable/icon_flecha2"
-
+            android:backgroundTint="@color/colorAccent"
+            android:text="COMEÇAR TESTE"
+            android:textColor="#d7ffffff"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
             />
+
+
+
 
     </LinearLayout>
    </ScrollView>

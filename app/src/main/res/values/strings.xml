@@ -102,7 +102,7 @@
     <string name="frase2">Mantenha um bom trabalho. Ainda restam 4 minutos.</string>
     <string name="frase3">Você está indo muito bem. Já foi metade do teste.</string>
     <string name="frase4">Mantenha um bom trabalho. Faltam apenas 2 minutos.</string>
-    <string name="frase5">Você está indo muito bem. Faltam apenas 1 minuto.</string>
+    <string name="frase5">Você está indo muito bem. Falta apenas 1 minuto.</string>
 
     <string name="dados1">Dados do 1º minuto</string>
     <string name="dados2">Dados do 2º Minuto</string>
@@ -110,6 +110,12 @@
     <string name="dados4">Dados do 4º minuto</string>
     <string name="dados5">Dados do 5º minuto</string>
     <string name="dados6">Dados do 6º minuto</string>
+    <string name="dialog_abandonar">Deseja abandonar o teste? Os dados do teste serão perdidos.</string>
+    <string name="dialog_yes">Sim</string>
+    <string name="dialog_no">Não</string>
+    <string name="dialog_parar">Diga ao paciente: \"Por favor, pare onde está\".</string>
+    <string name="dialog_ok">OK</string>
+    <string name="concluido">Teste Concluído!</string>
 
 
 </resources>

@@ -56,9 +56,9 @@ public class FormularioHelper {
         paciente.setEmail(campoEmail.getText().toString());
         paciente.setObs(campoObs.getText().toString());
         if (btnMasculino.isChecked()) {
-            paciente.setGenero(0);
-        }if (btnFeminino.isChecked()) {
             paciente.setGenero(1);
+        }if (btnFeminino.isChecked()) {
+            paciente.setGenero(0);
         }
 
         return paciente;
