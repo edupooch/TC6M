@@ -2,17 +2,16 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    tools:context="br.edu.ufcspa.tc6m.controle.CronometroActivity"
+    tools:showIn="@layout/activity_cronometro"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/corPrimaria"
     android:orientation="vertical"
-
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="br.edu.ufcspa.tc6m.controle.CronometroActivity"
-    tools:showIn="@layout/activity_cronometro">
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:background="@color/corPrimaria"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -20,7 +19,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical">
 
             <RelativeLayout
@@ -43,7 +42,7 @@
                     android:text="Eduardo H P Pooch"
                     android:textColor="#FFFFFF" />
 
-            </RelativeLayout>
+            </RelativeLayout> <!-- Layout Titulo e fechar -->
 
             <RelativeLayout
                 android:id="@+id/layoutCronometro"
@@ -68,27 +67,22 @@
                     android:layout_centerInParent="true"
                     android:background="@drawable/circulo3" />
 
-            </RelativeLayout>
-
+            </RelativeLayout> <!-- Layout Cronometro -->
 
             <ScrollView
                 android:layout_width="match_parent"
                 android:layout_height="180dp">
 
                 <LinearLayout
-
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:orientation="vertical">
-
 
                     <LinearLayout
                         android:id="@+id/layoutFrase"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_below="@id/layoutCronometro"
                         android:orientation="vertical"
-
                         android:visibility="gone">
 
                         <TextView
@@ -96,7 +90,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="2dp"
                             android:layout_marginLeft="10dp"
-                            android:text="Frase de apoio"
+                            android:text="@string/frase_de_apoio"
                             android:textColor="#64000000" />
 
                         <LinearLayout
@@ -110,15 +104,13 @@
                                 android:id="@+id/textApoio"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_margin="10dp"
-                                android:text="Você está indo bem. Ainda restam 5 minutos." />
+                                android:layout_margin="10dp" />
 
                         </LinearLayout>
-                    </LinearLayout>
-
+                    </LinearLayout> <!-- Layout da frase de apoio -->
 
                     <LinearLayout
-                        android:id="@+id/layoutDados"
+                        android:id="@+id/layoutDados1"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="15dp"
@@ -126,13 +118,16 @@
                         android:visibility="gone">
 
                         <TextView
-                            android:id="@+id/textDadosMinuto"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="2dp"
                             android:layout_marginLeft="10dp"
-                            android:text="Dados do 1º minuto"
-                            android:textColor="#64000000" />
+                            android:layout_marginStart="10dp"
+                            android:text="@string/dados_do_1_minuto"
+                            android:textColor="#64000000"
+                            android:textSize="16sp"
+
+                            />
 
 
                         <LinearLayout
@@ -147,13 +142,14 @@
                                 android:layout_margin="5dp">
 
                                 <EditText
+                                    android:id="@+id/edTextFC1"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="2"
-                                    android:hint="FC"
+                                    android:focusable="true"
+                                    android:hint="@string/fc"
                                     android:inputType="numberDecimal"
-                                    android:textSize="14sp"
-                                    android:focusable="true" />
+                                    android:textSize="14sp" />
 
                                 <ImageView
                                     android:layout_width="1dp"
@@ -162,13 +158,14 @@
                                     android:background="#a3a3a3" />
 
                                 <EditText
+                                    android:id="@+id/edTextSp1"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
-                                    android:hint="SpO2"
+                                    android:focusable="true"
+                                    android:hint="@string/spo2"
                                     android:inputType="numberDecimal"
-                                    android:textSize="14sp"
-                                    android:focusable="true" />
+                                    android:textSize="14sp" />
 
                                 <ImageView
                                     android:layout_width="1dp"
@@ -177,13 +174,14 @@
                                     android:background="#a3a3a3" />
 
                                 <EditText
+                                    android:id="@+id/edTextDisp1"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
-                                    android:hint="Dispneia"
+                                    android:focusable="true"
+                                    android:hint="@string/dispneia"
                                     android:inputType="numberDecimal"
-                                    android:textSize="14sp"
-                                    android:focusable="true" />
+                                    android:textSize="14sp" />
 
                                 <ImageView
                                     android:layout_width="1dp"
@@ -192,13 +190,14 @@
                                     android:background="#a3a3a3" />
 
                                 <EditText
+                                    android:id="@+id/edTextFad1"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
-                                    android:hint="FAD MMII"
+                                    android:focusable="true"
+                                    android:hint="@string/fad_mmii"
                                     android:inputType="numberDecimal"
-                                    android:textSize="14sp"
-                                    android:focusable="true" />
+                                    android:textSize="14sp" />
 
 
                             </LinearLayout>
@@ -206,83 +205,577 @@
                         </LinearLayout>
 
                         <TextView
-                            android:id="@+id/btSalvarDados"
+                            android:id="@+id/btSalvarDados1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="end"
+                            android:layout_marginEnd="10dp"
                             android:layout_marginRight="10dp"
                             android:layout_marginTop="2dp"
                             android:fontFamily="sans-serif-condensed"
-                            android:text="SALVAR"
+                            android:text="@string/salvar"
                             android:textStyle="bold" />
 
 
-                    </LinearLayout>
+                    </LinearLayout> <!-- Layout Dados 1 -->
+
+                    <LinearLayout
+                        android:id="@+id/layoutDados2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:orientation="vertical"
+
+                        >
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="2dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginStart="10dp"
+                            android:text="@string/dados_do_2_minuto"
+                            android:textColor="#64000000"
+                            android:textSize="16sp"
+
+                            />
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/round_edge"
+                            android:orientation="vertical">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="5dp">
+
+                                <EditText
+                                    android:id="@+id/edTextFC2"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="2"
+                                    android:focusable="true"
+                                    android:hint="@string/fc"
+                                    android:inputType="numberDecimal"
+                                    android:textSize="14sp" />
+
+                                <ImageView
+                                    android:layout_width="1dp"
+                                    android:layout_height="30dp"
+                                    android:layout_gravity="center"
+                                    android:background="#a3a3a3" />
+
+                                <EditText
+                                    android:id="@+id/edTextSp2"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:focusable="true"
+                                    android:hint="@string/spo2"
+                                    android:inputType="numberDecimal"
+                                    android:textSize="14sp" />
+
+                                <ImageView
+                                    android:layout_width="1dp"
+                                    android:layout_height="30dp"
+                                    android:layout_gravity="center"
+                                    android:background="#a3a3a3" />
+
+                                <EditText
+                                    android:id="@+id/edTextDisp2"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:focusable="true"
+                                    android:hint="@string/dispneia"
+                                    android:inputType="numberDecimal"
+                                    android:textSize="14sp" />
+
+                                <ImageView
+                                    android:layout_width="1dp"
+                                    android:layout_height="30dp"
+                                    android:layout_gravity="center"
+                                    android:background="#a3a3a3" />
+
+                                <EditText
+                                    android:id="@+id/edTextFad2"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:focusable="true"
+                                    android:hint="@string/fad_mmii"
+                                    android:inputType="numberDecimal"
+                                    android:textSize="14sp" />
+
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                        <TextView
+                            android:id="@+id/btSalvarDados2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="end"
+                            android:layout_marginEnd="10dp"
+                            android:layout_marginRight="10dp"
+                            android:layout_marginTop="2dp"
+                            android:fontFamily="sans-serif-condensed"
+                            android:text="@string/salvar"
+                            android:textStyle="bold" />
+
+
+                    </LinearLayout> <!-- Layout Dados 2 -->
+
+                    <LinearLayout
+                        android:id="@+id/layoutDados3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:orientation="vertical"
+
+                        >
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="2dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginStart="10dp"
+                            android:text="@string/dados_do_1_minuto"
+                            android:textColor="#64000000"
+                            android:textSize="16sp"
+
+                            />
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/round_edge"
+                            android:orientation="vertical">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="5dp">
+
+                                <EditText
+                                    android:id="@+id/edTextFC3"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="2"
+                                    android:focusable="true"
+                                    android:hint="@string/fc"
+                                    android:inputType="numberDecimal"
+                                    android:textSize="14sp" />
+
+                                <ImageView
+                                    android:layout_width="1dp"
+                                    android:layout_height="30dp"
+                                    android:layout_gravity="center"
+                                    android:background="#a3a3a3" />
+
+                                <EditText
+                                    android:id="@+id/edTextSp3"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:focusable="true"
+                                    android:hint="@string/spo2"
+                                    android:inputType="numberDecimal"
+                                    android:textSize="14sp" />
+
+                                <ImageView
+                                    android:layout_width="1dp"
+                                    android:layout_height="30dp"
+                                    android:layout_gravity="center"
+                                    android:background="#a3a3a3" />
+
+                                <EditText
+                                    android:id="@+id/edTextDisp3"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:focusable="true"
+                                    android:hint="@string/dispneia"
+                                    android:inputType="numberDecimal"
+                                    android:textSize="14sp" />
+
+                                <ImageView
+                                    android:layout_width="1dp"
+                                    android:layout_height="30dp"
+                                    android:layout_gravity="center"
+                                    android:background="#a3a3a3" />
+
+                                <EditText
+                                    android:id="@+id/edTextFad3"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:focusable="true"
+                                    android:hint="@string/fad_mmii"
+                                    android:inputType="numberDecimal"
+                                    android:textSize="14sp" />
+
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                        <TextView
+                            android:id="@+id/btSalvarDados3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="end"
+                            android:layout_marginEnd="10dp"
+                            android:layout_marginRight="10dp"
+                            android:layout_marginTop="2dp"
+                            android:fontFamily="sans-serif-condensed"
+                            android:text="@string/salvar"
+                            android:textStyle="bold" />
+
+
+                    </LinearLayout> <!-- Layout Dados 3 -->
+
+                    <LinearLayout
+                        android:id="@+id/layoutDados4"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:orientation="vertical"
+
+                        >
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="2dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginStart="10dp"
+                            android:text="@string/dados_do_1_minuto"
+                            android:textColor="#64000000"
+                            android:textSize="16sp"
+
+                            />
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/round_edge"
+                            android:orientation="vertical">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="5dp">
+
+                                <EditText
+                                    android:id="@+id/edTextFC4"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="2"
+                                    android:focusable="true"
+                                    android:hint="@string/fc"
+                                    android:inputType="numberDecimal"
+                                    android:textSize="14sp" />
+
+                                <ImageView
+                                    android:layout_width="1dp"
+                                    android:layout_height="30dp"
+                                    android:layout_gravity="center"
+                                    android:background="#a3a3a3" />
+
+                                <EditText
+                                    android:id="@+id/edTextSp4"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:focusable="true"
+                                    android:hint="@string/spo2"
+                                    android:inputType="numberDecimal"
+                                    android:textSize="14sp" />
+
+                                <ImageView
+                                    android:layout_width="1dp"
+                                    android:layout_height="30dp"
+                                    android:layout_gravity="center"
+                                    android:background="#a3a3a3" />
+
+                                <EditText
+                                    android:id="@+id/edTextDisp4"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:focusable="true"
+                                    android:hint="@string/dispneia"
+                                    android:inputType="numberDecimal"
+                                    android:textSize="14sp" />
+
+                                <ImageView
+                                    android:layout_width="1dp"
+                                    android:layout_height="30dp"
+                                    android:layout_gravity="center"
+                                    android:background="#a3a3a3" />
+
+                                <EditText
+                                    android:id="@+id/edTextFad4"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:focusable="true"
+                                    android:hint="@string/fad_mmii"
+                                    android:inputType="numberDecimal"
+                                    android:textSize="14sp" />
+
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                        <TextView
+                            android:id="@+id/btSalvarDados4"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="end"
+                            android:layout_marginEnd="10dp"
+                            android:layout_marginRight="10dp"
+                            android:layout_marginTop="2dp"
+                            android:fontFamily="sans-serif-condensed"
+                            android:text="@string/salvar"
+                            android:textStyle="bold" />
+
+
+                    </LinearLayout> <!-- Layout Dados 4 -->
+
+                    <LinearLayout
+                        android:id="@+id/layoutDados5"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:orientation="vertical"
+
+                        >
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="2dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginStart="10dp"
+                            android:text="@string/dados_do_1_minuto"
+                            android:textColor="#64000000"
+                            android:textSize="16sp"
+
+                            />
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/round_edge"
+                            android:orientation="vertical">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="5dp">
+
+                                <EditText
+                                    android:id="@+id/edTextFC5"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="2"
+                                    android:focusable="true"
+                                    android:hint="@string/fc"
+                                    android:inputType="numberDecimal"
+                                    android:textSize="14sp" />
+
+                                <ImageView
+                                    android:layout_width="1dp"
+                                    android:layout_height="30dp"
+                                    android:layout_gravity="center"
+                                    android:background="#a3a3a3" />
+
+                                <EditText
+                                    android:id="@+id/edTextSp5"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:focusable="true"
+                                    android:hint="@string/spo2"
+                                    android:inputType="numberDecimal"
+                                    android:textSize="14sp" />
+
+                                <ImageView
+                                    android:layout_width="1dp"
+                                    android:layout_height="30dp"
+                                    android:layout_gravity="center"
+                                    android:background="#a3a3a3" />
+
+                                <EditText
+                                    android:id="@+id/edTextDisp5"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:focusable="true"
+                                    android:hint="@string/dispneia"
+                                    android:inputType="numberDecimal"
+                                    android:textSize="14sp" />
+
+                                <ImageView
+                                    android:layout_width="1dp"
+                                    android:layout_height="30dp"
+                                    android:layout_gravity="center"
+                                    android:background="#a3a3a3" />
+
+                                <EditText
+                                    android:id="@+id/edTextFad5"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:focusable="true"
+                                    android:hint="@string/fad_mmii"
+                                    android:inputType="numberDecimal"
+                                    android:textSize="14sp" />
+
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                        <TextView
+                            android:id="@+id/btSalvarDados5"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="end"
+                            android:layout_marginEnd="10dp"
+                            android:layout_marginRight="10dp"
+                            android:layout_marginTop="2dp"
+                            android:fontFamily="sans-serif-condensed"
+                            android:text="@string/salvar"
+                            android:textStyle="bold" />
+
+
+                    </LinearLayout> <!-- Layout Dados 5 -->
+
+                    <LinearLayout
+                        android:id="@+id/layoutDados6"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:orientation="vertical"
+
+                        >
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="2dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginStart="10dp"
+                            android:text="@string/dados_do_1_minuto"
+                            android:textColor="#64000000"
+                            android:textSize="16sp"
+
+                            />
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/round_edge"
+                            android:orientation="vertical">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="5dp">
+
+                                <EditText
+                                    android:id="@+id/edTextFC6"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="2"
+                                    android:focusable="true"
+                                    android:hint="@string/fc"
+                                    android:inputType="numberDecimal"
+                                    android:textSize="14sp" />
+
+                                <ImageView
+                                    android:layout_width="1dp"
+                                    android:layout_height="30dp"
+                                    android:layout_gravity="center"
+                                    android:background="#a3a3a3" />
+
+                                <EditText
+                                    android:id="@+id/edTextSp6"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:focusable="true"
+                                    android:hint="@string/spo2"
+                                    android:inputType="numberDecimal"
+                                    android:textSize="14sp" />
+
+                                <ImageView
+                                    android:layout_width="1dp"
+                                    android:layout_height="30dp"
+                                    android:layout_gravity="center"
+                                    android:background="#a3a3a3" />
+
+                                <EditText
+                                    android:id="@+id/edTextDisp6"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:focusable="true"
+                                    android:hint="@string/dispneia"
+                                    android:inputType="numberDecimal"
+                                    android:textSize="14sp" />
+
+                                <ImageView
+                                    android:layout_width="1dp"
+                                    android:layout_height="30dp"
+                                    android:layout_gravity="center"
+                                    android:background="#a3a3a3" />
+
+                                <EditText
+                                    android:id="@+id/edTextFad6"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:focusable="true"
+                                    android:hint="@string/fad_mmii"
+                                    android:inputType="numberDecimal"
+                                    android:textSize="14sp" />
+
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                        <TextView
+                            android:id="@+id/btSalvarDados6"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="end"
+                            android:layout_marginEnd="10dp"
+                            android:layout_marginRight="10dp"
+                            android:layout_marginTop="2dp"
+                            android:fontFamily="sans-serif-condensed"
+                            android:text="@string/salvar"
+                            android:textStyle="bold" />
+
+
+                    </LinearLayout> <!-- Layout Dados 6 -->
 
                 </LinearLayout>
-
             </ScrollView>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-
-                android:layout_marginBottom="0dp"
-                android:measureWithLargestChild="false">
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_weight="1"
-                    android:gravity="center">
-
-                    <TextView
-                        android:id="@+id/textMetros"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="bottom"
-                        android:background="@color/corPrimaria"
-                        android:fontFamily="sans-serif-thin"
-                        android:text="0"
-                        android:textColor="#FFFFFF"
-                        android:textSize="34sp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="bottom"
-                        android:fontFamily="sans-serif-thin"
-                        android:text="m"
-                        android:textColor="#FFFFFF"
-                        android:textSize="20sp" />
-                </LinearLayout>
-
-                <android.support.design.widget.FloatingActionButton
-                    android:id="@+id/btAdicionarVolta"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="bottom|center"
-                    android:scaleType="center"
-                    android:src="@drawable/icon_caminhar" />
-
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_weight="1"
-                    android:gravity="center">
-
-                    <ImageView
-                        android:layout_width="50dp"
-                        android:layout_height="50dp" />
-
-                </LinearLayout>
-
-
-            </LinearLayout>
-
         </LinearLayout>
     </ScrollView>
 </LinearLayout>
