@@ -13,70 +13,261 @@
     tools:context="br.edu.ufcspa.tc6m.controle.CronometroActivity"
     tools:showIn="@layout/activity_cronometro">
 
-    <ScrollView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical">
 
-        <LinearLayout
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_height="match_parent">
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <ImageButton
-                    android:id="@+id/btFechar"
-                    android:layout_width="17dp"
-                    android:layout_height="17dp"
-                    android:background="@drawable/icon_fechar" />
-
-                <TextView
-                    android:id="@+id/textNomePaciente"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentTop="true"
-                    android:layout_centerHorizontal="true"
-                    android:fontFamily="sans-serif-light"
-                    android:text="Eduardo H P Pooch"
-                    android:textColor="#FFFFFF" />
-
-            </RelativeLayout> <!-- Layout Titulo e fechar -->
-
-            <RelativeLayout
-                android:id="@+id/layoutCronometro"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp">
+                android:orientation="vertical">
 
-                <Chronometer
-                    android:id="@+id/cronometro"
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
 
-                    android:layout_width="wrap_content"
+                    <ImageButton
+                        android:id="@+id/btFechar"
+                        android:layout_width="17dp"
+                        android:layout_height="17dp"
+                        android:background="@drawable/icon_fechar" />
+
+                    <TextView
+                        android:id="@+id/textNomePaciente"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:layout_centerHorizontal="true"
+                        android:fontFamily="sans-serif-light"
+                        android:text="Eduardo H P Pooch"
+                        android:textColor="#FFFFFF" />
+
+                    <ImageView
+                        android:id="@+id/sublinhado"
+                        android:layout_width="wrap_content"
+                        android:layout_height="0.5dp"
+                        android:layout_below="@id/textNomePaciente"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="1dp"
+                        android:background="#FFFFFF" />
+
+                </RelativeLayout> <!-- Layout Titulo e fechar -->
+
+                <RelativeLayout
+                    android:id="@+id/layoutCronometro"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
-                    android:layout_centerVertical="true"
-                    android:fontFamily="sans-serif-thin"
-                    android:textColor="#FFFFFFFF"
-                    android:textSize="60sp" />
+                    android:layout_marginBottom="10dp">
 
-                <ImageView
-                    android:layout_width="250dp"
-                    android:layout_height="250dp"
-                    android:layout_centerInParent="true"
-                    android:background="@drawable/circulo3" />
+                    <ImageView
+                        android:layout_width="250dp"
+                        android:layout_height="250dp"
+                        android:layout_alignParentTop="true"
+                        android:layout_centerHorizontal="true"
+                        android:background="@drawable/circulo3" />
 
-            </RelativeLayout> <!-- Layout Cronometro -->
+                    <Chronometer
+                        android:id="@+id/cronometro"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_centerVertical="true"
+                        android:fontFamily="sans-serif-thin"
+                        android:textColor="#FFFFFFFF"
+                        android:textSize="60sp" />
 
-            <ScrollView
-                android:layout_width="match_parent"
-                android:layout_height="180dp">
+
+                </RelativeLayout> <!-- Layout Cronometro -->
+
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
                     android:orientation="vertical">
+
+                    <LinearLayout
+                        android:id="@+id/layoutDados6"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:orientation="vertical"
+                        android:visibility="gone"
+
+                        >
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="2dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginStart="10dp"
+                            android:text="@string/dados_do_6_minuto"
+                            android:textColor="#64000000"
+                            android:textSize="16sp"
+
+                            />
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/round_edge"
+                            android:orientation="vertical">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="5dp">
+
+                                <EditText
+                                    android:id="@+id/edTextFC6"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="2"
+                                    android:focusable="true"
+                                    android:hint="@string/fc"
+                                    android:inputType="numberDecimal"
+                                    android:textSize="14sp" />
+
+                                <ImageView
+                                    android:layout_width="1dp"
+                                    android:layout_height="30dp"
+                                    android:layout_gravity="center"
+                                    android:background="#a3a3a3" />
+
+                                <EditText
+                                    android:id="@+id/edTextSp6"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:focusable="true"
+                                    android:hint="@string/spo2"
+                                    android:inputType="numberDecimal"
+                                    android:textSize="14sp" />
+
+                                <ImageView
+                                    android:layout_width="1dp"
+                                    android:layout_height="30dp"
+                                    android:layout_gravity="center"
+                                    android:background="#a3a3a3" />
+
+                                <EditText
+                                    android:id="@+id/edTextDisp6"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:focusable="true"
+                                    android:hint="@string/dispneia"
+                                    android:inputType="numberDecimal"
+                                    android:textSize="14sp" />
+
+                                <ImageView
+                                    android:layout_width="1dp"
+                                    android:layout_height="30dp"
+                                    android:layout_gravity="center"
+                                    android:background="#a3a3a3" />
+
+                                <EditText
+                                    android:id="@+id/edTextFad6"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:focusable="true"
+                                    android:hint="@string/fad_mmii"
+                                    android:inputType="numberDecimal"
+                                    android:textSize="14sp" />
+
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                        <TextView
+                            android:id="@+id/btSalvarDados6"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="end"
+                            android:layout_marginEnd="10dp"
+                            android:layout_marginRight="10dp"
+                            android:layout_marginTop="2dp"
+                            android:fontFamily="sans-serif-condensed"
+                            android:text="@string/salvar"
+                            android:textStyle="bold" />
+
+
+                    </LinearLayout> <!-- Layout Dados 6 -->
+
+                    <LinearLayout
+                        android:id="@+id/layoutDp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:visibility="gone">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="2dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginStart="10dp"
+                            android:text="Distância Percorrida"
+                            android:textColor="#64000000"
+                            android:textSize="16sp" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="15dp"
+                            android:background="@drawable/round_edge">
+
+                            <TextView
+                                android:id="@+id/textDistancia"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_marginLeft="20dp"
+                                android:layout_marginStart="20dp"
+                                android:text="100"
+                                android:textColor="#424242"
+                                android:textSize="18sp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_marginEnd="10dp"
+                                android:layout_marginRight="10dp"
+                                android:text="m  +"
+                                android:textColor="#424242"
+                                android:textSize="18sp" />
+
+                            <EditText
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_weight="1"
+                                android:hint="Distância restante" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="bottom"
+                                android:layout_marginBottom="2dp"
+                                android:layout_marginEnd="20dp"
+                                android:layout_marginRight="20dp"
+                                android:text="m"
+                                android:textColor="#616161"
+                                android:textSize="15sp" />
+
+                        </LinearLayout>
+                    </LinearLayout> <!-- Layout da DP(exibido só no final) -->
 
                     <LinearLayout
                         android:id="@+id/layoutFrase"
@@ -667,120 +858,89 @@
 
                     </LinearLayout> <!-- Layout Dados 5 -->
 
-                    <LinearLayout
-                        android:id="@+id/layoutDados6"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="15dp"
-                        android:orientation="vertical"
-                        android:visibility="gone"
-
-                        >
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="2dp"
-                            android:layout_marginLeft="10dp"
-                            android:layout_marginStart="10dp"
-                            android:text="@string/dados_do_6_minuto"
-                            android:textColor="#64000000"
-                            android:textSize="16sp"
-
-                            />
-
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:background="@drawable/round_edge"
-                            android:orientation="vertical">
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_margin="5dp">
-
-                                <EditText
-                                    android:id="@+id/edTextFC6"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_weight="2"
-                                    android:focusable="true"
-                                    android:hint="@string/fc"
-                                    android:inputType="numberDecimal"
-                                    android:textSize="14sp" />
-
-                                <ImageView
-                                    android:layout_width="1dp"
-                                    android:layout_height="30dp"
-                                    android:layout_gravity="center"
-                                    android:background="#a3a3a3" />
-
-                                <EditText
-                                    android:id="@+id/edTextSp6"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_weight="1"
-                                    android:focusable="true"
-                                    android:hint="@string/spo2"
-                                    android:inputType="numberDecimal"
-                                    android:textSize="14sp" />
-
-                                <ImageView
-                                    android:layout_width="1dp"
-                                    android:layout_height="30dp"
-                                    android:layout_gravity="center"
-                                    android:background="#a3a3a3" />
-
-                                <EditText
-                                    android:id="@+id/edTextDisp6"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_weight="1"
-                                    android:focusable="true"
-                                    android:hint="@string/dispneia"
-                                    android:inputType="numberDecimal"
-                                    android:textSize="14sp" />
-
-                                <ImageView
-                                    android:layout_width="1dp"
-                                    android:layout_height="30dp"
-                                    android:layout_gravity="center"
-                                    android:background="#a3a3a3" />
-
-                                <EditText
-                                    android:id="@+id/edTextFad6"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_weight="1"
-                                    android:focusable="true"
-                                    android:hint="@string/fad_mmii"
-                                    android:inputType="numberDecimal"
-                                    android:textSize="14sp" />
-
-
-                            </LinearLayout>
-
-                        </LinearLayout>
-
-                        <TextView
-                            android:id="@+id/btSalvarDados6"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="end"
-                            android:layout_marginEnd="10dp"
-                            android:layout_marginRight="10dp"
-                            android:layout_marginTop="2dp"
-                            android:fontFamily="sans-serif-condensed"
-                            android:text="@string/salvar"
-                            android:textStyle="bold" />
-
-
-                    </LinearLayout> <!-- Layout Dados 6 -->
-
                 </LinearLayout>
-            </ScrollView>
-        </LinearLayout>
-    </ScrollView>
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/layoutBotoes"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="10dp"
+        android:measureWithLargestChild="false">
+
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/btAdicionarVolta"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="10dp"
+            android:scaleType="center"
+            android:src="@drawable/icon_caminhar" /> <!--BOTAO ADD VOLTA -->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center"
+            android:layout_toLeftOf="@id/btAdicionarVolta"
+            android:layout_toStartOf="@id/btAdicionarVolta"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/textMetros"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:fontFamily="sans-serif-thin"
+                android:text="0"
+                android:textColor="#FFFFFF"
+                android:textSize="34sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:fontFamily="sans-serif-thin"
+                android:text="m"
+                android:textColor="#FFFFFF"
+                android:textSize="20sp" />
+        </LinearLayout> <!--TEXTO DA DISTANCIA -->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center"
+            android:layout_toEndOf="@id/btAdicionarVolta"
+            android:layout_toRightOf="@id/btAdicionarVolta"
+            android:gravity="center">
+
+            <ImageButton
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:background="@drawable/icon_pause" />
+
+        </LinearLayout> <!--BOTAO PAUSE -->
+
+    </RelativeLayout> <!-- LAYOUT BOTOES -->
+
+    <Button
+        android:id="@+id/btConfirma"
+        android:layout_width="180dp"
+        android:layout_height="38dp"
+        android:layout_gravity="center"
+        android:layout_marginBottom="20dp"
+        android:layout_marginTop="25dp"
+        android:background="@color/colorAccent"
+        android:text="@string/confirmar_valores"
+        android:textColor="#d7ffffff"
+        android:visibility="gone" /> <!--BOTAO CONFIRMAR DADOS -->
+
+
 </LinearLayout>

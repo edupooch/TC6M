@@ -11,7 +11,8 @@
     <string name="title_activity_valores_basais">Valores Basais</string>
 
 
-    <string name="dialog_abandonar">Deseja abandonar o teste? Os dados do teste serão perdidos.</string>
+    <string name="dialog_abandonar">Deseja abandonar o teste? Todos os dados do teste serão perdidos.</string>
+    <string name="dialog_abandonar_voltar">Deseja abandonar o teste e voltar para redefinir os valores basais? Os dados do teste serão perdidos.</string>
 
     <string name="dialog_yes">Sim</string>
     <string name="dialog_no">Não</string>
@@ -41,6 +42,7 @@
     <string name="frase_de_apoio">Frase de apoio</string>
     <string name="o2_supl">O2 Supl.</string>
     <string name="comecar_teste">COMEÇAR TESTE</string>
+    <string name="confirmar_valores">Confirmar valores</string>
 
 
 </resources>

@@ -39,7 +39,9 @@ public class ValoresBasaisActivity extends AppCompatActivity { //implementar com
                 Teste teste = helper.pegaDadosFromFields(0);
                 //TesteDAO() dao = new TesteDAO();
                 //dao.insereBasais(teste);
-                startActivity(new Intent(getApplicationContext(), CronometroActivity.class));
+                Intent intentVaiProCronometro = new Intent(ValoresBasaisActivity.this, CronometroActivity.class);
+                intentVaiProCronometro.putExtra("teste",teste);
+                startActivity(intentVaiProCronometro);
                 finish();
             }
         });

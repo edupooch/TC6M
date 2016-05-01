@@ -41,7 +41,8 @@ public class TesteHelper {
 
     }
 
-    public TesteHelper(CronometroActivity activity) {
+    public TesteHelper(CronometroActivity activity, Teste teste) {
+        this.teste = teste;
 
         edTextFc[1] = (EditText) activity.findViewById(R.id.edTextFC1);
         edTextFc[2] = (EditText) activity.findViewById(R.id.edTextFC2);
