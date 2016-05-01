@@ -45,9 +45,10 @@ public class FormularioHelper {
 
     }
 
-    public Paciente pegaPaciente() {
-
+    public Paciente pegaPacienteFromFields(Long id) {
         Paciente paciente = new Paciente();
+
+        if (id != null) paciente.setId(id);
         paciente.setNome(campoNome.getText().toString());
         paciente.setDataNascimento(campoData.getText().toString());
         paciente.setAltura(Double.valueOf(campoAltura.getText().toString()));
@@ -60,12 +61,10 @@ public class FormularioHelper {
         }if (btnFeminino.isChecked()) {
             paciente.setGenero(0);
         }
-
         return paciente;
     }
 
     public void preencheFormulário(Paciente paciente) {
-        Log.i("FormularioActivity", "paciente.getNome() — get nome " + paciente.getNome());
         campoNome.setText(paciente.getNome());
         campoData.setText(paciente.getDataNascimento());
         if (paciente.getGenero() == 0){

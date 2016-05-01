@@ -21,23 +21,11 @@ public class Paciente implements Serializable {
     private String email;
     private double peso;
     private double altura;
-    private String dataNascimento;
+    private String dataNascimento;//PASSAR PARA GREGORIAN CALENDAR
     private int genero;
     private String obs;
 
 
-    public Paciente(Long id, String nome, String telefone, String email, double peso, double altura, String dataNascimento, int genero, String obs) {
-        this.id = id;
-        this.nome = nome;
-        this.telefone = telefone;
-        this.email = email;
-        this.peso = peso;
-        this.altura = altura;
-        this.dataNascimento = dataNascimento;
-        this.genero = genero;
-        this.obs = obs;
-
-    }
 
     public Paciente() {
     }

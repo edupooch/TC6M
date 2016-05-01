@@ -39,7 +39,6 @@ public class PacienteDAO extends SQLiteOpenHelper {
         SQLiteDatabase db = getWritableDatabase();
 
         ContentValues dados = getContentValuesPaciente(paciente);
-
         db.insert("Pacientes", null, dados);
     }
 
@@ -92,9 +91,7 @@ public class PacienteDAO extends SQLiteOpenHelper {
     public void altera(Paciente paciente) {
 
         SQLiteDatabase db = getWritableDatabase();
-
         ContentValues dados2 = getContentValuesPaciente(paciente);
-
         String[] param = {paciente.getId().toString()};
         db.update("Pacientes",dados2, "id = ?", param);
     }

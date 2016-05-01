@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="br.edu.ufcspa.tc6m.controle.PerfilActivity">
     <item
-        android:id="@+id/action_settings"
+        android:id="@+id/action_editar"
         android:orderInCategory="100"
         android:title="Editar"
         app:showAsAction="always"

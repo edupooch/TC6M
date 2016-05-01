@@ -21,13 +21,18 @@ import android.widget.Toast;
 import java.util.TimerTask;
 
 import br.edu.ufcspa.tc6m.R;
+import br.edu.ufcspa.tc6m.modelo.Teste;
 
 public class CronometroActivity extends AppCompatActivity {
     //CRONOMETRO
     private Chronometer crono;
     //LAYOUTS
     private LinearLayout layoutFrase;
-    private LinearLayout layoutDados;
+    private LinearLayout[] layoutsDados = new LinearLayout[6];
+    private int[] layoutsDadosXML = {R.id.layoutDados1, R.id.layoutDados2, R.id.layoutDados3, R.id.layoutDados4, R.id.layoutDados5, R.id.layoutDados6};
+    private TextView[] botoesSalvar = new TextView[6];
+    private int[] botoesSalvarXML = {R.id.btSalvarDados1, R.id.btSalvarDados2, R.id.btSalvarDados3, R.id.btSalvarDados4, R.id.btSalvarDados5, R.id.btSalvarDados6,};
+    private int[] frasesId = {R.string.frase1, R.string.frase2, R.string.frase3, R.string.frase4, R.string.frase5};
     //TEXTOS
     private TextView textDistancia;
     private TextView textFrase;
@@ -40,6 +45,8 @@ public class CronometroActivity extends AppCompatActivity {
     private int volta;
     private int tempo;
 
+    private TesteHelper helper;
+    private Teste teste;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,35 +68,35 @@ public class CronometroActivity extends AppCompatActivity {
             @Override
             public void onChronometerTick(Chronometer chronometer) {
                 miliseconds = SystemClock.elapsedRealtime() - crono.getBase();
-                tempo = Integer.parseInt(crono.getText().toString().replace(":", ""));//TRANSFORMA O RELÓGIO EM UM INTEIRO (01:32 = 132)
+                tempo = Integer.parseInt(crono.getText().toString().replace(":", "")); //TRANSFORMA O RELÓGIO EM UM INTEIRO (01:32 = 132)
 
                 switch (tempo) {
                     case 100:
-                        umMinuto();
+                        mostraCampos(0);
                         break;
                     case 110:
                         someFrase(); //mudar isso para um metodo com timer
                         break;
                     case 200:
-                        doisMinutos();
+                        mostraCampos(1);;
                         break;
                     case 210:
                         someFrase();
                         break;
                     case 300:
-                        tresMinutos();
+                        mostraCampos(2);
                         break;
                     case 310:
                         someFrase();
                         break;
                     case 400:
-                        quatroMinutos();
+                        mostraCampos(3);
                         break;
                     case 410:
                         someFrase();
                         break;
                     case 500:
-                        cincoMinutos();
+                        mostraCampos(4);;
                         break;
                     case 510:
                         someFrase();
@@ -98,30 +105,47 @@ public class CronometroActivity extends AppCompatActivity {
                         chronometer.stop();
                         seisMinutos();
 
+
+
                 }
             }
         });
     }
 
+    private void seisMinutos() {
+        mostraCampos(5);
+        
+        final AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setCancelable(false);
+        builder.setTitle(getString(R.string.concluido));
+        builder.setMessage(getString(R.string.dialog_parar));
+        builder.setPositiveButton(getString(R.string.dialog_ok), new DialogInterface.OnClickListener() {
+
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+        AlertDialog alert = builder.create();
+        alert.show();
+    }
+
 
     private void iniciaComponentes() {
+        helper = new TesteHelper(this);
 
-        textDistancia = (TextView) findViewById(R.id.textMetros);
-
-        btFechar = (ImageButton) findViewById(R.id.btFechar);
-
-        TextView btSalvar2 = (TextView) findViewById(R.id.btSalvarDados2);
-        TextView btSalvar3 = (TextView) findViewById(R.id.btSalvarDados3);
-        TextView btSalvar4 = (TextView) findViewById(R.id.btSalvarDados4);
-        TextView btSalvar5 = (TextView) findViewById(R.id.btSalvarDados5);
-        TextView btSalvar6 = (TextView) findViewById(R.id.btSalvarDados6);
-
-        btAdicionarVolta = (FloatingActionButton) findViewById(R.id.btAdicionarVolta);
-        layoutFrase = (LinearLayout) findViewById(R.id.layoutFrase);
-        ////////////////////////////////////////////////////////////////////////////////////////////
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setVisibility(View.GONE);
         setSupportActionBar(toolbar);
+
+
+        TextView textNome = (TextView) findViewById(R.id.textNomePaciente);
+        textDistancia = (TextView) findViewById(R.id.textMetros);
+        btFechar = (ImageButton) findViewById(R.id.btFechar);
+
+
+        btAdicionarVolta = (FloatingActionButton) findViewById(R.id.btAdicionarVolta);
+        layoutFrase = (LinearLayout) findViewById(R.id.layoutFrase);
         ////////////////////////////////////////////////////////////////////////////////////////////
         btFechar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -157,69 +181,23 @@ public class CronometroActivity extends AppCompatActivity {
 
 
     //////////////////////////////////////////MINUTOS///////////////////////////////////////////////
-    private void umMinuto() {
-        TextView btSalvar1 = (TextView) findViewById(R.id.btSalvarDados1);
-        btSalvar1.setOnClickListener(new View.OnClickListener() {
+
+
+    private void mostraCampos(final int minuto){
+        layoutFrase.setVisibility(View.VISIBLE);
+        textFrase.setText(frasesId[minuto]);
+        layoutsDados[minuto] = (LinearLayout) findViewById(layoutsDadosXML[minuto]);
+        layoutsDados[minuto].setVisibility(View.VISIBLE);
+
+        botoesSalvar[minuto] = (TextView) findViewById(botoesSalvarXML[minuto]);
+        botoesSalvar[minuto].setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                layoutsDados[minuto].setVisibility(View.GONE);
             }
         });
-        textFrase.setText(R.string.frase1);
-        layoutFrase.setVisibility(View.VISIBLE);
-
     }
 
-
-    private void doisMinutos() {
-        textFrase.setText(R.string.frase2);
-
-        layoutFrase.setVisibility(View.VISIBLE);
-        layoutDados.setVisibility(View.VISIBLE);
-    }
-
-    private void tresMinutos() {
-        textFrase.setText(R.string.frase3);
-
-        layoutFrase.setVisibility(View.VISIBLE);
-        layoutDados.setVisibility(View.VISIBLE);
-    }
-
-
-    private void quatroMinutos() {
-        textFrase.setText(R.string.frase4);
-
-        layoutFrase.setVisibility(View.VISIBLE);
-        layoutDados.setVisibility(View.VISIBLE);
-    }
-
-
-    private void cincoMinutos() {
-        textFrase.setText(R.string.frase5);
-
-        layoutFrase.setVisibility(View.VISIBLE);
-        layoutDados.setVisibility(View.VISIBLE);
-    }
-
-
-    private void seisMinutos() {
-
-        layoutDados.setVisibility(View.VISIBLE);
-
-        final AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setCancelable(false);
-        builder.setTitle(getString(R.string.concluido));
-        builder.setMessage(getString(R.string.dialog_parar));
-        builder.setPositiveButton(getString(R.string.dialog_ok), new DialogInterface.OnClickListener() {
-
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.cancel();
-            }
-        });
-        AlertDialog alert = builder.create();
-        alert.show();
-    }
 
     ///////////////////////////////////////////////////////////////////////////////////////////////
 
