@@ -37,8 +37,6 @@ public class ValoresBasaisActivity extends AppCompatActivity { //implementar com
             @Override
             public void onClick(View view) {
                 Teste teste = helper.pegaDadosFromFields(0);
-                //TesteDAO() dao = new TesteDAO();
-                //dao.insereBasais(teste);
                 Intent intentVaiProCronometro = new Intent(ValoresBasaisActivity.this, CronometroActivity.class);
                 intentVaiProCronometro.putExtra("teste",teste);
                 startActivity(intentVaiProCronometro);

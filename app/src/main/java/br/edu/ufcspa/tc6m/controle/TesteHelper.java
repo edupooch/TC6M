@@ -11,6 +11,7 @@ import br.edu.ufcspa.tc6m.modelo.Teste;
  */
 public class TesteHelper {
 
+
     private Teste teste;
 
     //0=BASAL, 1-6=MINUTOS, 7=FINAL, 8=RECUPERAÇÃO
@@ -23,7 +24,8 @@ public class TesteHelper {
     private EditText[] edTextGc = new EditText[3];
     //BASAL
     private EditText edTextO2Supl;
-
+    //FINAL
+    private EditText edTextObsFinal;
     //VALORES
 
 
@@ -71,6 +73,18 @@ public class TesteHelper {
         edTextFad[4] = (EditText) activity.findViewById(R.id.edTextFad4);
         edTextFad[5] = (EditText) activity.findViewById(R.id.edTextFad5);
         edTextFad[6] = (EditText) activity.findViewById(R.id.edTextFad6);
+
+    }
+
+    public TesteHelper(ValoresFinaisActivity activity, Teste teste){
+        this.teste = teste;
+
+        edTextFc[7] = (EditText) activity.findViewById(R.id.edTextFc7);
+        edTextDisp[7] = (EditText) activity.findViewById(R.id.edTextDisp7);
+        edTextFad[7] = (EditText) activity.findViewById(R.id.edTextFad7);
+        edTextGc[1] = (EditText) activity.findViewById(R.id.edTextGc1);
+        edTextPa[1] = (EditText) activity.findViewById(R.id.edTextPa1);
+        edTextObsFinal = (EditText) activity.findViewById(R.id.edTextObsFinal);
 
     }
 

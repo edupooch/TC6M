@@ -43,6 +43,7 @@
     <string name="o2_supl">O2 Supl.</string>
     <string name="comecar_teste">COMEÇAR TESTE</string>
     <string name="confirmar_valores">Confirmar valores</string>
+    <string name="title_activity_valores_finais">valoresFinais</string>
 
 
 </resources>

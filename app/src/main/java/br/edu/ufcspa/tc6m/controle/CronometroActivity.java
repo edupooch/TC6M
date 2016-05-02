@@ -47,6 +47,7 @@ public class CronometroActivity extends AppCompatActivity {
     private int metros;
     private int volta;
     private int tempo;
+    private int fase;
     //TESTE
     private TesteHelper helper;
     private Teste teste;
@@ -54,10 +55,79 @@ public class CronometroActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_cronometro);
-        iniciaCronometro();
+        setContentView(R.layout.activity_valores_finais);
         iniciaComponentes();
 
+    }
+
+
+    private void iniciaComponentes() {
+
+        iniciaCronometro();
+
+        Intent intent = getIntent();
+        teste = (Teste) intent.getSerializableExtra("teste");
+        helper = new TesteHelper(this, teste);
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar.setVisibility(View.GONE);
+        setSupportActionBar(toolbar);
+
+        ImageView sublinhado = (ImageView) findViewById(R.id.sublinhado);
+        ;
+        TextView textNome = (TextView) findViewById(R.id.textNomePaciente);
+        textNome.setText(teste.getPaciente().getNome());
+        sublinhado.setMaxWidth(textNome.getWidth());
+        sublinhado.setMinimumWidth(textNome.getWidth());
+
+        textDistancia = (TextView) findViewById(R.id.textMetros);
+        btAdicionarVolta = (FloatingActionButton) findViewById(R.id.btAdicionarVolta);
+
+        ImageButton btFechar = (ImageButton) findViewById(R.id.btFechar);
+        btFechar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(getApplicationContext());
+                builder.setCancelable(false);
+                builder.setMessage(getString(R.string.dialog_abandonar));
+                builder.setPositiveButton(getString(R.string.dialog_yes), new DialogInterface.OnClickListener() {
+
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        finish();
+                    }
+                });
+                builder.setNegativeButton(getString(R.string.dialog_no), new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+                AlertDialog alert = builder.create();
+                alert.show();
+
+            }
+        });
+
+        //Botao da volta
+        btAdicionarVolta.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                metros += volta;
+                textDistancia.setText(String.valueOf(metros));
+                Toast.makeText(getApplicationContext(), " FC[1] = " + teste.getFc(1), Toast.LENGTH_LONG).show();
+
+            }
+        });
+        //FRASE DE APOIO
+        layoutFrase = (LinearLayout) findViewById(R.id.layoutFrase);
+        textFrase = (TextView) findViewById(R.id.textApoio);
+        layoutFrase.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                layoutFrase.setVisibility(View.GONE);
+            }
+        });
     }
 
     private void iniciaCronometro() {
@@ -154,76 +224,10 @@ public class CronometroActivity extends AppCompatActivity {
         btConfirma.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                setContentView(R.layout.activity_valores_basais);
-            }
-        });
-
-    }
-
-
-    private void iniciaComponentes() {
-
-        Intent intent = getIntent();
-        teste = (Teste) intent.getSerializableExtra("teste");
-        helper = new TesteHelper(this, teste);
-
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setVisibility(View.GONE);
-        setSupportActionBar(toolbar);
-
-        ImageView sublinhado = (ImageView) findViewById(R.id.sublinhado);
-        ;
-        TextView textNome = (TextView) findViewById(R.id.textNomePaciente);
-        textNome.setText(teste.getPaciente().getNome());
-        sublinhado.setMaxWidth(textNome.getWidth());
-        sublinhado.setMinimumWidth(textNome.getWidth());
-
-        textDistancia = (TextView) findViewById(R.id.textMetros);
-        btAdicionarVolta = (FloatingActionButton) findViewById(R.id.btAdicionarVolta);
-
-        ImageButton btFechar = (ImageButton) findViewById(R.id.btFechar);
-        btFechar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(getApplicationContext());
-                builder.setCancelable(false);
-                builder.setMessage(getString(R.string.dialog_abandonar));
-                builder.setPositiveButton(getString(R.string.dialog_yes), new DialogInterface.OnClickListener() {
-
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        finish();
-                    }
-                });
-                builder.setNegativeButton(getString(R.string.dialog_no), new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.cancel();
-                    }
-                });
-                AlertDialog alert = builder.create();
-                alert.show();
-
-            }
-        });
-
-        //Botao da volta
-        btAdicionarVolta.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                metros += volta;
-                textDistancia.setText(String.valueOf(metros));
-                Toast.makeText(getApplicationContext(), " FC[1] = " + teste.getFc(1), Toast.LENGTH_LONG).show();
-
-            }
-        });
-        //FRASE DE APOIO
-        layoutFrase = (LinearLayout) findViewById(R.id.layoutFrase);
-        textFrase = (TextView) findViewById(R.id.textApoio);
-        layoutFrase.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                layoutFrase.setVisibility(View.GONE);
+                Intent intentVaiProValoresFinais = new Intent(CronometroActivity.this, ValoresFinaisActivity.class);
+                intentVaiProValoresFinais.putExtra("teste",teste);
+                startActivity(intentVaiProValoresFinais);
+                finish();
             }
         });
 
