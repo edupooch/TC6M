@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/corPrimaria"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="br.edu.ufcspa.tc6m.controle.ValoresRecuperacaoActivity"
+    tools:showIn="@layout/activity_valores_recuperacao">
+
+    <LinearLayout
+        android:id="@+id/layoutDadosRecuperacao"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="15dp"
+            android:background="@drawable/round_edge"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/tituloBasais"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="10dp"
+                android:textColor="#424242"
+                android:textSize="18sp" />
+
+        </LinearLayout> <!-- TITULO -->
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <com.github.florent37.materialtextfield.MaterialTextField
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        app:mtf_image="@drawable/icon_fc">
+
+                        <EditText
+                            android:id="@+id/edTextFC8"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="FC"
+                            android:inputType="number"
+                            android:textColor="#333"
+                            android:textColorHint="#666"
+                            android:textSize="15sp" />
+
+                    </com.github.florent37.materialtextfield.MaterialTextField> <!--FC -->
+
+                    <ImageView
+                        android:layout_width="10dp"
+                        android:layout_height="10dp" />
+
+                    <com.github.florent37.materialtextfield.MaterialTextField
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        app:mtf_image="@drawable/icon_sangue">
+
+                        <EditText
+                            android:id="@+id/edTextGc2"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="GC"
+                            android:inputType="number"
+                            android:textColor="#333"
+                            android:textColorHint="#666"
+                            android:textSize="15sp" />
+
+                    </com.github.florent37.materialtextfield.MaterialTextField> <!--GC-->
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:orientation="horizontal">
+
+                    <com.github.florent37.materialtextfield.MaterialTextField
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        app:mtf_image="@drawable/icon_pulmao">
+
+                        <EditText
+                            android:id="@+id/edTextDisp8"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/dispneia"
+                            android:inputType="number"
+                            android:textColor="#333"
+                            android:textColorHint="#666"
+                            android:textSize="15sp" />
+
+                    </com.github.florent37.materialtextfield.MaterialTextField> <!--Dispneia-->
+
+                    <ImageView
+                        android:layout_width="10dp"
+                        android:layout_height="10dp" />
+
+                    <com.github.florent37.materialtextfield.MaterialTextField
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        app:mtf_image="@drawable/icon_mmii">
+
+                        <EditText
+                            android:id="@+id/edTextFad8"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="Fadiga MMII"
+                            android:inputType="number"
+                            android:textColor="#333"
+                            android:textColorHint="#666"
+                            android:textSize="15sp" />
+
+                    </com.github.florent37.materialtextfield.MaterialTextField> <!--FAD MMII-->
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:orientation="horizontal">
+
+                    <com.github.florent37.materialtextfield.MaterialTextField
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        app:mtf_image="@drawable/icon_pa">
+
+                        <EditText
+                            android:id="@+id/edTextPa2"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="PA"
+                            android:inputType="number"
+                            android:textColor="#333"
+                            android:textColorHint="#666"
+                            android:textSize="15sp" />
+
+                    </com.github.florent37.materialtextfield.MaterialTextField> <!--PA-->
+
+
+                </LinearLayout>
+
+
+                <Button
+
+                    android:id="@+id/btSalvarRecuperacao"
+                    android:layout_width="180dp"
+                    android:layout_height="38dp"
+                    android:layout_gravity="bottom|center"
+                    android:layout_marginTop="50dp"
+                    android:background="@color/colorAccent"
+                    android:text="FINALIZAR TESTE"
+                    android:textColor="#d7ffffff" />
+
+
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/layoutAguarde"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:id="@+id/layoutCronometroRecup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <Chronometer
+                android:id="@+id/cronometroRecuperacao"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:fontFamily="sans-serif-thin"
+                android:textColor="#FFFFFFFF"
+                android:textSize="60sp"
+
+                />
+
+
+            <ImageView
+                android:id="@+id/imgCirculo"
+                android:layout_width="250dp"
+                android:layout_height="250dp"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:background="@drawable/circulo3" />
+
+
+        </RelativeLayout> <!-- Layout Cronometro -->
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/layoutCronometroRecup"
+            android:layout_marginTop="35dp"
+            android:fontFamily="sans-serif-light"
+            android:gravity="center"
+            android:text="Aguarde 2min para registrar os valores de recuperação"
+            android:textSize="12sp"
+            android:layout_centerHorizontal="true"
+            android:textColor="#FFFFFF"
+
+            />
+
+        <Button
+            android:id="@+id/btPularTempo"
+            android:layout_width="180dp"
+            android:layout_height="38dp"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center"
+            android:background="@color/colorAccent"
+            android:text="Registrar Agora"
+            android:textColor="#d7ffffff"
+            android:layout_marginTop="150dp"
+            android:layout_below="@id/layoutCronometroRecup"
+            />
+    </RelativeLayout>
+
+</RelativeLayout>

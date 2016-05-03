@@ -11,9 +11,7 @@ import br.edu.ufcspa.tc6m.modelo.Teste;
  */
 public class TesteHelper {
 
-
     private Teste teste;
-
     //0=BASAL, 1-6=MINUTOS, 7=FINAL, 8=RECUPERAÇÃO
     private EditText[] edTextFc = new EditText[9];
     private EditText[] edTextSp = new EditText[7];
@@ -76,7 +74,7 @@ public class TesteHelper {
 
     }
 
-    public TesteHelper(ValoresFinaisActivity activity, Teste teste){
+    public TesteHelper(ValoresFinaisActivity activity, Teste teste) {
         this.teste = teste;
 
         edTextFc[7] = (EditText) activity.findViewById(R.id.edTextFc7);
@@ -88,17 +86,32 @@ public class TesteHelper {
 
     }
 
+    public TesteHelper(ValoresRecuperacaoActivity activity, Teste teste) {
+
+        this.teste = teste;
+
+        edTextFc[8] = (EditText) activity.findViewById(R.id.edTextFC8);
+        edTextDisp[8] = (EditText) activity.findViewById(R.id.edTextDisp8);
+        edTextFad[8] = (EditText) activity.findViewById(R.id.edTextFad8);
+        edTextGc[2] = (EditText) activity.findViewById(R.id.edTextGc2);
+        edTextPa[2] = (EditText) activity.findViewById(R.id.edTextPa2);
+
+    }
+
     public Teste pegaDadosFromFields(int minuto) {
         teste.setFc(minuto, edTextFc[minuto].getText().toString());
         teste.setSpO2(minuto, edTextSp[minuto].getText().toString());
         teste.setDispneia(minuto, edTextDisp[minuto].getText().toString());
         teste.setFadiga(minuto, edTextFad[minuto].getText().toString());
 
-        if (minuto == 0) {
+        if (minuto == 0 || minuto == 7 || minuto == 8) {
+            if (minuto == 7 || minuto == 8) minuto -= 6;
             teste.setGc(minuto, edTextGc[minuto].getText().toString());
             teste.setPa(minuto, edTextPa[minuto].getText().toString());
             teste.setO2Supl(edTextO2Supl.getText().toString());
+            if (minuto == 7) teste.setObsFinal(edTextObsFinal.getText().toString());
         }
+
         return teste;
     }
 }

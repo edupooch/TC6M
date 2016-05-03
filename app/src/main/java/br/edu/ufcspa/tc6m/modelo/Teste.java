@@ -40,6 +40,8 @@ public class Teste implements Serializable {
     private double massa;
     private double estatura;
 
+    private String obsFinal;
+
     private double distanciaPercorrida;
     private double dpEstimada1;
     private double dpEstimada2;
@@ -218,5 +220,13 @@ public class Teste implements Serializable {
 
     public void setDpPorcento2(double dpPorcento2) {
         this.dpPorcento2 = dpPorcento2;
+    }
+
+    public String getObsFinal() {
+        return obsFinal;
+    }
+
+    public void setObsFinal(String obsFinal) {
+        this.obsFinal = obsFinal;
     }
 }

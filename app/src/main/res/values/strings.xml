@@ -44,6 +44,7 @@
     <string name="comecar_teste">COMEÇAR TESTE</string>
     <string name="confirmar_valores">Confirmar valores</string>
     <string name="title_activity_valores_finais">valoresFinais</string>
+    <string name="title_activity_valores_recuperacao">ValoresRecuperacaoActivity</string>
 
 
 </resources>

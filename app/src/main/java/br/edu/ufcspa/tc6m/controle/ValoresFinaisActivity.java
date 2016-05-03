@@ -7,6 +7,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.Button;
 
 import br.edu.ufcspa.tc6m.R;
 import br.edu.ufcspa.tc6m.modelo.Teste;
@@ -31,7 +32,19 @@ public class ValoresFinaisActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         teste = (Teste) intent.getSerializableExtra("teste");
+        helper = new TesteHelper(this,teste);
 
+        Button btSalvar = (Button)findViewById(R.id.btSalvarFinal);
+        btSalvar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                teste = helper.pegaDadosFromFields(7);
+                Intent intentVaiProValoresRecuperacao = new Intent(ValoresFinaisActivity.this, ValoresRecuperacaoActivity.class);
+                intentVaiProValoresRecuperacao.putExtra("teste",teste);
+                startActivity(intentVaiProValoresRecuperacao);
+            }
+
+        });
 
     }
 

@@ -344,7 +344,7 @@
                 </LinearLayout>
 
                 <Button
-                    android:id="@+id/btComecarTeste"
+                    android:id="@+id/btSalvarFinal"
                     android:layout_width="180dp"
                     android:layout_height="38dp"
                     android:layout_gravity="bottom|center"
