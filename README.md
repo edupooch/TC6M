@@ -1,7 +1,4 @@
-# TC6M
-, 
-com objetivo 
-# README #
+# README TC6M#
 
 Projeto desenvolvido com apoio do CNPq.
 
