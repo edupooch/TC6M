@@ -1,5 +1,4 @@
-# README TC6M#
-
+#TC6M#
 Projeto desenvolvido com apoio do CNPq.
 
 ### Para que é esse repositório? ###
