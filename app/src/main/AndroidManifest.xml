@@ -59,7 +59,7 @@
         <activity
             android:name=".controle.ValoresRecuperacaoActivity"
             android:label="@string/title_activity_valores_recuperacao"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar"/>
     </application>
 
 </manifest>

@@ -63,6 +63,19 @@ public class CronometroActivity extends AppCompatActivity {
 
     private void iniciaComponentes() {
 
+
+        Button btConfirma = (Button) findViewById(R.id.btConfirma);
+        btConfirma.setVisibility(View.VISIBLE);
+        btConfirma.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intentVaiProValoresFinais = new Intent(CronometroActivity.this, ValoresFinaisActivity.class);
+                intentVaiProValoresFinais.putExtra("teste",teste);
+                startActivity(intentVaiProValoresFinais);
+                finish();
+            }
+        });
+
         iniciaCronometro();
 
         Intent intent = getIntent();

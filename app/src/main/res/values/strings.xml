@@ -43,8 +43,9 @@
     <string name="o2_supl">O2 Supl.</string>
     <string name="comecar_teste">COMEÇAR TESTE</string>
     <string name="confirmar_valores">Confirmar valores</string>
-    <string name="title_activity_valores_finais">valoresFinais</string>
-    <string name="title_activity_valores_recuperacao">ValoresRecuperacaoActivity</string>
+    <string name="title_activity_valores_finais">Valores Finais</string>
+    <string name="title_activity_valores_recuperacao">Valores de Recuperação</string>
+    <string name="numero_de_paradas">Número de Paradas: </string>
 
 
 </resources>

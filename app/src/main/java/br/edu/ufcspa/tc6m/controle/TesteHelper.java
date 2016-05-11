@@ -14,9 +14,9 @@ public class TesteHelper {
     private Teste teste;
     //0=BASAL, 1-6=MINUTOS, 7=FINAL, 8=RECUPERAÇÃO
     private EditText[] edTextFc = new EditText[9];
-    private EditText[] edTextSp = new EditText[7];
     private EditText[] edTextDisp = new EditText[9];
     private EditText[] edTextFad = new EditText[9];
+    private EditText[] edTextSp = new EditText[7];
     //0=BASAL, 1=FINAL, 2=RECUPERAÇÃO
     private EditText[] edTextPa = new EditText[3];
     private EditText[] edTextGc = new EditText[3];
@@ -99,16 +99,20 @@ public class TesteHelper {
     }
 
     public Teste pegaDadosFromFields(int minuto) {
+
         teste.setFc(minuto, edTextFc[minuto].getText().toString());
-        teste.setSpO2(minuto, edTextSp[minuto].getText().toString());
         teste.setDispneia(minuto, edTextDisp[minuto].getText().toString());
         teste.setFadiga(minuto, edTextFad[minuto].getText().toString());
 
+        if (minuto < 7) teste.setSpO2(minuto, edTextSp[minuto].getText().toString()); //SpO2 apenas até o minuto 6
+
         if (minuto == 0 || minuto == 7 || minuto == 8) {
-            if (minuto == 7 || minuto == 8) minuto -= 6;
+            if (minuto == 0)
+                teste.setO2Supl(edTextO2Supl.getText().toString()); //o2 supl apenas basal
+            if (minuto == 7 || minuto == 8)
+                minuto -= 6; //mudando o valor de 7 e 8 para 1 e 2 para se adequar aos índices declarados
             teste.setGc(minuto, edTextGc[minuto].getText().toString());
             teste.setPa(minuto, edTextPa[minuto].getText().toString());
-            teste.setO2Supl(edTextO2Supl.getText().toString());
             if (minuto == 7) teste.setObsFinal(edTextObsFinal.getText().toString());
         }
 

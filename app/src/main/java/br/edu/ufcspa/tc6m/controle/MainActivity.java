@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
                 break;
 
             case R.id.action_basais:
-                startActivity(new Intent(getApplicationContext(), ValoresBasaisActivity.class));
+                startActivity(new Intent(getApplicationContext(), ValoresRecuperacaoActivity.class));
                 break;
 
             case R.id.action_cronometro:

@@ -82,6 +82,31 @@
                         android:textColor="#FFFFFFFF"
                         android:textSize="60sp" />
 
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/cronometro"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="88dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="sans-serif-light"
+                            android:text="@string/numero_de_paradas"
+                            android:textColor="#FFFFFF" />
+
+
+                        <TextView
+                            android:id="@+id/nParadas"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginStart="5dp"
+                            android:fontFamily="sans-serif-light"
+                            android:text="0"
+                            android:textColor="#FFFFFF" />
+                    </LinearLayout>
 
                 </RelativeLayout> <!-- Layout Cronometro -->
 
@@ -922,6 +947,7 @@
             android:gravity="center">
 
             <ImageButton
+                android:id="@+id/botaoParar"
                 android:layout_width="25dp"
                 android:layout_height="25dp"
                 android:background="@drawable/icon_pause" />
