@@ -3,6 +3,7 @@ package br.edu.ufcspa.tc6m.modelo;
 import java.io.Serializable;
 import java.sql.Time;
 
+import java.util.Date;
 import java.util.GregorianCalendar;
 
 /**
@@ -16,7 +17,8 @@ public class Teste implements Serializable {
 
     private Time horario;
 
-    private GregorianCalendar data;
+    private Date data;
+
 
     // SIGNIFICADO DOS ÍNDICES DOS ARRAYS COMENTADOS AO LADO DE CADA UM
 
@@ -70,11 +72,11 @@ public class Teste implements Serializable {
         this.horario = horario;
     }
 
-    public GregorianCalendar getData() {
+    public Date getData() {
         return data;
     }
 
-    public void setData(GregorianCalendar data) {
+    public void setData(Date data) {
         this.data = data;
     }
 
