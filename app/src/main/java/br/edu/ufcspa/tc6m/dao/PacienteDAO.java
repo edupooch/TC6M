@@ -37,7 +37,6 @@ public class PacienteDAO extends SQLiteOpenHelper {
 
     public void insere(Paciente paciente) {
         SQLiteDatabase db = getWritableDatabase();
-
         ContentValues dados = getContentValuesPaciente(paciente);
         db.insert("Pacientes", null, dados);
     }

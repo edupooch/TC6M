@@ -41,22 +41,7 @@ public class TesteHelper {
         edTextPa[0] = (EditText) activity.findViewById(R.id.editTextPA0);
         edTextO2Supl = (EditText) activity.findViewById(R.id.edTextO2Supl);
 
-        edTextFc[0].addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-
-            }
-        });
+        edTextFc[0].addTextChangedListener(new FcWatcher());
 
     }
 

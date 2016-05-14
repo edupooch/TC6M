@@ -2,11 +2,13 @@ package br.edu.ufcspa.tc6m.controle;
 
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.widget.EditText;
 
 /**
  * Created by edupooch on 13/05/16.
  */
 public class FcWatcher implements TextWatcher {
+
 
     @Override
     public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -20,6 +22,9 @@ public class FcWatcher implements TextWatcher {
 
     @Override
     public void afterTextChanged(Editable s) {
-
+        }
     }
-}
+
+
+
+

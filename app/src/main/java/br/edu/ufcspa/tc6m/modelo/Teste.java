@@ -8,15 +8,30 @@ import java.util.GregorianCalendar;
 
 /**
  * Created by edupooch on 22/12/15.
+ * FC: número inteiro, podendo variar de 40 à 220;
+ PA: número inteiro, podendo variar de 50 à 260; nesse campo é necessário incluir espaço para dois numerais, pois a pressão arterial é composta por um valor superior (sistólica) e outro inferior (diastólica). Ex.: 156/78;
+ GC: número inteiro, podendo variar de 50 à 300;
+ SpO2: número inteiro, podendo variar de 80 à 100;
+ O2 supl.: número decimal, com uma casa após a vírgula, podendo variar de 0 à 10;
+ alguns dos intervalos acima podem assumir valores maiores ou menores. Os valores que passei estão dentro de uma faixa aceitável para a realização do TC6min. Contudo, ainda podemos ajustar melhor esses intervalos e incluir alertas para que o avaliador não realize o teste caso o avaliado apresente valores fora de uma faixa considerada segura clinicamente. Ok?
+ O intervalo dos campos abaixo varia de acordo com a escala empregada. Assim, sugiro que o intervalo inclua os valores das duas mais comuns (0-10 e 6-20):
+ Dispneia: número decimal, com uma casa após a vírgula, podendo variar de 0,0 à 20,0;
+ Fadiga MMII: número decimal, com uma casa após a vírgula, podendo variar de 0,0 à 20,0.
+ DP: número inteiro, podendo variar de 0 à 999;
+ Estatura: número decimal, com duas casas após a vírgula, podendo variar de 1,00 à 2,20;
+ Massa corporal: número decimal, com uma casa após a vírgula, podendo variar de 20,0 à 200,0;
+ IMC: número decimal, com uma casa após a vírgula, podendo variar de 15,0 à 50,0.
+ Idade: seria interessante incluir um campo para data de nascimento, a partir da qual se calcularia a idade em anos, meses e dias;
+ Número de paradas: número inteiro, podendo variar de 0 à 20;
+ Tempo das paradas: número inteiro, devendo incluir um campo para minutos (0-10) e outro para segundos (0-60);
+ DP estimada: número decimal, com uma casa após a vírgula, podendo variar de 0,0 à 999,9.
+ % DP estimada: número decimal, com uma casa após a vírgula, podendo variar de 0,0 à 199,9.
  */
+
 public class Teste implements Serializable {
-
+    private Long idTeste;
     private Paciente paciente;
-
     private Long idPaciente;
-
-    private Time horario;
-
     private Date data;
 
 
@@ -55,6 +70,13 @@ public class Teste implements Serializable {
         this.idPaciente = paciente.getId();
     }
 
+    public Long getIdTeste() {
+        return idTeste;
+    }
+
+    public void setIdTeste(Long idTeste) {
+        this.idTeste = idTeste;
+    }
 
     public Paciente getPaciente() {
         return paciente;
@@ -62,14 +84,6 @@ public class Teste implements Serializable {
 
     public Long getIdPaciente() {
         return idPaciente;
-    }
-
-    public Time getHorario() {
-        return horario;
-    }
-
-    public void setHorario(Time horario) {
-        this.horario = horario;
     }
 
     public Date getData() {
