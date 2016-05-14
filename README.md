@@ -22,12 +22,6 @@ valores de normalidade da distância percorrida por crianças brasileiras.
 
 ### License ###
 
-   Copyright 2016 Eduardo Pooch
-
-   Licensed under the Apache License, Version 2.0 (the "License");
-   you may not use this file except in compliance with the License.
-   You may obtain a copy of the License at
-
       Copyright 2016 Eduardo Pooch
 
       Licensed under the Apache License, Version 2.0 (the "License");
