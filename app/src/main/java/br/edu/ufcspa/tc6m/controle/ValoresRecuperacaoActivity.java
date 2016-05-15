@@ -16,6 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import br.edu.ufcspa.tc6m.R;
+import br.edu.ufcspa.tc6m.dao.TesteDAO;
 import br.edu.ufcspa.tc6m.modelo.Teste;
 
 public class ValoresRecuperacaoActivity extends AppCompatActivity {
@@ -71,7 +72,9 @@ public class ValoresRecuperacaoActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 teste = helper.pegaDadosFromFields(8);
-                //dao.salvar(teste);
+                TesteDAO dao = new TesteDAO(getApplicationContext());
+                dao.insere(teste);
+                dao.close();
                 Toast.makeText(getApplicationContext(), "FC 3= " + teste.getFc(3) + "FC 7= " + teste.getFc(7), Toast.LENGTH_LONG).show();
                 finish();
 

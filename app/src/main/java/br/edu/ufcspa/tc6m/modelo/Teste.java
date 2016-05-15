@@ -37,18 +37,18 @@ public class Teste implements Serializable {
 
     // SIGNIFICADO DOS ÍNDICES DOS ARRAYS COMENTADOS AO LADO DE CADA UM
 
-    private String[] fc = new String[9]; //0=BASAL, 1-6=MINUTOS, 7=FINAL, 8=RECUPERAÇÃO
-    private String[] dispneia = new String[9]; //0=BASAL, 1-6=MINUTOS, 7=FINAL, 8=RECUPERAÇÃO
-    private String[] fadiga = new String[9]; //0=BASAL, 1-6=MINUTOS, 7=FINAL, 8=RECUPERAÇÃO
+    private int[] fc = new int[9]; //0=BASAL, 1-6=MINUTOS, 7=FINAL, 8=RECUPERAÇÃO
+    private double[] dispneia = new double[9]; //0=BASAL, 1-6=MINUTOS, 7=FINAL, 8=RECUPERAÇÃO
+    private double[] fadiga = new double[9]; //0=BASAL, 1-6=MINUTOS, 7=FINAL, 8=RECUPERAÇÃO
 
-    private String[] spO2 = new String[7]; //0=BASAL, 1-6=MINUTOS
+    private int[] spO2 = new int[7]; //0=BASAL, 1-6=MINUTOS
 
     private String[] pa = new String[3]; //0=BASAL, 1=FINAL, 2=RECUPERAÇÃO
-    private String[] gc = new String[3]; //0=BASAL, 1=FINAL, 2=RECUPERAÇÃO
+    private int[] gc = new int[3]; //0=BASAL, 1=FINAL, 2=RECUPERAÇÃO
 
-    private String o2Supl;//BASAL
+    private double o2Supl;//BASAL
 
-    private int[] voltas = new int[5]; //0-5=MINUTOS
+    private int[] voltas = new int[6]; //0-5=MINUTOS
 
     private int nParadas;
     private String tempoParadas;
@@ -94,35 +94,35 @@ public class Teste implements Serializable {
         this.data = data;
     }
 
-    public String getFc(int i) {
+    public int getFc(int i) {
         return fc[i];
     }
 
-    public void setFc(int i, String fc) {
+    public void setFc(int i, int fc) {
         this.fc[i] = fc;
     }
 
-    public String getDispneia(int i) {
+    public double getDispneia(int i) {
         return dispneia[i];
     }
 
-    public void setDispneia(int i, String dispneia) {
+    public void setDispneia(int i, double dispneia) {
         this.dispneia[i] = dispneia;
     }
 
-    public String getFadiga(int i) {
+    public double getFadiga(int i) {
         return fadiga[i];
     }
 
-    public void setFadiga(int i, String fadiga) {
+    public void setFadiga(int i, double fadiga) {
         this.fadiga[i] = fadiga;
     }
 
-    public String getSpO2(int i) {
+    public int getSpO2(int i) {
         return spO2[i];
     }
 
-    public void setSpO2(int i, String spO2) {
+    public void setSpO2(int i, int spO2) {
         this.spO2[i] = spO2;
     }
 
@@ -134,19 +134,19 @@ public class Teste implements Serializable {
         this.pa[i] = pa;
     }
 
-    public String getGc(int i) {
+    public int getGc(int i) {
         return gc[i];
     }
 
-    public void setGc(int i, String gc) {
+    public void setGc(int i, int gc) {
         this.gc[i] = gc;
     }
 
-    public String getO2Supl() {
+    public double getO2Supl() {
         return o2Supl;
     }
 
-    public void setO2Supl(String o2Supl) {
+    public void setO2Supl(double o2Supl) {
         this.o2Supl = o2Supl;
     }
 
@@ -244,5 +244,10 @@ public class Teste implements Serializable {
 
     public void setObsFinal(String obsFinal) {
         this.obsFinal = obsFinal;
+    }
+
+    @Override
+    public String toString() {
+        return "Teste do dia " + getData();
     }
 }

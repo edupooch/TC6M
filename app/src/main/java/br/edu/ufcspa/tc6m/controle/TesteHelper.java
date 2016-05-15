@@ -1,5 +1,6 @@
 package br.edu.ufcspa.tc6m.controle;
 
+import android.renderscript.Double2;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.widget.EditText;
@@ -103,21 +104,29 @@ public class TesteHelper {
     }
 
     public Teste pegaDadosFromFields(int minuto) {
+        if (!edTextFc[minuto].toString().isEmpty()) {
+            try {
+                teste.setFc(minuto, Integer.parseInt(edTextFc[minuto].getText().toString()));
+            } catch (NumberFormatException e) {
+            }
+        }
+        try {teste.setDispneia(minuto, Double.valueOf(edTextDisp[minuto].getText().toString()));} catch (NumberFormatException e) {}
 
-        teste.setFc(minuto, edTextFc[minuto].getText().toString());
-        teste.setDispneia(minuto, edTextDisp[minuto].getText().toString());
-        teste.setFadiga(minuto, edTextFad[minuto].getText().toString());
+        try {teste.setFadiga(minuto, Double.valueOf(edTextFad[minuto].getText().toString()));} catch (NumberFormatException e) {}
 
-        if (minuto < 7) teste.setSpO2(minuto, edTextSp[minuto].getText().toString()); //SpO2 apenas até o minuto 6
+        if (minuto < 7) //SPO2 VAI ATÉ O MINUTO 7
+            try {teste.setSpO2(minuto, Integer.parseInt(edTextSp[minuto].getText().toString()));} catch (NumberFormatException e) {}
 
         if (minuto == 0 || minuto == 7 || minuto == 8) {
-            if (minuto == 0)
-                teste.setO2Supl(edTextO2Supl.getText().toString()); //o2 supl apenas basal
-            if (minuto == 7 || minuto == 8)
-                minuto -= 6; //mudando o valor de 7 e 8 para 1 e 2 para se adequar aos índices declarados
-            teste.setGc(minuto, edTextGc[minuto].getText().toString());
-            teste.setPa(minuto, edTextPa[minuto].getText().toString());
-            if (minuto == 7) teste.setObsFinal(edTextObsFinal.getText().toString());
+            if (minuto == 0) // O O2 SUPLEMENTAR É APENAS UM VALOR BASAL
+                try {teste.setO2Supl(Double.valueOf(edTextO2Supl.getText().toString()));}catch (NumberFormatException e){}
+            if (minuto == 7 || minuto == 8) {
+                minuto -= 6; //mudando o valor de 7 e 8 para 1 e 2 para se adequar aos índices declarados DE GC E PA
+                try {teste.setGc(minuto, Integer.parseInt(edTextGc[minuto].getText().toString()));} catch (NumberFormatException e) {}
+                teste.setPa(minuto, edTextPa[minuto].getText().toString());
+
+                if (minuto == 7) teste.setObsFinal(edTextObsFinal.getText().toString());
+            }
         }
 
         return teste;

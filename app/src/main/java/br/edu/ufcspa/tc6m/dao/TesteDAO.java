@@ -2,10 +2,17 @@ package br.edu.ufcspa.tc6m.dao;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.support.annotation.NonNull;
 
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.GregorianCalendar;
+import java.util.List;
+
+import br.edu.ufcspa.tc6m.modelo.Paciente;
 import br.edu.ufcspa.tc6m.modelo.Teste;
 
 /**
@@ -29,9 +36,21 @@ import br.edu.ufcspa.tc6m.modelo.Teste;
  * DP estimada: número decimal, com uma casa após a vírgula, podendo variar de 0,0 à 999,9.
  * % DP estimada: número decimal, com uma casa após a vírgula, podendo variar de 0,0 à 199,9.
  */
+
+
 public class TesteDAO extends SQLiteOpenHelper {
+
+    String[] strKeyFc = {"fc_0", "fc_1", "fc_2", "fc_3", "fc_4", "fc_5", "fc_6", "fc_7", "fc_8",};
+    String[] strKeyDisp = {"disp_0", "disp_1", "disp_2", "disp_3", "disp_4", "disp_5", "disp_6", "disp_7", "disp_8",};
+    String[] strKeyFad = {"fad_0", "fad_1", "fad_2", "fad_3", "fad_4", "fad_5", "fad_6", "fad_7", "fad_8",};
+    String[] strKeySp = {"spo2_0", "spo2_1", "spo2_2", "spo2_3", "spo2_4", "spo2_5", "spo2_6"};
+    String[] strKeyPa = {"pa_0", "pa_1", "pa_2"};
+    String[] strKeyGc = {"gc_0", "gc_1", "gc_2"};
+    String[] strKeyVoltas = {"voltas_0", "voltas_1", "voltas_2", "voltas_3", "voltas_4", "voltas_5",};
+
     public TesteDAO(Context context) {
-        super(context, "Testes", null, 1);
+        super(context, "Testes", null, 2);
+
 
     }
 
@@ -46,7 +65,7 @@ public class TesteDAO extends SQLiteOpenHelper {
                 "fad_0 REAL, fad_1 REAL, fad_2 REAL, fad_3 REAL, fad_4 REAL, fad_5 REAL, fad_6 REAL, fad_7 REAL, fad_8 REAL,\n" +
                 "o2supl_0 REAL,\n" +
                 "pa_0 TEXT, pa_1 TEXT, pa_2 TEXT,\n" +
-                "gc_0 TEXT, gc_1 TEXT, gc_2 TEXT,\n" +
+                "gc_0 INTEGER, gc_1 INTEGER, gc_2 INTEGER,\n" +
                 "voltas_0 INTEGER, voltas_1 INTEGER, voltas_2 INTEGER, voltas_3 INTEGER, voltas_4 INTEGER, voltas_5 INTEGER,\n" +
                 "n_paradas INTEGER,\n" +
                 "tempo_paradas TEXT,\n" +
@@ -55,8 +74,6 @@ public class TesteDAO extends SQLiteOpenHelper {
                 "estatura REAL,\n" +
                 "obs_final TEXT,\n" +
                 "distancia_percorrida REAL,\n" +
-                "dp_estimada_1 REAL, dp_estimada_2 REAL,\n" +
-                "dp_porcento_1 REAL, dp_porcento_2 REAL,\n" +
                 "FOREIGN KEY(id_paciente) REFERENCES Pacientes(id));";
         db.execSQL(sql);
 
@@ -79,35 +96,101 @@ public class TesteDAO extends SQLiteOpenHelper {
     private ContentValues getContentValuesTeste(Teste teste) {
         ContentValues dados = new ContentValues();
 
-        String[] strKeyFc = {"fc0", "fc1", "fc2", "fc3", "fc4", "fc5", "fc6", "fc7", "fc8",};
-        String[] strKeyDisp = {"disp0", "disp1", "disp2", "disp3", "disp4", "disp5", "disp6", "disp7", "disp8",};
-        String[] strKeyFad = {"fad0", "fad1", "fad2", "fad3", "fad4", "fad5", "fad6", "fad7", "fad8",};
-        String[] strKeySp = {"sp0", "sp1", "sp2", "sp3", "sp4", "sp5", "sp6"};
-        String[] strKeyPa = {"pa0", "pa1", "pa2"};
-        String[] strKeyGc = {"gc0", "gc1", "gc2"};
-        String[] strKeyVoltas = {"voltas0", "voltas1", "voltas2", "voltas3", "voltas4", "voltas5",};
 
-        dados.put("idPaciente", teste.getIdPaciente());
-        for (int i = 0; i < 9; i++) {//pega os dados de 0 a 8 do teste
+        dados.put("id_paciente", teste.getIdPaciente());
+        dados.put("dia_hora", "0/0/0");
+        //INSERE VALORES DE FC
+        for (int i = 0; i < 9; i++)
             dados.put(strKeyFc[i], teste.getFc(i));
+        //SPO2
+        for (int i = 0; i < 7; i++)
+            dados.put(strKeySp[i], teste.getSpO2(i));
+        //DISPNEIA1
+        for (int i = 0; i < 9; i++)
             dados.put(strKeyDisp[i], teste.getDispneia(i));
+        //FADIGA MMII
+        for (int i = 0; i < 9; i++)
             dados.put(strKeyFad[i], teste.getFadiga(i));
-            if (i < 7) //Vetor sp só vai até o 6
-                dados.put(strKeySp[i], teste.getSpO2(i));
-            if (i < 6)//Vetor voltas só vai até o 5
-                dados.put(strKeyVoltas[i], teste.getVoltas(i));
-            if (i < 3) {//Vetor pa e gc só vao até o 2
-                dados.put(strKeyPa[i], teste.getPa(i));
-                dados.put(strKeyGc[i], teste.getGc(i));
-            }
-        }
-        dados.put("o2supl",teste.getO2Supl());
-        dados.put("nparadas",teste.getnParadas());
-        dados.put("tempoparadas",teste.getTempoParadas());
-        dados.put("motivoparadas",teste.getMotivoParadas());
-        dados.put("massa",teste.getMassa());
+        //O2 SUPLEMENTAR
+        dados.put("o2supl_0", teste.getO2Supl());
+        //PA
+        for (int i = 0; i < 3; i++)
+            dados.put(strKeyPa[i], teste.getPa(i));
+        //GC
+        for (int i = 0; i < 3; i++)
+            dados.put(strKeyGc[i], teste.getGc(i));
+        //VOLTAS
+        for (int i = 0; i < 6; i++)
+            dados.put(strKeyVoltas[i], teste.getVoltas(i));
+        dados.put("n_paradas", teste.getnParadas());
+        dados.put("tempo_paradas", teste.getTempoParadas());
+        dados.put("motivo_parada", teste.getMotivoParadas());
+        dados.put("massa", teste.getMassa());
         dados.put("estatura", teste.getEstatura());
-        
+        dados.put("obs_final", teste.getObsFinal());
+        dados.put("distancia_percorrida", teste.getDistanciaPercorrida());
         return dados;
+    }
+
+
+    public List<Teste> buscaTestes(Paciente paciente) {
+        String sql = "SELECT * FROM Testes WHERE id_paciente = " + paciente.getId() + ";";
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor c = db.rawQuery(sql, null);
+
+        List<Teste> testes = new ArrayList<Teste>();
+
+        while (c.moveToNext()) {
+            Teste teste = new Teste(paciente);
+            teste.setIdTeste(c.getLong(c.getColumnIndex("id_teste")));
+            // teste.setData(new Date(c.getString(c.getColumnIndex("data_hora"))));
+            for (int i = 0; i < 9; i++)
+                teste.setFc(i, c.getInt(c.getColumnIndex(strKeyFc[i])));
+            for (int i = 0; i < 7; i++)
+                teste.setSpO2(i, c.getInt(c.getColumnIndex(strKeySp[i])));
+            //DISPNEIA1
+            for (int i = 0; i < 9; i++)
+                teste.setDispneia(i, c.getDouble(c.getColumnIndex(strKeyDisp[i])));
+            //FADIGA MMII
+            for (int i = 0; i < 9; i++)
+                teste.setFadiga(i, c.getDouble(c.getColumnIndex(strKeyFad[i])));
+            //O2 SUPLEMENTAR
+            teste.setO2Supl(c.getDouble(c.getColumnIndex("o2supl_0")));
+            //PA
+            for (int i = 0; i < 3; i++)
+                teste.setPa(i, c.getString(c.getColumnIndex(strKeyPa[i])));
+            //GC
+            for (int i = 0; i < 3; i++)
+                teste.setGc(i, c.getInt(c.getColumnIndex(strKeyGc[i])));
+            //VOLTAS
+            for (int i = 0; i < 6; i++)
+                teste.setVoltas(i, c.getInt(c.getColumnIndex(strKeyVoltas[i])));
+            teste.setnParadas(c.getInt(c.getColumnIndex("n_paradas")));
+            teste.setTempoParadas(c.getString(c.getColumnIndex("tempo_paradas")));
+            teste.setMotivoParadas(c.getString(c.getColumnIndex("motivo_parada")));
+            teste.setMassa(c.getDouble(c.getColumnIndex("massa")));
+            teste.setEstatura(c.getDouble(c.getColumnIndex("estatura")));
+            teste.setObsFinal(c.getString(c.getColumnIndex("obs_final")));
+            teste.setDistanciaPercorrida(c.getDouble(c.getColumnIndex("distancia_percorrida")));
+
+            testes.add(teste);
+
+        }
+        c.close();
+
+        return testes;
+    }
+
+    public int contarTestesDoPaciente(Paciente paciente) {
+        String sql = "SELECT * FROM Testes WHERE id_paciente = " + paciente.getId() + ";";
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor c = db.rawQuery(sql, null);
+
+        int numeroTestes = 0;
+        if (c.moveToLast()) numeroTestes = c.getCount();//Move o cursor para a última posição e pega o valor
+
+        c.close();
+
+        return numeroTestes;
     }
 }

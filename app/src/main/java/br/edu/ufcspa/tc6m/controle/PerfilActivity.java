@@ -35,6 +35,7 @@ public class PerfilActivity extends AppCompatActivity {
     }
 
     private void iniciaComponentes() {
+        escreveDados();
         ////////////////////////////////////////////////////////////////////////////////////////////
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.btnPlayTeste);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -50,12 +51,13 @@ public class PerfilActivity extends AppCompatActivity {
         fab2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Resultados dos testes anteriores", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                Intent intentVaiProListaTestes = new Intent(PerfilActivity.this, ListaTestesActivity.class);
+                intentVaiProListaTestes.putExtra("paciente", paciente);
+                startActivity(intentVaiProListaTestes);
             }
         });
         ////////////////////////////////////////////////////////////////////////////////////////////
-        escreveDados();
+
     }
 
     private void escreveDados() {
@@ -63,7 +65,7 @@ public class PerfilActivity extends AppCompatActivity {
         Intent intent = getIntent();
         paciente = (Paciente) intent.getSerializableExtra("paciente");
 
-        TextView textoPeso =  (TextView) findViewById(R.id.text_peso);
+        TextView textoPeso = (TextView) findViewById(R.id.text_peso);
         TextView textoAltura = (TextView) findViewById(R.id.text_altura);
         TextView textoIMC = (TextView) findViewById(R.id.text_imc);
         TextView textoTelefone = (TextView) findViewById(R.id.text_telefone);
@@ -72,9 +74,9 @@ public class PerfilActivity extends AppCompatActivity {
         TextView textoObs = (TextView) findViewById(R.id.text_obs);
 
         activity.setTitle(paciente.getNome());
-        textoPeso.setText(String.format(Locale.US,"%.2f kg",paciente.getPeso()));
-        textoAltura.setText(String.format(Locale.US,"%.0f cm",paciente.getAltura()));
-        textoIMC.setText(String.format(Locale.US,"IMC %.2f",paciente.getPeso() / Math.pow(paciente.getAltura()/100, 2)));
+        textoPeso.setText(String.format(Locale.US, "%.2f kg", paciente.getPeso()));
+        textoAltura.setText(String.format(Locale.US, "%.0f cm", paciente.getAltura()));
+        textoIMC.setText(String.format(Locale.US, "IMC %.2f", paciente.getPeso() / Math.pow(paciente.getAltura() / 100, 2)));
         textoTelefone.setText(paciente.getTelefone());
         textoEmail.setText(paciente.getEmail());
         textoData.setText(paciente.getDataNascimento());

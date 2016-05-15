@@ -59,7 +59,16 @@
         <activity
             android:name=".controle.ValoresRecuperacaoActivity"
             android:label="@string/title_activity_valores_recuperacao"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".controle.ListaTestesActivity"
+            android:label="@string/title_activity_lista_testes"
+            android:parentActivityName=".controle.PerfilActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="br.edu.ufcspa.tc6m.controle.PerfilActivity" />
+        </activity>
     </application>
 
 </manifest>

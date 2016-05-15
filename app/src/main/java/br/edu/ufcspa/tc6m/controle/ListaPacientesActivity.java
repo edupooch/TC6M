@@ -16,6 +16,7 @@ import android.widget.ListView;
 import java.util.List;
 
 import br.edu.ufcspa.tc6m.R;
+import br.edu.ufcspa.tc6m.adapter.PacientesAdapter;
 import br.edu.ufcspa.tc6m.dao.PacienteDAO;
 import br.edu.ufcspa.tc6m.modelo.Paciente;
 
@@ -43,12 +44,6 @@ public class ListaPacientesActivity extends AppCompatActivity {
                 Paciente paciente = (Paciente) listaPacientes.getItemAtPosition(position);
                 // paciente clicado
 
-               /*
-                Intent intentVaiProFormulario = new Intent(ListaPacientesActivity.this, FormularioActivity.class);
-                intentVaiProFormulario.putExtra("paciente", paciente);
-                startActivity(intentVaiProFormulario);
-                */
-
                 Intent intentVaiProPerfil = new Intent(ListaPacientesActivity.this, PerfilActivity.class);
                 intentVaiProPerfil.putExtra("paciente",paciente);
                 startActivity(intentVaiProPerfil);
@@ -73,8 +68,10 @@ public class ListaPacientesActivity extends AppCompatActivity {
 
         PacienteDAO dao = new PacienteDAO(this);
         List<Paciente> pacientes = dao.buscaPacientes();
-        ArrayAdapter<Paciente> adapter =
-                new ArrayAdapter<Paciente>(this, android.R.layout.simple_list_item_1, pacientes);
+  //      ArrayAdapter<Paciente> adapter =
+    //            new ArrayAdapter<Paciente>(this, R.layout.list_item_pacientes, pacientes);
+
+        PacientesAdapter adapter = new PacientesAdapter(this,pacientes);
         listaPacientes.setAdapter(adapter);
         dao.close();
     }
@@ -87,12 +84,11 @@ public class ListaPacientesActivity extends AppCompatActivity {
 
     @Override
     public void onCreateContextMenu(ContextMenu menu, View v, final ContextMenu.ContextMenuInfo menuInfo) {
-        MenuItem deletar = menu.add("Deletar");
+        MenuItem deletar = menu.add("Deletar Paciente");
         deletar.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
                 AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) menuInfo;
-
                 Paciente paciente = (Paciente) listaPacientes.getItemAtPosition(info.position);
 
                 PacienteDAO dao = new PacienteDAO(ListaPacientesActivity.this);
@@ -106,26 +102,4 @@ public class ListaPacientesActivity extends AppCompatActivity {
         });
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return super.onCreateOptionsMenu(menu);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-
-            case R.id.action_basais:
-                startActivity(new Intent(getApplicationContext(), ValoresBasaisActivity.class));
-                break;
-
-            case R.id.action_cronometro:
-                startActivity(new Intent(getApplicationContext(), CronometroActivity.class));
-                break;
-
-        }
-        return super.onOptionsItemSelected(item);
-    }
 }
