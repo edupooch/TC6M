@@ -3,7 +3,7 @@ Projeto desenvolvido com apoio do CNPq.
 
 ### Para que é esse repositório? ###
 
-* O objetivo dessa aplicação é de desenvolver um software educacional para dispositivos móveis (Android) para
+* O objetivo desse projeto é desenvolver um software ágil e educacional para dispositivos móveis (Android) para
 o teste de caminhada de seis minutos.
   O teste de caminhada de seis minutos é o melhor indicador de capacidade funcional, pois reflete de maneira
 mais apropriada as atividades de vida diária. Não há estudos com amostras relevantes para obtenção de
