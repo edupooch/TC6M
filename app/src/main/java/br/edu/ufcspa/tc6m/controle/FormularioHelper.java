@@ -1,9 +1,6 @@
 package br.edu.ufcspa.tc6m.controle;
 
 import android.telephony.PhoneNumberFormattingTextWatcher;
-import android.text.Editable;
-import android.text.TextWatcher;
-import android.util.Log;
 import android.widget.EditText;
 import android.widget.RadioButton;
 
@@ -51,8 +48,8 @@ public class FormularioHelper {
         if (id != null) paciente.setId(id);
         paciente.setNome(campoNome.getText().toString());
         paciente.setDataNascimento(campoData.getText().toString());
-        paciente.setAltura(Double.valueOf(campoAltura.getText().toString()));
-        paciente.setPeso(Double.valueOf(campoPeso.getText().toString()));
+        paciente.setEstatura(Double.valueOf(campoAltura.getText().toString()));
+        paciente.setMassa(Double.valueOf(campoPeso.getText().toString()));
         paciente.setTelefone(campoTelefone.getText().toString());
         paciente.setEmail(campoEmail.getText().toString());
         paciente.setObs(campoObs.getText().toString());
@@ -72,8 +69,8 @@ public class FormularioHelper {
         }else{
             btnFeminino.setChecked(true);
         }
-        campoPeso.setText(String.valueOf(paciente.getPeso()));
-        campoAltura.setText(String.valueOf(paciente.getAltura()));
+        campoPeso.setText(String.valueOf(paciente.getMassa()));
+        campoAltura.setText(String.valueOf(paciente.getEstatura()));
         campoTelefone.setText(paciente.getTelefone());
 
         campoEmail.setText(paciente.getEmail());

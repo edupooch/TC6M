@@ -12,12 +12,14 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import java.util.List;
 
 import br.edu.ufcspa.tc6m.R;
 import br.edu.ufcspa.tc6m.adapter.PacientesAdapter;
 import br.edu.ufcspa.tc6m.dao.PacienteDAO;
+import br.edu.ufcspa.tc6m.dao.TesteDAO;
 import br.edu.ufcspa.tc6m.modelo.Paciente;
 
 public class ListaPacientesActivity extends AppCompatActivity {
@@ -45,7 +47,7 @@ public class ListaPacientesActivity extends AppCompatActivity {
                 // paciente clicado
 
                 Intent intentVaiProPerfil = new Intent(ListaPacientesActivity.this, PerfilActivity.class);
-                intentVaiProPerfil.putExtra("paciente",paciente);
+                intentVaiProPerfil.putExtra("paciente", paciente);
                 startActivity(intentVaiProPerfil);
             }
         });
@@ -65,14 +67,20 @@ public class ListaPacientesActivity extends AppCompatActivity {
         listaPacientes = (ListView) findViewById(R.id.lista_pacientes);
 
 
-
         PacienteDAO dao = new PacienteDAO(this);
         List<Paciente> pacientes = dao.buscaPacientes();
-  //      ArrayAdapter<Paciente> adapter =
-    //            new ArrayAdapter<Paciente>(this, R.layout.list_item_pacientes, pacientes);
+        //ArrayAdapter<Paciente> adapter = new ArrayAdapter<Paciente>(this, R.layout.list_item_pacientes, pacientes);
 
-        PacientesAdapter adapter = new PacientesAdapter(this,pacientes);
+        PacientesAdapter adapter = new PacientesAdapter(this, pacientes);
         listaPacientes.setAdapter(adapter);
+
+        TextView textInicial = (TextView) findViewById(R.id.textInicial);
+        if (listaPacientes.getCount() == 0) {
+            textInicial.setText(R.string.text_inicial_vazio);
+        } else {
+            textInicial.setText(R.string.text_inicial);
+        }
+
         dao.close();
     }
 
@@ -88,18 +96,43 @@ public class ListaPacientesActivity extends AppCompatActivity {
         deletar.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
+
                 AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) menuInfo;
                 Paciente paciente = (Paciente) listaPacientes.getItemAtPosition(info.position);
 
                 PacienteDAO dao = new PacienteDAO(ListaPacientesActivity.this);
+                TesteDAO daoTeste = new TesteDAO(ListaPacientesActivity.this);
+
                 dao.deleta(paciente);
+                daoTeste.deletaTodosDoPaciente(paciente);
+
                 dao.close();
+                daoTeste.close();
 
                 carregaLista();
 
                 return false;
             }
         });
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+
+            case R.id.action_config:
+                //abrir tela de preferências
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
 }

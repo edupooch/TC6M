@@ -46,8 +46,8 @@ public class PacienteDAO extends SQLiteOpenHelper {
         ContentValues dados = new ContentValues();
         dados.put("nome", paciente.getNome());
         dados.put("data", paciente.getDataNascimento());
-        dados.put("peso", paciente.getPeso());
-        dados.put("altura", paciente.getAltura());
+        dados.put("peso", paciente.getMassa());
+        dados.put("altura", paciente.getEstatura());
         dados.put("telefone", paciente.getTelefone());
         dados.put("email", paciente.getEmail());
         dados.put("obs", paciente.getObs());
@@ -68,8 +68,8 @@ public class PacienteDAO extends SQLiteOpenHelper {
             paciente.setId(c.getLong(c.getColumnIndex("id")));
             paciente.setNome(c.getString(c.getColumnIndex("nome")));
             paciente.setDataNascimento(c.getString(c.getColumnIndex("data")));
-            paciente.setPeso(c.getDouble(c.getColumnIndex("peso")));
-            paciente.setAltura(c.getDouble(c.getColumnIndex("altura")));
+            paciente.setMassa(c.getDouble(c.getColumnIndex("peso")));
+            paciente.setEstatura(c.getDouble(c.getColumnIndex("altura")));
             paciente.setTelefone(c.getString(c.getColumnIndex("telefone")));
             paciente.setEmail(c.getString(c.getColumnIndex("email")));
             paciente.setObs(c.getString(c.getColumnIndex("obs")));
@@ -85,6 +85,7 @@ public class PacienteDAO extends SQLiteOpenHelper {
         SQLiteDatabase db = getWritableDatabase();
         String[] parametros = {paciente.getId().toString()};
         db.delete("Pacientes", "id = ?", parametros);
+
     }
 
     public void altera(Paciente paciente) {

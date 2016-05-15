@@ -7,6 +7,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.support.annotation.NonNull;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.GregorianCalendar;
@@ -49,7 +51,7 @@ public class TesteDAO extends SQLiteOpenHelper {
     String[] strKeyVoltas = {"voltas_0", "voltas_1", "voltas_2", "voltas_3", "voltas_4", "voltas_5",};
 
     public TesteDAO(Context context) {
-        super(context, "Testes", null, 2);
+        super(context, "Testes", null, 4);
 
 
     }
@@ -95,33 +97,27 @@ public class TesteDAO extends SQLiteOpenHelper {
     @NonNull
     private ContentValues getContentValuesTeste(Teste teste) {
         ContentValues dados = new ContentValues();
-
-
         dados.put("id_paciente", teste.getIdPaciente());
-        dados.put("dia_hora", "0/0/0");
+        //DATA DO TESTE
+        SimpleDateFormat dtFormat = new SimpleDateFormat("yyyy-MM-dd");
+        dados.put("dia_hora", dtFormat.format(new Date()));
         //INSERE VALORES DE FC
-        for (int i = 0; i < 9; i++)
-            dados.put(strKeyFc[i], teste.getFc(i));
+        for (int i = 0; i < 9; i++) dados.put(strKeyFc[i], teste.getFc(i));
         //SPO2
-        for (int i = 0; i < 7; i++)
-            dados.put(strKeySp[i], teste.getSpO2(i));
+        for (int i = 0; i < 7; i++) dados.put(strKeySp[i], teste.getSpO2(i));
         //DISPNEIA1
-        for (int i = 0; i < 9; i++)
-            dados.put(strKeyDisp[i], teste.getDispneia(i));
+        for (int i = 0; i < 9; i++) dados.put(strKeyDisp[i], teste.getDispneia(i));
         //FADIGA MMII
-        for (int i = 0; i < 9; i++)
-            dados.put(strKeyFad[i], teste.getFadiga(i));
+        for (int i = 0; i < 9; i++) dados.put(strKeyFad[i], teste.getFadiga(i));
         //O2 SUPLEMENTAR
         dados.put("o2supl_0", teste.getO2Supl());
         //PA
-        for (int i = 0; i < 3; i++)
-            dados.put(strKeyPa[i], teste.getPa(i));
+        for (int i = 0; i < 3; i++) dados.put(strKeyPa[i], teste.getPa(i));
         //GC
-        for (int i = 0; i < 3; i++)
-            dados.put(strKeyGc[i], teste.getGc(i));
+        for (int i = 0; i < 3; i++) dados.put(strKeyGc[i], teste.getGc(i));
         //VOLTAS
-        for (int i = 0; i < 6; i++)
-            dados.put(strKeyVoltas[i], teste.getVoltas(i));
+        for (int i = 0; i < 6; i++) dados.put(strKeyVoltas[i], teste.getVoltas(i));
+        //VALORES ÚNICOS
         dados.put("n_paradas", teste.getnParadas());
         dados.put("tempo_paradas", teste.getTempoParadas());
         dados.put("motivo_parada", teste.getMotivoParadas());
@@ -143,7 +139,8 @@ public class TesteDAO extends SQLiteOpenHelper {
         while (c.moveToNext()) {
             Teste teste = new Teste(paciente);
             teste.setIdTeste(c.getLong(c.getColumnIndex("id_teste")));
-            // teste.setData(new Date(c.getString(c.getColumnIndex("data_hora"))));
+            teste.setData(java.sql.Date.valueOf(c.getString(c.getColumnIndex("dia_hora"))));
+            //teste.setData(new Date(c.getString(c.getColumnIndex("data_hora"))));
             for (int i = 0; i < 9; i++)
                 teste.setFc(i, c.getInt(c.getColumnIndex(strKeyFc[i])));
             for (int i = 0; i < 7; i++)
@@ -187,10 +184,17 @@ public class TesteDAO extends SQLiteOpenHelper {
         Cursor c = db.rawQuery(sql, null);
 
         int numeroTestes = 0;
-        if (c.moveToLast()) numeroTestes = c.getCount();//Move o cursor para a última posição e pega o valor
+        if (c.moveToLast())
+            numeroTestes = c.getCount();//Move o cursor para a última posição e pega o valor
 
         c.close();
 
         return numeroTestes;
+    }
+
+    public void deletaTodosDoPaciente(Paciente paciente) {
+        SQLiteDatabase db = getWritableDatabase();
+        String[] parametros = {paciente.getId().toString()};
+        db.delete("Testes","id_paciente = ?",parametros);
     }
 }

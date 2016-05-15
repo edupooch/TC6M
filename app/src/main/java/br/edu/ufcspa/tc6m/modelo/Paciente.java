@@ -1,13 +1,5 @@
 package br.edu.ufcspa.tc6m.modelo;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.util.Base64;
-
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.ByteArrayOutputStream;
 import java.io.Serializable;
 
 /**
@@ -19,8 +11,8 @@ public class Paciente implements Serializable {
     private String nome;
     private String telefone;
     private String email;
-    private double peso;
-    private double altura;
+    private double massa;
+    private double estatura;
     private String dataNascimento;//PASSAR PARA GREGORIAN CALENDAR
     private int genero;
     private String obs;
@@ -61,8 +53,8 @@ public class Paciente implements Serializable {
             paciente.put("nome",getNome());
             paciente.put("telefone",getTelefone());
             paciente.put("email", getEmail());
-            paciente.put("peso", getPeso());
-            paciente.put("altura", getAltura());
+            paciente.put("massa", getMassa());
+            paciente.put("estatura", getEstatura());
             paciente.put("nascimento", getDataNascimento());
 
 
@@ -110,20 +102,20 @@ public class Paciente implements Serializable {
         this.email = email;
     }
 
-    public double getPeso() {
-        return peso;
+    public double getMassa() {
+        return massa;
     }
 
-    public void setPeso(double peso) {
-        this.peso = peso;
+    public void setMassa(double massa) {
+        this.massa = massa;
     }
 
-    public double getAltura() {
-        return altura;
+    public double getEstatura() {
+        return estatura;
     }
 
-    public void setAltura(double altura) {
-        this.altura = altura;
+    public void setEstatura(double estatura) {
+        this.estatura = estatura;
     }
 
     public String getDataNascimento() {

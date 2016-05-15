@@ -5,6 +5,9 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.widget.EditText;
 
+import java.util.Calendar;
+import java.util.Date;
+
 import br.edu.ufcspa.tc6m.R;
 import br.edu.ufcspa.tc6m.modelo.Paciente;
 import br.edu.ufcspa.tc6m.modelo.Teste;
@@ -13,7 +16,6 @@ import br.edu.ufcspa.tc6m.modelo.Teste;
  * Created by edupooch on 30/04/16.
  */
 public class TesteHelper {
-
     private Teste teste;
     //0=BASAL, 1-6=MINUTOS, 7=FINAL, 8=RECUPERAÇÃO
     private EditText[] edTextFc = new EditText[9];
@@ -33,6 +35,9 @@ public class TesteHelper {
     public TesteHelper(ValoresBasaisActivity activity, Paciente paciente) {
 
         teste = new Teste(paciente);
+        //Define os valores de massa e estatura no dia do teste - durante a activity valores basais;
+        teste.setEstatura(paciente.getEstatura());
+        teste.setMassa(paciente.getMassa());
 
         edTextFc[0] = (EditText) activity.findViewById(R.id.edTextFC0);
         edTextSp[0] = (EditText) activity.findViewById(R.id.edTextSp0);
@@ -42,7 +47,7 @@ public class TesteHelper {
         edTextPa[0] = (EditText) activity.findViewById(R.id.editTextPA0);
         edTextO2Supl = (EditText) activity.findViewById(R.id.edTextO2Supl);
 
-        edTextFc[0].addTextChangedListener(new FcWatcher());
+        //edTextFc[0].addTextChangedListener(new FcWatcher());
 
     }
 
@@ -104,6 +109,20 @@ public class TesteHelper {
     }
 
     public Teste pegaDadosFromFields(int minuto) {
+
+        /*           ÍNDICES
+        * 0 - VALORES BASAIS ACTIVITY
+        * 1 - MINUTO 1 (CRONOMETRO ACTIVITY)
+        * 2 - MINUTO 2 (CRONOMETRO ACTIVITY)
+        * 3 - MINUTO 3 (CRONOMETRO ACTIVITY)
+        * 4 - MINUTO 4 (CRONOMETRO ACTIVITY)
+        * 5 - MINUTO 5 (CRONOMETRO ACTIVITY)
+        * 6 - MINUTO 6 (CRONOMETRO ACTIVITY)
+        * 7 - VALORES FINAIS ACTIVITY
+        * 8 - VALORES RECUPERAÇÃO ACTIVITY
+        */
+
+        //fc, disp e fad são coletadas em todas as fases
         if (!edTextFc[minuto].toString().isEmpty()) {
             try {
                 teste.setFc(minuto, Integer.parseInt(edTextFc[minuto].getText().toString()));
@@ -114,17 +133,24 @@ public class TesteHelper {
 
         try {teste.setFadiga(minuto, Double.valueOf(edTextFad[minuto].getText().toString()));} catch (NumberFormatException e) {}
 
-        if (minuto < 7) //SPO2 VAI ATÉ O MINUTO 7
+        if (minuto < 7) //SPO2 VAI DE VALORES BASAIS ATÉ O MINUTO 6
             try {teste.setSpO2(minuto, Integer.parseInt(edTextSp[minuto].getText().toString()));} catch (NumberFormatException e) {}
 
         if (minuto == 0 || minuto == 7 || minuto == 8) {
-            if (minuto == 0) // O O2 SUPLEMENTAR É APENAS UM VALOR BASAL
-                try {teste.setO2Supl(Double.valueOf(edTextO2Supl.getText().toString()));}catch (NumberFormatException e){}
-            if (minuto == 7 || minuto == 8) {
+            if (minuto == 0) {
+
+                try {
+                    // O O2 SUPLEMENTAR É APENAS UM VALOR BASAL
+                    teste.setO2Supl(Double.valueOf(edTextO2Supl.getText().toString()));
+                } catch (NumberFormatException e) {
+                }
+            }
+            if (minuto == 7 || minuto == 8) {//gc e pa sao coletados apenas basais, finais e recuperação
                 minuto -= 6; //mudando o valor de 7 e 8 para 1 e 2 para se adequar aos índices declarados DE GC E PA
                 try {teste.setGc(minuto, Integer.parseInt(edTextGc[minuto].getText().toString()));} catch (NumberFormatException e) {}
                 teste.setPa(minuto, edTextPa[minuto].getText().toString());
 
+                //obs final da activity valores finais
                 if (minuto == 7) teste.setObsFinal(edTextObsFinal.getText().toString());
             }
         }

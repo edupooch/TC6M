@@ -21,6 +21,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
+import java.util.Timer;
 import java.util.TimerTask;
 
 import br.edu.ufcspa.tc6m.R;
@@ -70,7 +71,7 @@ public class CronometroActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intentVaiProValoresFinais = new Intent(CronometroActivity.this, ValoresFinaisActivity.class);
-                intentVaiProValoresFinais.putExtra("teste",teste);
+                intentVaiProValoresFinais.putExtra("teste", teste);
                 startActivity(intentVaiProValoresFinais);
                 finish();
             }
@@ -162,7 +163,7 @@ public class CronometroActivity extends AppCompatActivity {
                         mostraCampos(0);
                         break;
                     case 110:
-                        someFrase(); //mudar isso para um metodo com timer
+                        // someFrase(); //mudar isso para um metodo com timertask
                         break;
                     case 200:
                         mostraCampos(1);
@@ -238,7 +239,7 @@ public class CronometroActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intentVaiProValoresFinais = new Intent(CronometroActivity.this, ValoresFinaisActivity.class);
-                intentVaiProValoresFinais.putExtra("teste",teste);
+                intentVaiProValoresFinais.putExtra("teste", teste);
                 startActivity(intentVaiProValoresFinais);
                 finish();
             }
@@ -268,7 +269,7 @@ public class CronometroActivity extends AppCompatActivity {
         });
     }
 
-
+    //DIALOGO DO BOTÃO VOLTAR
     @Override
     public void onBackPressed() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -290,4 +291,6 @@ public class CronometroActivity extends AppCompatActivity {
         AlertDialog alert = builder.create();
         alert.show();
     }
+
+
 }

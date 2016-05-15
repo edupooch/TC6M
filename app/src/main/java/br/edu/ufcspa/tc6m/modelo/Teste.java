@@ -248,6 +248,7 @@ public class Teste implements Serializable {
 
     @Override
     public String toString() {
-        return "Teste do dia " + getData();
+        String[] data = getData().toString().split("-");
+        return "Teste do dia " + data[2] + "/" + data[1] + "/" + data[0];
     }
 }

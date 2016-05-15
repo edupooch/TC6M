@@ -3,7 +3,6 @@ package br.edu.ufcspa.tc6m.controle;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -74,9 +73,9 @@ public class PerfilActivity extends AppCompatActivity {
         TextView textoObs = (TextView) findViewById(R.id.text_obs);
 
         activity.setTitle(paciente.getNome());
-        textoPeso.setText(String.format(Locale.US, "%.2f kg", paciente.getPeso()));
-        textoAltura.setText(String.format(Locale.US, "%.0f cm", paciente.getAltura()));
-        textoIMC.setText(String.format(Locale.US, "IMC %.2f", paciente.getPeso() / Math.pow(paciente.getAltura() / 100, 2)));
+        textoPeso.setText(String.format(Locale.US, "%.2f kg", paciente.getMassa()));
+        textoAltura.setText(String.format(Locale.US, "%.0f cm", paciente.getEstatura()));
+        textoIMC.setText(String.format(Locale.US, "IMC %.2f", paciente.getMassa() / Math.pow(paciente.getEstatura() / 100, 2)));
         textoTelefone.setText(paciente.getTelefone());
         textoEmail.setText(paciente.getEmail());
         textoData.setText(paciente.getDataNascimento());

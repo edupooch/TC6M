@@ -3,22 +3,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".controle.MainActivity">
     <item
-        android:id="@+id/action_lista"
+        android:id="@+id/action_config"
         android:orderInCategory="100"
-        android:title="Lista"
+        android:title="Configurações"
         app:showAsAction="never" />
 
 
-    <item
-        android:id="@+id/action_cronometro"
-        android:orderInCategory="100"
-        android:title="Cronometro"
-        app:showAsAction="never" />
-
-    <item
-        android:id="@+id/action_basais"
-        android:orderInCategory="100"
-        android:title="Recuperação"
-        app:showAsAction="never" />
 
 </menu>

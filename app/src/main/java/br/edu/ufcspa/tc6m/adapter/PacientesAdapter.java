@@ -54,6 +54,7 @@ public class PacientesAdapter extends BaseAdapter {
         }
         TesteDAO dao = new TesteDAO(context);
         int nTestes = dao.contarTestesDoPaciente(paciente);
+        dao.close();
 
         TextView textNome = (TextView) view.findViewById(R.id.textNomePacienteLista);
         textNome.setText(paciente.getNome());
@@ -62,7 +63,7 @@ public class PacientesAdapter extends BaseAdapter {
         textTestes.setText(String.valueOf(nTestes));
 
         TextView textPlural = (TextView) view.findViewById(R.id.textTestesPluralLista);
-        if (nTestes == 1) textPlural.setText("teste");
+        if (nTestes == 1) textPlural.setText(R.string.teste_singular);
 
 
         return view;
