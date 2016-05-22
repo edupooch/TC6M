@@ -50,6 +50,7 @@ public class Teste implements Serializable {
 
     private int[] voltas = new int[6]; //0-5=MINUTOS
 
+
     private int nParadas;
     private String tempoParadas;
     private String motivoParadas;
@@ -154,8 +155,8 @@ public class Teste implements Serializable {
         return voltas[i];
     }
 
-    public void setVoltas(int i, int voltas) {
-        this.voltas[i] = voltas;
+    public void setVoltas(int i, int metros) {
+        this.voltas[i] = metros;
     }
 
     public int getnParadas() {

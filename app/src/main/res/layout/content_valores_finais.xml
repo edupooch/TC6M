@@ -16,8 +16,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
+        android:layout_height="match_parent"
         android:orientation="vertical">
 
         <ScrollView
@@ -94,13 +93,17 @@
                                     android:background="@drawable/icon_fc" />
 
                                 <EditText
+                                    android:background="#FFFFFF"
                                     android:id="@+id/editTextFc7"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center"
                                     android:layout_marginEnd="10dp"
                                     android:layout_marginRight="10dp"
-                                    android:inputType="number" />
+                                    android:inputType="number"
+                                    android:nextFocusRight="@+id/edTextGc1"
+
+                                    />
                             </LinearLayout>
                         </LinearLayout> <!-- FC -->
 
@@ -134,14 +137,14 @@
                                     android:background="@drawable/icon_sangue" />
 
                                 <EditText
-
+                                    android:background="#FFFFFF"
                                     android:id="@+id/editTextGc1"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center"
                                     android:layout_marginEnd="10dp"
                                     android:layout_marginRight="10dp"
-
+                                    android:nextFocusForward="@+id/editTextDisp7"
                                     android:inputType="number" />
                             </LinearLayout>
                         </LinearLayout>
@@ -187,6 +190,7 @@
                                     android:background="@drawable/icon_pulmao" />
 
                                 <EditText
+                                    android:background="#FFFFFF"
                                     android:id="@+id/editTextDisp7"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
@@ -227,6 +231,7 @@
                                     android:background="@drawable/icon_mmii" />
 
                                 <EditText
+                                    android:background="#FFFFFF"
                                     android:id="@+id/editTextFad7"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
@@ -278,6 +283,7 @@
                                     android:background="@drawable/icon_pa" />
 
                                 <EditText
+                                    android:background="#FFFFFF"
                                     android:id="@+id/editTextPAS0"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
@@ -329,6 +335,7 @@
                                     android:background="@drawable/icon_obs" />
 
                                 <EditText
+                                    android:background="#FFFFFF"
                                     android:hint="E.g. Motivo da parada"
                                     android:id="@+id/editTextObsFim"
                                     android:layout_width="match_parent"

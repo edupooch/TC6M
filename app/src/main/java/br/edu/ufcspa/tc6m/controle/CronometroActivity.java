@@ -3,6 +3,7 @@ package br.edu.ufcspa.tc6m.controle;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
+import android.media.Image;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.SystemClock;
@@ -32,26 +33,36 @@ public class CronometroActivity extends AppCompatActivity {
     //CRONOMETRO
     private Chronometer crono;
     //LAYOUTS
-    private int[] layoutsDadosXML = {R.id.layoutDados1, R.id.layoutDados2, R.id.layoutDados3, R.id.layoutDados4, R.id.layoutDados5, R.id.layoutDados6};
-    private LinearLayout[] layoutsDados = new LinearLayout[6];
+    private int[] layoutsDadosXML;
+    private LinearLayout[] layoutsDados;
     private LinearLayout layoutFrase;
     //TEXTOS
-    private int[] frasesId = {R.string.frase1, R.string.frase2, R.string.frase3, R.string.frase4, R.string.frase5};
+    private int[] frasesId;
     private TextView textDistancia;
     private TextView textFrase;
+    private TextView textParadas;
     //BOTOES
-    private int[] botoesSalvarXML = {R.id.btSalvarDados1, R.id.btSalvarDados2, R.id.btSalvarDados3, R.id.btSalvarDados4, R.id.btSalvarDados5, R.id.btSalvarDados6,};
-    private TextView[] botoesSalvar = new TextView[6];
-    private FloatingActionButton btAdicionarVolta;
+    private int[] botoesSalvarXML;
+    private TextView[] botoesSalvar;
     //VALORES
     private long miliseconds;
     private int metros;
     private int volta;
     private int tempo;
     private int fase;
+    private int dpTotal;//distancia depois de adicionar valor restante no fim
+    private boolean parado;
     //TESTE
     private TesteHelper helper;
     private Teste teste;
+
+    public CronometroActivity() {
+        botoesSalvarXML = new int[]{R.id.btSalvarDados1, R.id.btSalvarDados2, R.id.btSalvarDados3, R.id.btSalvarDados4, R.id.btSalvarDados5, R.id.btSalvarDados6,};
+        frasesId = new int[]{R.string.frase1, R.string.frase2, R.string.frase3, R.string.frase4, R.string.frase5};
+        layoutsDadosXML = new int[]{R.id.layoutDados1, R.id.layoutDados2, R.id.layoutDados3, R.id.layoutDados4, R.id.layoutDados5, R.id.layoutDados6};
+        layoutsDados = new LinearLayout[6];
+        botoesSalvar = new TextView[6];
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,22 +99,71 @@ public class CronometroActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         ImageView sublinhado = (ImageView) findViewById(R.id.sublinhado);
-        ;
+
         TextView textNome = (TextView) findViewById(R.id.textNomePaciente);
         textNome.setText(teste.getPaciente().getNome());
         sublinhado.setMaxWidth(textNome.getWidth());
         sublinhado.setMinimumWidth(textNome.getWidth());
 
         textDistancia = (TextView) findViewById(R.id.textMetros);
-        btAdicionarVolta = (FloatingActionButton) findViewById(R.id.btAdicionarVolta);
 
+
+        //BOTAO DA VOLTA
+        FloatingActionButton btAdicionarVolta = (FloatingActionButton) findViewById(R.id.btAdicionarVolta);
+        btAdicionarVolta.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                metros += volta;
+                textDistancia.setText(String.valueOf(metros));
+                teste.setVoltas(fase, teste.getVoltas(fase) + volta); //Salva metros percorridos separados por minuto
+                Toast.makeText(getApplicationContext(), "Volta atual: " + teste.getVoltas(fase), Toast.LENGTH_SHORT).show();
+
+
+            }
+        });
+        //FRASE DE APOIO
+        layoutFrase = (LinearLayout) findViewById(R.id.layoutFrase);
+        textFrase = (TextView) findViewById(R.id.textApoio);
+        layoutFrase.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                layoutFrase.setVisibility(View.GONE);
+            }
+        });
+
+        //BOTAO PARAR
+        textParadas = (TextView) findViewById(R.id.textParadas);
+        final ImageButton btParar = (ImageButton) findViewById(R.id.btParar);
+
+        parado = false;
+        btParar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (parado){
+                    //função do botao play
+                    parado = false;
+                    btParar.setBackgroundResource(R.drawable.icon_pause);
+                }else{
+                    //função do botao pause
+                    teste.setnParadas(teste.getnParadas() + 1);
+                    parado = true;
+                    String strParadas = String.valueOf(teste.getnParadas());
+                    textParadas.setText(strParadas);
+                    btParar.setBackgroundResource(R.drawable.icon_play);
+                }
+
+            }
+        });
+
+
+        //BOTAO FECHAR
         ImageButton btFechar = (ImageButton) findViewById(R.id.btFechar);
         btFechar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(getApplicationContext());
                 builder.setCancelable(false);
-                builder.setMessage(getString(R.string.dialog_abandonar));
+                builder.setMessage(getString(R.string.dialog_abandonar_voltar));
                 builder.setPositiveButton(getString(R.string.dialog_yes), new DialogInterface.OnClickListener() {
 
                     @Override
@@ -122,31 +182,12 @@ public class CronometroActivity extends AppCompatActivity {
 
             }
         });
-
-        //Botao da volta
-        btAdicionarVolta.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                metros += volta;
-                textDistancia.setText(String.valueOf(metros));
-                Toast.makeText(getApplicationContext(), " FC[1] = " + teste.getFc(1), Toast.LENGTH_LONG).show();
-
-            }
-        });
-        //FRASE DE APOIO
-        layoutFrase = (LinearLayout) findViewById(R.id.layoutFrase);
-        textFrase = (TextView) findViewById(R.id.textApoio);
-        layoutFrase.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                layoutFrase.setVisibility(View.GONE);
-            }
-        });
     }
 
     private void iniciaCronometro() {
-        metros = 0;//pegar das preferências do usuário
-        volta = 20;//pegar das preferências do usuário
+        fase = 0;
+        metros = 0;
+        volta = 20; //pegar das preferências do usuário
 
         crono = (Chronometer) findViewById(R.id.cronometro);
         crono.setBase(SystemClock.elapsedRealtime());
@@ -163,7 +204,7 @@ public class CronometroActivity extends AppCompatActivity {
                         mostraCampos(0);
                         break;
                     case 110:
-                        // someFrase(); //mudar isso para um metodo com timertask
+                         someFrase();
                         break;
                     case 200:
                         mostraCampos(1);
@@ -201,7 +242,8 @@ public class CronometroActivity extends AppCompatActivity {
     }
 
     private void seisMinutos() {
-        //ALERTA MANDE O PACIENTE PARAR
+
+        //ALERTA DE MANDE O PACIENTE PARAR
         final AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setCancelable(false);
         builder.setTitle(getString(R.string.concluido));
@@ -230,11 +272,15 @@ public class CronometroActivity extends AppCompatActivity {
         LinearLayout layoutDp = (LinearLayout) findViewById(R.id.layoutDp);
         layoutDp.setVisibility(View.VISIBLE);
 
+        TextView textDistanciaFinal = (TextView) findViewById(R.id.textDistanciaFinal);
+        textDistanciaFinal.setText(textDistancia.getText().toString());
+
         for (int i = 0; i < 6; i++) {
             layoutsDados[i].setVisibility(View.VISIBLE);
             botoesSalvar[i].setVisibility(View.GONE);
         }
 
+        //BOTAO FINALIZA ACTIVITY
         btConfirma.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -252,10 +298,13 @@ public class CronometroActivity extends AppCompatActivity {
     }
 
     private void mostraCampos(final int minuto) {
-        if (minuto < 5) {
+        if (minuto < 6) fase = minuto + 1;
+
+        if (minuto < 5) { // frase do sexto minuto é exibida num AlertDialog
             layoutFrase.setVisibility(View.VISIBLE);
             textFrase.setText(frasesId[minuto]);
         }
+
         layoutsDados[minuto] = (LinearLayout) findViewById(layoutsDadosXML[minuto]);
         layoutsDados[minuto].setVisibility(View.VISIBLE);
 
@@ -263,7 +312,7 @@ public class CronometroActivity extends AppCompatActivity {
         botoesSalvar[minuto].setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                teste = helper.pegaDadosFromFields(minuto + 1);
+                teste = helper.pegaDadosFromFields(minuto + 1); //minuto 1 = 0 aqui e no helper é 1
                 layoutsDados[minuto].setVisibility(View.GONE);
             }
         });

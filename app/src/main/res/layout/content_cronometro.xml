@@ -66,11 +66,11 @@
                     android:layout_marginBottom="10dp">
 
                     <ImageView
-                        android:layout_width="250dp"
-                        android:layout_height="250dp"
+                        android:layout_width="240dp"
+                        android:layout_height="240dp"
                         android:layout_alignParentTop="true"
                         android:layout_centerHorizontal="true"
-                        android:background="@drawable/circulo3" />
+                        android:src="@drawable/circulo3" />
 
                     <Chronometer
                         android:id="@+id/cronometro"
@@ -87,7 +87,7 @@
                         android:layout_height="wrap_content"
                         android:layout_below="@id/cronometro"
                         android:layout_centerHorizontal="true"
-                        android:layout_marginTop="88dp">
+                        android:layout_marginTop="80dp">
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -98,7 +98,7 @@
 
 
                         <TextView
-                            android:id="@+id/nParadas"
+                            android:id="@+id/textParadas"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="5dp"
@@ -114,6 +114,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
                     android:layout_marginTop="30dp"
                     android:orientation="vertical">
 
@@ -121,11 +122,9 @@
                         android:id="@+id/layoutDados6"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="15dp"
+                        android:layout_marginTop="5dp"
                         android:orientation="vertical"
-                        android:visibility="gone"
-
-                        >
+                        android:visibility="gone">
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -233,6 +232,8 @@
                         android:id="@+id/layoutDp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginTop="10dp"
                         android:orientation="vertical"
                         android:visibility="gone">
 
@@ -249,11 +250,11 @@
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginBottom="15dp"
+                            android:layout_marginBottom="10dp"
                             android:background="@drawable/round_edge">
 
                             <TextView
-                                android:id="@+id/textDistancia"
+                                android:id="@+id/textDistanciaFinal"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center"
@@ -292,6 +293,16 @@
                                 android:textSize="15sp" />
 
                         </LinearLayout>
+
+                        <TextView
+
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:fontFamily="sans-serif-light"
+                            android:text="Confira os dados anteriores:"
+                            android:textColor="#FFFFFF"
+                            android:textSize="18sp" />
                     </LinearLayout> <!-- Layout da DP(exibido só no final) -->
 
                     <LinearLayout
@@ -899,13 +910,14 @@
         android:measureWithLargestChild="false">
 
 
+
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/btAdicionarVolta"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="10dp"
-            android:scaleType="center"
+            android:scaleType="centerCrop"
             android:src="@drawable/icon_caminhar" /> <!--BOTAO ADD VOLTA -->
 
         <LinearLayout
@@ -947,10 +959,12 @@
             android:gravity="center">
 
             <ImageButton
-                android:id="@+id/botaoParar"
+                android:id="@+id/btParar"
                 android:layout_width="25dp"
                 android:layout_height="25dp"
-                android:background="@drawable/icon_pause" />
+                android:background="@drawable/icon_pause"
+
+                />
 
         </LinearLayout> <!--BOTAO PAUSE -->
 
