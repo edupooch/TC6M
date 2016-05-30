@@ -1,6 +1,7 @@
 package br.edu.ufcspa.tc6m.modelo;
 
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  * Created by edupooch on 21/12/15.
@@ -13,7 +14,7 @@ public class Paciente implements Serializable {
     private String email;
     private double massa;
     private double estatura;
-    private String dataNascimento;//PASSAR PARA GREGORIAN CALENDAR
+    private Date dataNascimento;
     private int genero;
     private String obs;
 
@@ -118,11 +119,11 @@ public class Paciente implements Serializable {
         this.estatura = estatura;
     }
 
-    public String getDataNascimento() {
+    public Date getDataNascimento() {
         return dataNascimento;
     }
 
-    public void setDataNascimento(String dataNascimento) {
+    public void setDataNascimento(Date dataNascimento) {
         this.dataNascimento = dataNascimento;
     }
 

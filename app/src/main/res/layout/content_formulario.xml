@@ -58,14 +58,16 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:hint="Data de nascimento"
-                            android:inputType="date"
+                            android:inputType="number"
                             android:theme="@style/AppTheme" />
 
-                        <ImageView
+                        <ImageButton
+                            android:id="@+id/btData"
                             android:layout_width="30dp"
                             android:layout_height="30dp"
                             android:layout_margin="5dp"
                             android:background="@drawable/icon_data" />
+
                     </LinearLayout>
                 </LinearLayout>
             </LinearLayout>

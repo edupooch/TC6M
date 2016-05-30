@@ -3,6 +3,11 @@ package br.edu.ufcspa.tc6m.controle;
 import android.telephony.PhoneNumberFormattingTextWatcher;
 import android.widget.EditText;
 import android.widget.RadioButton;
+import android.widget.Toast;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import br.edu.ufcspa.tc6m.R;
 import br.edu.ufcspa.tc6m.modelo.Paciente;
@@ -12,7 +17,6 @@ import br.edu.ufcspa.tc6m.modelo.Paciente;
  */
 public class FormularioHelper {
 
-    ;
     private Paciente paciente;
     private final EditText campoNome;
     private final EditText campoData;
@@ -47,7 +51,14 @@ public class FormularioHelper {
 
         if (id != null) paciente.setId(id);
         paciente.setNome(campoNome.getText().toString());
-        paciente.setDataNascimento(campoData.getText().toString());
+
+        SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+        try {
+            paciente.setDataNascimento(new java.sql.Date(format.parse(campoData.getText().toString()).getTime()));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
         paciente.setEstatura(Double.valueOf(campoAltura.getText().toString()));
         paciente.setMassa(Double.valueOf(campoPeso.getText().toString()));
         paciente.setTelefone(campoTelefone.getText().toString());
@@ -63,12 +74,18 @@ public class FormularioHelper {
 
     public void preencheFormulário(Paciente paciente) {
         campoNome.setText(paciente.getNome());
-        campoData.setText(paciente.getDataNascimento());
+        String[] arrayData = paciente.getDataNascimento().toString().split("-");
+        String strData = arrayData[2] + "/" + arrayData[1] + "/" + arrayData[0];
+        campoData.setText(strData);
+        campoData.setFocusable(false);
+        campoData.setEnabled(false);
         if (paciente.getGenero() == 0){
             btnMasculino.setChecked(true);
         }else{
             btnFeminino.setChecked(true);
         }
+        btnMasculino.setEnabled(false);
+        btnFeminino.setEnabled(false);
         campoPeso.setText(String.valueOf(paciente.getMassa()));
         campoAltura.setText(String.valueOf(paciente.getEstatura()));
         campoTelefone.setText(paciente.getTelefone());

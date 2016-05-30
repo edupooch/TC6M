@@ -140,7 +140,6 @@ public class TesteDAO extends SQLiteOpenHelper {
             Teste teste = new Teste(paciente);
             teste.setIdTeste(c.getLong(c.getColumnIndex("id_teste")));
             teste.setData(java.sql.Date.valueOf(c.getString(c.getColumnIndex("dia_hora"))));
-            //teste.setData(new Date(c.getString(c.getColumnIndex("data_hora"))));
             for (int i = 0; i < 9; i++)
                 teste.setFc(i, c.getInt(c.getColumnIndex(strKeyFc[i])));
             for (int i = 0; i < 7; i++)

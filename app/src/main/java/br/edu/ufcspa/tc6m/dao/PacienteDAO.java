@@ -7,7 +7,9 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.support.annotation.NonNull;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import br.edu.ufcspa.tc6m.modelo.Paciente;
@@ -19,7 +21,7 @@ public class PacienteDAO extends SQLiteOpenHelper {
 
 
     public PacienteDAO(Context context) {
-        super(context, "Agenda", null, 1);
+        super(context, "Agenda", null, 2);
     }
 
     @Override
@@ -45,7 +47,8 @@ public class PacienteDAO extends SQLiteOpenHelper {
     private ContentValues getContentValuesPaciente(Paciente paciente) {
         ContentValues dados = new ContentValues();
         dados.put("nome", paciente.getNome());
-        dados.put("data", paciente.getDataNascimento());
+        SimpleDateFormat dtFormat = new SimpleDateFormat("yyyy-MM-dd");
+        dados.put("data", dtFormat.format(paciente.getDataNascimento()));
         dados.put("peso", paciente.getMassa());
         dados.put("altura", paciente.getEstatura());
         dados.put("telefone", paciente.getTelefone());
@@ -67,7 +70,7 @@ public class PacienteDAO extends SQLiteOpenHelper {
 
             paciente.setId(c.getLong(c.getColumnIndex("id")));
             paciente.setNome(c.getString(c.getColumnIndex("nome")));
-            paciente.setDataNascimento(c.getString(c.getColumnIndex("data")));
+            paciente.setDataNascimento(java.sql.Date.valueOf(c.getString(c.getColumnIndex("data"))));
             paciente.setMassa(c.getDouble(c.getColumnIndex("peso")));
             paciente.setEstatura(c.getDouble(c.getColumnIndex("altura")));
             paciente.setTelefone(c.getString(c.getColumnIndex("telefone")));

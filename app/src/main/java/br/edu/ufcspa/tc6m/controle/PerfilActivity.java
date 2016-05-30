@@ -78,7 +78,11 @@ public class PerfilActivity extends AppCompatActivity {
         textoIMC.setText(String.format(Locale.US, "IMC %.2f", paciente.getMassa() / Math.pow(paciente.getEstatura() / 100, 2)));
         textoTelefone.setText(paciente.getTelefone());
         textoEmail.setText(paciente.getEmail());
-        textoData.setText(paciente.getDataNascimento());
+
+        String[] arrayData = paciente.getDataNascimento().toString().split("-");
+        String strData = arrayData[2] + "/" + arrayData[1] + "/" + arrayData[0];
+        textoData.setText(strData);
+
         String obs = "Obs: " + paciente.getObs();
         textoObs.setText(obs);
 
