@@ -12,5 +12,6 @@
     <color name="corPrimaria">#53BA83</color>
     <color name="corPrimariaEscura">#3a9665</color>
     <color name="colorAccent">#e74c3c</color>
+    <color name="branco">#FFFFFF</color>
 
 </resources>

@@ -1,5 +1,6 @@
 package br.edu.ufcspa.tc6m.controle;
 
+import android.animation.ObjectAnimator;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
@@ -12,11 +13,13 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.view.animation.DecelerateInterpolator;
 import android.widget.Button;
 import android.widget.Chronometer;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -139,11 +142,11 @@ public class CronometroActivity extends AppCompatActivity {
         btParar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (parado){
+                if (parado) {
                     //função do botao play
                     parado = false;
                     btParar.setBackgroundResource(R.drawable.icon_pause);
-                }else{
+                } else {
                     //função do botao pause
                     teste.setnParadas(teste.getnParadas() + 1);
                     parado = true;
@@ -189,6 +192,7 @@ public class CronometroActivity extends AppCompatActivity {
         metros = 0;
         volta = 20; //pegar das preferências do usuário
 
+
         crono = (Chronometer) findViewById(R.id.cronometro);
         crono.setBase(SystemClock.elapsedRealtime());
         crono.start();
@@ -204,7 +208,7 @@ public class CronometroActivity extends AppCompatActivity {
                         mostraCampos(0);
                         break;
                     case 110:
-                         someFrase();
+                        someFrase();
                         break;
                     case 200:
                         mostraCampos(1);

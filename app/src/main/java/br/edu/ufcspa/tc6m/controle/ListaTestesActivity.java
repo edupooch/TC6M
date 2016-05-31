@@ -9,6 +9,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -63,6 +64,18 @@ public class ListaTestesActivity extends AppCompatActivity {
         ArrayAdapter<Teste> adapter =
                 new ArrayAdapter<Teste>(this, android.R.layout.simple_list_item_1, testes);
         listaTestes.setAdapter(adapter);
+
+        listaTestes.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> lista, View item, int position, long id) {
+                Teste teste = (Teste) listaTestes.getItemAtPosition(position);
+                // teste clicado
+
+                Intent intentVaiPraAnalise = new Intent(ListaTestesActivity.this, AnaliseTesteActivity.class);
+                intentVaiPraAnalise.putExtra("teste", teste);
+                startActivity(intentVaiPraAnalise);
+            }
+        });
 
         dao.close();
     }

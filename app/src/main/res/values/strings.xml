@@ -34,7 +34,7 @@
     <string name="dados_do_5_minuto">Dados do 5º minuto</string>
     <string name="dados_do_6_minuto">Dados do 6º minuto</string>
 
-    <string name="frase1">\"Você está indo bem. Ainda faltam 5 minutos.</string>
+    <string name="frase1">Você está indo bem. Ainda faltam 5 minutos.</string>
     <string name="frase2">Mantenha um bom trabalho. Ainda restam 4 minutos.</string>
     <string name="frase3">Você está indo muito bem. Já foi metade do teste.</string>
     <string name="frase4">Mantenha um bom trabalho. Faltam apenas 2 minutos.</string>
@@ -50,6 +50,21 @@
     <string name="teste_singular">teste</string>
     <string name="text_inicial_vazio">Você ainda não tem pacientes cadastrados. Adicione um paciente novo no botão no canto inferior direito da tela</string>
     <string name="text_inicial">Selecione um paciente para realizar um novo teste ou verificar os resultados de testes anteriores</string>
+    <string name="title_activity_analise_teste">Análise do Teste</string>
+    <string name="bpm">bpm</string>
+    <string name="inicial">INICIAL</string>
+    <string name="recup">REPOUSO</string>
+    <string name="_1_minuto">1º min</string>
+    <string name="_2_minuto">2º min</string>
+    <string name="_3_minuto">3º min</string>
+    <string name="_4_minuto">4º min</string>
+    <string name="_5_minuto">5º min</string>
+    <string name="_final">FINAL</string>
+    <string name="_sp_unidade">%</string>
+    <string name="_disp_unidade" />
+    <string name="_fad_unidade" />
+    <string name="_pa_unidade">mmHg</string>
+    <string name="_gc_unidade">mg/dL</string>
 
 
 </resources>

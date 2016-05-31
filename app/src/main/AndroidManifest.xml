@@ -11,9 +11,7 @@
         <activity
             android:name=".controle.MainActivity"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar">
-
-        </activity>
+            android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity
             android:name=".controle.FormularioActivity"
             android:label="@string/title_activity_formulario"
@@ -28,7 +26,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".controle.ScrollingActivity"
             android:label="@string/title_activity_scrolling"
@@ -71,6 +68,15 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="br.edu.ufcspa.tc6m.controle.PerfilActivity" />
+        </activity>
+        <activity
+            android:name=".controle.AnaliseTesteActivity"
+            android:label="@string/title_activity_analise_teste"
+            android:parentActivityName=".controle.ListaTestesActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="br.edu.ufcspa.tc6m.controle.ListaTestesActivity" />
         </activity>
     </application>
 
