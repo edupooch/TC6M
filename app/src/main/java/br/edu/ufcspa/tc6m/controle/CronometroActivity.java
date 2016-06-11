@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.SystemClock;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -23,12 +24,9 @@ import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-
-
-import java.util.Timer;
-import java.util.TimerTask;
-
+import com.mikhaellopez.circularprogressbar.CircularProgressBar;
 import br.edu.ufcspa.tc6m.R;
+import br.edu.ufcspa.tc6m.controle.TesteHelper;
 import br.edu.ufcspa.tc6m.modelo.Paciente;
 import br.edu.ufcspa.tc6m.modelo.Teste;
 
@@ -78,6 +76,8 @@ public class CronometroActivity extends AppCompatActivity {
 
     private void iniciaComponentes() {
 
+        CircularProgressBar circularProgressBar = (CircularProgressBar)findViewById(R.id.progressoCirculo);
+        circularProgressBar.setProgressWithAnimation(100, 360000);
 
         Button btConfirma = (Button) findViewById(R.id.btConfirma);
         btConfirma.setVisibility(View.VISIBLE);

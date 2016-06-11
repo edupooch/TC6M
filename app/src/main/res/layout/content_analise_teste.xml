@@ -24,180 +24,469 @@
             android:orientation="vertical">
 
             <!--<android.support.v7.widget.CardView-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="wrap_content">-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content">-->
 
-                <!--<LinearLayout-->
-                    <!--android:layout_width="match_parent"-->
-                    <!--android:layout_height="wrap_content">-->
-
-
-                    <!--<TableLayout-->
-                        <!--android:layout_width="match_parent"-->
-                        <!--android:layout_height="match_parent"-->
-                        <!--android:measureWithLargestChild="true"-->
-                        <!--android:nestedScrollingEnabled="false"-->
-                        <!--android:showDividers="beginning|middle|end"-->
-                        <!--android:stretchColumns="1">-->
-
-                        <!--<TableRow-->
-                            <!--android:background="#bc0fb77f"-->
-                            <!--&gt;-->
-                            <!--<TextView-->
-                                <!--android:layout_column="1"-->
-                                <!--android:text="Tempo"-->
-                                <!--android:textSize="16sp"-->
-                                <!--android:textStyle="bold"-->
-
-                                <!--android:padding="4dip" />-->
-                            <!--<TextView-->
-                                <!--android:layout_column="2"-->
-                                <!--android:text="Distância"-->
-                                <!--android:textSize="16sp"-->
-                                <!--android:gravity="right"-->
-                                <!--android:textStyle="bold"-->
-                                <!--android:padding="4dip" />-->
-                            <!--<TextView-->
-                                <!--android:layout_column="3"-->
-                                <!--android:text="FC"-->
-                                <!--android:textSize="16sp"-->
-                                <!--android:textStyle="bold"-->
-                                <!--android:gravity="right"-->
-                                <!--android:padding="4dip" />-->
-                            <!--<TextView-->
-                                <!--android:layout_column="4"-->
-                                <!--android:textSize="16sp"-->
-                                <!--android:text="SpO2"-->
-                                <!--android:textStyle="bold"-->
-                                <!--android:padding="4dip" />-->
-                            <!--<TextView-->
-                                <!--android:layout_column="5"-->
-                                <!--android:text="Dispneia"-->
-                                <!--android:textStyle="bold"-->
-                                <!--android:textSize="16sp"-->
-                                <!--android:padding="4dip" />-->
-                            <!--<TextView-->
-                                <!--android:layout_column="6"-->
-                                <!--android:text="Fad MMII"-->
-                                <!--android:textStyle="bold"-->
-                                <!--android:textSize="16sp"-->
-                                <!--android:padding="4dip" />-->
-                        <!--</TableRow>-->
-                        <!--<TableRow>-->
-                            <!--<TextView-->
-                                <!--android:layout_column="1"-->
-                                <!--android:text="1&apos;"-->
-                                <!--android:gravity="end"-->
-                                <!--android:padding="4dip"-->
-                                <!--android:textStyle="bold" />-->
-                            <!--<TextView-->
-                                <!--android:layout_column="2"-->
-                                <!--android:text="50m"-->
-                                <!--android:gravity="start"-->
-                                <!--android:padding="4dip"-->
-                                <!--android:textStyle="bold"-->
-                                <!--android:id="@+id/tabela_distancia_1" />-->
-                            <!--<TextView-->
-                                <!--android:layout_column="3"-->
-                                <!--android:text="80"-->
-                                <!--android:padding="4dip"-->
-                                <!--android:textStyle="bold"-->
-                                <!--android:id="@+id/tabela_fc_1" />-->
-                            <!--<TextView-->
-                                <!--android:layout_column="4"-->
-                                <!--android:text="100"-->
-                                <!--android:padding="4dip"-->
-                                <!--android:textStyle="bold"-->
-                                <!--android:id="@+id/tabela_spo2_1" />-->
-                            <!--<TextView-->
-                                <!--android:layout_column="5"-->
-                                <!--android:text="20"-->
-                                <!--android:padding="4dip"-->
-                                <!--android:textStyle="bold"-->
-                                <!--android:id="@+id/tabela_disp_1" />-->
-                            <!--<TextView-->
-                                <!--android:layout_column="6"-->
-                                <!--android:text="20"-->
-                                <!--android:padding="4dip"-->
-                                <!--android:textStyle="bold"-->
-                                <!--android:id="@+id/tabela_fad_1" />-->
-                        <!--</TableRow>-->
-
-                        <!--<TableRow-->
-                            <!--android:layout_width="match_parent"-->
-                            <!--android:layout_height="match_parent">-->
-
-                            <!--<TextView-->
-                                <!--android:layout_column="1"-->
-                                <!--android:text="2&apos;"-->
-                                <!--android:gravity="end"-->
-                                <!--android:padding="4dip"-->
-                                <!--android:textStyle="bold"-->
-                                <!--android:layout_width="wrap_content"-->
-                                <!--android:layout_height="wrap_content"-->
-                                <!--android:id="@+id/textView" />-->
-
-                            <!--<TextView-->
-                                <!--android:layout_column="2"-->
-                                <!--android:text="50m"-->
-                                <!--android:gravity="start"-->
-                                <!--android:padding="4dip"-->
-                                <!--android:textStyle="bold"-->
-                                <!--android:id="@+id/textView2"-->
-                                <!--android:layout_width="wrap_content"-->
-                                <!--android:layout_height="wrap_content" />-->
-
-                            <!--<TextView-->
-                                <!--android:layout_column="3"-->
-                                <!--android:text="80"-->
-                                <!--android:padding="4dip"-->
-                                <!--android:textStyle="bold"-->
-                                <!--android:id="@+id/textView3"-->
-                                <!--android:layout_width="wrap_content"-->
-                                <!--android:layout_height="wrap_content" />-->
-
-                            <!--<TextView-->
-                                <!--android:layout_column="4"-->
-                                <!--android:text="100"-->
-                                <!--android:padding="4dip"-->
-                                <!--android:textStyle="bold"-->
-                                <!--android:id="@+id/textView4"-->
-                                <!--android:layout_width="wrap_content"-->
-                                <!--android:layout_height="wrap_content" />-->
-
-                            <!--<TextView-->
-                                <!--android:layout_column="5"-->
-                                <!--android:text="20"-->
-                                <!--android:padding="4dip"-->
-                                <!--android:textStyle="bold"-->
-                                <!--android:id="@+id/textView5"-->
-                                <!--android:layout_width="wrap_content"-->
-                                <!--android:layout_height="wrap_content" />-->
-
-                            <!--<TextView-->
-                                <!--android:layout_column="6"-->
-                                <!--android:text="20"-->
-                                <!--android:padding="4dip"-->
-                                <!--android:textStyle="bold"-->
-                                <!--android:id="@+id/textView6"-->
-                                <!--android:layout_width="wrap_content"-->
-                                <!--android:layout_height="wrap_content" />-->
-                        <!--</TableRow>-->
+            <!--<LinearLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content">-->
 
 
-                    <!--</TableLayout>-->
+            <!--<TableLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:measureWithLargestChild="true"-->
+            <!--android:nestedScrollingEnabled="false"-->
+            <!--android:showDividers="beginning|middle|end"-->
+            <!--android:stretchColumns="1">-->
+
+            <!--<TableRow-->
+            <!--android:background="#bc0fb77f"-->
+            <!-->-->
+            <!--<TextView-->
+            <!--android:layout_column="1"-->
+            <!--android:text="Tempo"-->
+            <!--android:textSize="16sp"-->
+            <!--android:textStyle="bold"-->
+
+            <!--android:padding="4dip" />-->
+            <!--<TextView-->
+            <!--android:layout_column="2"-->
+            <!--android:text="Distância"-->
+            <!--android:textSize="16sp"-->
+            <!--android:gravity="right"-->
+            <!--android:textStyle="bold"-->
+            <!--android:padding="4dip" />-->
+            <!--<TextView-->
+            <!--android:layout_column="3"-->
+            <!--android:text="FC"-->
+            <!--android:textSize="16sp"-->
+            <!--android:textStyle="bold"-->
+            <!--android:gravity="right"-->
+            <!--android:padding="4dip" />-->
+            <!--<TextView-->
+            <!--android:layout_column="4"-->
+            <!--android:textSize="16sp"-->
+            <!--android:text="SpO2"-->
+            <!--android:textStyle="bold"-->
+            <!--android:padding="4dip" />-->
+            <!--<TextView-->
+            <!--android:layout_column="5"-->
+            <!--android:text="Dispneia"-->
+            <!--android:textStyle="bold"-->
+            <!--android:textSize="16sp"-->
+            <!--android:padding="4dip" />-->
+            <!--<TextView-->
+            <!--android:layout_column="6"-->
+            <!--android:text="Fad MMII"-->
+            <!--android:textStyle="bold"-->
+            <!--android:textSize="16sp"-->
+            <!--android:padding="4dip" />-->
+            <!--</TableRow>-->
+            <!--<TableRow>-->
+            <!--<TextView-->
+            <!--android:layout_column="1"-->
+            <!--android:text="1&apos;"-->
+            <!--android:gravity="end"-->
+            <!--android:padding="4dip"-->
+            <!--android:textStyle="bold" />-->
+            <!--<TextView-->
+            <!--android:layout_column="2"-->
+            <!--android:text="50m"-->
+            <!--android:gravity="start"-->
+            <!--android:padding="4dip"-->
+            <!--android:textStyle="bold"-->
+            <!--android:id="@+id/tabela_distancia_1" />-->
+            <!--<TextView-->
+            <!--android:layout_column="3"-->
+            <!--android:text="80"-->
+            <!--android:padding="4dip"-->
+            <!--android:textStyle="bold"-->
+            <!--android:id="@+id/tabela_fc_1" />-->
+            <!--<TextView-->
+            <!--android:layout_column="4"-->
+            <!--android:text="100"-->
+            <!--android:padding="4dip"-->
+            <!--android:textStyle="bold"-->
+            <!--android:id="@+id/tabela_spo2_1" />-->
+            <!--<TextView-->
+            <!--android:layout_column="5"-->
+            <!--android:text="20"-->
+            <!--android:padding="4dip"-->
+            <!--android:textStyle="bold"-->
+            <!--android:id="@+id/tabela_disp_1" />-->
+            <!--<TextView-->
+            <!--android:layout_column="6"-->
+            <!--android:text="20"-->
+            <!--android:padding="4dip"-->
+            <!--android:textStyle="bold"-->
+            <!--android:id="@+id/tabela_fad_1" />-->
+            <!--</TableRow>-->
+
+            <!--<TableRow-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent">-->
+
+            <!--<TextView-->
+            <!--android:layout_column="1"-->
+            <!--android:text="2&apos;"-->
+            <!--android:gravity="end"-->
+            <!--android:padding="4dip"-->
+            <!--android:textStyle="bold"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:id="@+id/textView" />-->
+
+            <!--<TextView-->
+            <!--android:layout_column="2"-->
+            <!--android:text="50m"-->
+            <!--android:gravity="start"-->
+            <!--android:padding="4dip"-->
+            <!--android:textStyle="bold"-->
+            <!--android:id="@+id/textView2"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content" />-->
+
+            <!--<TextView-->
+            <!--android:layout_column="3"-->
+            <!--android:text="80"-->
+            <!--android:padding="4dip"-->
+            <!--android:textStyle="bold"-->
+            <!--android:id="@+id/textView3"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content" />-->
+
+            <!--<TextView-->
+            <!--android:layout_column="4"-->
+            <!--android:text="100"-->
+            <!--android:padding="4dip"-->
+            <!--android:textStyle="bold"-->
+            <!--android:id="@+id/textView4"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content" />-->
+
+            <!--<TextView-->
+            <!--android:layout_column="5"-->
+            <!--android:text="20"-->
+            <!--android:padding="4dip"-->
+            <!--android:textStyle="bold"-->
+            <!--android:id="@+id/textView5"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content" />-->
+
+            <!--<TextView-->
+            <!--android:layout_column="6"-->
+            <!--android:text="20"-->
+            <!--android:padding="4dip"-->
+            <!--android:textStyle="bold"-->
+            <!--android:id="@+id/textView6"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content" />-->
+            <!--</TableRow>-->
 
 
-                <!--</LinearLayout>-->
+            <!--</TableLayout>-->
+
+
+            <!--</LinearLayout>-->
 
             <!--</android.support.v7.widget.CardView>-->
 
+
             <!-- FC -->
+
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/card_resultados"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                app:cardCornerRadius="2dp"
+                app:cardElevation="2dp"
+                app:cardPreventCornerOverlap="false"
+                app:contentPadding="10dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="5dp">
+
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:layout_gravity="center_vertical"
+                            android:background="@drawable/icon_fc_verde" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginStart="5dp"
+                            android:paddingBottom="2dp"
+                            android:text="Resultados"
+                            android:textColor="@color/corPrimaria"
+                            android:textSize="20sp"
+                            android:textStyle="bold" />
+
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="wrap_content"
+                        android:layout_height="0.5dp"
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginEnd="5dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_marginStart="5dp"
+                        android:background="#8b949494" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="2dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Paciente: " />
+
+                            <TextView
+                                android:id="@+id/text_nome_paciente_resultados"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Eduardo H P Pooch" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_horizontal"
+                            android:paddingBottom="5dp">
+
+                            <TextView
+                                android:id="text_dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="800"
+                                android:textSize="30sp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="m" />
+
+                        </LinearLayout>
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:paddingBottom="10dp">
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:orientation="vertical">
+
+                                <RelativeLayout
+                                    android:id="@+id/layout_circulo_dp_estimada_1"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginEnd="30dp"
+                                    android:layout_marginRight="30dp">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="Eq 1"
+                                        android:textSize="10sp"
+                                        android:textStyle="bold"
+                                        android:textColor="#64bcbcbc"
+                                        />
+
+
+                                    <LinearLayout
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_centerInParent="true"
+                                        android:gravity="center_horizontal"
+                                        android:orientation="vertical">
+
+                                        <LinearLayout
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content">
+
+                                            <TextView
+                                                android:id="@+id/text_dp_porcento_1"
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:text="64"
+                                                android:textColor="@color/corPrimariaEscura"
+                                                android:textSize="20sp" />
+
+                                            <TextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:text="%"
+                                                android:textColor="@color/corPrimariaEscura"
+                                                android:textSize="17sp" />
+                                        </LinearLayout>
+
+                                        <TextView
+                                            android:id="@+id/text_dp_estimada_1"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+
+                                            android:text="de 1800m"
+
+                                            android:textColor="@color/corPrimariaEscura"
+                                            android:textSize="10sp" />
+
+                                    </LinearLayout>
+
+                                    <com.mikhaellopez.circularprogressbar.CircularProgressBar
+                                        android:id="@+id/circulo_porcento_1"
+                                        android:layout_width="100dp"
+                                        android:layout_height="100dp"
+                                        app:cpb_background_progressbar_color="#3254ba84"
+                                        app:cpb_background_progressbar_width="5dp"
+                                        app:cpb_progress="70"
+                                        app:cpb_progressbar_color="@color/corPrimaria"
+                                        app:cpb_progressbar_width="10dp" />
+
+
+                                </RelativeLayout>
+
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:orientation="vertical">
+
+                                <RelativeLayout
+                                    android:id="@+id/layout_circulo_dp_estimada_2"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginEnd="30dp"
+                                    android:layout_marginRight="30dp">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="Eq 2"
+                                        android:textSize="10sp"
+                                        android:textStyle="bold"
+                                        android:textColor="#64bcbcbc"
+                                        />
+
+
+                                    <LinearLayout
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_centerInParent="true"
+                                        android:gravity="center_horizontal"
+                                        android:orientation="vertical">
+
+                                        <LinearLayout
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content">
+
+                                            <TextView
+                                                android:id="@+id/text_dp_porcento_2"
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:text="64"
+                                                android:textColor="@color/corPrimariaEscura"
+                                                android:textSize="20sp" />
+
+                                            <TextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:text="%"
+                                                android:textColor="@color/corPrimariaEscura"
+                                                android:textSize="17sp" />
+                                        </LinearLayout>
+
+                                        <TextView
+                                            android:id="@+id/text_dp_estimada_2"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+
+                                            android:text="de 1800m"
+
+                                            android:textColor="@color/corPrimariaEscura"
+                                            android:textSize="10sp" />
+
+                                    </LinearLayout>
+
+                                    <com.mikhaellopez.circularprogressbar.CircularProgressBar
+                                        android:id="@+id/circulo_porcento_2"
+                                        android:layout_width="100dp"
+                                        android:layout_height="100dp"
+                                        app:cpb_background_progressbar_color="#3254ba84"
+                                        app:cpb_background_progressbar_width="5dp"
+                                        app:cpb_progress="70"
+                                        app:cpb_progressbar_color="@color/corPrimaria"
+                                        app:cpb_progressbar_width="10dp" />
+
+
+                                </RelativeLayout>
+
+
+                            </LinearLayout>
+
+
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="wrap_content"
+                        android:layout_height="0.5dp"
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginEnd="20dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginRight="20dp"
+                        android:layout_marginStart="20dp"
+                        android:background="#8b949494" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="5dp"
+                        android:gravity="center">
+
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
+
             <android.support.v7.widget.CardView
                 android:id="@+id/card_fc"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="10dp"
                 app:cardCornerRadius="2dp"
                 app:cardElevation="2dp"
                 app:cardPreventCornerOverlap="false"
@@ -381,23 +670,19 @@
                                 android:textSize="12sp"
                                 android:textStyle="bold" />
 
-                            <LinearLayout
+                            <TextView
+                                android:id="@+id/resultado_fc_1_minuto"
                                 android:layout_width="wrap_content"
-                                android:layout_height="wrap_content">
+                                android:layout_height="wrap_content"
+                                android:text="80"
+                                android:textSize="22sp" />
 
-                                <TextView
-                                    android:id="@+id/resultado_fc_1_minuto"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="80"
-                                    android:textSize="20sp" />
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/bpm"
+                                android:textSize="10sp" />
 
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="@string/bpm"
-                                    android:textSize="12sp" />
-                            </LinearLayout>
                         </LinearLayout>
 
                         <LinearLayout
@@ -415,23 +700,19 @@
                                 android:textSize="12sp"
                                 android:textStyle="bold" />
 
-                            <LinearLayout
+
+                            <TextView
+                                android:id="@+id/resultado_fc_2_minuto"
                                 android:layout_width="wrap_content"
-                                android:layout_height="wrap_content">
+                                android:layout_height="wrap_content"
+                                android:text="80"
+                                android:textSize="22sp" />
 
-                                <TextView
-                                    android:id="@+id/resultado_fc_2_minuto"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="80"
-                                    android:textSize="20sp" />
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="@string/bpm"
-                                    android:textSize="12sp" />
-                            </LinearLayout>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/bpm"
+                                android:textSize="10sp" />
                         </LinearLayout>
 
                         <LinearLayout
@@ -449,23 +730,19 @@
                                 android:textSize="12sp"
                                 android:textStyle="bold" />
 
-                            <LinearLayout
+
+                            <TextView
+                                android:id="@+id/resultado_fc_3_minuto"
                                 android:layout_width="wrap_content"
-                                android:layout_height="wrap_content">
+                                android:layout_height="wrap_content"
+                                android:text="80"
+                                android:textSize="22sp" />
 
-                                <TextView
-                                    android:id="@+id/resultado_fc_3_minuto"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="80"
-                                    android:textSize="20sp" />
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="@string/bpm"
-                                    android:textSize="12sp" />
-                            </LinearLayout>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/bpm"
+                                android:textSize="10sp" />
                         </LinearLayout>
 
                         <LinearLayout
@@ -483,23 +760,19 @@
                                 android:textSize="12sp"
                                 android:textStyle="bold" />
 
-                            <LinearLayout
+
+                            <TextView
+                                android:id="@+id/resultado_fc_4_minuto"
                                 android:layout_width="wrap_content"
-                                android:layout_height="wrap_content">
+                                android:layout_height="wrap_content"
+                                android:text="80"
+                                android:textSize="22sp" />
 
-                                <TextView
-                                    android:id="@+id/resultado_fc_4_minuto"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="80"
-                                    android:textSize="20sp" />
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="@string/bpm"
-                                    android:textSize="12sp" />
-                            </LinearLayout>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/bpm"
+                                android:textSize="10sp" />
                         </LinearLayout>
 
                         <LinearLayout
@@ -517,24 +790,56 @@
                                 android:textSize="12sp"
                                 android:textStyle="bold" />
 
-                            <LinearLayout
+
+                            <TextView
+                                android:id="@+id/resultado_fc_5_minuto"
                                 android:layout_width="wrap_content"
-                                android:layout_height="wrap_content">
+                                android:layout_height="wrap_content"
+                                android:text="80"
+                                android:textSize="22sp" />
 
-                                <TextView
-                                    android:id="@+id/resultado_fc_5_minuto"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="80"
-                                    android:textSize="20sp" />
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/bpm"
+                                android:textSize="10sp" />
 
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="@string/bpm"
-                                    android:textSize="12sp" />
-                            </LinearLayout>
+
                         </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginStart="10dp"
+                            android:gravity="center"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/_6_minuto"
+                                android:textSize="12sp"
+                                android:textStyle="bold" />
+
+
+                            <TextView
+                                android:id="@+id/ressultado_fc_6_minuto"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="80"
+                                android:textSize="22sp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/bpm"
+                                android:textSize="10sp" />
+
+
+                        </LinearLayout>
+
+
                     </LinearLayout>
 
 
@@ -640,7 +945,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="@string/_final"
+                                android:text="@string/_6_minuto"
                                 android:textStyle="bold" />
 
                             <LinearLayout
@@ -648,7 +953,7 @@
                                 android:layout_height="wrap_content">
 
                                 <TextView
-                                    android:id="@+id/resultado_sp_final"
+                                    android:id="@+id/resultado_sp_6_minuto"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="80"
@@ -663,38 +968,6 @@
 
                         </LinearLayout>
 
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="30dp"
-                            android:layout_marginStart="30dp"
-                            android:gravity="center"
-                            android:orientation="vertical">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="@string/recup"
-                                android:textSize="13sp"
-                                android:textStyle="bold" />
-
-                            <LinearLayout
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content">
-
-                                <TextView
-                                    android:id="@+id/resultado_sp_recup"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="80"
-                                    android:textSize="30sp" />
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="@string/_sp_unidade" />
-                            </LinearLayout>
-                        </LinearLayout>
 
                     </LinearLayout>
 
@@ -882,13 +1155,19 @@
                                     android:text="@string/_sp_unidade"
                                     android:textSize="12sp" />
                             </LinearLayout>
+
+
                         </LinearLayout>
+
+
                     </LinearLayout>
 
 
                 </LinearLayout>
             </android.support.v7.widget.CardView>
-            <!-- Disp -->
+            Disp
+
+
             <android.support.v7.widget.CardView
                 android:id="@+id/card_disp"
                 android:layout_width="match_parent"
@@ -1065,8 +1344,6 @@
                         <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="10dp"
-                            android:layout_marginStart="10dp"
                             android:gravity="center"
                             android:orientation="vertical">
 
@@ -1231,6 +1508,40 @@
                                     android:textSize="12sp" />
                             </LinearLayout>
                         </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginStart="10dp"
+                            android:gravity="center"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/_6_minuto"
+                                android:textSize="12sp"
+                                android:textStyle="bold" />
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content">
+
+                                <TextView
+                                    android:id="@+id/resultado_disp_6_minuto"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="80"
+                                    android:textSize="20sp" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/_disp_unidade"
+                                    android:textSize="12sp" />
+                            </LinearLayout>
+                        </LinearLayout>
                     </LinearLayout>
 
 
@@ -1271,7 +1582,7 @@
                             android:layout_marginLeft="5dp"
                             android:layout_marginStart="5dp"
                             android:paddingBottom="2dp"
-                            android:text="Fadiga dos Membros Inferiores"
+                            android:text="Fadiga dos MMII"
                             android:textColor="@color/corPrimaria"
                             android:textSize="20sp"
                             android:textStyle="bold" />
@@ -1413,8 +1724,6 @@
                         <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="10dp"
-                            android:layout_marginStart="10dp"
                             android:gravity="center"
                             android:orientation="vertical">
 
@@ -1579,11 +1888,49 @@
                                     android:textSize="12sp" />
                             </LinearLayout>
                         </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginStart="10dp"
+                            android:gravity="center"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/_6_minuto"
+                                android:textSize="12sp"
+                                android:textStyle="bold" />
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content">
+
+                                <TextView
+                                    android:id="@+id/resultado_fad_6_minuto"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="80"
+                                    android:textSize="20sp" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/_fad_unidade"
+                                    android:textSize="12sp" />
+                            </LinearLayout>
+                        </LinearLayout>
+
+
                     </LinearLayout>
 
 
                 </LinearLayout>
             </android.support.v7.widget.CardView>
+
+
             <!-- PA -->
             <android.support.v7.widget.CardView
                 android:id="@+id/card_pa"
@@ -1874,6 +2221,93 @@
                     </LinearLayout>
                 </LinearLayout>
             </android.support.v7.widget.CardView>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="#FFFFFF"
+                    android:orientation="vertical"
+                    android:padding="10dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="O2 Supl."
+                        android:textColor="@color/corPrimaria"
+                        android:textSize="17sp"
+                        android:textStyle="bold" />
+
+                    <View
+                        android:layout_width="100dp"
+                        android:layout_height="0.5dp"
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginEnd="5dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_marginStart="5dp"
+                        android:background="#8b949494" />
+
+                    <TextView
+                        android:id="@+id/resultado_o2_supl"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="20"
+                        android:textSize="30sp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_weight="1"
+                    android:background="#FFFFFF"
+
+                    android:orientation="vertical"
+                    android:padding="10dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Observação"
+                        android:textColor="@color/corPrimaria"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+
+                    <View
+                        android:layout_width="100dp"
+                        android:layout_height="0.5dp"
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginEnd="5dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_marginStart="5dp"
+                        android:background="#8b949494" />
+
+
+                    <TextView
+                        android:id="@+id/resultado_obs"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="Observação sobre o teste" />
+
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+            <!-- Comentario e o2supl-->
 
         </LinearLayout>
     </ScrollView>

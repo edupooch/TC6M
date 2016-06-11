@@ -65,6 +65,7 @@
     <string name="_fad_unidade" />
     <string name="_pa_unidade">mmHg</string>
     <string name="_gc_unidade">mg/dL</string>
+    <string name="_6_minuto">6º min.</string>
 
 
 </resources>

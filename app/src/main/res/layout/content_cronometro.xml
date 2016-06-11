@@ -63,14 +63,23 @@
                     android:id="@+id/layoutCronometro"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:paddingTop="10dp"
                     android:layout_marginBottom="10dp">
 
-                    <ImageView
+
+
+                    <com.mikhaellopez.circularprogressbar.CircularProgressBar
+                        android:id="@+id/progressoCirculo"
                         android:layout_width="240dp"
                         android:layout_height="240dp"
-                        android:layout_alignParentTop="true"
+
+                        app:cpb_background_progressbar_color="#FFFFFF"
+                        app:cpb_background_progressbar_width="2dp"
+                        app:cpb_progressbar_color="@color/colorAccent"
+                        app:cpb_progressbar_width="5dp"
                         android:layout_centerHorizontal="true"
-                        android:src="@drawable/circulo3" />
+                        />
+
 
                     <Chronometer
                         android:id="@+id/cronometro"
