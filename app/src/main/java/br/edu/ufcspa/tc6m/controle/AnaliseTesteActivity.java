@@ -1,6 +1,7 @@
 package br.edu.ufcspa.tc6m.controle;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.opengl.ETC1;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -12,9 +13,19 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.TextView;
 
+import org.w3c.dom.Text;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import br.edu.ufcspa.tc6m.R;
 import br.edu.ufcspa.tc6m.modelo.Paciente;
 import br.edu.ufcspa.tc6m.modelo.Teste;
+import lecho.lib.hellocharts.model.ChartData;
+import lecho.lib.hellocharts.model.Line;
+import lecho.lib.hellocharts.model.LineChartData;
+import lecho.lib.hellocharts.model.PointValue;
+import lecho.lib.hellocharts.view.LineChartView;
 
 public class AnaliseTesteActivity extends AppCompatActivity {
 
@@ -46,6 +57,14 @@ public class AnaliseTesteActivity extends AppCompatActivity {
     }
 
     private void iniciaComponentes() {
+
+        TextView textNomePaciente = (TextView) findViewById(R.id.text_nome_paciente_resultados);
+        textNomePaciente.setText(teste.getPaciente().getNome());
+
+        TextView textIdade =(TextView) findViewById(R.id.text_idade_resultado);
+        textIdade.setText(teste.getIdade());
+
+        Calcula.dpEstimadaBritto1(teste.getIdade(),teste.getPaciente().getGenero(), teste.getMassa(),teste.getEstatura());
 
 
         int[] fcValoresXML = new int[]{R.id.resultado_fc_inicial, R.id.resultado_fc_1_minuto, R.id.resultado_fc_2_minuto, R.id.resultado_fc_3_minuto, R.id.resultado_fc_4_minuto, R.id.resultado_fc_5_minuto, R.id.ressultado_fc_6_minuto, R.id.resultado_fc_final, R.id.resultado_fc_recup};
@@ -86,6 +105,22 @@ public class AnaliseTesteActivity extends AppCompatActivity {
 
         TextView textObsFinal = (TextView) findViewById(R.id.resultado_obs);
         textObsFinal.setText(teste.getObsFinal());
+
+
+        LineChartView graficoDp = (LineChartView)findViewById(R.id.grafico_dp_minuto);
+        graficoDp.setInteractive(true);
+
+        List<PointValue> values = new ArrayList<PointValue>();
+        for (int i = 0; i<6;i++) values.add(new PointValue(i,teste.getVoltas(i)));
+
+        Line line = new Line(values).setColor(R.color.corPrimariaEscura).setCubic(true);
+        List<Line> lines = new ArrayList<Line>();
+        lines.add(line);
+
+        LineChartData data = new LineChartData();
+        data.setLines(lines);
+
+        graficoDp.setLineChartData(data);
 
     }
 }

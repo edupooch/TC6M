@@ -66,6 +66,16 @@
     <string name="_pa_unidade">mmHg</string>
     <string name="_gc_unidade">mg/dL</string>
     <string name="_6_minuto">6º min.</string>
+    <string name="_porcento">%</string>
+    <string name="metros">m</string>
+    <string name="virgula">,</string>
+    <string name="anos">anos</string>
+    <string name="resultados">Resultados</string>
+    <string name="frequ_ncia_card_aca">Frequência Cardíaca</string>
+    <string name="saturacao_de_pulso_de_o2">Saturação de Pulso de O2</string>
+    <string name="observacao">Observação</string>
+    <string name="glicemia_capilar">Glicemia Capilar</string>
+    <string name="pressao_arterial">Pressão Arterial</string>
 
 
 </resources>

@@ -230,7 +230,7 @@
                             android:layout_marginLeft="5dp"
                             android:layout_marginStart="5dp"
                             android:paddingBottom="2dp"
-                            android:text="Resultados"
+                            android:text="@string/resultados"
                             android:textColor="@color/corPrimaria"
                             android:textSize="20sp"
                             android:textStyle="bold" />
@@ -260,15 +260,28 @@
                             android:padding="2dp">
 
                             <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Paciente: " />
-
-                            <TextView
                                 android:id="@+id/text_nome_paciente_resultados"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Eduardo H P Pooch" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginEnd="3dp"
+                                android:layout_marginRight="3dp"
+                                android:text="@string/virgula" />
+                            <TextView
+                                android:id="@+id/text_idade_resultado"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="18" />
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="3dp"
+                                android:layout_marginLeft="3dp"
+                                android:text="@string/anos" />
 
                         </LinearLayout>
 
@@ -279,16 +292,16 @@
                             android:paddingBottom="5dp">
 
                             <TextView
-                                android:id="text_dp"
+                                android:id="@+id/text_dp"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="800"
-                                android:textSize="30sp" />
+                                android:textSize="40sp" />
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="m" />
+                                android:text="@string/metros" />
 
                         </LinearLayout>
 
@@ -316,10 +329,9 @@
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:text="Eq 1"
-                                        android:textSize="10sp"
-                                        android:textStyle="bold"
                                         android:textColor="#64bcbcbc"
-                                        />
+                                        android:textSize="10sp"
+                                        android:textStyle="bold" />
 
 
                                     <LinearLayout
@@ -339,32 +351,48 @@
                                                 android:layout_height="wrap_content"
                                                 android:text="64"
                                                 android:textColor="@color/corPrimariaEscura"
-                                                android:textSize="20sp" />
+                                                android:textSize="30sp" />
 
                                             <TextView
                                                 android:layout_width="wrap_content"
                                                 android:layout_height="wrap_content"
-                                                android:text="%"
+                                                android:text="@string/_porcento"
                                                 android:textColor="@color/corPrimariaEscura"
                                                 android:textSize="17sp" />
                                         </LinearLayout>
 
-                                        <TextView
-                                            android:id="@+id/text_dp_estimada_1"
+                                        <LinearLayout
                                             android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
+                                            android:layout_height="wrap_content">
 
-                                            android:text="de 1800m"
+                                            <TextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:text="de "
+                                                android:textColor="@color/corPrimariaEscura"
+                                                android:textSize="12sp" />
 
-                                            android:textColor="@color/corPrimariaEscura"
-                                            android:textSize="10sp" />
+                                            <TextView
+                                                android:id="@+id/text_dp_estimada_1"
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:text="1800"
+                                                android:textColor="@color/corPrimariaEscura"
+                                                android:textSize="12sp" />
 
+                                            <TextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:text="@string/metros"
+                                                android:textColor="@color/corPrimariaEscura"
+                                                android:textSize="12sp" />
+                                        </LinearLayout>
                                     </LinearLayout>
 
                                     <com.mikhaellopez.circularprogressbar.CircularProgressBar
                                         android:id="@+id/circulo_porcento_1"
-                                        android:layout_width="100dp"
-                                        android:layout_height="100dp"
+                                        android:layout_width="130dp"
+                                        android:layout_height="130dp"
                                         app:cpb_background_progressbar_color="#3254ba84"
                                         app:cpb_background_progressbar_width="5dp"
                                         app:cpb_progress="70"
@@ -386,18 +414,15 @@
                                 <RelativeLayout
                                     android:id="@+id/layout_circulo_dp_estimada_2"
                                     android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginEnd="30dp"
-                                    android:layout_marginRight="30dp">
+                                    android:layout_height="wrap_content">
 
                                     <TextView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:text="Eq 2"
-                                        android:textSize="10sp"
-                                        android:textStyle="bold"
                                         android:textColor="#64bcbcbc"
-                                        />
+                                        android:textSize="10sp"
+                                        android:textStyle="bold" />
 
 
                                     <LinearLayout
@@ -417,7 +442,7 @@
                                                 android:layout_height="wrap_content"
                                                 android:text="64"
                                                 android:textColor="@color/corPrimariaEscura"
-                                                android:textSize="20sp" />
+                                                android:textSize="30sp" />
 
                                             <TextView
                                                 android:layout_width="wrap_content"
@@ -427,22 +452,39 @@
                                                 android:textSize="17sp" />
                                         </LinearLayout>
 
-                                        <TextView
-                                            android:id="@+id/text_dp_estimada_2"
+                                        <LinearLayout
                                             android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
+                                            android:layout_height="wrap_content">
 
-                                            android:text="de 1800m"
+                                            <TextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:text="de "
+                                                android:textColor="@color/corPrimariaEscura"
+                                                android:textSize="12sp" />
 
-                                            android:textColor="@color/corPrimariaEscura"
-                                            android:textSize="10sp" />
+                                            <TextView
+                                                android:id="@+id/text_dp_estimada_2"
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:text="1800"
+                                                android:textColor="@color/corPrimariaEscura"
+                                                android:textSize="12sp" />
+
+                                            <TextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:text="@string/metros"
+                                                android:textColor="@color/corPrimariaEscura"
+                                                android:textSize="12sp" />
+                                        </LinearLayout>
 
                                     </LinearLayout>
 
                                     <com.mikhaellopez.circularprogressbar.CircularProgressBar
                                         android:id="@+id/circulo_porcento_2"
-                                        android:layout_width="100dp"
-                                        android:layout_height="100dp"
+                                        android:layout_width="130dp"
+                                        android:layout_height="130dp"
                                         app:cpb_background_progressbar_color="#3254ba84"
                                         app:cpb_background_progressbar_width="5dp"
                                         app:cpb_progress="70"
@@ -452,21 +494,14 @@
 
                                 </RelativeLayout>
 
-
                             </LinearLayout>
-
-
                         </LinearLayout>
                     </LinearLayout>
 
                     <View
                         android:layout_width="wrap_content"
                         android:layout_height="0.5dp"
-                        android:layout_marginBottom="10dp"
-                        android:layout_marginEnd="20dp"
-                        android:layout_marginLeft="20dp"
-                        android:layout_marginRight="20dp"
-                        android:layout_marginStart="20dp"
+                        android:layout_margin="20dp"
                         android:background="#8b949494" />
 
                     <LinearLayout
@@ -475,10 +510,12 @@
                         android:layout_marginBottom="5dp"
                         android:gravity="center">
 
+                        <lecho.lib.hellocharts.view.LineChartView
+                            android:id="@+id/grafico_dp_minuto"
+                            android:layout_width="300dp"
+                            android:layout_height="150dp" />
 
                     </LinearLayout>
-
-
                 </LinearLayout>
             </android.support.v7.widget.CardView>
 
@@ -516,7 +553,7 @@
                             android:layout_marginLeft="5dp"
                             android:layout_marginStart="5dp"
                             android:paddingBottom="2dp"
-                            android:text="Frequência Cardíaca"
+                            android:text="@string/frequ_ncia_card_aca"
                             android:textColor="@color/corPrimaria"
                             android:textSize="20sp"
                             android:textStyle="bold" />
@@ -880,7 +917,7 @@
                             android:layout_marginLeft="5dp"
                             android:layout_marginStart="5dp"
                             android:paddingBottom="2dp"
-                            android:text="Saturação de Pulso de O2"
+                            android:text="@string/saturacao_de_pulso_de_o2"
                             android:textColor="@color/corPrimaria"
                             android:textSize="20sp"
                             android:textStyle="bold" />
@@ -1966,7 +2003,7 @@
                             android:layout_marginLeft="5dp"
                             android:layout_marginStart="5dp"
                             android:paddingBottom="2dp"
-                            android:text="Pressão Arterial"
+                            android:text="@string/pressao_arterial"
                             android:textColor="@color/corPrimaria"
                             android:textSize="20sp"
                             android:textStyle="bold" />
@@ -2111,7 +2148,7 @@
                             android:layout_marginLeft="5dp"
                             android:layout_marginStart="5dp"
                             android:paddingBottom="2dp"
-                            android:text="Glicemia Capilar"
+                            android:text="@string/glicemia_capilar"
                             android:textColor="@color/corPrimaria"
                             android:textSize="20sp"
                             android:textStyle="bold" />
@@ -2239,7 +2276,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="O2 Supl."
+                        android:text="@string/o2_supl"
                         android:textColor="@color/corPrimaria"
                         android:textSize="17sp"
                         android:textStyle="bold" />
@@ -2278,7 +2315,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Observação"
+                        android:text="@string/observacao"
                         android:textColor="@color/corPrimaria"
                         android:textSize="18sp"
                         android:textStyle="bold" />

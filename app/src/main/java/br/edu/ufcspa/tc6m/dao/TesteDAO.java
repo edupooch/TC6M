@@ -14,6 +14,7 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
 
+import br.edu.ufcspa.tc6m.controle.Calcula;
 import br.edu.ufcspa.tc6m.modelo.Paciente;
 import br.edu.ufcspa.tc6m.modelo.Teste;
 
@@ -51,9 +52,7 @@ public class TesteDAO extends SQLiteOpenHelper {
     String[] strKeyVoltas = {"voltas_0", "voltas_1", "voltas_2", "voltas_3", "voltas_4", "voltas_5",};
 
     public TesteDAO(Context context) {
-        super(context, "Testes", null, 4);
-
-
+        super(context, "Testes", null, 5);
     }
 
     @Override
@@ -61,6 +60,7 @@ public class TesteDAO extends SQLiteOpenHelper {
         String sql = "CREATE TABLE IF NOT EXISTS Testes ( id_teste INTEGER PRIMARY KEY,\n" +
                 "id_paciente INTEGER NOT NULL,\n" +
                 "dia_hora datetime,\n" +
+                "idade_paciente INTEGER,\n" +
                 "fc_0 INTEGER, fc_1 INTEGER, fc_2 INTEGER, fc_3 INTEGER, fc_4 INTEGER, fc_5 INTEGER, fc_6 INTEGER, fc_7 INTEGER, fc_8 INTEGER,\n" +
                 "spo2_0 INTEGER, spo2_1 INTEGER, spo2_2 INTEGER, spo2_3 INTEGER, spo2_4 INTEGER, spo2_5 INTEGER, spo2_6 INTEGER,\n" +
                 "disp_0 REAL, disp_1 REAL, disp_2 REAL, disp_3 REAL, disp_4 REAL, disp_5 REAL, disp_6 REAL, disp_7 REAL, disp_8 REAL,\n" +
@@ -101,6 +101,7 @@ public class TesteDAO extends SQLiteOpenHelper {
         //DATA DO TESTE
         SimpleDateFormat dtFormat = new SimpleDateFormat("yyyy-MM-dd");
         dados.put("dia_hora", dtFormat.format(new Date()));
+        dados.put("idade_paciente", Calcula.idade(teste.getPaciente().getDataNascimento()));
         //INSERE VALORES DE FC
         for (int i = 0; i < 9; i++) dados.put(strKeyFc[i], teste.getFc(i));
         //SPO2
@@ -140,6 +141,7 @@ public class TesteDAO extends SQLiteOpenHelper {
             Teste teste = new Teste(paciente);
             teste.setIdTeste(c.getLong(c.getColumnIndex("id_teste")));
             teste.setData(java.sql.Date.valueOf(c.getString(c.getColumnIndex("dia_hora"))));
+            teste.setIdade(c.getInt(c.getColumnIndex("idade_paciente")));
             for (int i = 0; i < 9; i++)
                 teste.setFc(i, c.getInt(c.getColumnIndex(strKeyFc[i])));
             for (int i = 0; i < 7; i++)

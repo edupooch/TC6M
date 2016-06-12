@@ -33,6 +33,7 @@ public class Teste implements Serializable {
     private Paciente paciente;
     private Long idPaciente;
     private Date data;
+    private int idade; //Idade quando fez o teste
 
 
     // SIGNIFICADO DOS ÍNDICES DOS ARRAYS COMENTADOS AO LADO DE CADA UM
@@ -69,6 +70,14 @@ public class Teste implements Serializable {
     public Teste(Paciente paciente) {
         this.paciente = paciente;
         this.idPaciente = paciente.getId();
+    }
+
+    public int getIdade() {
+        return idade;
+    }
+
+    public void setIdade(int idade) {
+        this.idade = idade;
     }
 
     public Long getIdTeste() {

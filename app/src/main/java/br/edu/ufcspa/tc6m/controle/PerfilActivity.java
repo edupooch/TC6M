@@ -75,7 +75,7 @@ public class PerfilActivity extends AppCompatActivity {
         activity.setTitle(paciente.getNome());
         textoPeso.setText(String.format(Locale.US, "%.2f kg", paciente.getMassa()));
         textoAltura.setText(String.format(Locale.US, "%.0f cm", paciente.getEstatura()));
-        textoIMC.setText(String.format(Locale.US, "IMC %.2f", paciente.getMassa() / Math.pow(paciente.getEstatura() / 100, 2)));
+        textoIMC.setText(String.format(Locale.US, "IMC %.2f", Calcula.imc(paciente.getMassa(),paciente.getEstatura())));
         textoTelefone.setText(paciente.getTelefone());
         textoEmail.setText(paciente.getEmail());
 
