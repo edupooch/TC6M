@@ -17,6 +17,7 @@ import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import br.edu.ufcspa.tc6m.R;
 import br.edu.ufcspa.tc6m.modelo.Paciente;
@@ -39,9 +40,8 @@ public class AnaliseTesteActivity extends AppCompatActivity {
     //0=BASAL, 1=FINAL, 2=RECUPERAÇÃO
     private TextView[] textPa = new TextView[3];
     private TextView[] textGc = new TextView[3];
-
-
     //VALORES
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,11 +61,21 @@ public class AnaliseTesteActivity extends AppCompatActivity {
         TextView textNomePaciente = (TextView) findViewById(R.id.text_nome_paciente_resultados);
         textNomePaciente.setText(teste.getPaciente().getNome());
 
-        TextView textIdade =(TextView) findViewById(R.id.text_idade_resultado);
-        textIdade.setText(teste.getIdade());
+        TextView textIdade = (TextView) findViewById(R.id.text_idade_resultado);
+        textIdade.setText(String.valueOf(teste.getIdade()));
 
-        Calcula.dpEstimadaBritto1(teste.getIdade(),teste.getPaciente().getGenero(), teste.getMassa(),teste.getEstatura());
+        System.out.println("DP estimada 1: " + Calcula.dpEstimadaBritto1(teste.getIdade(), teste.getPaciente().getGenero(), teste.getMassa(), teste.getEstatura()));
 
+        TextView dpEstimada1 = (TextView) findViewById(R.id.text_dp_estimada_1);
+        TextView percDpEstimada1 = (TextView) findViewById(R.id.text_dp_porcento_1);
+
+        double dbDpEstimada1 = Calcula.dpEstimadaBritto1(teste.getIdade(), teste.getPaciente().getGenero(), teste.getMassa(), teste.getEstatura());
+        String strDpEstimada1 = String.valueOf(dbDpEstimada1);
+        dpEstimada1.setText(strDpEstimada1);
+
+        double dbPercentDpEstimada1 = Calcula.porcentagem(teste.getDistanciaPercorrida(), dbDpEstimada1);
+        String strPercDpEstimada1 = String.format(Locale.getDefault(), "%.1f", dbPercentDpEstimada1);
+        percDpEstimada1.setText(strPercDpEstimada1);
 
         int[] fcValoresXML = new int[]{R.id.resultado_fc_inicial, R.id.resultado_fc_1_minuto, R.id.resultado_fc_2_minuto, R.id.resultado_fc_3_minuto, R.id.resultado_fc_4_minuto, R.id.resultado_fc_5_minuto, R.id.ressultado_fc_6_minuto, R.id.resultado_fc_final, R.id.resultado_fc_recup};
         int[] spValoresXML = new int[]{R.id.resultado_sp_inicial, R.id.resultado_sp_1_minuto, R.id.resultado_sp_2_minuto, R.id.resultado_sp_3_minuto, R.id.resultado_sp_4_minuto, R.id.resultado_sp_5_minuto, R.id.resultado_sp_6_minuto};
@@ -106,21 +116,35 @@ public class AnaliseTesteActivity extends AppCompatActivity {
         TextView textObsFinal = (TextView) findViewById(R.id.resultado_obs);
         textObsFinal.setText(teste.getObsFinal());
 
+        geraGraficoDistancias();
 
-        LineChartView graficoDp = (LineChartView)findViewById(R.id.grafico_dp_minuto);
-        graficoDp.setInteractive(true);
+    }
 
-        List<PointValue> values = new ArrayList<PointValue>();
-        for (int i = 0; i<6;i++) values.add(new PointValue(i,teste.getVoltas(i)));
+    private void geraGraficoDistancias() {
+        new Thread() {
+            public void run() {
 
-        Line line = new Line(values).setColor(R.color.corPrimariaEscura).setCubic(true);
-        List<Line> lines = new ArrayList<Line>();
-        lines.add(line);
+                final LineChartView graficoDp = (LineChartView) findViewById(R.id.grafico_dp_minuto);
+                List<PointValue> values = new ArrayList<PointValue>();
+                for (int i = 0; i < 6; i++) values.add(new PointValue(i, teste.getVoltas(i)));
 
-        LineChartData data = new LineChartData();
-        data.setLines(lines);
+                Line line = new Line(values).setColor(Color.GREEN).setCubic(true);
+                List<Line> lines = new ArrayList<Line>();
+                lines.add(line);
 
-        graficoDp.setLineChartData(data);
+                final LineChartData data = new LineChartData();
+                data.setLines(lines);
 
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        //MÉTODOS QUE ALTERAM A VIEW
+                        graficoDp.setInteractive(true);
+                        graficoDp.setLineChartData(data);
+                    }
+                });
+
+            }
+        }.start();
     }
 }

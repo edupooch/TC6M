@@ -63,9 +63,8 @@
                     android:id="@+id/layoutCronometro"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:paddingTop="10dp"
-                    android:layout_marginBottom="10dp">
-
+                    android:layout_marginBottom="10dp"
+                    android:paddingTop="10dp">
 
 
                     <com.mikhaellopez.circularprogressbar.CircularProgressBar
@@ -73,20 +72,18 @@
                         android:layout_width="240dp"
                         android:layout_height="240dp"
 
+                        android:layout_centerHorizontal="true"
                         app:cpb_background_progressbar_color="#FFFFFF"
                         app:cpb_background_progressbar_width="2dp"
                         app:cpb_progressbar_color="@color/colorAccent"
-                        app:cpb_progressbar_width="5dp"
-                        android:layout_centerHorizontal="true"
-                        />
+                        app:cpb_progressbar_width="5dp" />
 
 
                     <Chronometer
                         android:id="@+id/cronometro"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_centerHorizontal="true"
-                        android:layout_centerVertical="true"
+                        android:layout_centerInParent="true"
                         android:fontFamily="sans-serif-thin"
                         android:textColor="#FFFFFFFF"
                         android:textSize="60sp" />
@@ -96,27 +93,60 @@
                         android:layout_height="wrap_content"
                         android:layout_below="@id/cronometro"
                         android:layout_centerHorizontal="true"
-                        android:layout_marginTop="80dp">
+                        android:layout_marginTop="80dp"
+                        android:orientation="vertical">
 
-                        <TextView
+                        <LinearLayout
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="sans-serif-light"
-                            android:text="@string/numero_de_paradas"
-                            android:textColor="#FFFFFF" />
+                            android:layout_height="wrap_content">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="sans-serif-light"
+                                android:text="@string/numero_de_paradas"
+                                android:textColor="#FFFFFF" />
 
 
-                        <TextView
-                            android:id="@+id/textParadas"
+                            <TextView
+                                android:id="@+id/textParadas"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="5dp"
+                                android:layout_marginStart="5dp"
+                                android:fontFamily="sans-serif-light"
+                                android:text="0"
+                                android:textColor="#FFFFFF" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/layoutCronometroParadas"
+                            android:visibility="gone"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="5dp"
-                            android:layout_marginStart="5dp"
-                            android:fontFamily="sans-serif-light"
-                            android:text="0"
-                            android:textColor="#FFFFFF" />
+                            android:layout_gravity="center_horizontal"
+                            android:layout_height="wrap_content">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="sans-serif-light"
+                                android:text="por  "
+                                android:textColor="#FFFFFF" />
+
+                            <Chronometer
+                                android:id="@+id/cronometroParadas"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="sans-serif-light"
+                                android:textColor="#FFFFFFFF"
+                                android:textSize="12sp" />
+
+
+
+                        </LinearLayout>
+
+
                     </LinearLayout>
-
                 </RelativeLayout> <!-- Layout Cronometro -->
 
 
@@ -917,7 +947,6 @@
         android:layout_marginBottom="10dp"
         android:layout_marginTop="10dp"
         android:measureWithLargestChild="false">
-
 
 
         <android.support.design.widget.FloatingActionButton

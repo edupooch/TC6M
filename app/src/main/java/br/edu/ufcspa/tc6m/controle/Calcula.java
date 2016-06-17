@@ -87,4 +87,19 @@ public class Calcula {
     public static double dpEstimadaSoaresPereira(int idade, double massa, double estatura) {
         return (511 + (0.0066 * Math.pow(estatura, 2)) - (0.030 * Math.pow(idade, 2)) - (0.068 * Math.pow(imc(massa, estatura), 2)));
     }
+
+     /*
+     * Cálculo da distancia percorrida estimada de 6 minutos - Iwama e colaboradores.
+     * Utiliza a idade em anos e o gênero.
+     * Coeficiente de explicação = 0,30
+     *
+     */
+
+    public static double dpEstimadaIwama(int idade, int genero) {
+        return (622.461 - (1.846 * idade) + (61.503 * genero));
+    }
+
+    public static double porcentagem(double distanciaPercorrida, double distanciaEstimada) {
+        return (distanciaPercorrida/distanciaEstimada)*100;
+    }
 }

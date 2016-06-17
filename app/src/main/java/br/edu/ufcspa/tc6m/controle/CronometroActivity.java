@@ -24,7 +24,9 @@ import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import com.mikhaellopez.circularprogressbar.CircularProgressBar;
+
 import br.edu.ufcspa.tc6m.R;
 import br.edu.ufcspa.tc6m.controle.TesteHelper;
 import br.edu.ufcspa.tc6m.modelo.Paciente;
@@ -56,6 +58,7 @@ public class CronometroActivity extends AppCompatActivity {
     //TESTE
     private TesteHelper helper;
     private Teste teste;
+    private CircularProgressBar circularProgressBar;
 
     public CronometroActivity() {
         botoesSalvarXML = new int[]{R.id.btSalvarDados1, R.id.btSalvarDados2, R.id.btSalvarDados3, R.id.btSalvarDados4, R.id.btSalvarDados5, R.id.btSalvarDados6,};
@@ -76,8 +79,9 @@ public class CronometroActivity extends AppCompatActivity {
 
     private void iniciaComponentes() {
 
-        CircularProgressBar circularProgressBar = (CircularProgressBar)findViewById(R.id.progressoCirculo);
-        circularProgressBar.setProgressWithAnimation(100, 360000);
+        circularProgressBar = (CircularProgressBar) findViewById(R.id.progressoCirculo);
+        circularProgressBar.setProgressWithAnimation(17, 60000);
+        //Para a barra de progresso ir até o 17%, depois ela é manipulada dentro do método mostraCampos chamado a cada minuto.
 
         Button btConfirma = (Button) findViewById(R.id.btConfirma);
         btConfirma.setVisibility(View.VISIBLE);
@@ -92,6 +96,10 @@ public class CronometroActivity extends AppCompatActivity {
         });
 
         iniciaCronometro();
+        iniciaCronometroParadas();
+
+
+
 
         Intent intent = getIntent();
         teste = (Teste) intent.getSerializableExtra("teste");
@@ -185,6 +193,11 @@ public class CronometroActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    private void iniciaCronometroParadas() {
+        Chronometer cronometroParadas = (Chronometer) findViewById(R.id.cronometroParadas);
+        crono.setBase(SystemClock.elapsedRealtime() - miliseconds);
     }
 
     private void iniciaCronometro() {
@@ -302,14 +315,18 @@ public class CronometroActivity extends AppCompatActivity {
     }
 
     private void mostraCampos(final int minuto) {
-        if (minuto < 6) fase = minuto + 1;
+        if (minuto < 6) {
+            fase = minuto + 1; // fase também é usado para o setVoltas
+            int progresso = (fase / 6) * 100;
+            circularProgressBar.setProgressWithAnimation(progresso, 60000);
+        }
 
         if (minuto < 5) { // frase do sexto minuto é exibida num AlertDialog
             layoutFrase.setVisibility(View.VISIBLE);
             textFrase.setText(frasesId[minuto]);
         }
 
-        layoutsDados[minuto] = (LinearLayout) findViewById(layoutsDadosXML[minuto]);
+        layoutsDados[minuto] = (LinearLayout) findViewById(layoutsDadosXML[minuto]); //card para botar os valores do minuto que aparece
         layoutsDados[minuto].setVisibility(View.VISIBLE);
 
         botoesSalvar[minuto] = (TextView) findViewById(botoesSalvarXML[minuto]);

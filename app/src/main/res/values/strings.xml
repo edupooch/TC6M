@@ -45,7 +45,7 @@
     <string name="confirmar_valores">Confirmar valores</string>
     <string name="title_activity_valores_finais">Valores Finais</string>
     <string name="title_activity_valores_recuperacao">Valores de Recuperação</string>
-    <string name="numero_de_paradas">Número de Paradas: </string>
+    <string name="numero_de_paradas">Paradas: </string>
     <string name="title_activity_lista_testes">Teste do Paciente</string>
     <string name="teste_singular">teste</string>
     <string name="text_inicial_vazio">Você ainda não tem pacientes cadastrados. Adicione um paciente novo no botão no canto inferior direito da tela</string>

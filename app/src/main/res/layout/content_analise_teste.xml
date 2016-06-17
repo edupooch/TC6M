@@ -271,16 +271,18 @@
                                 android:layout_marginEnd="3dp"
                                 android:layout_marginRight="3dp"
                                 android:text="@string/virgula" />
+
                             <TextView
                                 android:id="@+id/text_idade_resultado"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="18" />
+
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginStart="3dp"
                                 android:layout_marginLeft="3dp"
+                                android:layout_marginStart="3dp"
                                 android:text="@string/anos" />
 
                         </LinearLayout>
@@ -296,15 +298,25 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="800"
+
                                 android:textSize="40sp" />
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:textStyle="bold"
                                 android:text="@string/metros" />
 
                         </LinearLayout>
 
+                        <TextView
+                            android:layout_marginTop="5dp"
+                            android:layout_marginBottom="15dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/corPrimaria"
+                            android:textStyle="bold"
+                            android:text="Análise de Desempenho:"/>
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -349,7 +361,7 @@
                                                 android:id="@+id/text_dp_porcento_1"
                                                 android:layout_width="wrap_content"
                                                 android:layout_height="wrap_content"
-                                                android:text="64"
+                                                android:text="0"
                                                 android:textColor="@color/corPrimariaEscura"
                                                 android:textSize="30sp" />
 
@@ -376,7 +388,7 @@
                                                 android:id="@+id/text_dp_estimada_1"
                                                 android:layout_width="wrap_content"
                                                 android:layout_height="wrap_content"
-                                                android:text="1800"
+                                                android:text="0"
                                                 android:textColor="@color/corPrimariaEscura"
                                                 android:textSize="12sp" />
 
@@ -395,14 +407,10 @@
                                         android:layout_height="130dp"
                                         app:cpb_background_progressbar_color="#3254ba84"
                                         app:cpb_background_progressbar_width="5dp"
-                                        app:cpb_progress="70"
                                         app:cpb_progressbar_color="@color/corPrimaria"
                                         app:cpb_progressbar_width="10dp" />
 
-
                                 </RelativeLayout>
-
-
                             </LinearLayout>
 
                             <LinearLayout
@@ -440,7 +448,7 @@
                                                 android:id="@+id/text_dp_porcento_2"
                                                 android:layout_width="wrap_content"
                                                 android:layout_height="wrap_content"
-                                                android:text="64"
+                                                android:text="0"
                                                 android:textColor="@color/corPrimariaEscura"
                                                 android:textSize="30sp" />
 
@@ -467,7 +475,7 @@
                                                 android:id="@+id/text_dp_estimada_2"
                                                 android:layout_width="wrap_content"
                                                 android:layout_height="wrap_content"
-                                                android:text="1800"
+                                                android:text="0"
                                                 android:textColor="@color/corPrimariaEscura"
                                                 android:textSize="12sp" />
 
@@ -487,7 +495,6 @@
                                         android:layout_height="130dp"
                                         app:cpb_background_progressbar_color="#3254ba84"
                                         app:cpb_background_progressbar_width="5dp"
-                                        app:cpb_progress="70"
                                         app:cpb_progressbar_color="@color/corPrimaria"
                                         app:cpb_progressbar_width="10dp" />
 
