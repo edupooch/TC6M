@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
+import java.util.Locale;
 
 import br.edu.ufcspa.tc6m.controle.Calcula;
 import br.edu.ufcspa.tc6m.modelo.Paciente;
@@ -99,7 +100,7 @@ public class TesteDAO extends SQLiteOpenHelper {
         ContentValues dados = new ContentValues();
         dados.put("id_paciente", teste.getIdPaciente());
         //DATA DO TESTE
-        SimpleDateFormat dtFormat = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat dtFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
         dados.put("dia_hora", dtFormat.format(new Date()));
         dados.put("idade_paciente", Calcula.idade(teste.getPaciente().getDataNascimento()));
         //INSERE VALORES DE FC
@@ -169,7 +170,7 @@ public class TesteDAO extends SQLiteOpenHelper {
             teste.setMassa(c.getDouble(c.getColumnIndex("massa")));
             teste.setEstatura(c.getDouble(c.getColumnIndex("estatura")));
             teste.setObsFinal(c.getString(c.getColumnIndex("obs_final")));
-            teste.setDistanciaPercorrida(c.getDouble(c.getColumnIndex("distancia_percorrida")));
+            teste.setDistanciaPercorrida(c.getInt(c.getColumnIndex("distancia_percorrida")));
 
             testes.add(teste);
 
@@ -197,5 +198,11 @@ public class TesteDAO extends SQLiteOpenHelper {
         SQLiteDatabase db = getWritableDatabase();
         String[] parametros = {paciente.getId().toString()};
         db.delete("Testes","id_paciente = ?",parametros);
+    }
+
+    public void deleta(Teste teste) {
+        SQLiteDatabase db = getWritableDatabase();
+        String[] parametros = {teste.getIdTeste().toString()};
+        db.delete("Testes", "id_teste = ?", parametros);
     }
 }

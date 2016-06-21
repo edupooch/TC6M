@@ -1,11 +1,14 @@
 package br.edu.ufcspa.tc6m.controle;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.ContextMenu;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -16,6 +19,7 @@ import android.widget.ListView;
 import java.util.List;
 
 import br.edu.ufcspa.tc6m.R;
+import br.edu.ufcspa.tc6m.dao.PacienteDAO;
 import br.edu.ufcspa.tc6m.dao.TesteDAO;
 import br.edu.ufcspa.tc6m.modelo.Paciente;
 import br.edu.ufcspa.tc6m.modelo.Teste;
@@ -31,6 +35,7 @@ public class ListaTestesActivity extends AppCompatActivity {
         setContentView(R.layout.activity_lista_testes);
 //       getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         iniciaComponentes();
+        registerForContextMenu(listaTestes);
 
 
     }
@@ -71,6 +76,24 @@ public class ListaTestesActivity extends AppCompatActivity {
 
         dao.close();
     }
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, final ContextMenu.ContextMenuInfo menuInfo) {
+        MenuItem deletar = menu.add("Deletar Teste");
+        deletar.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
 
+                AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) menuInfo;
+                Teste teste  = (Teste) listaTestes.getItemAtPosition(info.position);
+                TesteDAO dao = new TesteDAO(ListaTestesActivity.this);
+
+                dao.deleta(teste);
+                dao.close();
+
+                carregaLista();
+                return false;
+            }
+        });
+    }
 
 }

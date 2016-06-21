@@ -10,6 +10,10 @@ import java.util.GregorianCalendar;
 
 public class Calcula {
 
+     /*
+     * Calculo da idade do paciente com base no dia do nascimento e no dia de hoje
+     */
+
     public static int idade(java.util.Date dataNasc) {
 
         Calendar calendarData = new GregorianCalendar();

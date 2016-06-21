@@ -13,6 +13,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.TextView;
 
+import com.mikhaellopez.circularprogressbar.CircularProgressBar;
+
 import org.w3c.dom.Text;
 
 import java.util.ArrayList;
@@ -50,6 +52,8 @@ public class AnaliseTesteActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+
+
         Intent intent = getIntent();
         teste = (Teste) intent.getSerializableExtra("teste");
 
@@ -64,18 +68,24 @@ public class AnaliseTesteActivity extends AppCompatActivity {
         TextView textIdade = (TextView) findViewById(R.id.text_idade_resultado);
         textIdade.setText(String.valueOf(teste.getIdade()));
 
+        TextView textDistanciaPercorrida = (TextView)findViewById(R.id.text_dp);
+        textDistanciaPercorrida.setText(String.valueOf(teste.getDistanciaPercorrida()));
+
         System.out.println("DP estimada 1: " + Calcula.dpEstimadaBritto1(teste.getIdade(), teste.getPaciente().getGenero(), teste.getMassa(), teste.getEstatura()));
 
         TextView dpEstimada1 = (TextView) findViewById(R.id.text_dp_estimada_1);
         TextView percDpEstimada1 = (TextView) findViewById(R.id.text_dp_porcento_1);
 
         double dbDpEstimada1 = Calcula.dpEstimadaBritto1(teste.getIdade(), teste.getPaciente().getGenero(), teste.getMassa(), teste.getEstatura());
-        String strDpEstimada1 = String.valueOf(dbDpEstimada1);
+        String strDpEstimada1 = String.format(Locale.getDefault(),"%.2f",dbDpEstimada1);
         dpEstimada1.setText(strDpEstimada1);
 
         double dbPercentDpEstimada1 = Calcula.porcentagem(teste.getDistanciaPercorrida(), dbDpEstimada1);
         String strPercDpEstimada1 = String.format(Locale.getDefault(), "%.1f", dbPercentDpEstimada1);
         percDpEstimada1.setText(strPercDpEstimada1);
+
+        CircularProgressBar circuloPercDp1 =  (CircularProgressBar)findViewById(R.id.circulo_porcento_1);
+        circuloPercDp1.setProgress((float) dbPercentDpEstimada1);
 
         int[] fcValoresXML = new int[]{R.id.resultado_fc_inicial, R.id.resultado_fc_1_minuto, R.id.resultado_fc_2_minuto, R.id.resultado_fc_3_minuto, R.id.resultado_fc_4_minuto, R.id.resultado_fc_5_minuto, R.id.ressultado_fc_6_minuto, R.id.resultado_fc_final, R.id.resultado_fc_recup};
         int[] spValoresXML = new int[]{R.id.resultado_sp_inicial, R.id.resultado_sp_1_minuto, R.id.resultado_sp_2_minuto, R.id.resultado_sp_3_minuto, R.id.resultado_sp_4_minuto, R.id.resultado_sp_5_minuto, R.id.resultado_sp_6_minuto};

@@ -1,0 +1,30 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/corPrimaria"
+    android:orientation="vertical"
+    tools:context="br.edu.ufcspa.tc6m.controle.SplashScreenActivity">
+
+
+
+        <ImageView
+            android:id="@+id/imagem_splash"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:padding="50dp"
+            android:src="@drawable/icon_tc6splash" />
+
+        <ImageView
+            android:layout_width="190dp"
+            android:layout_height="70dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginBottom="10dp"
+            android:layout_alignParentBottom="true"
+            android:src="@drawable/icon_infobio"
+            />
+
+
+
+
+</RelativeLayout>

@@ -519,8 +519,8 @@
 
                         <lecho.lib.hellocharts.view.LineChartView
                             android:id="@+id/grafico_dp_minuto"
-                            android:layout_width="300dp"
-                            android:layout_height="150dp" />
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
 
                     </LinearLayout>
                 </LinearLayout>

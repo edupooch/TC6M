@@ -76,6 +76,19 @@
     <string name="observacao">Observação</string>
     <string name="glicemia_capilar">Glicemia Capilar</string>
     <string name="pressao_arterial">Pressão Arterial</string>
+    <string name="dist_ncia_percorrida">Distância Percorrida</string>
+    <string name="dist_ncia_restante">Distância restante</string>
+    <string name="m">m</string>
+    <string name="confira_os_dados_anteriores">Confira os dados anteriores:</string>
+    <string name="bot_o_fechar_teste">Botão fechar teste</string>
+    <string name="editar">Editar</string>
+    <string name="deletar">Deletar</string>
+    <string name="dialog_deletar">Deseja deletar este paciente e todos os seus testes?</string>
+    <string name="atencao">Deletar Paciente</string>
+
+    <string name="title_activity_splash_screen">SplashScreen</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
 
 
 </resources>

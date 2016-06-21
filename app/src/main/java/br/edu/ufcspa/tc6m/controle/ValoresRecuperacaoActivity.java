@@ -68,14 +68,20 @@ public class ValoresRecuperacaoActivity extends AppCompatActivity {
         });
 
         Button btSalvar = (Button) findViewById(R.id.btSalvarRecuperacao);
+        assert btSalvar != null;
         btSalvar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 teste = helper.pegaDadosFromFields(8);
+
                 TesteDAO dao = new TesteDAO(getApplicationContext());
                 dao.insere(teste);
                 dao.close();
-                Toast.makeText(getApplicationContext(), "FC 3= " + teste.getFc(3) + "FC 7= " + teste.getFc(7), Toast.LENGTH_LONG).show();
+
+                Intent intentVaiPraAnalise = new Intent(ValoresRecuperacaoActivity.this, AnaliseTesteActivity.class);
+                intentVaiPraAnalise.putExtra("teste", teste);
+                startActivity(intentVaiPraAnalise);
+
                 finish();
 
             }

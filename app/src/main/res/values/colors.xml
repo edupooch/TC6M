@@ -11,7 +11,9 @@
     <color name="vermelho800">#e23d3d</color>
     <color name="corPrimaria">#53BA83</color>
     <color name="corPrimariaEscura">#3a9665</color>
-    <color name="colorAccent">#e74c3c</color>
+    <color name="colorAccent">#d95042</color>
     <color name="branco">#FFFFFF</color>
+
+    <color name="black_overlay">#66000000</color>
 
 </resources>

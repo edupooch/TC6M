@@ -10,12 +10,15 @@ import android.widget.TextView;
 import java.util.List;
 
 import br.edu.ufcspa.tc6m.R;
+import br.edu.ufcspa.tc6m.controle.Calcula;
 import br.edu.ufcspa.tc6m.dao.PacienteDAO;
 import br.edu.ufcspa.tc6m.dao.TesteDAO;
 import br.edu.ufcspa.tc6m.modelo.Paciente;
 
 /**
  * Created by edupooch on 14/05/16.
+ *
+ * Classe Adapter criada para fazer uma lista de paciente mais interativa e com mais informações.
  */
 public class PacientesAdapter extends BaseAdapter {
 
@@ -58,6 +61,10 @@ public class PacientesAdapter extends BaseAdapter {
 
         TextView textNome = (TextView) view.findViewById(R.id.textNomePacienteLista);
         textNome.setText(paciente.getNome());
+
+        TextView textIdade = (TextView) view.findViewById(R.id.textIdadeLista);
+        int idade = Calcula.idade(paciente.getDataNascimento());
+        textIdade.setText(String.valueOf(idade));
 
         TextView textTestes = (TextView) view.findViewById(R.id.textNumeroTestesLista);
         textTestes.setText(String.valueOf(nTestes));

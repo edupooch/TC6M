@@ -33,6 +33,7 @@
                     android:layout_height="wrap_content">
 
                     <ImageButton
+                        android:contentDescription="@string/bot_o_fechar_teste"
                         android:id="@+id/btFechar"
                         android:layout_width="17dp"
                         android:layout_height="17dp"
@@ -45,7 +46,6 @@
                         android:layout_alignParentTop="true"
                         android:layout_centerHorizontal="true"
                         android:fontFamily="sans-serif-light"
-                        android:text="Eduardo H P Pooch"
                         android:textColor="#FFFFFF" />
 
                     <ImageView
@@ -282,7 +282,7 @@
                             android:layout_marginBottom="2dp"
                             android:layout_marginLeft="10dp"
                             android:layout_marginStart="10dp"
-                            android:text="Distância Percorrida"
+                            android:text="@string/dist_ncia_percorrida"
                             android:textColor="#64000000"
                             android:textSize="16sp" />
 
@@ -299,7 +299,6 @@
                                 android:layout_gravity="center"
                                 android:layout_marginLeft="20dp"
                                 android:layout_marginStart="20dp"
-                                android:text="100"
                                 android:textColor="#424242"
                                 android:textSize="18sp" />
 
@@ -314,11 +313,14 @@
                                 android:textSize="18sp" />
 
                             <EditText
+                                android:id="@+id/edTextDistanciaRestante"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center"
                                 android:layout_weight="1"
-                                android:hint="Distância restante" />
+                                android:inputType="number"
+                                android:ems="2"
+                                android:hint="@string/dist_ncia_restante" />
 
                             <TextView
                                 android:layout_width="wrap_content"
@@ -327,7 +329,7 @@
                                 android:layout_marginBottom="2dp"
                                 android:layout_marginEnd="20dp"
                                 android:layout_marginRight="20dp"
-                                android:text="m"
+                                android:text="@string/metros"
                                 android:textColor="#616161"
                                 android:textSize="15sp" />
 
@@ -339,7 +341,7 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:fontFamily="sans-serif-light"
-                            android:text="Confira os dados anteriores:"
+                            android:text="@string/confira_os_dados_anteriores"
                             android:textColor="#FFFFFF"
                             android:textSize="18sp" />
                     </LinearLayout> <!-- Layout da DP(exibido só no final) -->
@@ -753,7 +755,7 @@
                                     android:inputType="numberDecimal"
                                     android:textSize="14sp" />
 
-                                <ImageView
+                                <View
                                     android:layout_width="1dp"
                                     android:layout_height="30dp"
                                     android:layout_gravity="center"
@@ -769,7 +771,7 @@
                                     android:inputType="numberDecimal"
                                     android:textSize="14sp" />
 
-                                <ImageView
+                                <View
                                     android:layout_width="1dp"
                                     android:layout_height="30dp"
                                     android:layout_gravity="center"
@@ -785,7 +787,7 @@
                                     android:inputType="numberDecimal"
                                     android:textSize="14sp" />
 
-                                <ImageView
+                                <View
                                     android:layout_width="1dp"
                                     android:layout_height="30dp"
                                     android:layout_gravity="center"

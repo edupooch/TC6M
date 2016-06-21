@@ -1,8 +1,10 @@
 package br.edu.ufcspa.tc6m.controle;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -14,6 +16,8 @@ import android.widget.TextView;
 import java.util.Locale;
 
 import br.edu.ufcspa.tc6m.R;
+import br.edu.ufcspa.tc6m.dao.PacienteDAO;
+import br.edu.ufcspa.tc6m.dao.TesteDAO;
 import br.edu.ufcspa.tc6m.modelo.Paciente;
 
 public class PerfilActivity extends AppCompatActivity {
@@ -105,6 +109,35 @@ public class PerfilActivity extends AppCompatActivity {
                 startActivity(intentVaiProFormulario);
                 finish();
                 break;
+
+            case R.id.action_deletar:
+                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                builder.setCancelable(false);
+                builder.setTitle(getString(R.string.atencao));
+                builder.setMessage(getString(R.string.dialog_deletar));
+                builder.setPositiveButton(getString(R.string.dialog_yes), new DialogInterface.OnClickListener() {
+
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        PacienteDAO dao = new PacienteDAO(PerfilActivity.this);
+                        TesteDAO daoTeste = new TesteDAO(PerfilActivity.this);
+
+                        dao.deleta(paciente);
+                        daoTeste.deletaTodosDoPaciente(paciente);
+
+                        dao.close();
+                        daoTeste.close();
+                        finish();
+                    }
+                });
+                builder.setNegativeButton(getString(R.string.dialog_no), new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+                AlertDialog alert = builder.create();
+                alert.show();
 
         }
         return super.onOptionsItemSelected(item);

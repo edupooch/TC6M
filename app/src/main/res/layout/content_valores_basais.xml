@@ -83,7 +83,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="PA"
-                        android:inputType="number"
+                        android:inputType="date|number"
                         android:textColor="#333"
                         android:textColorHint="#666"
                         android:textSize="15sp" />

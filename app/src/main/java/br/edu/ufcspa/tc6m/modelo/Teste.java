@@ -61,7 +61,7 @@ public class Teste implements Serializable {
 
     private String obsFinal;
 
-    private double distanciaPercorrida;
+    private int distanciaPercorrida;
     private double dpEstimada1;
     private double dpEstimada2;
     private double dpPorcento1;
@@ -208,11 +208,11 @@ public class Teste implements Serializable {
         this.estatura = estatura;
     }
 
-    public double getDistanciaPercorrida() {
+    public int getDistanciaPercorrida() {
         return distanciaPercorrida;
     }
 
-    public void setDistanciaPercorrida(double distanciaPercorrida) {
+    public void setDistanciaPercorrida(int distanciaPercorrida) {
         this.distanciaPercorrida = distanciaPercorrida;
     }
 
