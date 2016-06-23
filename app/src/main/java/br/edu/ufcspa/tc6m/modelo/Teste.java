@@ -40,7 +40,7 @@ public class Teste implements Serializable {
 
     private int[] fc = new int[9]; //0=BASAL, 1-6=MINUTOS, 7=FINAL, 8=RECUPERAÇÃO
     private double[] dispneia = new double[9]; //0=BASAL, 1-6=MINUTOS, 7=FINAL, 8=RECUPERAÇÃO
-    private double[] fadiga = new double[9]; //0=BASAL, 1-6=MINUTOS, 7=FINAL, 8=RECUPERAÇÃO
+    private Double[] fadiga = new Double[9]; //0=BASAL, 1-6=MINUTOS, 7=FINAL, 8=RECUPERAÇÃO
 
     private int[] spO2 = new int[7]; //0=BASAL, 1-6=MINUTOS
 
@@ -120,11 +120,11 @@ public class Teste implements Serializable {
         this.dispneia[i] = dispneia;
     }
 
-    public double getFadiga(int i) {
+    public Double getFadiga(int i) {
         return fadiga[i];
     }
 
-    public void setFadiga(int i, double fadiga) {
+    public void setFadiga(int i, Double fadiga) {
         this.fadiga[i] = fadiga;
     }
 

@@ -1,45 +1,22 @@
 package br.edu.ufcspa.tc6m.controle;
 
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.Typeface;
-import android.opengl.ETC1;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
-import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.TextView;
 
 import com.github.mikephil.charting.charts.BarChart;
-import com.github.mikephil.charting.components.XAxis;
-import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
-import com.github.mikephil.charting.formatter.YAxisValueFormatter;
-import com.github.mikephil.charting.interfaces.datasets.IBarDataSet;
-import com.github.mikephil.charting.utils.ColorTemplate;
 import com.mikhaellopez.circularprogressbar.CircularProgressBar;
 
-import org.w3c.dom.Text;
-
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Locale;
 
 import br.edu.ufcspa.tc6m.R;
-import br.edu.ufcspa.tc6m.custom.MyYAxisValueFormatter;
-import br.edu.ufcspa.tc6m.modelo.Paciente;
 import br.edu.ufcspa.tc6m.modelo.Teste;
-import lecho.lib.hellocharts.model.ChartData;
-import lecho.lib.hellocharts.model.Line;
-import lecho.lib.hellocharts.model.LineChartData;
-import lecho.lib.hellocharts.model.PointValue;
-import lecho.lib.hellocharts.view.LineChartView;
 
 public class AnaliseTesteActivity extends AppCompatActivity {
 

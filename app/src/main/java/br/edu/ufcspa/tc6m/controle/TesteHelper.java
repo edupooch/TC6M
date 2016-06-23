@@ -157,4 +157,18 @@ public class TesteHelper {
 
         return teste;
     }
+
+    /**
+     * Preenche os campos de Frequência Cardíaca Dispneia e Fadiga da activity valores finais
+     * com os valores já inseridos nos campos de 6 minutos
+     */
+
+    public void preencheCamposFinais() {
+
+        edTextFc[7].setText(String.valueOf(teste.getFc(6)));
+        edTextDisp[7].setText(String.valueOf(teste.getDispneia(6)));
+        edTextFad[7].setText(String.valueOf(teste.getFadiga(6)));
+
+
+    }
 }

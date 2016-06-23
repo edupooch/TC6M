@@ -32,7 +32,7 @@ public class ValoresFinaisActivity extends AppCompatActivity {
         Intent intent = getIntent();
         teste = (Teste) intent.getSerializableExtra("teste");
         helper = new TesteHelper(this,teste);
-
+        helper.preencheCamposFinais();
         TextView titulo = (TextView) findViewById(R.id.tituloFinais);
         titulo.setText(teste.getPaciente().getNome());
 
