@@ -16,7 +16,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_weight="1"
         android:orientation="vertical">
 
@@ -49,6 +49,7 @@
                         android:textSize="18sp" />
 
                 </LinearLayout> <!-- TITULO -->
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -100,6 +101,7 @@
                                     android:layout_gravity="center"
                                     android:layout_marginEnd="10dp"
                                     android:layout_marginRight="10dp"
+                                    android:background="#FFFFFF"
                                     android:inputType="number" />
                             </LinearLayout>
                         </LinearLayout> <!-- FC -->
@@ -134,13 +136,13 @@
                                     android:background="@drawable/icon_sangue" />
 
                                 <EditText
-
                                     android:id="@+id/edTextGc1"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center"
                                     android:layout_marginEnd="10dp"
                                     android:layout_marginRight="10dp"
+                                    android:background="#FFFFFF"
 
                                     android:inputType="number" />
                             </LinearLayout>
@@ -193,6 +195,7 @@
                                     android:layout_gravity="center"
                                     android:layout_marginEnd="10dp"
                                     android:layout_marginRight="10dp"
+                                    android:background="#FFFFFF"
                                     android:inputType="number" />
                             </LinearLayout>
                         </LinearLayout> <!-- FC -->
@@ -233,6 +236,7 @@
                                     android:layout_gravity="center"
                                     android:layout_marginEnd="10dp"
                                     android:layout_marginRight="10dp"
+                                    android:background="#FFFFFF"
                                     android:inputType="number" />
                             </LinearLayout>
                         </LinearLayout>
@@ -284,12 +288,13 @@
                                     android:layout_gravity="center"
                                     android:layout_marginEnd="10dp"
                                     android:layout_marginRight="10dp"
+                                    android:background="#FFFFFF"
                                     android:inputType="date" />
                             </LinearLayout>
                         </LinearLayout> <!-- PA -->
 
 
-                    </LinearLayout>
+                    </LinearLayout> <!-- PA -->
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -329,13 +334,13 @@
                                     android:background="@drawable/icon_obs" />
 
                                 <EditText
-
                                     android:id="@+id/edTextObsFinal"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center"
                                     android:layout_marginEnd="10dp"
                                     android:layout_marginRight="10dp"
+                                    android:background="#FFFFFF"
                                     android:inputType="textCapSentences" />
                             </LinearLayout>
                         </LinearLayout> <!-- PA -->

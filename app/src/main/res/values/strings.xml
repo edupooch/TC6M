@@ -89,6 +89,17 @@
     <string name="title_activity_splash_screen">SplashScreen</string>
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="ok">OK</string>
+    <string name="configura_es">Configurações</string>
+    <string name="testes">testes</string>
+    <string name="divisor">|</string>
+    <string name="foto_do_paciente">Foto do paciente</string>
+    <string name="gc">GC</string>
+    <string name="fadiga_mmii">Fadiga MMII</string>
+    <string name="pa">PA</string>
+    <string name="finalizar_teste">FINALIZAR TESTE</string>
+    <string name="registrar_agora">Registrar Agora</string>
+    <string name="aguarde_2min_para_registrar_os_valores_de_recupera_o">Aguarde 2min para registrar os valores de recuperação</string>
 
 
 </resources>
