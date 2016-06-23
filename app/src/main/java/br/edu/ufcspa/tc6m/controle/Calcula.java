@@ -47,7 +47,7 @@ public class Calcula {
      *
      */
     public static double dpEstimadaBritto1(int idade, int genero, double massa, double estatura) {
-        return (890.46 - (6.11 * idade) + (0.035 * Math.pow(idade, 2)) + (48.87 * genero) - (4.87 * imc(massa, estatura)));
+        return (890.46 - (6.11 * idade) + (0.0345 * idade * idade) + (48.87 * genero) - (4.87 * imc(massa, estatura)));
     }
 
     /*
@@ -66,7 +66,7 @@ public class Calcula {
 
 
     /* Cálculo da distancia percorrida estimada de 6 minutos - Dourado
-     * Utiliza a idade, o gênero 1 para masculino e 0 para feminino, massa em kg e estatura em m
+     * Utiliza a idade, o gênero 1 para masculino e 0 para feminino, massa em kg e estatura em metros
      * Coeficiente de explicação = 0,54
      *
      * Dourado VZ, Vidotto MC, Guerra RL. Equações de referência para os testes de caminhada
