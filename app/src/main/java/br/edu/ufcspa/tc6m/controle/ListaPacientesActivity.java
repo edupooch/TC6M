@@ -132,7 +132,8 @@ public class ListaPacientesActivity extends AppCompatActivity {
         switch (item.getItemId()) {
 
             case R.id.action_config:
-                //abrir tela de preferências
+                Intent intentVaiPrasPreferencias = new Intent(ListaPacientesActivity.this, PreferenciasActivity.class);
+                startActivity(intentVaiPrasPreferencias);
                 break;
         }
         return super.onOptionsItemSelected(item);
