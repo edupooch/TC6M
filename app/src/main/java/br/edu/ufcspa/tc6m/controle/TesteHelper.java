@@ -167,6 +167,7 @@ public class TesteHelper {
 
         edTextFc[7].setText(String.valueOf(teste.getFc(6)));
         edTextDisp[7].setText(String.valueOf(teste.getDispneia(6)));
+        if(teste.getFadiga(6) != null)
         edTextFad[7].setText(String.valueOf(teste.getFadiga(6)));
 
 

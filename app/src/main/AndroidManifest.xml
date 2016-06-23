@@ -18,6 +18,7 @@
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -73,9 +74,15 @@
             android:name=".controle.SplashScreenActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_splash_screen"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
+            android:name=".controle.PreferenciasActivity"
+            android:label="@string/title_activity_preferencias"
+            android:parentActivityName=".controle.ListaPacientesActivity"
             android:theme="@style/AppTheme.NoActionBar">
-
-
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="br.edu.ufcspa.tc6m.controle.ListaPacientesActivity" />
         </activity>
     </application>
 

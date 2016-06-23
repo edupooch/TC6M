@@ -100,6 +100,7 @@
     <string name="finalizar_teste">FINALIZAR TESTE</string>
     <string name="registrar_agora">Registrar Agora</string>
     <string name="aguarde_2min_para_registrar_os_valores_de_recupera_o">Aguarde 2min para registrar os valores de recuperação</string>
+    <string name="title_activity_preferencias">PreferenciasActivity</string>
 
 
 </resources>
