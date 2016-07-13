@@ -37,15 +37,21 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Defina qual o tamanho que o botão adicionar volta terá" />
+                android:text="Defina qual o tamanho que o botão de adicionar uma volta terá (metros)" />
         </LinearLayout>
 
-        <NumberPicker
-            android:layout_width="wrap_content"
-            android:layout_height="50dp">
-
-
-        </NumberPicker>
+        <EditText
+            android:text="30"
+            android:inputType="number"
+            android:ems="3"
+            android:gravity="center"
+            android:layout_width="50dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:background="#FFFFFF"
+            android:layout_margin="10dp"
+            android:textColor="#757575"
+            />
 
 
     </LinearLayout>
@@ -84,6 +90,7 @@
     </LinearLayout>
 
     <ListView
+        android:layout_marginTop="2dp"
         android:id="@+id/lista_formulas"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />

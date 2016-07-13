@@ -59,7 +59,7 @@ public class FormulasAdapter extends BaseAdapter {
 
         TextView textCoeficiente = (TextView) view.findViewById(R.id.text_coeficiente);
         double coeficiente = formula.getCoeficienteExplicacao();
-        String stringCoeficiente = "(r² = " + String.format(Locale.getDefault(), "%.2f", coeficiente) + ")";
+        String stringCoeficiente = "r² = " + String.format(Locale.getDefault(), "%.2f", coeficiente);
         textCoeficiente.setText(stringCoeficiente);
 
         TextView textFormula = (TextView) view.findViewById(R.id.text_formula);
