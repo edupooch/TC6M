@@ -17,6 +17,7 @@ public class Paciente implements Serializable {
     private Date dataNascimento;
     private int genero;
     private String obs;
+    private String caminhoFoto;
 
 
 
@@ -70,6 +71,14 @@ public class Paciente implements Serializable {
     }
 
 */
+
+    public String getCaminhoFoto() {
+        return caminhoFoto;
+    }
+
+    public void setCaminhoFoto(String caminhoFoto) {
+        this.caminhoFoto = caminhoFoto;
+    }
 
     public Long getId() {
         return id;

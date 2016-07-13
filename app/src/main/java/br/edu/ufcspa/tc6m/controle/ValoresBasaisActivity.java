@@ -17,7 +17,6 @@ import br.edu.ufcspa.tc6m.modelo.Teste;
 public class ValoresBasaisActivity extends AppCompatActivity { //implementar como fragment depois
 
     private TesteHelper helper;
-    private TextView edTextTitulo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +35,7 @@ public class ValoresBasaisActivity extends AppCompatActivity { //implementar com
 
         helper = new TesteHelper(this,paciente);
 
-        edTextTitulo = (TextView) findViewById(R.id.tituloBasais);
+        TextView edTextTitulo = (TextView) findViewById(R.id.tituloBasais);
         edTextTitulo.setText(paciente.getNome());
 
         ////////////////////////////////////////////////////////////////////////////////////////////
@@ -47,13 +46,14 @@ public class ValoresBasaisActivity extends AppCompatActivity { //implementar com
                 Teste teste = helper.pegaDadosFromFields(0);
                 teste.setMassa(paciente.getMassa());
                 teste.setEstatura(paciente.getEstatura());
+                teste.setIdade(Calcula.idade(paciente.getDataNascimento()));
                 Intent intentVaiProCronometro = new Intent(ValoresBasaisActivity.this, CronometroActivity.class);
                 intentVaiProCronometro.putExtra("teste",teste);
                 startActivity(intentVaiProCronometro);
                 finish();
             }
         });
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
 
         ////////////////////////////////////////////////////////////////////////////////////////////
 

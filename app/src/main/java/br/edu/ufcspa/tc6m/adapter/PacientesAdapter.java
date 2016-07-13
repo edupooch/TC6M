@@ -1,10 +1,13 @@
 package br.edu.ufcspa.tc6m.adapter;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.List;
@@ -20,6 +23,7 @@ import br.edu.ufcspa.tc6m.modelo.Paciente;
  *
  * Classe Adapter criada para fazer uma lista de paciente mais interativa e com mais informações.
  */
+
 public class PacientesAdapter extends BaseAdapter {
 
     private final List<Paciente> pacientes;
@@ -72,6 +76,14 @@ public class PacientesAdapter extends BaseAdapter {
         TextView textPlural = (TextView) view.findViewById(R.id.textTestesPluralLista);
         if (nTestes == 1) textPlural.setText(R.string.teste_singular);
 
+        ImageView campoFoto = (ImageView) view.findViewById(R.id.imagem_item);
+        String caminhoFoto = paciente.getCaminhoFoto();
+        if (caminhoFoto != null) {
+            Bitmap bitmap = BitmapFactory.decodeFile(caminhoFoto);
+            bitmap = Bitmap.createScaledBitmap(bitmap, 100, 100, true);
+            campoFoto.setImageBitmap(bitmap);
+            campoFoto.setScaleType(ImageView.ScaleType.FIT_XY);
+        }
 
         return view;
     }

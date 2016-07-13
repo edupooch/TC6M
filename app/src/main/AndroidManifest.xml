@@ -74,7 +74,7 @@
             android:name=".controle.SplashScreenActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_splash_screen"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".controle.PreferenciasActivity"
             android:label="@string/title_activity_preferencias"
@@ -84,6 +84,10 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="br.edu.ufcspa.tc6m.controle.ListaPacientesActivity" />
         </activity>
+        <activity
+            android:name=".controle.PreTesteActivity"
+            android:label="@string/title_activity_pre_teste"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

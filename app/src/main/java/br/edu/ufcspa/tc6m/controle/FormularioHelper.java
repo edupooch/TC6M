@@ -1,7 +1,11 @@
 package br.edu.ufcspa.tc6m.controle;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.telephony.PhoneNumberFormattingTextWatcher;
 import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.Toast;
 
@@ -25,6 +29,7 @@ public class FormularioHelper {
     private final EditText campoEmail;
     private final EditText campoTelefone;
     private final EditText campoObs;
+    private final ImageButton btFoto;
     private RadioButton btnMasculino;
     private RadioButton btnFeminino;
 
@@ -39,9 +44,10 @@ public class FormularioHelper {
         campoAltura = (EditText) activity.findViewById(R.id.edTextAltura);
         campoPeso = (EditText) activity.findViewById(R.id.edTextPeso);
         campoEmail = (EditText) activity.findViewById(R.id.edTextEmail);
-        campoTelefone= (EditText) activity.findViewById(R.id.edTextTelefone);
+        campoTelefone = (EditText) activity.findViewById(R.id.edTextTelefone);
         campoTelefone.addTextChangedListener(new PhoneNumberFormattingTextWatcher());
-        campoObs= (EditText) activity.findViewById(R.id.edTextObs);
+        campoObs = (EditText) activity.findViewById(R.id.edTextObs);
+        btFoto = (ImageButton) activity.findViewById(R.id.btFoto);
 
 
     }
@@ -64,9 +70,11 @@ public class FormularioHelper {
         paciente.setTelefone(campoTelefone.getText().toString());
         paciente.setEmail(campoEmail.getText().toString());
         paciente.setObs(campoObs.getText().toString());
+        paciente.setCaminhoFoto((String) btFoto.getTag());
         if (btnMasculino.isChecked()) {
             paciente.setGenero(1);
-        }if (btnFeminino.isChecked()) {
+        }
+        if (btnFeminino.isChecked()) {
             paciente.setGenero(0);
         }
         return paciente;
@@ -79,9 +87,9 @@ public class FormularioHelper {
         campoData.setText(strData);
         campoData.setFocusable(false);
         campoData.setEnabled(false);
-        if (paciente.getGenero() == 0){
+        if (paciente.getGenero() == 0) {
             btnMasculino.setChecked(true);
-        }else{
+        } else {
             btnFeminino.setChecked(true);
         }
         btnMasculino.setEnabled(false);
@@ -92,6 +100,7 @@ public class FormularioHelper {
 
         campoEmail.setText(paciente.getEmail());
         campoObs.setText(paciente.getObs());
+        carregaImagem(paciente.getCaminhoFoto());
         this.paciente = paciente;
 
     }
@@ -105,5 +114,19 @@ public class FormularioHelper {
                 btnFeminino.isChecked() ^ btnMasculino.isChecked()
 
         );
+    }
+
+    /**
+     * Método que carrega a imagem no espaço do ícone
+     * @param caminhoFoto
+     */
+    public void carregaImagem(String caminhoFoto) {
+        if (caminhoFoto != null) {
+            Bitmap bitmap = BitmapFactory.decodeFile(caminhoFoto);
+            bitmap = Bitmap.createScaledBitmap(bitmap, 300, 300, true);
+            btFoto.setImageBitmap(bitmap);
+            btFoto.setScaleType(ImageView.ScaleType.CENTER_CROP);
+            btFoto.setTag(caminhoFoto);
+        }
     }
 }

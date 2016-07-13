@@ -101,6 +101,12 @@
     <string name="registrar_agora">Registrar Agora</string>
     <string name="aguarde_2min_para_registrar_os_valores_de_recupera_o">Aguarde 2min para registrar os valores de recuperação</string>
     <string name="title_activity_preferencias">PreferenciasActivity</string>
+    <string name="pa_s_de_origem_da_f_rmula">País de origem da fórmula</string>
+    <string name="title_activity_pre_teste">Variáveis do Teste</string>
+    <string name="selecione_os_sinais">Selecione quais sinais desejas coletar no teste:</string>
+    <string name="antes">Antes</string>
+    <string name="durante">Durante</string>
+    <string name="depois">Depois</string>
 
 
 </resources>

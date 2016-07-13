@@ -21,20 +21,37 @@ public class PacienteDAO extends SQLiteOpenHelper {
 
 
     public PacienteDAO(Context context) {
-        super(context, "Agenda", null, 2);
+        super(context, "Agenda", null, 3);
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String sql = "CREATE TABLE Pacientes (id INTEGER PRIMARY KEY, nome TEXT NOT NULL, data TEXT NOT NULL, peso FLOAT NOT NULL, altura TEXT NOT NULL, telefone TEXT, email TEXT, obs TEXT);";
+        String sql = "CREATE TABLE Pacientes (id INTEGER PRIMARY KEY, " +
+                "nome TEXT NOT NULL, " +
+                "data TEXT NOT NULL, " +
+                "peso FLOAT NOT NULL, " +
+                "altura TEXT NOT NULL, " +
+                "telefone TEXT, " +
+                "email TEXT, " +
+                "obs TEXT," +
+                "caminhoFoto TEXT);";
         db.execSQL(sql);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        String sql = "DROP TABLE IF EXISTS Agenda";
+        String sql = "";
+        //Esquema para controle de versões do banco:
+        switch (oldVersion) {
+            case 2:
+                sql = "ALTER TABLE Agenda ADD COLUMN caminhoFoto TEXT";
+                db.execSQL(sql);
+//            case 3:
+//                sql = "DROP TABLE IF EXISTS Testes";
+//                db.execSQL(sql);
+//                onCreate(db);
+        }
         db.execSQL(sql);
-        onCreate(db);
     }
 
     public void insere(Paciente paciente) {
@@ -54,6 +71,7 @@ public class PacienteDAO extends SQLiteOpenHelper {
         dados.put("telefone", paciente.getTelefone());
         dados.put("email", paciente.getEmail());
         dados.put("obs", paciente.getObs());
+        dados.put("caminhoFoto", paciente.getCaminhoFoto());
         return dados;
     }
 
@@ -76,6 +94,7 @@ public class PacienteDAO extends SQLiteOpenHelper {
             paciente.setTelefone(c.getString(c.getColumnIndex("telefone")));
             paciente.setEmail(c.getString(c.getColumnIndex("email")));
             paciente.setObs(c.getString(c.getColumnIndex("obs")));
+            paciente.setCaminhoFoto(c.getString(c.getColumnIndex("caminhoFoto")));
             pacientes.add(paciente);
 
         }
@@ -96,6 +115,6 @@ public class PacienteDAO extends SQLiteOpenHelper {
         SQLiteDatabase db = getWritableDatabase();
         ContentValues dados2 = getContentValuesPaciente(paciente);
         String[] param = {paciente.getId().toString()};
-        db.update("Pacientes",dados2, "id = ?", param);
+        db.update("Pacientes", dados2, "id = ?", param);
     }
 }

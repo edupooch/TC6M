@@ -44,9 +44,9 @@ public class PerfilActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intentVaiProValoresBasais = new Intent(PerfilActivity.this, ValoresBasaisActivity.class);
-                intentVaiProValoresBasais.putExtra("paciente", paciente);
-                startActivity(intentVaiProValoresBasais);
+                Intent intentVaiProPreTeste = new Intent(PerfilActivity.this, PreTesteActivity.class);
+                intentVaiProPreTeste.putExtra("paciente", paciente);
+                startActivity(intentVaiProPreTeste);
             }
         });
 
@@ -73,19 +73,22 @@ public class PerfilActivity extends AppCompatActivity {
         TextView textoIMC = (TextView) findViewById(R.id.text_imc);
         TextView textoTelefone = (TextView) findViewById(R.id.text_telefone);
         TextView textoEmail = (TextView) findViewById(R.id.text_email);
-        TextView textoData = (TextView) findViewById(R.id.text_data);
+        TextView textoIdade = (TextView) findViewById(R.id.text_idade);
         TextView textoObs = (TextView) findViewById(R.id.text_obs);
 
         activity.setTitle(paciente.getNome());
         textoPeso.setText(String.format(Locale.US, "%.2f kg", paciente.getMassa()));
         textoAltura.setText(String.format(Locale.US, "%.0f cm", paciente.getEstatura()));
-        textoIMC.setText(String.format(Locale.US, "IMC %.2f", Calcula.imc(paciente.getMassa(),paciente.getEstatura())));
+        textoIMC.setText(String.format(Locale.US, "IMC %.2f", Calcula.imc(paciente.getMassa(), paciente.getEstatura())));
         textoTelefone.setText(paciente.getTelefone());
         textoEmail.setText(paciente.getEmail());
 
-        String[] arrayData = paciente.getDataNascimento().toString().split("-");
-        String strData = arrayData[2] + "/" + arrayData[1] + "/" + arrayData[0];
-        textoData.setText(strData);
+//        String[] arrayData = paciente.getDataNascimento().toString().split("-");
+//        String strData = arrayData[2] + "/" + arrayData[1] + "/" + arrayData[0];
+
+        int idade = Calcula.idade(paciente.getDataNascimento());
+        String strIdade = idade + " anos";
+        textoIdade.setText(strIdade);
 
         String obs = "Obs: " + paciente.getObs();
         textoObs.setText(obs);
