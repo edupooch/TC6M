@@ -34,7 +34,6 @@ public class PerfilActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         iniciaComponentes();
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
     private void iniciaComponentes() {

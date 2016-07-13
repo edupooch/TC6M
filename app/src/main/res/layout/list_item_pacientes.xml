@@ -24,8 +24,9 @@
             android:layout_height="64dp"
             android:layout_gravity="center_vertical"
             android:layout_margin="4dp"
-            android:contentDescription="@string/foto_do_paciente"
-            android:src="@drawable/icon_moldura_redonda" />
+            android:contentDescription="@string/foto_do_paciente"/>
+            <!--android:src="@drawable/icon_moldura_redonda"-->
+
 
 
 
