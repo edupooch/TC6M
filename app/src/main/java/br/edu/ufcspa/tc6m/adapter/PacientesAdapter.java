@@ -80,9 +80,9 @@ public class PacientesAdapter extends BaseAdapter {
         String caminhoFoto = paciente.getCaminhoFoto();
         if (caminhoFoto != null) {
             Bitmap bitmap = BitmapFactory.decodeFile(caminhoFoto);
-            bitmap = Bitmap.createScaledBitmap(bitmap, 100, 100, true);
+            bitmap = Bitmap.createScaledBitmap(bitmap, 150, 100, true);
             campoFoto.setImageBitmap(bitmap);
-            campoFoto.setScaleType(ImageView.ScaleType.FIT_XY);
+            campoFoto.setScaleType(ImageView.ScaleType.CENTER_CROP);
         }
 
         return view;

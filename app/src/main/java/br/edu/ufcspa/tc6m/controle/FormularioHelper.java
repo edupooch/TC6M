@@ -123,7 +123,7 @@ public class FormularioHelper {
     public void carregaImagem(String caminhoFoto) {
         if (caminhoFoto != null) {
             Bitmap bitmap = BitmapFactory.decodeFile(caminhoFoto);
-            bitmap = Bitmap.createScaledBitmap(bitmap, 300, 300, true);
+            bitmap = Bitmap.createScaledBitmap(bitmap, 250, 200, true);
             btFoto.setImageBitmap(bitmap);
             btFoto.setScaleType(ImageView.ScaleType.CENTER_CROP);
             btFoto.setTag(caminhoFoto);

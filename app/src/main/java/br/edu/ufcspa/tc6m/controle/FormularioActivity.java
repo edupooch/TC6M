@@ -68,7 +68,6 @@ public class FormularioActivity extends AppCompatActivity {
         if (paciente != null) {
             helper.preencheFormulário(paciente);
             idPaciente = paciente.getId();
-            Toast.makeText(getApplicationContext(), "id " + paciente.getId(), Toast.LENGTH_LONG).show();
         }
 
         date = (EditText) findViewById(R.id.edTextDataNascimento);

@@ -9,23 +9,29 @@
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
+
+
+
+
         <ImageView
             android:id="@+id/imagem_item"
-            android:layout_width="64dp"
-            android:layout_height="64dp"
-            android:layout_gravity="center_vertical"
+            android:layout_width="54dp"
+            android:layout_height="54dp"
+            android:layout_centerInParent="true"
             android:layout_margin="4dp"
             android:contentDescription="@string/foto_do_paciente"
-            android:padding="5dp"
+
             android:src="@drawable/icon_usuario_redondo" />
 
         <ImageView
             android:layout_width="64dp"
             android:layout_height="64dp"
-            android:layout_gravity="center_vertical"
             android:layout_margin="4dp"
-            android:contentDescription="@string/foto_do_paciente"/>
-            <!--android:src="@drawable/icon_moldura_redonda"-->
+            android:padding="5dp"
+            android:layout_centerInParent="true"
+            android:src="@drawable/icon_moldura_redonda"/>
+
+
 
 
 

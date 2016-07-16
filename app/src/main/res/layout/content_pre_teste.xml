@@ -154,7 +154,6 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:checked="true"
-                        android:enabled="false"
                         android:text="@string/antes" />
 
                     <CheckBox
@@ -173,7 +172,6 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:checked="true"
-                        android:enabled="false"
                         android:text="@string/depois" />
 
                 </info.hoang8f.android.segmented.SegmentedGroup>
@@ -229,7 +227,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:checked="true"
-                        android:enabled="false"
+
                         android:text="@string/antes" />
 
                     <CheckBox
@@ -248,7 +246,6 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:checked="true"
-                        android:enabled="false"
                         android:text="@string/depois" />
 
                 </info.hoang8f.android.segmented.SegmentedGroup>

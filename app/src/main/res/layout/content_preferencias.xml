@@ -38,22 +38,50 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Defina qual o tamanho que o botão de adicionar uma volta terá (metros)" />
+
+
+
+            <TextView
+                android:visibility="gone"
+                android:id="@+id/text_alerta_volta"
+                android:drawablePadding="5dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:layout_marginEnd="10dp"
+                android:text="Recomenda-se um tamanho de volta maior do que 30 metros"
+                android:textColor="@color/colorAccent"
+                />
+
+
         </LinearLayout>
 
-        <EditText
-            android:text="30"
-            android:inputType="number"
-            android:ems="3"
-            android:gravity="center"
-            android:layout_width="50dp"
-            android:layout_height="40dp"
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+        <com.shawnlin.numberpicker.NumberPicker
+            android:id="@+id/number_picker_tamanho_volta"
+            android:layout_width="wrap_content"
+            android:layout_height="80dp"
+            app:np_dividerColor="@color/corPrimaria"
+            app:np_formatter="%02d"
+            app:np_max="99"
+            app:np_min="10"
+            app:np_textSize="15sp"
             android:layout_gravity="center"
-            android:background="#FFFFFF"
-            android:layout_margin="10dp"
-            android:textColor="#757575"
-            />
+            app:np_textColor="@color/corPrimariaEscura" />
 
-
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/m"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="42dp"
+                android:layout_marginStart="42dp"
+                android:textColor="@color/corPrimariaEscura"
+                />
+        </RelativeLayout>
     </LinearLayout>
 
     <LinearLayout
