@@ -7,9 +7,10 @@ import br.edu.ufcspa.tc6m.R;
 import br.edu.ufcspa.tc6m.modelo.Formula;
 
 /**
- * Created by Particular on 12/07/2016.
+ * Created by edupooch on 12/07/2016.
  */
 public class ListaFormulas {
+
 
 
     private List<Formula> formulas;
@@ -17,6 +18,8 @@ public class ListaFormulas {
     public static final int ID_BRITTO1 = 0;
     public static final int ID_BRITTO2 = 1;
     public static final int ID_DOURADO = 2;
+    public static final int ID_SOARES_PEREIRA = 3;
+    public static final int ID_IWAMA = 4;
 
     public ListaFormulas() {
         formulas = new ArrayList<>();
@@ -55,6 +58,22 @@ public class ListaFormulas {
                 R.drawable.bandeira_brasil
         );
         formulas.add(ID_DOURADO, dourado);
+
+   Formula soaresPereira = new Formula(
+                "Soares e Pereira, 2011",
+                "511 + (0.0066 * estatura²) - (0.030 * idade²) - (0.068 * imc²)",
+                0.55,
+                R.drawable.bandeira_brasil
+        );
+        formulas.add(ID_SOARES_PEREIRA, soaresPereira);
+
+        Formula iwama = new Formula(
+                "Iwama e cols. 2009",
+                "511 + (0.0066 * estatura²) - (0.030 * idade²) - (0.068 * imc²)",
+                0.55,
+                R.drawable.bandeira_brasil
+        );
+        formulas.add(ID_IWAMA, iwama);
 
 
     }

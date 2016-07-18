@@ -71,7 +71,8 @@ public class FormularioActivity extends AppCompatActivity {
         }
 
         date = (EditText) findViewById(R.id.edTextDataNascimento);
-        TextWatcher tw = new TextWatcher() {
+        //Text Watcher para aceitar apenas datas no formato dd/mm/aaaa
+        TextWatcher watcherData = new TextWatcher() {
             private String current = "";
             private String ddmmyyyy = "DDMMAAAA";
             private Calendar cal = Calendar.getInstance();
@@ -130,7 +131,7 @@ public class FormularioActivity extends AppCompatActivity {
             public void afterTextChanged(Editable s) {
             }
         };
-        date.addTextChangedListener(tw);
+        date.addTextChangedListener(watcherData);
 
         ImageButton btData = (ImageButton) findViewById(R.id.btData);
         btData.setOnClickListener(new View.OnClickListener() {
@@ -140,7 +141,7 @@ public class FormularioActivity extends AppCompatActivity {
             }
         });
 
-        //INICIA O BOTAO DA CAMERA
+        //INICIA O BOTÃO DA CAMERA
         btFoto = (ImageButton) findViewById(R.id.btFoto);
         btFoto.setOnClickListener(new View.OnClickListener() {
             @Override

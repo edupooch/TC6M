@@ -49,7 +49,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginRight="10dp"
                 android:layout_marginEnd="10dp"
-                android:text="Recomenda-se um tamanho de volta maior do que 30 metros"
+                android:text="Recomenda-se um tamanho de volta de 30 metros ou mais."
                 android:textColor="@color/colorAccent"
                 />
 

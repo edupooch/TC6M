@@ -18,10 +18,13 @@ import br.edu.ufcspa.tc6m.adapter.FormulasAdapter;
 import br.edu.ufcspa.tc6m.dao.PreferenciasDAO;
 import br.edu.ufcspa.tc6m.formulas.ListaFormulas;
 import br.edu.ufcspa.tc6m.modelo.Formula;
+import br.edu.ufcspa.tc6m.modelo.Preferencias;
 
 public class PreferenciasActivity extends AppCompatActivity {
 
     private ListView listaFormulas;
+    private Preferencias preferencias;
+    boolean mudou;
     private com.shawnlin.numberpicker.NumberPicker numberPicker;
 
     @Override
@@ -30,14 +33,20 @@ public class PreferenciasActivity extends AppCompatActivity {
         setContentView(R.layout.activity_preferencias);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        PreferenciasDAO dao = new PreferenciasDAO(getApplicationContext());
+        preferencias = dao.buscaPreferencias();
+
         carregaLista();
 
         numberPicker = (com.shawnlin.numberpicker.NumberPicker) findViewById(R.id.number_picker_tamanho_volta);
         numberPicker.setValue(30);
+
         final TextView alerta = (TextView) findViewById(R.id.text_alerta_volta);
         numberPicker.setOnScrollListener(new NumberPicker.OnScrollListener() {
             @Override
             public void onScrollStateChange(NumberPicker view, int scrollState) {
+                mudou = true;
+                //Frase de recomendação do tamanho da volta
                 if (view.getValue() < 30) {
                     alerta.setVisibility(View.VISIBLE);
                 } else {
@@ -52,12 +61,10 @@ public class PreferenciasActivity extends AppCompatActivity {
 
         listaFormulas = (ListView) findViewById(R.id.lista_formulas);
 
-
         PreferenciasDAO dao = new PreferenciasDAO(this);
         //List<Formula> formulas = dao.buscaFormulasEscolhidas();
 
-
-        FormulasAdapter adapter = new FormulasAdapter(this, new ListaFormulas().getFormulas());
+        FormulasAdapter adapter = new FormulasAdapter(this, new ListaFormulas().getFormulas(), preferencias);
         listaFormulas.setAdapter(adapter);
 
 
