@@ -1,0 +1,12 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".controle.PreferenciasActivity">
+
+    <item android:id="@+id/salvar_preferencias"
+        android:title="@string/salvar"
+        android:icon="@drawable/icon_check2"
+        app:showAsAction="always">
+
+    </item>
+</menu>

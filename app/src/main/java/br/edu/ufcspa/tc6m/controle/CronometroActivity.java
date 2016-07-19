@@ -1,36 +1,26 @@
 package br.edu.ufcspa.tc6m.controle;
 
-import android.animation.ObjectAnimator;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Color;
-import android.media.Image;
+import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.os.CountDownTimer;
 import android.os.SystemClock;
 import android.support.design.widget.FloatingActionButton;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
-import android.view.animation.DecelerateInterpolator;
 import android.widget.Button;
 import android.widget.Chronometer;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.mikhaellopez.circularprogressbar.CircularProgressBar;
 
 import br.edu.ufcspa.tc6m.R;
-import br.edu.ufcspa.tc6m.controle.TesteHelper;
-import br.edu.ufcspa.tc6m.modelo.Paciente;
 import br.edu.ufcspa.tc6m.modelo.Teste;
 
 public class CronometroActivity extends AppCompatActivity {
@@ -209,10 +199,11 @@ public class CronometroActivity extends AppCompatActivity {
     }
 
     private void iniciaCronometro() {
-        fase = 0;
-        metros = 0;
-        volta = 20; //pegar das preferências do usuário
+        metros = fase = 0;
 
+        //Pega o valor definido nas preferências para o tamanho da volta, default = 30m
+        SharedPreferences sharedPref = getSharedPreferences("PREFERENCIAS",MODE_PRIVATE);
+        volta = sharedPref.getInt("TAMANHO_VOLTA", PreferenciasActivity.TAMANHO_MINIMO_VOLTA);
 
         crono = (Chronometer) findViewById(R.id.cronometro);
         crono.setBase(SystemClock.elapsedRealtime());
@@ -223,8 +214,6 @@ public class CronometroActivity extends AppCompatActivity {
             public void onChronometerTick(Chronometer chronometer) {
                 // miliseconds = SystemClock.elapsedRealtime() - crono.getBase();
                 tempo = Integer.parseInt(crono.getText().toString().replace(":", "")); //TRANSFORMA O RELÓGIO EM UM INTEIRO (01:32 = 132)
-
-
                 switch (tempo) {
                     case 100:
                         mostraCampos(0);
@@ -334,6 +323,7 @@ public class CronometroActivity extends AppCompatActivity {
     private void someFrase() {
         layoutFrase.setVisibility(View.GONE);
     }
+
 
     private void mostraCampos(final int minuto) {
         if (minuto < 6) {

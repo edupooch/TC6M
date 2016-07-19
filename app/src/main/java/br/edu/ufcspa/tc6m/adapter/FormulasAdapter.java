@@ -1,38 +1,41 @@
 package br.edu.ufcspa.tc6m.adapter;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.CompoundButton;
 import android.widget.Switch;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.List;
 import java.util.Locale;
 
 import br.edu.ufcspa.tc6m.R;
-import br.edu.ufcspa.tc6m.formulas.ListaFormulas;
 import br.edu.ufcspa.tc6m.modelo.Formula;
-import br.edu.ufcspa.tc6m.modelo.Preferencias;
 
 /**
- * Created by Particular on 12/07/2016.
+ * Cria a lista de fórmulas e alteras o arquivo de preferências no listener do switch.
+ * <p/>
+ * Não é necessário alterar este código quando adicionar uma fórmula nova.
  */
 public class FormulasAdapter extends BaseAdapter {
+
     private static final int ATIVADA = 1;
     private static final int DESATIVADA = 0;
+
     private final List<Formula> formulas;
     private final Context context;
-    private final Preferencias preferencias;
+    private final SharedPreferences sharedPref;
 
 
-    public FormulasAdapter(Context context, List<Formula> formulas, Preferencias preferencias) {
+    public FormulasAdapter(Context context, List<Formula> formulas, SharedPreferences sharedPref) {
         this.context = context;
         this.formulas = formulas;
-        this.preferencias = preferencias;
+        this.sharedPref = sharedPref;
     }
 
     @Override
@@ -50,14 +53,10 @@ public class FormulasAdapter extends BaseAdapter {
         return position;
     }
 
-    public Preferencias getPreferencias() {
-        return preferencias;
-    }
 
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
         Formula formula = formulas.get(position);
-
         LayoutInflater inflater = LayoutInflater.from(context);
 
         View view = convertView;
@@ -79,52 +78,44 @@ public class FormulasAdapter extends BaseAdapter {
         TextView textFormula = (TextView) view.findViewById(R.id.text_formula);
         textFormula.setText(formula.getFormula());
 
-        Switch switchFormula = (Switch) view.findViewById(R.id.switch_formula);
-        switchFormula.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        final Switch switchFormula = (Switch) view.findViewById(R.id.switch_formula);
+
+
+        //Se sharedPref.getInt("FORMULA_" + position) for 1, o check será posto em true
+        //o valor default é 1
+        switchFormula.setChecked(sharedPref.getInt("FORMULA_" + position, ATIVADA) == ATIVADA);
+        System.out.println("FORMULA_" + position + " valor = " + sharedPref.getInt("FORMULA_" + position, ATIVADA));
+
+        //Salva nas preferências assim que o switch é alterado
+        switchFormula.setOnTouchListener(new View.OnTouchListener() {
             @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-//                Toast.makeText(context, "Botao da formula " + position + " " + isChecked, Toast.LENGTH_SHORT).show();
-                switch (position) {
-                    case ListaFormulas.ID_BRITTO1:
-                        if (isChecked) {
-                            preferencias.setBritto1(ATIVADA);
+            public boolean onTouch(View v, MotionEvent event) {
+                switchFormula.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                    @Override
+                    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                        /**
+                         * Método altera a referência de ativada da formula para mudança no switch
+                         */
+                        int ativacao;
+                        if (switchFormula.isChecked()) {
+                            ativacao = ATIVADA;
                         } else {
-                            preferencias.setBritto1(DESATIVADA);
+                            ativacao = DESATIVADA;
                         }
-                        break;
-                    case ListaFormulas.ID_BRITTO2:
-                        if (isChecked) {
-                            preferencias.setBritto2(ATIVADA);
-                        } else {
-                            preferencias.setBritto2(DESATIVADA);
-                        }
-                        break;
-                    case ListaFormulas.ID_DOURADO:
-                        if (isChecked) {
-                            preferencias.setDourado(ATIVADA);
-                        } else {
-                            preferencias.setDourado(DESATIVADA);
-                        }
-                        break;
-                    case ListaFormulas.ID_SOARES_PEREIRA:
-                        if (isChecked) {
-                            preferencias.setSoaresPereira(ATIVADA);
-                        } else {
-                            preferencias.setSoaresPereira(DESATIVADA);
-                        }
-                        break;
-                    case ListaFormulas.ID_IWAMA:
-                        if (isChecked) {
-                            preferencias.setIwama(ATIVADA);
-                        } else {
-                            preferencias.setIwama(DESATIVADA);
-                        }
-                        break;
+                        System.out.println("FORMULA_" + position + " valor = " + ativacao);
 
-                }
+                        SharedPreferences.Editor editor = sharedPref.edit();
+                        editor.putInt("FORMULA_" + position, ativacao);
+                        editor.apply();
 
+                    }
+                });
+                return false;
             }
         });
+
+
         return view;
     }
+
 }

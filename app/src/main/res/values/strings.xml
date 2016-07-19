@@ -107,6 +107,8 @@
     <string name="antes">Antes</string>
     <string name="durante">Durante</string>
     <string name="depois">Depois</string>
+    <string name="analise_de_desempenho">Análise de Desempenho:</string>
+    <string name="de">de</string>
 
 
 </resources>

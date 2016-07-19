@@ -102,7 +102,7 @@ public class TesteDAO extends SQLiteOpenHelper {
         //DATA DO TESTE
         SimpleDateFormat dtFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
         dados.put("dia_hora", dtFormat.format(new Date()));
-        dados.put("idade_paciente", Calcula.idade(teste.getPaciente().getDataNascimento()));
+        dados.put("idade_paciente", teste.getIdade());
         //INSERE VALORES DE FC
         for (int i = 0; i < 9; i++) dados.put(strKeyFc[i], teste.getFc(i));
         //SPO2
