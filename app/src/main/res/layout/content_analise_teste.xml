@@ -177,6 +177,7 @@
 
                             <com.mikhaellopez.circularprogressbar.CircularProgressBar
                                 android:id="@+id/circulo_porcento_1"
+                                android:longClickable="true"
                                 android:layout_width="130dp"
                                 android:layout_height="130dp"
                                 app:cpb_background_progressbar_color="#3254ba84"
@@ -251,6 +252,7 @@
                             <com.mikhaellopez.circularprogressbar.CircularProgressBar
                                 android:id="@+id/circulo_porcento_2"
                                 android:layout_width="130dp"
+                                android:longClickable="true"
                                 android:layout_height="130dp"
                                 app:cpb_background_progressbar_color="#3254ba84"
                                 app:cpb_background_progressbar_width="5dp"

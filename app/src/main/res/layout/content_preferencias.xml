@@ -16,13 +16,14 @@
 
 
     <LinearLayout
+        android:baselineAligned="false"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#FFFFFF"
         android:padding="10dp">
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:orientation="vertical">
@@ -31,13 +32,13 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Tamanho da Volta"
+                android:text="@string/tamanho_da_volta"
                 android:textSize="20sp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Defina qual o tamanho que o botão de adicionar uma volta terá (metros)" />
+                android:text="@string/tamanho_da_volta_descricao" />
 
 
 
@@ -101,13 +102,13 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Selecionar Equações"
+                android:text="@string/selecionar_equacoes"
                 android:textSize="20sp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Selecione quais equações você deseja usar para calcular a distância prevista" />
+                android:text="@string/selecionar_equacoes_descricao" />
         </LinearLayout>
 
         <View

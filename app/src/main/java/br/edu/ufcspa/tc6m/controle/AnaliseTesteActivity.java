@@ -1,10 +1,17 @@
 package br.edu.ufcspa.tc6m.controle;
 
+import android.app.Dialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.github.mikephil.charting.charts.BarChart;
@@ -14,9 +21,15 @@ import com.github.mikephil.charting.data.BarEntry;
 import com.mikhaellopez.circularprogressbar.CircularProgressBar;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 
 import br.edu.ufcspa.tc6m.R;
+import br.edu.ufcspa.tc6m.adapter.FormulasAdapter;
+import br.edu.ufcspa.tc6m.adapter.FormulasDialogAdapter;
+import br.edu.ufcspa.tc6m.dao.TesteDAO;
+import br.edu.ufcspa.tc6m.formulas.ListaFormulas;
+import br.edu.ufcspa.tc6m.modelo.Formula;
 import br.edu.ufcspa.tc6m.modelo.Teste;
 
 public class AnaliseTesteActivity extends AppCompatActivity {
@@ -73,6 +86,33 @@ public class AnaliseTesteActivity extends AppCompatActivity {
 
         CircularProgressBar circuloPercDp1 = (CircularProgressBar) findViewById(R.id.circulo_porcento_1);
         circuloPercDp1.setProgress((float) dbPercentDpEstimada1);
+        circuloPercDp1.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                final Dialog dialog = new Dialog(AnaliseTesteActivity.this);
+                View view = getLayoutInflater().inflate(R.layout.dialog_formulas, null);
+
+                ListView lista = (ListView) view.findViewById(R.id.lista_formulas_dialog);
+
+                SharedPreferences sharedPref = getSharedPreferences("PREFERENCIAS", Context.MODE_PRIVATE);
+                final List<Formula> formulas =  new ListaFormulas().getFormulasSelecionadas(sharedPref);
+                FormulasDialogAdapter adapter = new FormulasDialogAdapter(AnaliseTesteActivity.this,formulas);
+
+                lista.setAdapter(adapter);
+
+                lista.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                        atualizaFormula(formulas.get(position));
+                    }
+                });
+
+                dialog.setContentView(view);
+                dialog.show();
+
+                return false;
+            }
+        });
 
 
 
@@ -117,6 +157,10 @@ public class AnaliseTesteActivity extends AppCompatActivity {
 
     }
 
+    private void atualizaFormula(Formula formula) {
+       
+    }
+
     private void iniciaGrafico() {
         BarChart graficoDistanciasPercorridas = (BarChart) findViewById(R.id.grafico_voltas_minuto);
 
@@ -126,7 +170,7 @@ public class AnaliseTesteActivity extends AppCompatActivity {
             barEntries.add(new BarEntry(teste.getVoltas(i), i));
         }
         BarDataSet barDataSet = new BarDataSet(barEntries, "Distância Percorrida");
-        barDataSet.setColors(new int[]{Color.GREEN, Color.CYAN});
+        barDataSet.setColors(new int[]{Color.rgb(83,186,131), Color.rgb(58,150,101)});
 
         ArrayList<String> stringsMinutos = new ArrayList<>();
         for (int i = 1; i <= 6; i++) {

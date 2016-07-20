@@ -109,6 +109,10 @@
     <string name="depois">Depois</string>
     <string name="analise_de_desempenho">Análise de Desempenho:</string>
     <string name="de">de</string>
+    <string name="tamanho_da_volta">Tamanho da Volta</string>
+    <string name="tamanho_da_volta_descricao">Defina qual o tamanho que o botão de adicionar uma volta terá (metros)</string>
+    <string name="selecionar_equacoes">Selecionar Equações</string>
+    <string name="selecionar_equacoes_descricao">Selecione quais equações você deseja usar para calcular a distância prevista</string>
 
 
 </resources>

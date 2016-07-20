@@ -1,9 +1,13 @@
 package br.edu.ufcspa.tc6m.formulas;
 
+import android.content.Context;
+import android.content.SharedPreferences;
+
 import java.util.ArrayList;
 import java.util.List;
 
 import br.edu.ufcspa.tc6m.R;
+import br.edu.ufcspa.tc6m.controle.PreferenciasActivity;
 import br.edu.ufcspa.tc6m.modelo.Formula;
 
 /**
@@ -14,6 +18,9 @@ public class ListaFormulas {
 
 
     private List<Formula> formulas;
+
+    private static final int ATIVADA = 1;
+    private static final int DESATIVADA = 0;
 
     public static final int ID_BRITTO1 = 0;
     public static final int ID_BRITTO2 = 1;
@@ -79,6 +86,14 @@ public class ListaFormulas {
     }
 
     public List<Formula> getFormulas() {
+        return formulas;
+    }
+    public List<Formula> getFormulasSelecionadas(SharedPreferences sharedPref) {
+        for (int i = 0; i<formulas.size(); i++){
+            if (sharedPref.getInt("FORMULA_" + i, ATIVADA ) == DESATIVADA){
+                formulas.remove(i);
+            }
+        }
         return formulas;
     }
 }

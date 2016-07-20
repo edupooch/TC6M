@@ -47,4 +47,9 @@ public class Formula implements Serializable {
     public int getBandeiraPaisDeOrigem() {
         return bandeiraPaisDeOrigem;
     }
+
+    @Override
+    public String toString() {
+        return getAutores();
+    }
 }
