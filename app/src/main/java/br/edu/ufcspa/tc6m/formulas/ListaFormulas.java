@@ -35,6 +35,7 @@ public class ListaFormulas {
          * Para adicionar uma fórmula à lista:
          *
          * Formula nomeFormula = new Formula(
+         * id,
          * autores,
          * equação,
          * coeficiente de exmplicação,
@@ -43,6 +44,7 @@ public class ListaFormulas {
          */
 
         Formula britto1 = new Formula(
+                ID_BRITTO1,
                 "Britto e cols., 2013",
                 "890.46 - (6.11 * idade) + (0.0345 * idade²) + (48.87 * genero) - (4.87 * imc)",
                 0.46,
@@ -51,6 +53,7 @@ public class ListaFormulas {
         formulas.add(ID_BRITTO1, britto1);
 
         Formula britto2 = new Formula(
+                ID_BRITTO2,
                 "Britto e cols., 2013",
                 "356,658 - (2.303 * idade) + (36.648 * genero) - (1.704 * estatura) + (1.305 * variação de FC)",
                 0.62,
@@ -59,6 +62,7 @@ public class ListaFormulas {
         formulas.add(ID_BRITTO2, britto2);
 
         Formula dourado = new Formula(
+                ID_DOURADO,
                 "Dourado e cols., 2011",
                 "299.296 - (2.728 * idade) - (2.16 * massa) + (361.731 * estatura) + (56.386 * genero)",
                 0.54,
@@ -67,6 +71,7 @@ public class ListaFormulas {
         formulas.add(ID_DOURADO, dourado);
 
    Formula soaresPereira = new Formula(
+                ID_SOARES_PEREIRA,
                 "Soares e Pereira, 2011",
                 "511 + (0.0066 * estatura²) - (0.030 * idade²) - (0.068 * imc²)",
                 0.55,
@@ -75,12 +80,14 @@ public class ListaFormulas {
         formulas.add(ID_SOARES_PEREIRA, soaresPereira);
 
         Formula iwama = new Formula(
+                ID_IWAMA,
                 "Iwama e cols. 2009",
                 "511 + (0.0066 * estatura²) - (0.030 * idade²) - (0.068 * imc²)",
                 0.55,
                 R.drawable.bandeira_brasil
         );
         formulas.add(ID_IWAMA, iwama);
+
 
 
     }

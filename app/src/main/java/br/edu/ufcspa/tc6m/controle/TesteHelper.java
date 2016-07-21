@@ -17,17 +17,17 @@ import br.edu.ufcspa.tc6m.modelo.Teste;
  */
 public class TesteHelper {
     private Teste teste;
-    //0=BASAL, 1-6=MINUTOS, 7=FINAL, 8=RECUPERAÇÃO
+    //0=BASAL, 1-6=MINUTOS, 7=ID_FC_FINAL, 8=RECUPERAÇÃO
     private EditText[] edTextFc = new EditText[9];
     private EditText[] edTextDisp = new EditText[9];
     private EditText[] edTextFad = new EditText[9];
     private EditText[] edTextSp = new EditText[7];
-    //0=BASAL, 1=FINAL, 2=RECUPERAÇÃO
+    //0=BASAL, 1=ID_FC_FINAL, 2=RECUPERAÇÃO
     private EditText[] edTextPa = new EditText[3];
     private EditText[] edTextGc = new EditText[3];
     //BASAL
     private EditText edTextO2Supl;
-    //FINAL
+    //ID_FC_FINAL
     private EditText edTextObsFinal;
     //VALORES
 

@@ -11,17 +11,27 @@ import br.edu.ufcspa.tc6m.controle.Calcula;
 
 public class Formula implements Serializable {
 
+    private int idFormula;
     private int ativada;
     private String autores;
     private String formula;
     private double coeficienteExplicacao;
     private int bandeiraPaisDeOrigem;
 
-    public Formula(String autores, String formula, double coeficienteExplicacao, int bandeiraPaisDeOrigem) {
+    public Formula(int idFormula, String autores, String formula, double coeficienteExplicacao, int bandeiraPaisDeOrigem) {
+        this.idFormula = idFormula;
         this.autores = autores;
         this.formula = formula;
         this.coeficienteExplicacao = coeficienteExplicacao;
         this.bandeiraPaisDeOrigem = bandeiraPaisDeOrigem;
+    }
+
+    public int getIdFormula() {
+        return idFormula;
+    }
+
+    public void setIdFormula(int idFormula) {
+        this.idFormula = idFormula;
     }
 
     public int isAtivada() {

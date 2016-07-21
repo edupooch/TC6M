@@ -10,7 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -25,15 +25,15 @@ import java.util.List;
 import java.util.Locale;
 
 import br.edu.ufcspa.tc6m.R;
-import br.edu.ufcspa.tc6m.adapter.FormulasAdapter;
 import br.edu.ufcspa.tc6m.adapter.FormulasDialogAdapter;
-import br.edu.ufcspa.tc6m.dao.TesteDAO;
 import br.edu.ufcspa.tc6m.formulas.ListaFormulas;
 import br.edu.ufcspa.tc6m.modelo.Formula;
 import br.edu.ufcspa.tc6m.modelo.Teste;
 
 public class AnaliseTesteActivity extends AppCompatActivity {
 
+    public static final int ID_FC_FINAL = 7;
+    public static final int ID_FC_INICIAL = 0;
     private Teste teste;
 
     //0=BASAL, 1-6=MINUTOS, 7=FINAL, 8=RECUPERAÇÃO
@@ -44,6 +44,7 @@ public class AnaliseTesteActivity extends AppCompatActivity {
     //0=BASAL, 1=FINAL, 2=RECUPERAÇÃO
     private TextView[] textPa = new TextView[3];
     private TextView[] textGc = new TextView[3];
+    private CircularProgressBar circuloPercDp1;
     //VALORES
 
 
@@ -61,61 +62,61 @@ public class AnaliseTesteActivity extends AppCompatActivity {
     }
 
     private void iniciaComponentes() {
-
+        //Método para iniciar o gráfico de distância por minuto
         iniciaGrafico();
 
         TextView textNomePaciente = (TextView) findViewById(R.id.text_nome_paciente_resultados);
-        String strNomeIdade = teste.getPaciente().getNome() + ", " + teste.getIdade() + " anos";
-        textNomePaciente.setText(strNomeIdade);
+        textNomePaciente.setText(teste.getPaciente().getNome());
+
+        TextView textIdade = (TextView) findViewById(R.id.text_idade_paciente_resultados);
+        String strIdade =  + teste.getIdade() + " anos";
+        textIdade.setText(strIdade);
 
         TextView textDistanciaPercorrida = (TextView) findViewById(R.id.text_dp);
-        textDistanciaPercorrida.setText(String.valueOf(teste.getDistanciaPercorrida()));
+        String strDp = teste.getDistanciaPercorrida() + "m";
+        textDistanciaPercorrida.setText(strDp);
 
-        System.out.println("DP estimada 1: " + Calcula.dpEstimadaBritto1(teste.getIdade(), teste.getPaciente().getGenero(), teste.getMassa(), teste.getEstatura()));
+        TextView textVelocidadeMedia = (TextView) findViewById(R.id.text_velocidade_media);
+        String strVelocidadeMedia = String.format(Locale.getDefault(),"%.2fm/s",Calcula.velocidadeMedia(teste.getDistanciaPercorrida()));
+        textVelocidadeMedia.setText(strVelocidadeMedia);
 
-        TextView dpEstimada1 = (TextView) findViewById(R.id.text_dp_estimada_1);
-        TextView percDpEstimada1 = (TextView) findViewById(R.id.text_dp_porcento_1);
+        //Pega a última formula usada das preferências, e o default é a formula 0 (Britto 1)
+        SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
+        int ultimaFormula = sharedPref.getInt("ULTIMA_FORMULA",ListaFormulas.ID_BRITTO1);
+        Formula formulaInicial = new ListaFormulas().getFormulas().get(ultimaFormula);
+        atualizaFormula(formulaInicial);
 
-        double dbDpEstimada1 = Calcula.dpEstimadaBritto1(teste.getIdade(), teste.getPaciente().getGenero(), teste.getMassa(), teste.getEstatura());
-        String strDpEstimada1 = String.format(Locale.getDefault(), "de %.2fm", dbDpEstimada1);
-        dpEstimada1.setText(strDpEstimada1);
-
-        double dbPercentDpEstimada1 = Calcula.porcentagem(teste.getDistanciaPercorrida(), dbDpEstimada1);
-        String strPercDpEstimada1 = String.format(Locale.getDefault(), "%.1f", dbPercentDpEstimada1);
-        percDpEstimada1.setText(strPercDpEstimada1);
-
-        CircularProgressBar circuloPercDp1 = (CircularProgressBar) findViewById(R.id.circulo_porcento_1);
-        circuloPercDp1.setProgress((float) dbPercentDpEstimada1);
+        //Cria o listener de clique longo no circulo para trocar a fórmula de interpretação
         circuloPercDp1.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
+                //Abrirá um dialog com uma listView de fórmulas para escolher
                 final Dialog dialog = new Dialog(AnaliseTesteActivity.this);
                 View view = getLayoutInflater().inflate(R.layout.dialog_formulas, null);
-
                 ListView lista = (ListView) view.findViewById(R.id.lista_formulas_dialog);
 
+                //Pega das preferências as fórmulas que o usuário ativou na tela de configurações
                 SharedPreferences sharedPref = getSharedPreferences("PREFERENCIAS", Context.MODE_PRIVATE);
                 final List<Formula> formulas =  new ListaFormulas().getFormulasSelecionadas(sharedPref);
                 FormulasDialogAdapter adapter = new FormulasDialogAdapter(AnaliseTesteActivity.this,formulas);
-
                 lista.setAdapter(adapter);
 
+                //Item listener para atualizar a fórmula quando selecionar uma
                 lista.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                         atualizaFormula(formulas.get(position));
+                        dialog.dismiss();
                     }
                 });
-
                 dialog.setContentView(view);
                 dialog.show();
-
                 return false;
             }
         });
 
 
-
+        //Arrays com IDs de textViews para agilizar os setTexts em um for loop
         int[] fcValoresXML = new int[]{R.id.resultado_fc_inicial, R.id.resultado_fc_1_minuto, R.id.resultado_fc_2_minuto, R.id.resultado_fc_3_minuto, R.id.resultado_fc_4_minuto, R.id.resultado_fc_5_minuto, R.id.ressultado_fc_6_minuto, R.id.resultado_fc_final, R.id.resultado_fc_recup};
         int[] spValoresXML = new int[]{R.id.resultado_sp_inicial, R.id.resultado_sp_1_minuto, R.id.resultado_sp_2_minuto, R.id.resultado_sp_3_minuto, R.id.resultado_sp_4_minuto, R.id.resultado_sp_5_minuto, R.id.resultado_sp_6_minuto};
         int[] dispValoresXML = new int[]{R.id.resultado_disp_inicial, R.id.resultado_disp_1_minuto, R.id.resultado_disp_2_minuto, R.id.resultado_disp_3_minuto, R.id.resultado_disp_4_minuto, R.id.resultado_disp_5_minuto, R.id.resultado_disp_6_minuto, R.id.resultado_disp_final, R.id.resultado_disp_recup};
@@ -155,15 +156,49 @@ public class AnaliseTesteActivity extends AppCompatActivity {
         TextView textObsFinal = (TextView) findViewById(R.id.resultado_obs);
         textObsFinal.setText(teste.getObsFinal());
 
+        Button btOk = (Button) findViewById(R.id.btOkAnalise);
+        btOk.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
     }
 
+    /**
+     * Carrega o circularProgressBar com a porcentagem e os textos de distância prevista,
+     * utiliza a classe Calcula e passa por parâmetro a fórmula utilizada para receber os resultados
+     * @param formula
+     * #Formula é usada para pegar o id e passar para Calcula() e pegar o nome da fórmula
+     */
     private void atualizaFormula(Formula formula) {
-       
+        TextView dpEstimada = (TextView) findViewById(R.id.text_dp_estimada_1);
+        TextView percDpEstimada = (TextView) findViewById(R.id.text_dp_porcento_1);
+        int variacaoFc = teste.getFc(ID_FC_FINAL) - teste.getFc(ID_FC_INICIAL);
+        double dbDpEstimada1 = Calcula.dpEstimada(formula,teste.getIdade(), teste.getPaciente().getGenero(), teste.getMassa(), teste.getEstatura(),variacaoFc);
+        String strDpEstimada1 = String.format(Locale.getDefault(), "de %.2fm", dbDpEstimada1);
+        dpEstimada.setText(strDpEstimada1);
+
+        double dbPercentDpEstimada1 = Calcula.porcentagem(teste.getDistanciaPercorrida(), dbDpEstimada1);
+        String strPercDpEstimada1 = String.format(Locale.getDefault(), "%.1f", dbPercentDpEstimada1);
+        percDpEstimada.setText(strPercDpEstimada1);
+
+        circuloPercDp1 = (CircularProgressBar) findViewById(R.id.circulo_porcento_1);
+        circuloPercDp1.setProgressWithAnimation((float) dbPercentDpEstimada1);
+
+        TextView textTituloEquacao = (TextView) findViewById(R.id.titulo_equacao);
+        textTituloEquacao.setText(formula.getAutores());
+
+        //Salva nas preferências da activity a fórmula pedida como ultima formula usada
+        SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPref.edit();
+        editor.putInt("ULTIMA_FORMULA",formula.getIdFormula());
+        editor.apply();
     }
 
     private void iniciaGrafico() {
         BarChart graficoDistanciasPercorridas = (BarChart) findViewById(R.id.grafico_voltas_minuto);
-
 
         ArrayList<BarEntry> barEntries = new ArrayList<>();
         for (int i = 0; i < 6; i++) {

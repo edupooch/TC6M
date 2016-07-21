@@ -24,7 +24,8 @@
         <LinearLayout
             android:id="@+id/card_resultados"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1"
             android:background="@drawable/round_edge"
             android:orientation="vertical"
             android:padding="10dp">
@@ -72,62 +73,89 @@
                 android:gravity="center"
                 android:orientation="vertical">
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:padding="2dp">
-
-                    <TextView
-                        android:id="@+id/text_nome_paciente_resultados"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Eduardo H P Pooch, 18 anos" />
-
-
-                </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="center_horizontal"
-                    android:paddingBottom="5dp">
-
-                    <TextView
-                        android:id="@+id/text_dp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="800"
-                        android:textSize="40sp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/metros"
-                        android:textStyle="bold" />
-
-                </LinearLayout>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="15dp"
-                    android:layout_marginTop="5dp"
-                    android:text="@string/analise_de_desempenho"
-                    android:textColor="@color/corPrimaria"
-                    android:textStyle="bold" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
+                    android:orientation="horizontal"
                     android:paddingBottom="10dp">
 
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_marginEnd="30dp"
-                        android:layout_marginRight="30dp"
+                        android:orientation="vertical"
+                        android:padding="10dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="sans-serif-light"
+                            android:text="@string/nome"
+                            android:textSize="12sp" />
+
+                        <TextView
+                            android:id="@+id/text_nome_paciente_resultados"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Eduardo H P Pooch"
+                            android:textStyle="bold" />
+
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:fontFamily="sans-serif-light"
+                            android:text="@string/idade"
+                            android:textSize="12sp" />
+
+                        <TextView
+                            android:id="@+id/text_idade_paciente_resultados"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="18 anos"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:fontFamily="sans-serif-light"
+                            android:text="@string/distancia_percorrida_analise"
+                            android:textSize="12sp" />
+
+                        <TextView
+                            android:id="@+id/text_dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="800m"
+                            android:textSize="20sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:fontFamily="sans-serif-light"
+                            android:text="@string/velocidade_m_dia"
+                            android:textSize="12sp" />
+
+                        <TextView
+                            android:id="@+id/text_velocidade_media"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="30m/s"
+                            android:textStyle="bold" />
+
+
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:layout_marginTop="5dp"
                         android:orientation="vertical">
 
                         <RelativeLayout
@@ -177,9 +205,9 @@
 
                             <com.mikhaellopez.circularprogressbar.CircularProgressBar
                                 android:id="@+id/circulo_porcento_1"
-                                android:longClickable="true"
                                 android:layout_width="130dp"
                                 android:layout_height="130dp"
+                                android:longClickable="true"
                                 app:cpb_background_progressbar_color="#3254ba84"
                                 app:cpb_background_progressbar_width="5dp"
                                 app:cpb_progressbar_color="@color/corPrimaria"
@@ -188,89 +216,18 @@
                         </RelativeLayout>
 
                         <TextView
-                            android:id="@+id/titulo_equacao_1"
+                            android:id="@+id/titulo_equacao"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_marginTop="3dp"
                             android:gravity="center"
-                            android:textColor="#3254ba84"
+                            android:text="Birtto e cols"
+                            android:textColor="#512c6044"
                             android:textSize="12sp"
                             android:textStyle="bold" />
 
-                    </LinearLayout>
+                    </LinearLayout> <!-- Circulo % -->
 
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:orientation="vertical">
-
-                        <RelativeLayout
-                            android:id="@+id/layout_circulo_dp_estimada_2"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content">
-
-
-                            <LinearLayout
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_centerInParent="true"
-                                android:gravity="center_horizontal"
-                                android:orientation="vertical">
-
-                                <LinearLayout
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content">
-
-                                    <TextView
-                                        android:id="@+id/text_dp_porcento_2"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="0"
-                                        android:textColor="@color/corPrimariaEscura"
-                                        android:textSize="30sp" />
-
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="%"
-                                        android:textColor="@color/corPrimariaEscura"
-                                        android:textSize="17sp" />
-                                </LinearLayout>
-
-
-                                <TextView
-                                    android:id="@+id/text_dp_estimada_2"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="de 0m"
-                                    android:textColor="@color/corPrimariaEscura"
-                                    android:textSize="12sp" />
-
-
-                            </LinearLayout>
-
-                            <com.mikhaellopez.circularprogressbar.CircularProgressBar
-                                android:id="@+id/circulo_porcento_2"
-                                android:layout_width="130dp"
-                                android:longClickable="true"
-                                android:layout_height="130dp"
-                                app:cpb_background_progressbar_color="#3254ba84"
-                                app:cpb_background_progressbar_width="5dp"
-                                app:cpb_progressbar_color="@color/corPrimaria"
-                                app:cpb_progressbar_width="10dp" />
-
-
-                        </RelativeLayout>
-
-                        <TextView
-                            android:id="@+id/titulo_equacao_2"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:gravity="center"
-                            android:textColor="#3254ba84"
-                            android:textSize="12sp"
-                            android:textStyle="bold" />
-                    </LinearLayout>
                 </LinearLayout>
             </LinearLayout>
 
@@ -293,8 +250,9 @@
         <LinearLayout
             android:id="@+id/card_fc"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             android:layout_marginTop="10dp"
+            android:layout_weight="1"
             android:background="@drawable/round_edge"
             android:orientation="vertical"
             android:padding="10dp">
@@ -653,8 +611,9 @@
         <LinearLayout
             android:id="@+id/card_spo2"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             android:layout_marginTop="10dp"
+            android:layout_weight="1"
             android:background="@drawable/round_edge"
             android:orientation="vertical"
             android:padding="10dp">
@@ -899,8 +858,9 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             android:layout_marginTop="10dp"
+            android:layout_weight="1"
             android:background="@drawable/round_edge"
             android:orientation="vertical"
             android:padding="10dp">
@@ -1275,8 +1235,9 @@
         <LinearLayout
             android:id="@+id/card_fad"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             android:layout_marginTop="10dp"
+            android:layout_weight="1"
             android:background="@drawable/round_edge"
             android:orientation="vertical"
             android:padding="10dp">
@@ -1654,8 +1615,9 @@
         <LinearLayout
             android:id="@+id/card_pa"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             android:layout_marginTop="10dp"
+            android:layout_weight="1"
             android:background="@drawable/round_edge"
             android:orientation="vertical"
             android:padding="10dp">
@@ -1794,8 +1756,9 @@
         <LinearLayout
             android:id="@+id/card_gc"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             android:layout_marginTop="10dp"
+            android:layout_weight="1"
             android:background="@drawable/round_edge"
             android:orientation="vertical"
             android:padding="10dp">
@@ -1932,8 +1895,9 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp">
+            android:layout_height="0dp"
+            android:layout_marginTop="10dp"
+            android:layout_weight="1">
 
             <LinearLayout
                 android:id="@+id/card_o2supl"
@@ -2022,6 +1986,7 @@
             android:layout_height="38dp"
             android:layout_gravity="center"
             android:layout_marginTop="25dp"
+            android:layout_weight="1"
             android:background="@color/colorAccent"
             android:text="@string/ok"
             android:textColor="#d7ffffff" />

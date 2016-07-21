@@ -306,8 +306,10 @@ public class CronometroActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 int dpVoltas = Integer.parseInt(textDistanciaFinal.getText().toString()); //voltas completas durante o teste
-                int dpRestante = Integer.parseInt(edTextDistanciaRestante.getText().toString()); //valor adicionado no final quando o paciente para
-
+                int dpRestante = 0;
+                if (!edTextDistanciaRestante.getText().toString().isEmpty()) {
+                    dpRestante = Integer.parseInt(edTextDistanciaRestante.getText().toString()); //valor adicionado no final quando o paciente para
+                }
                 teste.setVoltas(5, teste.getVoltas(5) + dpRestante); //salva o restante da ultima volta(onde o paciente parou)
                 teste.setDistanciaPercorrida(dpVoltas + dpRestante);//salva a distancia percorrida total
 

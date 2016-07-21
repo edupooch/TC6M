@@ -113,6 +113,10 @@
     <string name="tamanho_da_volta_descricao">Defina qual o tamanho que o botão de adicionar uma volta terá (metros)</string>
     <string name="selecionar_equacoes">Selecionar Equações</string>
     <string name="selecionar_equacoes_descricao">Selecione quais equações você deseja usar para calcular a distância prevista</string>
+    <string name="nome">Nome:</string>
+    <string name="idade">Idade:</string>
+    <string name="distancia_percorrida_analise">Distância Percorrida:</string>
+    <string name="velocidade_m_dia">Velocidade Média:</string>
 
 
 </resources>
