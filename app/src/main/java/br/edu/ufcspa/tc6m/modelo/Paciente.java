@@ -1,12 +1,14 @@
 package br.edu.ufcspa.tc6m.modelo;
 
+import android.support.annotation.NonNull;
+
 import java.io.Serializable;
 import java.util.Date;
 
 /**
  * Created by edupooch on 21/12/15.
  */
-public class Paciente implements Serializable {
+public class Paciente implements Serializable, Comparable<Paciente> {
 
     private Long id = null;
     private String nome;
@@ -155,5 +157,10 @@ public class Paciente implements Serializable {
 
     public void setObs(String obs) {
         this.obs = obs;
+    }
+
+    @Override
+    public int compareTo(@NonNull Paciente outro) {
+        return this.nome.compareTo(outro.getNome());
     }
 }

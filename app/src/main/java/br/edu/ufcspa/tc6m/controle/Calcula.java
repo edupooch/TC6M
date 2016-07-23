@@ -124,6 +124,6 @@ public class Calcula {
      * #Retorna a velocidade média em m/s
      */
     public static double velocidadeMedia(int distanciaPercorrida) {
-        return distanciaPercorrida/360;
+        return (double) distanciaPercorrida / 360;
     }
 }

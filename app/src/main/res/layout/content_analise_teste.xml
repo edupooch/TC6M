@@ -97,7 +97,6 @@
                             android:id="@+id/text_nome_paciente_resultados"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Eduardo H P Pooch"
                             android:textStyle="bold" />
 
 
@@ -113,7 +112,6 @@
                             android:id="@+id/text_idade_paciente_resultados"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="18 anos"
                             android:textStyle="bold" />
 
                         <TextView
@@ -128,7 +126,6 @@
                             android:id="@+id/text_dp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="800m"
                             android:textSize="20sp"
                             android:textStyle="bold" />
 
@@ -144,7 +141,6 @@
                             android:id="@+id/text_velocidade_media"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="30m/s"
                             android:textStyle="bold" />
 
 
@@ -321,7 +317,6 @@
                             android:id="@+id/resultado_fc_inicial"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="80"
                             android:textSize="30sp" />
 
                         <TextView
@@ -354,7 +349,6 @@
                             android:id="@+id/resultado_fc_final"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="80"
                             android:textSize="30sp" />
 
                         <TextView
@@ -390,7 +384,6 @@
                             android:id="@+id/resultado_fc_recup"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="80"
                             android:textSize="30sp" />
 
                         <TextView
@@ -438,7 +431,6 @@
                         android:id="@+id/resultado_fc_1_minuto"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="80"
                         android:textSize="22sp" />
 
                     <TextView
@@ -469,7 +461,6 @@
                         android:id="@+id/resultado_fc_2_minuto"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="80"
                         android:textSize="22sp" />
 
                     <TextView
@@ -499,7 +490,6 @@
                         android:id="@+id/resultado_fc_3_minuto"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="80"
                         android:textSize="22sp" />
 
                     <TextView
@@ -529,7 +519,6 @@
                         android:id="@+id/resultado_fc_4_minuto"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="80"
                         android:textSize="22sp" />
 
                     <TextView
@@ -559,7 +548,6 @@
                         android:id="@+id/resultado_fc_5_minuto"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="80"
                         android:textSize="22sp" />
 
                     <TextView
@@ -591,7 +579,6 @@
                         android:id="@+id/ressultado_fc_6_minuto"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="80"
                         android:textSize="22sp" />
 
                     <TextView
@@ -683,7 +670,6 @@
                         android:id="@+id/resultado_sp_inicial"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="80%"
                         android:textSize="30sp" />
 
                 </LinearLayout>
@@ -708,7 +694,6 @@
                         android:id="@+id/resultado_sp_6_minuto"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="80"
                         android:textSize="30sp" />
 
 
@@ -753,7 +738,6 @@
                         android:id="@+id/resultado_sp_1_minuto"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="80"
                         android:textSize="20sp" />
 
                 </LinearLayout>
@@ -778,7 +762,6 @@
                         android:id="@+id/resultado_sp_2_minuto"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="80"
                         android:textSize="20sp" />
 
 
@@ -804,7 +787,6 @@
                         android:id="@+id/resultado_sp_3_minuto"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="80"
                         android:textSize="20sp" />
 
 
@@ -830,7 +812,6 @@
                         android:id="@+id/resultado_sp_4_minuto"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="80"
                         android:textSize="20sp" />
 
                 </LinearLayout>
@@ -854,7 +835,6 @@
                         android:id="@+id/resultado_sp_5_minuto"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="80"
                         android:textSize="20sp" />
                 </LinearLayout>
             </LinearLayout>
@@ -937,7 +917,6 @@
                             android:id="@+id/resultado_disp_inicial"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="80"
                             android:textSize="30sp" />
 
                         <TextView
@@ -970,7 +949,6 @@
                             android:id="@+id/resultado_disp_final"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="80"
                             android:textSize="30sp" />
 
                         <TextView
@@ -1006,7 +984,6 @@
                             android:id="@+id/resultado_disp_recup"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="80"
                             android:textSize="30sp" />
 
                         <TextView
@@ -1056,7 +1033,6 @@
                             android:id="@+id/resultado_disp_1_minuto"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="80"
                             android:textSize="20sp" />
 
                         <TextView
@@ -1090,7 +1066,6 @@
                             android:id="@+id/resultado_disp_2_minuto"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="80"
                             android:textSize="20sp" />
 
                         <TextView
@@ -1124,7 +1099,6 @@
                             android:id="@+id/resultado_disp_3_minuto"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="80"
                             android:textSize="20sp" />
 
                         <TextView
@@ -1158,7 +1132,6 @@
                             android:id="@+id/resultado_disp_4_minuto"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="80"
                             android:textSize="20sp" />
 
                         <TextView
@@ -1192,7 +1165,6 @@
                             android:id="@+id/resultado_disp_5_minuto"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="80"
                             android:textSize="20sp" />
 
                         <TextView
@@ -1226,7 +1198,6 @@
                             android:id="@+id/resultado_disp_6_minuto"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="80"
                             android:textSize="20sp" />
 
                         <TextView
@@ -1318,7 +1289,6 @@
                             android:id="@+id/resultado_fad_inicial"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="80"
                             android:textSize="30sp" />
 
                         <TextView
@@ -1351,7 +1321,6 @@
                             android:id="@+id/resultado_fad_final"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="80"
                             android:textSize="30sp" />
 
                         <TextView
@@ -1387,7 +1356,6 @@
                             android:id="@+id/resultado_fad_recup"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="80"
                             android:textSize="30sp" />
 
                         <TextView
@@ -1437,7 +1405,6 @@
                             android:id="@+id/resultado_fad_1_minuto"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="80"
                             android:textSize="20sp" />
 
                         <TextView
@@ -1471,7 +1438,6 @@
                             android:id="@+id/resultado_fad_2_minuto"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="80"
                             android:textSize="20sp" />
 
                         <TextView
@@ -1505,7 +1471,6 @@
                             android:id="@+id/resultado_fad_3_minuto"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="80"
                             android:textSize="20sp" />
 
                         <TextView
@@ -1539,7 +1504,6 @@
                             android:id="@+id/resultado_fad_4_minuto"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="80"
                             android:textSize="20sp" />
 
                         <TextView
@@ -1573,7 +1537,6 @@
                             android:id="@+id/resultado_fad_5_minuto"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="80"
                             android:textSize="20sp" />
 
                         <TextView
@@ -1607,7 +1570,6 @@
                             android:id="@+id/resultado_fad_6_minuto"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="80"
                             android:textSize="20sp" />
 
                         <TextView
@@ -1698,7 +1660,6 @@
                         android:id="@+id/resultado_pa_inicial"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="120/80"
                         android:textSize="25sp" />
 
                     <TextView
@@ -1727,7 +1688,6 @@
                         android:id="@+id/resultado_pa_final"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="120/80"
                         android:textSize="25sp" />
 
                     <TextView
@@ -1759,7 +1719,6 @@
                         android:id="@+id/resultado_pa_recup"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="120/80"
                         android:textSize="25sp" />
 
                     <TextView
@@ -1849,7 +1808,6 @@
                             android:id="@+id/resultado_gc_inicial"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="80"
                             android:textSize="25sp" />
 
                         <TextView
@@ -1876,7 +1834,6 @@
                             android:id="@+id/resultado_gc_final"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="80"
                             android:textSize="25sp" />
 
                         <TextView
@@ -1906,7 +1863,6 @@
                             android:id="@+id/resultado_gc_recup"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="80"
                             android:textSize="25sp" />
 
                         <TextView

@@ -18,6 +18,8 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import br.edu.ufcspa.tc6m.R;
@@ -74,6 +76,7 @@ public class ListaPacientesActivity extends AppCompatActivity {
 
         PacienteDAO dao = new PacienteDAO(this);
         List<Paciente> pacientes = dao.buscaPacientes();
+        Collections.sort(pacientes);
         //ArrayAdapter<Paciente> adapter = new ArrayAdapter<Paciente>(this, R.layout.list_item_pacientes, pacientes);
 
         PacientesAdapter adapter = new PacientesAdapter(this, pacientes);

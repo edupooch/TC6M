@@ -77,7 +77,7 @@ public class AnaliseTesteActivity extends AppCompatActivity {
         textDistanciaPercorrida.setText(strDp);
 
         TextView textVelocidadeMedia = (TextView) findViewById(R.id.text_velocidade_media);
-        String strVelocidadeMedia = String.format(Locale.getDefault(), "%.2fm/s", Calcula.velocidadeMedia(teste.getDistanciaPercorrida()));
+        String strVelocidadeMedia = String.format(Locale.getDefault(), "%.2f m/s", Calcula.velocidadeMedia(teste.getDistanciaPercorrida()));
         textVelocidadeMedia.setText(strVelocidadeMedia);
 
         //Pega a última formula usada das preferências, e o default é a formula 0 (Britto 1)

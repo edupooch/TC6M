@@ -16,6 +16,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import java.util.Collections;
 import java.util.List;
 
 import br.edu.ufcspa.tc6m.R;
@@ -57,6 +58,8 @@ public class ListaTestesActivity extends AppCompatActivity {
 
         TesteDAO dao = new TesteDAO(this);
         List<Teste> testes = dao.buscaTestes(paciente);
+        
+        Collections.reverse(testes);
 
         ArrayAdapter<Teste> adapter =
                 new ArrayAdapter<Teste>(this, android.R.layout.simple_list_item_1, testes);

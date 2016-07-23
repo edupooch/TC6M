@@ -8,8 +8,10 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.CheckBox;
+import android.widget.Toast;
 
 import br.edu.ufcspa.tc6m.R;
 import br.edu.ufcspa.tc6m.modelo.Paciente;
@@ -25,6 +27,21 @@ public class PreTesteActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         paciente = (Paciente) getIntent().getSerializableExtra("paciente");
+
+        findViewById(R.id.bt_basal_fc).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(PreTesteActivity.this, "Valor obrigatório", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        findViewById(R.id.bt_final_fc).setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                Toast.makeText(getApplicationContext(), "Valor obrigatório", Toast.LENGTH_SHORT).show();
+                return false;
+            }
+        });
 
         int[] checkBoxes = {
                 R.id.bt_durante_fc,
