@@ -6,11 +6,13 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutCompat;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.Locale;
@@ -79,19 +81,30 @@ public class PerfilActivity extends AppCompatActivity {
         textoPeso.setText(String.format(Locale.US, "%.2f kg", paciente.getMassa()));
         textoAltura.setText(String.format(Locale.US, "%.0f cm", paciente.getEstatura()));
         textoIMC.setText(String.format(Locale.US, "IMC %.2f", Calcula.imc(paciente.getMassa(), paciente.getEstatura())));
-        textoTelefone.setText(paciente.getTelefone());
-        textoEmail.setText(paciente.getEmail());
-
-//        String[] arrayData = paciente.getDataNascimento().toString().split("-");
-//        String strData = arrayData[2] + "/" + arrayData[1] + "/" + arrayData[0];
+        if (paciente.getTelefone().isEmpty()) {
+            findViewById(R.id.layout_telefone).setVisibility(View.GONE);
+        } else {
+            textoTelefone.setText(paciente.getTelefone());
+        }
+        if (paciente.getEmail().isEmpty()) {
+            findViewById(R.id.layout_email).setVisibility(View.GONE);
+        } else {
+            textoEmail.setText(paciente.getEmail());
+        }
 
         int idade = Calcula.idade(paciente.getDataNascimento());
         String strIdade = idade + " anos";
         textoIdade.setText(strIdade);
 
-        String obs = "Obs: " + paciente.getObs();
-        textoObs.setText(obs);
+        if (paciente.getObs().isEmpty()) {
+            findViewById(R.id.layout_observacoes).setVisibility(View.GONE);
+        } else {
+            String obs = "Obs: " + paciente.getObs();
+            textoObs.setText(obs);
+        }
 
+//        String[] arrayData = paciente.getDataNascimento().toString().split("-");
+//        String strData = arrayData[2] + "/" + arrayData[1] + "/" + arrayData[0];
     }
 
     @Override

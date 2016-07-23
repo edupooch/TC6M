@@ -7,15 +7,12 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.support.annotation.NonNull;
 
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Locale;
 
-import br.edu.ufcspa.tc6m.controle.Calcula;
 import br.edu.ufcspa.tc6m.modelo.Paciente;
 import br.edu.ufcspa.tc6m.modelo.Teste;
 
@@ -48,12 +45,13 @@ public class TesteDAO extends SQLiteOpenHelper {
     String[] strKeyDisp = {"disp_0", "disp_1", "disp_2", "disp_3", "disp_4", "disp_5", "disp_6", "disp_7", "disp_8",};
     String[] strKeyFad = {"fad_0", "fad_1", "fad_2", "fad_3", "fad_4", "fad_5", "fad_6", "fad_7", "fad_8",};
     String[] strKeySp = {"spo2_0", "spo2_1", "spo2_2", "spo2_3", "spo2_4", "spo2_5", "spo2_6"};
-    String[] strKeyPa = {"pa_0", "pa_1", "pa_2"};
+    String[] strKeyPas = {"pas_0", "pas_1", "pas_2"};
+    String[] strKeyPad = {"pad_0", "pad_1", "pad_2"};
     String[] strKeyGc = {"gc_0", "gc_1", "gc_2"};
     String[] strKeyVoltas = {"voltas_0", "voltas_1", "voltas_2", "voltas_3", "voltas_4", "voltas_5",};
 
     public TesteDAO(Context context) {
-        super(context, "Testes", null, 5);
+        super(context, "Testes", null, 6);
     }
 
     @Override
@@ -67,7 +65,8 @@ public class TesteDAO extends SQLiteOpenHelper {
                 "disp_0 REAL, disp_1 REAL, disp_2 REAL, disp_3 REAL, disp_4 REAL, disp_5 REAL, disp_6 REAL, disp_7 REAL, disp_8 REAL,\n" +
                 "fad_0 REAL, fad_1 REAL, fad_2 REAL, fad_3 REAL, fad_4 REAL, fad_5 REAL, fad_6 REAL, fad_7 REAL, fad_8 REAL,\n" +
                 "o2supl_0 REAL,\n" +
-                "pa_0 TEXT, pa_1 TEXT, pa_2 TEXT,\n" +
+                "pas_0 TEXT, pas_1 TEXT, pas_2 TEXT,\n" +
+                "pad_0 TEXT, pad_1 TEXT, pad_2 TEXT,\n" +
                 "gc_0 INTEGER, gc_1 INTEGER, gc_2 INTEGER,\n" +
                 "voltas_0 INTEGER, voltas_1 INTEGER, voltas_2 INTEGER, voltas_3 INTEGER, voltas_4 INTEGER, voltas_5 INTEGER,\n" +
                 "n_paradas INTEGER,\n" +
@@ -113,8 +112,10 @@ public class TesteDAO extends SQLiteOpenHelper {
         for (int i = 0; i < 9; i++) dados.put(strKeyFad[i], teste.getFadiga(i));
         //O2 SUPLEMENTAR
         dados.put("o2supl_0", teste.getO2Supl());
-        //PA
-        for (int i = 0; i < 3; i++) dados.put(strKeyPa[i], teste.getPa(i));
+        //PAs
+        for (int i = 0; i < 3; i++) dados.put(strKeyPas[i], teste.getPAs(i));
+        //PAd
+        for (int i = 0; i < 3; i++) dados.put(strKeyPad[i], teste.getPAd(i));
         //GC
         for (int i = 0; i < 3; i++) dados.put(strKeyGc[i], teste.getGc(i));
         //VOLTAS
@@ -142,31 +143,44 @@ public class TesteDAO extends SQLiteOpenHelper {
             Teste teste = new Teste(paciente);
             teste.setIdTeste(c.getLong(c.getColumnIndex("id_teste")));
             teste.setData(java.sql.Date.valueOf(c.getString(c.getColumnIndex("dia_hora"))));
+
             teste.setIdade(c.getInt(c.getColumnIndex("idade_paciente")));
             for (int i = 0; i < 9; i++)
-                teste.setFc(i, c.getInt(c.getColumnIndex(strKeyFc[i])));
+                if (!c.isNull(c.getColumnIndex(strKeyFc[i])))
+                    teste.setFc(i, c.getInt(c.getColumnIndex(strKeyFc[i])));
             for (int i = 0; i < 7; i++)
-                teste.setSpO2(i, c.getInt(c.getColumnIndex(strKeySp[i])));
+                if (!c.isNull(c.getColumnIndex(strKeySp[i])))
+                    teste.setSpO2(i, c.getInt(c.getColumnIndex(strKeySp[i])));
             //DISPNEIA1
             for (int i = 0; i < 9; i++)
-                teste.setDispneia(i, c.getDouble(c.getColumnIndex(strKeyDisp[i])));
+                if (!c.isNull(c.getColumnIndex(strKeyDisp[i])))
+                    teste.setDispneia(i, c.getDouble(c.getColumnIndex(strKeyDisp[i])));
             //FADIGA MMII
             for (int i = 0; i < 9; i++)
-                teste.setFadiga(i, c.getDouble(c.getColumnIndex(strKeyFad[i])));
+                if (!c.isNull(c.getColumnIndex(strKeyFad[i])))
+                    teste.setFadiga(i, c.getDouble(c.getColumnIndex(strKeyFad[i])));
             //O2 SUPLEMENTAR
-            teste.setO2Supl(c.getDouble(c.getColumnIndex("o2supl_0")));
-            //PA
+            if (!c.isNull(c.getColumnIndex("o2supl_0")))
+                teste.setO2Supl(c.getDouble(c.getColumnIndex("o2supl_0")));
+            //PAs
             for (int i = 0; i < 3; i++)
-                teste.setPa(i, c.getString(c.getColumnIndex(strKeyPa[i])));
+                if (!c.isNull(c.getColumnIndex(strKeyPas[i])))
+                    teste.setPAs(i, c.getInt(c.getColumnIndex(strKeyPas[i])));
+            //PAd
+            for (int i = 0; i < 3; i++)
+                if (!c.isNull(c.getColumnIndex(strKeyPad[i])))
+                    teste.setPAd(i, c.getInt(c.getColumnIndex(strKeyPad[i])));
             //GC
             for (int i = 0; i < 3; i++)
-                teste.setGc(i, c.getInt(c.getColumnIndex(strKeyGc[i])));
+                if (!c.isNull(c.getColumnIndex(strKeyGc[i])))
+                    teste.setGc(i, c.getInt(c.getColumnIndex(strKeyGc[i])));
             //VOLTAS
             for (int i = 0; i < 6; i++)
                 teste.setVoltas(i, c.getInt(c.getColumnIndex(strKeyVoltas[i])));
             teste.setnParadas(c.getInt(c.getColumnIndex("n_paradas")));
             teste.setTempoParadas(c.getString(c.getColumnIndex("tempo_paradas")));
             teste.setMotivoParadas(c.getString(c.getColumnIndex("motivo_parada")));
+
             teste.setMassa(c.getDouble(c.getColumnIndex("massa")));
             teste.setEstatura(c.getDouble(c.getColumnIndex("estatura")));
             teste.setObsFinal(c.getString(c.getColumnIndex("obs_final")));
@@ -197,7 +211,7 @@ public class TesteDAO extends SQLiteOpenHelper {
     public void deletaTodosDoPaciente(Paciente paciente) {
         SQLiteDatabase db = getWritableDatabase();
         String[] parametros = {paciente.getId().toString()};
-        db.delete("Testes","id_paciente = ?",parametros);
+        db.delete("Testes", "id_paciente = ?", parametros);
     }
 
     public void deleta(Teste teste) {

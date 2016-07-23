@@ -1,8 +1,12 @@
 package br.edu.ufcspa.tc6m.controle;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.ContextMenu;
@@ -95,28 +99,55 @@ public class ListaPacientesActivity extends AppCompatActivity {
 
     @Override
     public void onCreateContextMenu(ContextMenu menu, View v, final ContextMenu.ContextMenuInfo menuInfo) {
-        MenuItem deletar = menu.add("Deletar Paciente");
-        deletar.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+
+        AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) menuInfo;
+        final Paciente paciente = (Paciente) listaPacientes.getItemAtPosition(info.position);
+
+
+        MenuItem ligar = menu.add("Ligar");
+        ligar.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
+                if (ActivityCompat.checkSelfPermission(ListaPacientesActivity.this, Manifest.permission.CALL_PHONE)
+                        != PackageManager.PERMISSION_GRANTED) {
+                    ActivityCompat.requestPermissions(ListaPacientesActivity.this,
+                            new String[]{Manifest.permission.CALL_PHONE}, 123);
 
-                AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) menuInfo;
-                Paciente paciente = (Paciente) listaPacientes.getItemAtPosition(info.position);
+                } else {
+                    Intent intentLigar = new Intent(Intent.ACTION_CALL);
+                    intentLigar.setData(Uri.parse("tel:" + paciente.getTelefone()));
+                    startActivity(intentLigar);
 
-                PacienteDAO dao = new PacienteDAO(ListaPacientesActivity.this);
-                TesteDAO daoTeste = new TesteDAO(ListaPacientesActivity.this);
-
-                dao.deleta(paciente);
-                daoTeste.deletaTodosDoPaciente(paciente);
-
-                dao.close();
-                daoTeste.close();
-
-                carregaLista();
-
+                }
                 return false;
             }
         });
+
+        MenuItem enviarSms = menu.add("Enviar SMS");
+        Intent intentSMS = new Intent(Intent.ACTION_VIEW);
+        intentSMS.setData(Uri.parse("sms:" + paciente.getTelefone()));
+        enviarSms.setIntent(intentSMS);
+
+        MenuItem enviarEmail = menu.add("Enviar Email");
+        enviarEmail.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                String[] endereco = {paciente.getEmail()};
+                composeEmail(endereco,"Teste da Caminhada de Seis Minutos");
+                return false;
+            }
+        });
+
+    }
+
+    public void composeEmail(String[] addresses, String subject) {
+        Intent intent = new Intent(Intent.ACTION_SENDTO);
+        intent.setData(Uri.parse("mailto:")); // only email apps should handle this
+        intent.putExtra(Intent.EXTRA_EMAIL, addresses);
+        intent.putExtra(Intent.EXTRA_SUBJECT, subject);
+        if (intent.resolveActivity(getPackageManager()) != null) {
+            startActivity(intent);
+        }
     }
 
     @Override

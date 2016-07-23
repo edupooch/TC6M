@@ -69,7 +69,7 @@ public class AnaliseTesteActivity extends AppCompatActivity {
         textNomePaciente.setText(teste.getPaciente().getNome());
 
         TextView textIdade = (TextView) findViewById(R.id.text_idade_paciente_resultados);
-        String strIdade =  + teste.getIdade() + " anos";
+        String strIdade = +teste.getIdade() + " anos";
         textIdade.setText(strIdade);
 
         TextView textDistanciaPercorrida = (TextView) findViewById(R.id.text_dp);
@@ -77,12 +77,12 @@ public class AnaliseTesteActivity extends AppCompatActivity {
         textDistanciaPercorrida.setText(strDp);
 
         TextView textVelocidadeMedia = (TextView) findViewById(R.id.text_velocidade_media);
-        String strVelocidadeMedia = String.format(Locale.getDefault(),"%.2fm/s",Calcula.velocidadeMedia(teste.getDistanciaPercorrida()));
+        String strVelocidadeMedia = String.format(Locale.getDefault(), "%.2fm/s", Calcula.velocidadeMedia(teste.getDistanciaPercorrida()));
         textVelocidadeMedia.setText(strVelocidadeMedia);
 
         //Pega a última formula usada das preferências, e o default é a formula 0 (Britto 1)
         SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
-        int ultimaFormula = sharedPref.getInt("ULTIMA_FORMULA",ListaFormulas.ID_BRITTO1);
+        int ultimaFormula = sharedPref.getInt("ULTIMA_FORMULA", ListaFormulas.ID_BRITTO1);
         Formula formulaInicial = new ListaFormulas().getFormulas().get(ultimaFormula);
         atualizaFormula(formulaInicial);
 
@@ -97,8 +97,8 @@ public class AnaliseTesteActivity extends AppCompatActivity {
 
                 //Pega das preferências as fórmulas que o usuário ativou na tela de configurações
                 SharedPreferences sharedPref = getSharedPreferences("PREFERENCIAS", Context.MODE_PRIVATE);
-                final List<Formula> formulas =  new ListaFormulas().getFormulasSelecionadas(sharedPref);
-                FormulasDialogAdapter adapter = new FormulasDialogAdapter(AnaliseTesteActivity.this,formulas);
+                final List<Formula> formulas = new ListaFormulas().getFormulasSelecionadas(sharedPref);
+                FormulasDialogAdapter adapter = new FormulasDialogAdapter(AnaliseTesteActivity.this, formulas);
                 lista.setAdapter(adapter);
 
                 //Item listener para atualizar a fórmula quando selecionar uma
@@ -116,45 +116,164 @@ public class AnaliseTesteActivity extends AppCompatActivity {
         });
 
 
-        //Arrays com IDs de textViews para agilizar os setTexts em um for loop
-        int[] fcValoresXML = new int[]{R.id.resultado_fc_inicial, R.id.resultado_fc_1_minuto, R.id.resultado_fc_2_minuto, R.id.resultado_fc_3_minuto, R.id.resultado_fc_4_minuto, R.id.resultado_fc_5_minuto, R.id.ressultado_fc_6_minuto, R.id.resultado_fc_final, R.id.resultado_fc_recup};
-        int[] spValoresXML = new int[]{R.id.resultado_sp_inicial, R.id.resultado_sp_1_minuto, R.id.resultado_sp_2_minuto, R.id.resultado_sp_3_minuto, R.id.resultado_sp_4_minuto, R.id.resultado_sp_5_minuto, R.id.resultado_sp_6_minuto};
-        int[] dispValoresXML = new int[]{R.id.resultado_disp_inicial, R.id.resultado_disp_1_minuto, R.id.resultado_disp_2_minuto, R.id.resultado_disp_3_minuto, R.id.resultado_disp_4_minuto, R.id.resultado_disp_5_minuto, R.id.resultado_disp_6_minuto, R.id.resultado_disp_final, R.id.resultado_disp_recup};
-        int[] fadValoresXML = new int[]{R.id.resultado_fad_inicial, R.id.resultado_fad_1_minuto, R.id.resultado_fad_2_minuto, R.id.resultado_fad_3_minuto, R.id.resultado_fad_4_minuto, R.id.resultado_fad_5_minuto, R.id.resultado_fad_6_minuto, R.id.resultado_fad_final, R.id.resultado_fad_recup};
-        int[] paValoresXML = new int[]{R.id.resultado_pa_inicial, R.id.resultado_pa_final, R.id.resultado_pa_recup};
-        int[] gcValoresXML = new int[]{R.id.resultado_gc_inicial, R.id.resultado_gc_final, R.id.resultado_gc_recup};
+        //.............................VALORES DOS SINAIS.........................................//
+
+        //Arrays com Resource IDs de textViews para agilizar os setTexts em um for loop
+        int[] fcValoresResId = new int[]{R.id.resultado_fc_inicial, R.id.resultado_fc_1_minuto, R.id.resultado_fc_2_minuto, R.id.resultado_fc_3_minuto, R.id.resultado_fc_4_minuto, R.id.resultado_fc_5_minuto, R.id.ressultado_fc_6_minuto, R.id.resultado_fc_final, R.id.resultado_fc_recup};
+        int[] spValoresResId = new int[]{R.id.resultado_sp_inicial, R.id.resultado_sp_1_minuto, R.id.resultado_sp_2_minuto, R.id.resultado_sp_3_minuto, R.id.resultado_sp_4_minuto, R.id.resultado_sp_5_minuto, R.id.resultado_sp_6_minuto};
+        int[] dispValoresResId = new int[]{R.id.resultado_disp_inicial, R.id.resultado_disp_1_minuto, R.id.resultado_disp_2_minuto, R.id.resultado_disp_3_minuto, R.id.resultado_disp_4_minuto, R.id.resultado_disp_5_minuto, R.id.resultado_disp_6_minuto, R.id.resultado_disp_final, R.id.resultado_disp_recup};
+        int[] fadValoresResId = new int[]{R.id.resultado_fad_inicial, R.id.resultado_fad_1_minuto, R.id.resultado_fad_2_minuto, R.id.resultado_fad_3_minuto, R.id.resultado_fad_4_minuto, R.id.resultado_fad_5_minuto, R.id.resultado_fad_6_minuto, R.id.resultado_fad_final, R.id.resultado_fad_recup};
+        int[] paValoresResId = new int[]{R.id.resultado_pa_inicial, R.id.resultado_pa_final, R.id.resultado_pa_recup};
+        int[] gcValoresResId = new int[]{R.id.resultado_gc_inicial, R.id.resultado_gc_final, R.id.resultado_gc_recup};
+
+        //Booleans para verificar se há algum valor preenchido daquela categoria, para esconder os cards sem valor
+        //FC é obrigatório o inicial e o final
+        boolean temAlgumDispeneia = false;
+        boolean temAlgumFadiga = false;
+        boolean temAlgumSp = false;
+        boolean temAlgumPa = false;
+        boolean temAlgumGc = false;
+
 
         for (int i = 0; i < 9; i++) {
+            if (teste.getFc(i) != null) {
+                textFc[i] = (TextView) findViewById(fcValoresResId[i]);
+                textFc[i].setText(String.valueOf(teste.getFc(i)));
+            } else {
+                switch (i) {
+                    case 1:
+                        findViewById(R.id.layout_fc_durante).setVisibility(View.GONE);
+                        break;
+                    case 8:
+                        findViewById(R.id.layout_fc_repouso).setVisibility(View.GONE);
+                        break;
+                }
+            }
 
-            textFc[i] = (TextView) findViewById(fcValoresXML[i]);
-            textFc[i].setText(String.valueOf(teste.getFc(i)));
 
-            textDisp[i] = (TextView) findViewById(dispValoresXML[i]);
-            textDisp[i].setText(String.valueOf(teste.getDispneia(i)));
-
-            textFad[i] = (TextView) findViewById(fadValoresXML[i]);
-            textFad[i].setText(String.valueOf(teste.getFadiga(i)));
+            if (teste.getDispneia(i) != null) {
+                textDisp[i] = (TextView) findViewById(dispValoresResId[i]);
+                textDisp[i].setText(String.valueOf(teste.getDispneia(i)));
+                temAlgumDispeneia = true;
+            } else {
+                switch (i) {
+                    case 0://VALORES BASAIS
+                        findViewById(R.id.layout_dispneia_inicial).setVisibility(View.GONE);
+                        break;
+                    case 1://VALORES DURANTE O TESTE 1-6
+                        findViewById(R.id.layout_dispneia_durante).setVisibility(View.GONE);
+                        break;
+                    case 7: //VALORES FINAIS
+                        findViewById(R.id.layout_dispneia_final).setVisibility(View.GONE);
+                        break;
+                    case 8: //VALORES DEPOIS DA RECUPERAÇÃO
+                        findViewById(R.id.layout_dispneia_repouso).setVisibility(View.GONE);
+                        break;
+                }
+            }
+            if (teste.getFadiga(i) != null) {
+                textFad[i] = (TextView) findViewById(fadValoresResId[i]);
+                textFad[i].setText(String.valueOf(teste.getFadiga(i)));
+                temAlgumFadiga = true;
+            } else {
+                switch (i) {
+                    case 0://VALORES BASAIS
+                        findViewById(R.id.layout_fadiga_inicial).setVisibility(View.GONE);
+                        break;
+                    case 1://VALORES DURANTE O TESTE 1-6
+                        findViewById(R.id.layout_fadiga_durante).setVisibility(View.GONE);
+                        break;
+                    case 7: //VALORES FINAIS
+                        findViewById(R.id.layout_fadiga_final).setVisibility(View.GONE);
+                        break;
+                    case 8: //VALORES DEPOIS DA RECUPERAÇÃO
+                        findViewById(R.id.layout_fadiga_repouso).setVisibility(View.GONE);
+                        break;
+                }
+            }
 
             if (i < 7) {
-                textSp[i] = (TextView) findViewById(spValoresXML[i]);
-                String strSp = teste.getSpO2(i) + "%";
-                textSp[i].setText(String.valueOf(strSp));
-
+                if (teste.getSpO2(i) != null) {
+                    textSp[i] = (TextView) findViewById(spValoresResId[i]);
+                    String strSp = teste.getSpO2(i) + "%";
+                    textSp[i].setText(String.valueOf(strSp));
+                    temAlgumSp = true;
+                }else {
+                    switch (i) {
+                        case 0://VALORES BASAIS
+                            findViewById(R.id.layout_sp_inicial).setVisibility(View.GONE);
+                            break;
+                        case 1://VALORES DURANTE O TESTE 1-6
+                            //layout dos minutos 1-5
+                            findViewById(R.id.layout_sp_durante).setVisibility(View.GONE);
+                            //layout do minuto 6 está separado
+                            findViewById(R.id.layout_sp_durante_6).setVisibility(View.GONE);
+                            break;
+                    }
+                }
                 if (i < 3) {
-                    textPa[i] = (TextView) findViewById(paValoresXML[i]);
-                    textPa[i].setText(String.valueOf(teste.getPa(i)));
-
-                    textGc[i] = (TextView) findViewById(gcValoresXML[i]);
-                    textGc[i].setText(String.valueOf(teste.getGc(i)));
+                    if ((teste.getPAs(i) != null) && (teste.getPAd(i) != null)) {
+                        textPa[i] = (TextView) findViewById(paValoresResId[i]);
+                        String strPa = teste.getPAs(i) + "/" + teste.getPAd(i);
+                        textPa[i].setText(strPa);
+                        temAlgumPa = true;
+                    } else {
+                        switch (i) {
+                            case 0://VALORES BASAIS
+                                findViewById(R.id.layout_pa_inicial).setVisibility(View.GONE);
+                                break;
+                            case 1://VALORES FINAIS
+                                findViewById(R.id.layout_pa_final).setVisibility(View.GONE);
+                                break;
+                            case 2: //VALORES DEPOIS DA RECUPERAÇÃO
+                                findViewById(R.id.layout_pa_repouso).setVisibility(View.GONE);
+                                break;
+                        }
+                    }
+                    if (teste.getGc(i) != null) {
+                        textGc[i] = (TextView) findViewById(gcValoresResId[i]);
+                        textGc[i].setText(String.valueOf(teste.getGc(i)));
+                        temAlgumGc = true;
+                    } else {
+                        switch (i) {
+                            case 0://VALORES BASAIS
+                                findViewById(R.id.layout_gc_inicial).setVisibility(View.GONE);
+                                break;
+                            case 1://VALORES FINAIS
+                                findViewById(R.id.layout_gc_final).setVisibility(View.GONE);
+                                break;
+                            case 2: //VALORES DEPOIS DA RECUPERAÇÃO
+                                findViewById(R.id.layout_gc_repouso).setVisibility(View.GONE);
+                                break;
+                        }
+                    }
                 }
             }
         }
 
-        TextView textO2Supl = (TextView) findViewById(R.id.resultado_o2_supl);
-        textO2Supl.setText(String.valueOf(teste.getO2Supl()));
+        //.............................ESCONDE CARDS..........................................//
+        //Se nao tem nenhum valor de x, esconde o card da análise
+        if (!temAlgumDispeneia) findViewById(R.id.card_disp).setVisibility(View.GONE);
+        if (!temAlgumFadiga) findViewById(R.id.card_fad).setVisibility(View.GONE);
+        if (!temAlgumSp) findViewById(R.id.card_spo2).setVisibility(View.GONE);
+        if (!temAlgumPa) findViewById(R.id.card_pa).setVisibility(View.GONE);
+        if (!temAlgumGc) findViewById(R.id.card_gc).setVisibility(View.GONE);
 
-        TextView textObsFinal = (TextView) findViewById(R.id.resultado_obs);
-        textObsFinal.setText(teste.getObsFinal());
+        if (teste.getO2Supl() != null) {
+            TextView textO2supl = (TextView) findViewById(R.id.resultado_o2_supl);
+            textO2supl.setText(String.valueOf(teste.getO2Supl()));
+        } else{
+            findViewById(R.id.card_o2supl).setVisibility(View.GONE);
+        }
+
+        if (teste.getObsFinal() != null) {
+            TextView textObsFinal = (TextView) findViewById(R.id.resultado_obs);
+            textObsFinal.setText(teste.getObsFinal());
+        }
+
+
+        //..............................BOTAO DE FINALIZAR.........................................//
+
 
         Button btOk = (Button) findViewById(R.id.btOkAnalise);
         btOk.setOnClickListener(new View.OnClickListener() {
@@ -169,14 +288,17 @@ public class AnaliseTesteActivity extends AppCompatActivity {
     /**
      * Carrega o circularProgressBar com a porcentagem e os textos de distância prevista,
      * utiliza a classe Calcula e passa por parâmetro a fórmula utilizada para receber os resultados
-     * @param formula
-     * #Formula é usada para pegar o id e passar para Calcula() e pegar o nome da fórmula
+     *
+     * @param formula #Formula é usada para pegar o id e passar para Calcula() e pegar o nome da fórmula
      */
     private void atualizaFormula(Formula formula) {
         TextView dpEstimada = (TextView) findViewById(R.id.text_dp_estimada_1);
         TextView percDpEstimada = (TextView) findViewById(R.id.text_dp_porcento_1);
-        int variacaoFc = teste.getFc(ID_FC_FINAL) - teste.getFc(ID_FC_INICIAL);
-        double dbDpEstimada1 = Calcula.dpEstimada(formula,teste.getIdade(), teste.getPaciente().getGenero(), teste.getMassa(), teste.getEstatura(),variacaoFc);
+        int variacaoFc = 0;
+        if (teste.getFc(ID_FC_FINAL) != null && teste.getFc(ID_FC_INICIAL) != null) {
+            variacaoFc = teste.getFc(ID_FC_FINAL) - teste.getFc(ID_FC_INICIAL);
+        }
+        double dbDpEstimada1 = Calcula.dpEstimada(formula, teste.getIdade(), teste.getPaciente().getGenero(), teste.getMassa(), teste.getEstatura(), variacaoFc);
         String strDpEstimada1 = String.format(Locale.getDefault(), "de %.2fm", dbDpEstimada1);
         dpEstimada.setText(strDpEstimada1);
 
@@ -193,7 +315,7 @@ public class AnaliseTesteActivity extends AppCompatActivity {
         //Salva nas preferências da activity a fórmula pedida como ultima formula usada
         SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPref.edit();
-        editor.putInt("ULTIMA_FORMULA",formula.getIdFormula());
+        editor.putInt("ULTIMA_FORMULA", formula.getIdFormula());
         editor.apply();
     }
 
@@ -205,7 +327,7 @@ public class AnaliseTesteActivity extends AppCompatActivity {
             barEntries.add(new BarEntry(teste.getVoltas(i), i));
         }
         BarDataSet barDataSet = new BarDataSet(barEntries, "Distância Percorrida");
-        barDataSet.setColors(new int[]{Color.rgb(83,186,131), Color.rgb(58,150,101)});
+        barDataSet.setColors(new int[]{Color.rgb(83, 186, 131), Color.rgb(58, 150, 101)});
 
         ArrayList<String> stringsMinutos = new ArrayList<>();
         for (int i = 1; i <= 6; i++) {

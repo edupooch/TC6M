@@ -1,12 +1,9 @@
 package br.edu.ufcspa.tc6m.controle;
 
-import android.renderscript.Double2;
-import android.text.Editable;
-import android.text.TextWatcher;
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.view.View;
 import android.widget.EditText;
-
-import java.util.Calendar;
-import java.util.Date;
 
 import br.edu.ufcspa.tc6m.R;
 import br.edu.ufcspa.tc6m.modelo.Paciente;
@@ -23,28 +20,55 @@ public class TesteHelper {
     private EditText[] edTextFad = new EditText[9];
     private EditText[] edTextSp = new EditText[7];
     //0=BASAL, 1=ID_FC_FINAL, 2=RECUPERAÇÃO
-    private EditText[] edTextPa = new EditText[3];
+    private EditText[] edTextPAs = new EditText[3];
+    private EditText[] edTextPAd = new EditText[3];
     private EditText[] edTextGc = new EditText[3];
     //BASAL
     private EditText edTextO2Supl;
     //ID_FC_FINAL
     private EditText edTextObsFinal;
+    private String text;
     //VALORES
 
 
     public TesteHelper(ValoresBasaisActivity activity, Paciente paciente) {
 
         teste = new Teste(paciente);
+
+        SharedPreferences sharedPreferences = activity.getSharedPreferences("VARIAVEIS_DO_PACIENTE_" +
+                paciente.getId(), Context.MODE_PRIVATE);
         //Define os valores de massa e estatura no dia do teste - durante a activity valores basais;
         teste.setEstatura(paciente.getEstatura());
         teste.setMassa(paciente.getMassa());
 
+        //fc basal é obrigatório
         edTextFc[0] = (EditText) activity.findViewById(R.id.edTextFC0);
-        edTextSp[0] = (EditText) activity.findViewById(R.id.edTextSp0);
+
         edTextDisp[0] = (EditText) activity.findViewById(R.id.edTextDisp0);
+
+        if (!sharedPreferences.getBoolean("basal_dispneia", true)) {
+            activity.findViewById(R.id.layout_dispneia).setVisibility(View.GONE);
+        }
         edTextFad[0] = (EditText) activity.findViewById(R.id.edTextFad0);
+        if (!sharedPreferences.getBoolean("basal_fadiga", true)) {
+            activity.findViewById(R.id.layout_fadiga).setVisibility(View.GONE);
+        }
+
+        edTextSp[0] = (EditText) activity.findViewById(R.id.edTextSp0);
+        if (!sharedPreferences.getBoolean("basal_spo2", true)) {
+            activity.findViewById(R.id.layout_spo2).setVisibility(View.GONE);
+        }
         edTextGc[0] = (EditText) activity.findViewById(R.id.edTextGC0);
-        edTextPa[0] = (EditText) activity.findViewById(R.id.editTextPA0);
+        if (!sharedPreferences.getBoolean("basal_gc", true)) {
+            activity.findViewById(R.id.layout_gc).setVisibility(View.GONE);
+        }
+
+        edTextPAs[0] = (EditText) activity.findViewById(R.id.editTextPAS0);
+        edTextPAd[0] = (EditText) activity.findViewById(R.id.editTextPAD0);
+        if (!sharedPreferences.getBoolean("basal_pa", true)) {
+            activity.findViewById(R.id.layout_pa).setVisibility(View.GONE);
+        }
+
         edTextO2Supl = (EditText) activity.findViewById(R.id.edTextO2Supl);
 
         //edTextFc[0].addTextChangedListener(new FcWatcher());
@@ -53,6 +77,14 @@ public class TesteHelper {
 
     public TesteHelper(CronometroActivity activity, Teste teste) {
         this.teste = teste;
+
+        SharedPreferences sharedPreferences = activity.getSharedPreferences("VARIAVEIS_DO_PACIENTE_" +
+                teste.getPaciente().getId(), Context.MODE_PRIVATE);
+
+        boolean fcDurante = sharedPreferences.getBoolean("durante_fc", true);
+        boolean spDurante = sharedPreferences.getBoolean("durante_spo2", true);
+        boolean fadDurante = sharedPreferences.getBoolean("durante_fadiga", true);
+        boolean dispDurante = sharedPreferences.getBoolean("durante_dispneia", true);
 
         edTextFc[1] = (EditText) activity.findViewById(R.id.edTextFC1);
         edTextFc[2] = (EditText) activity.findViewById(R.id.edTextFC2);
@@ -82,29 +114,101 @@ public class TesteHelper {
         edTextFad[5] = (EditText) activity.findViewById(R.id.edTextFad5);
         edTextFad[6] = (EditText) activity.findViewById(R.id.edTextFad6);
 
+
+        for (int i = 1; i <= 6; i++) {
+            if (!fcDurante) {
+                edTextFc[i].setVisibility(View.GONE);
+            } else {
+                break;
+            }
+        }
+        for (int i = 1; i <= 6; i++) {
+            if (!spDurante) {
+                edTextSp[i].setVisibility(View.GONE);
+            } else {
+                break;
+            }
+        }
+        for (int i = 1; i <= 6; i++) {
+            if (!fadDurante) {
+                edTextFad[i].setVisibility(View.GONE);
+            } else {
+                break;
+            }
+        }
+        for (int i = 1; i <= 6; i++) {
+            if (!dispDurante) {
+                edTextDisp[i].setVisibility(View.GONE);
+            } else {
+                break;
+            }
+        }
+
     }
 
     public TesteHelper(ValoresFinaisActivity activity, Teste teste) {
         this.teste = teste;
+        SharedPreferences sharedPreferences = activity.getSharedPreferences("VARIAVEIS_DO_PACIENTE_" +
+                teste.getPaciente().getId(), Context.MODE_PRIVATE);
 
-        edTextFc[7] = (EditText) activity.findViewById(R.id.edTextFc7);
+        //FC final obrigatório
+        edTextFc[7] = (EditText) activity.findViewById(R.id.edTextFC7);
+
         edTextDisp[7] = (EditText) activity.findViewById(R.id.edTextDisp7);
+        if (!sharedPreferences.getBoolean("final_dispneia", true)) {
+            activity.findViewById(R.id.layout_dispneia).setVisibility(View.GONE);
+        }
         edTextFad[7] = (EditText) activity.findViewById(R.id.edTextFad7);
-        edTextGc[1] = (EditText) activity.findViewById(R.id.edTextGc1);
-        edTextPa[1] = (EditText) activity.findViewById(R.id.edTextPa1);
+        if (!sharedPreferences.getBoolean("final_fadiga", true)) {
+            activity.findViewById(R.id.layout_fadiga).setVisibility(View.GONE);
+        }
+
+        edTextGc[1] = (EditText) activity.findViewById(R.id.edTextGC1);
+        if (!sharedPreferences.getBoolean("final_gc", true)) {
+            activity.findViewById(R.id.layout_gc).setVisibility(View.GONE);
+        }
+
+        edTextPAs[1] = (EditText) activity.findViewById(R.id.edTextPAS1);
+        edTextPAd[1] = (EditText) activity.findViewById(R.id.edTextPAD1);
+        if (!sharedPreferences.getBoolean("final_pa", true)) {
+            activity.findViewById(R.id.layout_pa).setVisibility(View.GONE);
+        }
+
         edTextObsFinal = (EditText) activity.findViewById(R.id.edTextObsFinal);
+
 
     }
 
     public TesteHelper(ValoresRecuperacaoActivity activity, Teste teste) {
 
         this.teste = teste;
+        SharedPreferences sharedPreferences = activity.getSharedPreferences("VARIAVEIS_DO_PACIENTE_" +
+                teste.getPaciente().getId(), Context.MODE_PRIVATE);
 
         edTextFc[8] = (EditText) activity.findViewById(R.id.edTextFC8);
+        if (!sharedPreferences.getBoolean("repouso_fc", true)) {
+            activity.findViewById(R.id.layout_fc).setVisibility(View.GONE);
+        }
         edTextDisp[8] = (EditText) activity.findViewById(R.id.edTextDisp8);
+        if (!sharedPreferences.getBoolean("repouso_dispneia", true)) {
+            activity.findViewById(R.id.layout_dispneia).setVisibility(View.GONE);
+        }
         edTextFad[8] = (EditText) activity.findViewById(R.id.edTextFad8);
-        edTextGc[2] = (EditText) activity.findViewById(R.id.edTextGc2);
-        edTextPa[2] = (EditText) activity.findViewById(R.id.edTextPa2);
+        if (!sharedPreferences.getBoolean("repouso_fadiga", true)) {
+            activity.findViewById(R.id.layout_fadiga).setVisibility(View.GONE);
+        }
+
+        edTextGc[2] = (EditText) activity.findViewById(R.id.edTextGC3);
+        if (!sharedPreferences.getBoolean("repouso_gc", true)) {
+            activity.findViewById(R.id.layout_gc).setVisibility(View.GONE);
+        }
+
+        edTextPAs[2] = (EditText) activity.findViewById(R.id.edTextPAS3);
+        edTextPAd[2] = (EditText) activity.findViewById(R.id.edTextPAD3);
+        if (!sharedPreferences.getBoolean("repouso_pa", true)) {
+            activity.findViewById(R.id.layout_pa).setVisibility(View.GONE);
+        }
+
 
     }
 
@@ -123,36 +227,43 @@ public class TesteHelper {
         */
 
         //fc, disp e fad são coletadas em todas as fases
-        if (!edTextFc[minuto].toString().isEmpty()) {
-            try {
-                teste.setFc(minuto, Integer.parseInt(edTextFc[minuto].getText().toString()));
-            } catch (NumberFormatException e) {
-            }
+        if (!edTextFc[minuto].getText().toString().isEmpty()) {
+            System.out.println("entrou no if");
+            teste.setFc(minuto, Integer.parseInt(edTextFc[minuto].getText().toString()));
         }
-        try {teste.setDispneia(minuto, Double.valueOf(edTextDisp[minuto].getText().toString()));} catch (NumberFormatException e) {}
 
-        try {teste.setFadiga(minuto, Double.valueOf(edTextFad[minuto].getText().toString()));} catch (NumberFormatException e) {}
+        if (!edTextDisp[minuto].getText().toString().isEmpty())
+            teste.setDispneia(minuto, Double.valueOf(edTextDisp[minuto].getText().toString()));
+        if (!(edTextFad[minuto].getText().toString()).isEmpty())
+            teste.setFadiga(minuto, Double.valueOf(edTextFad[minuto].getText().toString()));
 
-        if (minuto < 7) //SPO2 VAI DE VALORES BASAIS ATÉ O MINUTO 6
-            try {teste.setSpO2(minuto, Integer.parseInt(edTextSp[minuto].getText().toString()));} catch (NumberFormatException e) {}
+        //SPO2 VAI DE VALORES BASAIS ATÉ O MINUTO 6
+        if (minuto < 7 && !edTextSp[minuto].getText().toString().isEmpty())
+            teste.setSpO2(minuto, Integer.parseInt(edTextSp[minuto].getText().toString()));
 
         if (minuto == 0 || minuto == 7 || minuto == 8) {
+
+            if ((minuto == 7) && !edTextObsFinal.getText().toString().isEmpty())
+                teste.setObsFinal(edTextObsFinal.getText().toString());
+
+            // O O2 SUPLEMENTAR É APENAS UM VALOR BASAL
             if (minuto == 0) {
-
-                try {
-                    // O O2 SUPLEMENTAR É APENAS UM VALOR BASAL
+                if (!edTextO2Supl.getText().toString().isEmpty())
                     teste.setO2Supl(Double.valueOf(edTextO2Supl.getText().toString()));
-                } catch (NumberFormatException e) {
-                }
             }
-            if (minuto == 7 || minuto == 8) {//gc e pa sao coletados apenas basais, finais e recuperação
-                minuto -= 6; //mudando o valor de 7 e 8 para 1 e 2 para se adequar aos índices declarados DE GC E PA
-                try {teste.setGc(minuto, Integer.parseInt(edTextGc[minuto].getText().toString()));} catch (NumberFormatException e) {}
-                teste.setPa(minuto, edTextPa[minuto].getText().toString());
 
-                //obs final da activity valores finais
-                if (minuto == 7) teste.setObsFinal(edTextObsFinal.getText().toString());
+            //mudando o valor de 7 e 8 para 1 e 2 para se adequar aos índices declarados DE GC E PA
+            if (minuto == 7 || minuto == 8)
+                minuto -= 6;
+            //gc e pa sao coletados apenas basais, finais e recuperação
+            if (!edTextGc[minuto].getText().toString().isEmpty())
+                teste.setGc(minuto, Integer.parseInt(edTextGc[minuto].getText().toString()));
+
+            if (!edTextPAs[minuto].getText().toString().isEmpty() && !edTextPAd[minuto].getText().toString().isEmpty()) {
+                teste.setPAs(minuto, Integer.parseInt(edTextPAs[minuto].getText().toString()));
+                teste.setPAd(minuto, Integer.parseInt(edTextPAd[minuto].getText().toString()));
             }
+            //obs final da activity valores finais
         }
 
         return teste;
@@ -164,12 +275,11 @@ public class TesteHelper {
      */
 
     public void preencheCamposFinais() {
-
-        edTextFc[7].setText(String.valueOf(teste.getFc(6)));
-        edTextDisp[7].setText(String.valueOf(teste.getDispneia(6)));
-        if(teste.getFadiga(6) != null)
-        edTextFad[7].setText(String.valueOf(teste.getFadiga(6)));
-
-
+        if (teste.getFc(6) != null)
+            edTextFc[7].setText(teste.getFc(6));
+        if (teste.getDispneia(6) != null)
+            edTextDisp[7].setText(String.valueOf(teste.getDispneia(6)));
+        if (teste.getFadiga(6) != null)
+            edTextFad[7].setText(String.valueOf(teste.getFadiga(6)));
     }
 }

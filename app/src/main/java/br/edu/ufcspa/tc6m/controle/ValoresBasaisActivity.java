@@ -33,10 +33,12 @@ public class ValoresBasaisActivity extends AppCompatActivity { //implementar com
         Intent intent = getIntent();
         final Paciente paciente = (Paciente) intent.getSerializableExtra("paciente");
 
-        helper = new TesteHelper(this,paciente);
+        helper = new TesteHelper(this, paciente);
 
         TextView edTextTitulo = (TextView) findViewById(R.id.tituloBasais);
         edTextTitulo.setText(paciente.getNome());
+
+
 
         ////////////////////////////////////////////////////////////////////////////////////////////
         Button btNext = (Button) findViewById(R.id.btComecarTeste);
@@ -48,7 +50,7 @@ public class ValoresBasaisActivity extends AppCompatActivity { //implementar com
                 teste.setEstatura(paciente.getEstatura());
                 teste.setIdade(Calcula.idade(paciente.getDataNascimento()));
                 Intent intentVaiProCronometro = new Intent(ValoresBasaisActivity.this, CronometroActivity.class);
-                intentVaiProCronometro.putExtra("teste",teste);
+                intentVaiProCronometro.putExtra("teste", teste);
                 startActivity(intentVaiProCronometro);
                 finish();
             }
@@ -56,7 +58,6 @@ public class ValoresBasaisActivity extends AppCompatActivity { //implementar com
 
 
         ////////////////////////////////////////////////////////////////////////////////////////////
-
 
 
     }

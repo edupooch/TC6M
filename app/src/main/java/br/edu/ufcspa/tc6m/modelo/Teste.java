@@ -1,10 +1,9 @@
 package br.edu.ufcspa.tc6m.modelo;
 
 import java.io.Serializable;
-import java.sql.Time;
 
+import java.util.ArrayList;
 import java.util.Date;
-import java.util.GregorianCalendar;
 
 /**
  * Created by edupooch on 22/12/15.
@@ -38,19 +37,21 @@ public class Teste implements Serializable {
 
     // SIGNIFICADO DOS ÍNDICES DOS ARRAYS COMENTADOS AO LADO DE CADA UM
 
-    private int[] fc = new int[9]; //0=BASAL, 1-6=MINUTOS, 7=FINAL, 8=RECUPERAÇÃO
-    private double[] dispneia = new double[9]; //0=BASAL, 1-6=MINUTOS, 7=FINAL, 8=RECUPERAÇÃO
+    private Integer[] fc = new Integer[9]; //0=BASAL, 1-6=MINUTOS, 7=FINAL, 8=RECUPERAÇÃO
+    private Double[] dispneia = new Double[9]; //0=BASAL, 1-6=MINUTOS, 7=FINAL, 8=RECUPERAÇÃO
     private Double[] fadiga = new Double[9]; //0=BASAL, 1-6=MINUTOS, 7=FINAL, 8=RECUPERAÇÃO
 
-    private int[] spO2 = new int[7]; //0=BASAL, 1-6=MINUTOS
+    private Integer[] spO2 = new Integer[7]; //0=BASAL, 1-6=MINUTOS
 
-    private String[] pa = new String[3]; //0=BASAL, 1=FINAL, 2=RECUPERAÇÃO
-    private int[] gc = new int[3]; //0=BASAL, 1=FINAL, 2=RECUPERAÇÃO
+    private Integer[] pas = new Integer[3]; //0=BASAL, 1=FINAL, 2=RECUPERAÇÃO
+    private Integer[] pad = new Integer[3]; //0=BASAL, 1=FINAL, 2=RECUPERAÇÃO
+    private Integer[] gc = new Integer[3]; //0=BASAL, 1=FINAL, 2=RECUPERAÇÃO
 
-    private double o2Supl;//BASAL
+    private Double o2Supl;//BASAL
 
     private int[] voltas = new int[6]; //0-5=MINUTOS
 
+    private ArrayList<Double> velocidades = new ArrayList<Double>();
 
     private int nParadas;
     private String tempoParadas;
@@ -104,19 +105,19 @@ public class Teste implements Serializable {
         this.data = data;
     }
 
-    public int getFc(int i) {
+    public Integer getFc(int i) {
         return fc[i];
     }
 
-    public void setFc(int i, int fc) {
+    public void setFc(int i, Integer fc) {
         this.fc[i] = fc;
     }
 
-    public double getDispneia(int i) {
+    public Double getDispneia(int i) {
         return dispneia[i];
     }
 
-    public void setDispneia(int i, double dispneia) {
+    public void setDispneia(int i, Double dispneia) {
         this.dispneia[i] = dispneia;
     }
 
@@ -128,35 +129,42 @@ public class Teste implements Serializable {
         this.fadiga[i] = fadiga;
     }
 
-    public int getSpO2(int i) {
+    public Integer getSpO2(int i) {
         return spO2[i];
     }
 
-    public void setSpO2(int i, int spO2) {
+    public void setSpO2(int i, Integer spO2) {
         this.spO2[i] = spO2;
     }
 
-    public String getPa(int i) {
-        return pa[i];
+    public Integer getPAs(int i) {
+        return pas[i];
     }
 
-    public void setPa(int i, String pa) {
-        this.pa[i] = pa;
+    public void setPAs(int i, Integer pas) {
+        this.pas[i] = pas;
+    }
+    public Integer getPAd(int i) {
+        return pad[i];
     }
 
-    public int getGc(int i) {
+    public void setPAd(int i, Integer pas) {
+        this.pad[i] = pas;
+    }
+
+    public Integer getGc(int i) {
         return gc[i];
     }
 
-    public void setGc(int i, int gc) {
+    public void setGc(int i, Integer gc) {
         this.gc[i] = gc;
     }
 
-    public double getO2Supl() {
+    public Double getO2Supl() {
         return o2Supl;
     }
 
-    public void setO2Supl(double o2Supl) {
+    public void setO2Supl(Double o2Supl) {
         this.o2Supl = o2Supl;
     }
 

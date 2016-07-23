@@ -1,5 +1,6 @@
 package br.edu.ufcspa.tc6m.controle;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -44,8 +45,8 @@ public class CronometroActivity extends AppCompatActivity {
     private int volta;
     private int tempo;
     private int fase;
-
     private boolean parado;
+    boolean temAlgumValor;
     //TESTE
     private TesteHelper helper;
     private Teste teste;
@@ -60,13 +61,38 @@ public class CronometroActivity extends AppCompatActivity {
         layoutsDadosXML = new int[]{R.id.layoutDados1, R.id.layoutDados2, R.id.layoutDados3, R.id.layoutDados4, R.id.layoutDados5, R.id.layoutDados6};
         layoutsDados = new LinearLayout[6];
         botoesSalvar = new TextView[6];
+
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cronometro);
+
+        Intent intent = getIntent();
+        teste = (Teste) intent.getSerializableExtra("teste");
+        helper = new TesteHelper(this, teste);
+
+        verificaValores();
         iniciaComponentes();
+
+
+    }
+
+    private void verificaValores() {
+        new Thread(new Runnable() {
+            @Override
+            public synchronized void run() {
+                SharedPreferences sharedPreferences = getSharedPreferences("VARIAVEIS_DO_PACIENTE_" +
+                        teste.getPaciente().getId(), Context.MODE_PRIVATE);
+
+                boolean fcDurante = sharedPreferences.getBoolean("durante_fc", true);
+                boolean spDurante = sharedPreferences.getBoolean("durante_spo2", true);
+                boolean fadDurante = sharedPreferences.getBoolean("durante_fadiga", true);
+                boolean dispDurante = sharedPreferences.getBoolean("durante_dispneia", true);
+                temAlgumValor = fcDurante || spDurante || dispDurante || fadDurante;
+            }
+        }).start();
 
     }
 
@@ -96,9 +122,6 @@ public class CronometroActivity extends AppCompatActivity {
 
         iniciaCronometro();
 
-        Intent intent = getIntent();
-        teste = (Teste) intent.getSerializableExtra("teste");
-        helper = new TesteHelper(this, teste);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setVisibility(View.GONE);
@@ -202,7 +225,7 @@ public class CronometroActivity extends AppCompatActivity {
         metros = fase = 0;
 
         //Pega o valor definido nas preferências para o tamanho da volta, default = 30m
-        SharedPreferences sharedPref = getSharedPreferences("PREFERENCIAS",MODE_PRIVATE);
+        SharedPreferences sharedPref = getSharedPreferences("PREFERENCIAS", MODE_PRIVATE);
         volta = sharedPref.getInt("TAMANHO_VOLTA", PreferenciasActivity.TAMANHO_MINIMO_VOLTA);
 
         crono = (Chronometer) findViewById(R.id.cronometro);
@@ -295,11 +318,12 @@ public class CronometroActivity extends AppCompatActivity {
 
         final EditText edTextDistanciaRestante = (EditText) findViewById(R.id.edTextDistanciaRestante);
 
-        for (int i = 0; i < 6; i++) {
-            layoutsDados[i].setVisibility(View.VISIBLE);
-            botoesSalvar[i].setVisibility(View.GONE);
+        if(temAlgumValor) {
+            for (int i = 0; i < 6; i++) {
+                layoutsDados[i].setVisibility(View.VISIBLE);
+                botoesSalvar[i].setVisibility(View.GONE);
+            }
         }
-
         //BOTAO FINALIZA ACTIVITY
         btConfirma.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -339,24 +363,34 @@ public class CronometroActivity extends AppCompatActivity {
 
         circularProgressBar.setProgressWithAnimation((minuto + 2) * 17, 60000);
 
-        layoutsDados[minuto] = (LinearLayout) findViewById(layoutsDadosXML[minuto]); //card para botar os valores do minuto que aparece
-        layoutsDados[minuto].setVisibility(View.VISIBLE);
 
-        botoesSalvar[minuto] = (TextView) findViewById(botoesSalvarXML[minuto]);
-        botoesSalvar[minuto].setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                teste = helper.pegaDadosFromFields(minuto + 1); //minuto 1 = 0 aqui e no helper é 1
-                layoutsDados[minuto].setVisibility(View.GONE);
-            }
-        });
+        //Só mostra o layout de valores caso pelo menos um deles esteja ativos nas preferências
+        System.out.println("Tem algum valor:" + temAlgumValor);
+        if (temAlgumValor) {
+
+            //card para botar os valores do minuto que aparece
+            layoutsDados[minuto] = (LinearLayout) findViewById(layoutsDadosXML[minuto]);
+            layoutsDados[minuto].setVisibility(View.VISIBLE);
+            botoesSalvar[minuto] = (TextView) findViewById(botoesSalvarXML[minuto]);
+            botoesSalvar[minuto].setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    teste = helper.pegaDadosFromFields(minuto + 1); //minuto 1 = 0 aqui e no helper é 1
+                    layoutsDados[minuto].setVisibility(View.GONE);
+                }
+            });
+        }
+
+
     }
+
 
     //DIALOGO DO BOTÃO VOLTAR
     @Override
     public void onBackPressed() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setCancelable(false);
+        builder.setTitle(R.string.atencao);
         builder.setMessage(getString(R.string.dialog_abandonar_voltar));
         builder.setPositiveButton(getString(R.string.dialog_yes), new DialogInterface.OnClickListener() {
 

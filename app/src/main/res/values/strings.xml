@@ -53,7 +53,7 @@
     <string name="title_activity_analise_teste">Análise do Teste</string>
     <string name="bpm">bpm</string>
     <string name="inicial">INICIAL</string>
-    <string name="recup">REPOUSO</string>
+    <string name="repouso">REPOUSO</string>
     <string name="_1_minuto">1º min</string>
     <string name="_2_minuto">2º min</string>
     <string name="_3_minuto">3º min</string>
@@ -104,9 +104,9 @@
     <string name="pa_s_de_origem_da_f_rmula">País de origem da fórmula</string>
     <string name="title_activity_pre_teste">Variáveis do Teste</string>
     <string name="selecione_os_sinais">Selecione quais sinais desejas coletar no teste:</string>
-    <string name="antes">Antes</string>
+    <string name="antes">Basal</string>
     <string name="durante">Durante</string>
-    <string name="depois">Depois</string>
+    <string name="depois">Final</string>
     <string name="analise_de_desempenho">Análise de Desempenho:</string>
     <string name="de">de</string>
     <string name="tamanho_da_volta">Tamanho da Volta</string>
@@ -117,6 +117,10 @@
     <string name="idade">Idade:</string>
     <string name="distancia_percorrida_analise">Distância Percorrida:</string>
     <string name="velocidade_m_dia">Velocidade Média:</string>
+    <string name="repouso_min">Repouso</string>
+    <string name="basal">Basal</string>
+    <string name="observa_es">Observações</string>
+    <string name="observa_es_sobre_o_teste">Observações sobre o teste</string>
 
 
 </resources>

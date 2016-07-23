@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.Chronometer;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -90,9 +91,7 @@ public class ValoresRecuperacaoActivity extends AppCompatActivity {
 
     private void escondeCronometro() {
         crono.stop();
-        RelativeLayout layoutAguarde = (RelativeLayout) findViewById(R.id.layoutAguarde);
-        LinearLayout layoutDados = (LinearLayout) findViewById(R.id.layoutDadosRecuperacao);
-        layoutAguarde.setVisibility(View.GONE);
-        layoutDados.setVisibility(View.VISIBLE);
+        findViewById(R.id.layoutAguarde).setVisibility(View.GONE);
+        findViewById(R.id.layoutDadosRecuperacao).setVisibility(View.VISIBLE);
     }
 }
