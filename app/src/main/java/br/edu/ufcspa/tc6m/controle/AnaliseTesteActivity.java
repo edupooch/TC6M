@@ -15,9 +15,13 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.github.mikephil.charting.charts.BarChart;
+import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
+import com.github.mikephil.charting.data.Entry;
+import com.github.mikephil.charting.data.LineData;
+import com.github.mikephil.charting.data.LineDataSet;
 import com.mikhaellopez.circularprogressbar.CircularProgressBar;
 
 import java.util.ArrayList;
@@ -29,6 +33,7 @@ import br.edu.ufcspa.tc6m.adapter.FormulasDialogAdapter;
 import br.edu.ufcspa.tc6m.formulas.ListaFormulas;
 import br.edu.ufcspa.tc6m.modelo.Formula;
 import br.edu.ufcspa.tc6m.modelo.Teste;
+import br.edu.ufcspa.tc6m.modelo.Velocidade;
 
 public class AnaliseTesteActivity extends AppCompatActivity {
 
@@ -62,8 +67,9 @@ public class AnaliseTesteActivity extends AppCompatActivity {
     }
 
     private void iniciaComponentes() {
-        //Método para iniciar o gráfico de distância por minuto
-        iniciaGrafico();
+
+        iniciaGraficoVoltasMinuto();
+        iniciaGraficoVelocidades();
 
         TextView textNomePaciente = (TextView) findViewById(R.id.text_nome_paciente_resultados);
         textNomePaciente.setText(teste.getPaciente().getNome());
@@ -79,6 +85,16 @@ public class AnaliseTesteActivity extends AppCompatActivity {
         TextView textVelocidadeMedia = (TextView) findViewById(R.id.text_velocidade_media);
         String strVelocidadeMedia = String.format(Locale.getDefault(), "%.2f m/s", Calcula.velocidadeMedia(teste.getDistanciaPercorrida()));
         textVelocidadeMedia.setText(strVelocidadeMedia);
+
+        TextView textNParadas = (TextView) findViewById(R.id.text_paradas);
+        textNParadas.setText(String.valueOf(teste.getnParadas()));
+        if (teste.getnParadas() > 0) {
+            //SÓ MOSTRA O TEMPO PARADO CASO TENHA ALGUMA PARADA
+            findViewById(R.id.text_titulo_tempo_parado).setVisibility(View.VISIBLE);
+            TextView textTempoParadas = (TextView) findViewById(R.id.text_tempo_paradas);
+            textTempoParadas.setVisibility(View.VISIBLE);
+            textTempoParadas.setText(teste.getTempoParadas());
+        }
 
         //Pega a última formula usada das preferências, e o default é a formula 0 (Britto 1)
         SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
@@ -198,7 +214,7 @@ public class AnaliseTesteActivity extends AppCompatActivity {
                     String strSp = teste.getSpO2(i) + "%";
                     textSp[i].setText(String.valueOf(strSp));
                     temAlgumSp = true;
-                }else {
+                } else {
                     switch (i) {
                         case 0://VALORES BASAIS
                             findViewById(R.id.layout_sp_inicial).setVisibility(View.GONE);
@@ -262,7 +278,7 @@ public class AnaliseTesteActivity extends AppCompatActivity {
         if (teste.getO2Supl() != null) {
             TextView textO2supl = (TextView) findViewById(R.id.resultado_o2_supl);
             textO2supl.setText(String.valueOf(teste.getO2Supl()));
-        } else{
+        } else {
             findViewById(R.id.card_o2supl).setVisibility(View.GONE);
         }
 
@@ -319,7 +335,7 @@ public class AnaliseTesteActivity extends AppCompatActivity {
         editor.apply();
     }
 
-    private void iniciaGrafico() {
+    private void iniciaGraficoVoltasMinuto() {
         BarChart graficoDistanciasPercorridas = (BarChart) findViewById(R.id.grafico_voltas_minuto);
 
         ArrayList<BarEntry> barEntries = new ArrayList<>();
@@ -336,10 +352,46 @@ public class AnaliseTesteActivity extends AppCompatActivity {
         graficoDistanciasPercorridas.setDrawGridBackground(false);
         BarData dados = new BarData(stringsMinutos, barDataSet);
         graficoDistanciasPercorridas.setData(dados);
+        graficoDistanciasPercorridas.setDescription("");
         graficoDistanciasPercorridas.setPinchZoom(true);
         graficoDistanciasPercorridas.setDragEnabled(true);
         graficoDistanciasPercorridas.setScaleEnabled(true);
         graficoDistanciasPercorridas.animateY(1000);
+
+    }
+
+    private void iniciaGraficoVelocidades() {
+        LineChart graficoVelocidades = (LineChart) findViewById(R.id.grafico_velocidades);
+        ArrayList<String> xVals = new ArrayList<>();
+        for (Velocidade velocidade : teste.getVelocidades()) {
+            xVals.add(velocidade.getTempo());
+        }
+        ArrayList<Entry> yVals = new ArrayList<>();
+
+        ArrayList<Velocidade> velocidades = teste.getVelocidades();
+        for (int i = 0; i < velocidades.size(); i++) {
+            Velocidade velocidade = velocidades.get(i);
+            yVals.add(new Entry(velocidade.getVelocidade(),i));
+        }
+
+        LineDataSet set = new LineDataSet(yVals,"Velocidade");
+        //Gráfico cúbico
+        set.setMode(LineDataSet.Mode.CUBIC_BEZIER);
+        int COR_PRIMARIA = Color.rgb(83, 186, 131);
+        set.setFillColor(COR_PRIMARIA);
+
+        set.setDrawFilled(true);
+        set.setColor(COR_PRIMARIA);
+
+        LineData dados = new LineData(xVals,set);
+        graficoVelocidades.setData(dados);
+
+        graficoVelocidades.setDrawGridBackground(false);
+        graficoVelocidades.setPinchZoom(true);
+        graficoVelocidades.setDescription("");
+        graficoVelocidades.setDragEnabled(true);
+        graficoVelocidades.setScaleEnabled(true);
+        graficoVelocidades.animateX(1000);
 
     }
 }

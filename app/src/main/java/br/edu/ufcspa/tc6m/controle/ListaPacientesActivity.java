@@ -84,10 +84,8 @@ public class ListaPacientesActivity extends AppCompatActivity {
 
         TextView textInicial = (TextView) findViewById(R.id.textInicial);
         if (listaPacientes.getCount() == 0) {
-            assert textInicial != null;
             textInicial.setText(R.string.text_inicial_vazio);
         } else {
-            assert textInicial != null;
             textInicial.setText(R.string.text_inicial);
         }
 

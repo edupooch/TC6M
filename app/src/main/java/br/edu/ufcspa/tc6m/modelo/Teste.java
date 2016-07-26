@@ -51,7 +51,8 @@ public class Teste implements Serializable {
 
     private int[] voltas = new int[6]; //0-5=MINUTOS
 
-    private ArrayList<Double> velocidades = new ArrayList<Double>();
+    private ArrayList<Velocidade> velocidades = new ArrayList<>();
+    Long ultimaVolta;
 
     private int nParadas;
     private String tempoParadas;
@@ -71,6 +72,14 @@ public class Teste implements Serializable {
     public Teste(Paciente paciente) {
         this.paciente = paciente;
         this.idPaciente = paciente.getId();
+    }
+
+    public Long getUltimaVolta() {
+        return ultimaVolta;
+    }
+
+    public void setUltimaVolta(Long ultimaVolta) {
+        this.ultimaVolta = ultimaVolta;
     }
 
     public int getIdade() {
@@ -268,5 +277,13 @@ public class Teste implements Serializable {
     public String toString() {
         String[] data = getData().toString().split("-");
         return "Teste do dia " + data[2] + "/" + data[1] + "/" + data[0];
+    }
+
+    public ArrayList<Velocidade> getVelocidades() {
+        return velocidades;
+    }
+
+    public void setVelocidades(ArrayList<Velocidade> velocidades) {
+        this.velocidades = velocidades;
     }
 }

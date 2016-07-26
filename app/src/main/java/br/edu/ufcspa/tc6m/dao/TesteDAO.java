@@ -15,6 +15,7 @@ import java.util.Locale;
 
 import br.edu.ufcspa.tc6m.modelo.Paciente;
 import br.edu.ufcspa.tc6m.modelo.Teste;
+import br.edu.ufcspa.tc6m.modelo.Velocidade;
 
 /**
  * Created by edupooch on 30/04/16.
@@ -51,47 +52,85 @@ public class TesteDAO extends SQLiteOpenHelper {
     String[] strKeyVoltas = {"voltas_0", "voltas_1", "voltas_2", "voltas_3", "voltas_4", "voltas_5",};
 
     public TesteDAO(Context context) {
-        super(context, "Testes", null, 6);
+        super(context, "Testes", null, 8);
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String sql = "CREATE TABLE IF NOT EXISTS Testes ( id_teste INTEGER PRIMARY KEY,\n" +
-                "id_paciente INTEGER NOT NULL,\n" +
-                "dia_hora datetime,\n" +
-                "idade_paciente INTEGER,\n" +
-                "fc_0 INTEGER, fc_1 INTEGER, fc_2 INTEGER, fc_3 INTEGER, fc_4 INTEGER, fc_5 INTEGER, fc_6 INTEGER, fc_7 INTEGER, fc_8 INTEGER,\n" +
-                "spo2_0 INTEGER, spo2_1 INTEGER, spo2_2 INTEGER, spo2_3 INTEGER, spo2_4 INTEGER, spo2_5 INTEGER, spo2_6 INTEGER,\n" +
-                "disp_0 REAL, disp_1 REAL, disp_2 REAL, disp_3 REAL, disp_4 REAL, disp_5 REAL, disp_6 REAL, disp_7 REAL, disp_8 REAL,\n" +
-                "fad_0 REAL, fad_1 REAL, fad_2 REAL, fad_3 REAL, fad_4 REAL, fad_5 REAL, fad_6 REAL, fad_7 REAL, fad_8 REAL,\n" +
-                "o2supl_0 REAL,\n" +
-                "pas_0 TEXT, pas_1 TEXT, pas_2 TEXT,\n" +
-                "pad_0 TEXT, pad_1 TEXT, pad_2 TEXT,\n" +
-                "gc_0 INTEGER, gc_1 INTEGER, gc_2 INTEGER,\n" +
-                "voltas_0 INTEGER, voltas_1 INTEGER, voltas_2 INTEGER, voltas_3 INTEGER, voltas_4 INTEGER, voltas_5 INTEGER,\n" +
-                "n_paradas INTEGER,\n" +
-                "tempo_paradas TEXT,\n" +
-                "motivo_parada TEXT,\n" +
-                "massa REAL,\n" +
-                "estatura REAL,\n" +
-                "obs_final TEXT,\n" +
-                "distancia_percorrida REAL,\n" +
-                "FOREIGN KEY(id_paciente) REFERENCES Pacientes(id));";
+        String sql =
+                "CREATE TABLE IF NOT EXISTS Testes ( id_teste INTEGER PRIMARY KEY,\n" +
+                        "id_paciente INTEGER NOT NULL,\n" +
+                        "dia_hora datetime,\n" +
+                        "idade_paciente INTEGER,\n" +
+                        "fc_0 INTEGER, fc_1 INTEGER, fc_2 INTEGER, fc_3 INTEGER, fc_4 INTEGER, fc_5 INTEGER, fc_6 INTEGER, fc_7 INTEGER, fc_8 INTEGER,\n" +
+                        "spo2_0 INTEGER, spo2_1 INTEGER, spo2_2 INTEGER, spo2_3 INTEGER, spo2_4 INTEGER, spo2_5 INTEGER, spo2_6 INTEGER,\n" +
+                        "disp_0 REAL, disp_1 REAL, disp_2 REAL, disp_3 REAL, disp_4 REAL, disp_5 REAL, disp_6 REAL, disp_7 REAL, disp_8 REAL,\n" +
+                        "fad_0 REAL, fad_1 REAL, fad_2 REAL, fad_3 REAL, fad_4 REAL, fad_5 REAL, fad_6 REAL, fad_7 REAL, fad_8 REAL,\n" +
+                        "o2supl_0 REAL,\n" +
+                        "pas_0 TEXT, pas_1 TEXT, pas_2 TEXT,\n" +
+                        "pad_0 TEXT, pad_1 TEXT, pad_2 TEXT,\n" +
+                        "gc_0 INTEGER, gc_1 INTEGER, gc_2 INTEGER,\n" +
+                        "voltas_0 INTEGER, voltas_1 INTEGER, voltas_2 INTEGER, voltas_3 INTEGER, voltas_4 INTEGER, voltas_5 INTEGER,\n" +
+                        "n_paradas INTEGER,\n" +
+                        "tempo_paradas TEXT,\n" +
+                        "motivo_parada TEXT,\n" +
+                        "massa REAL,\n" +
+                        "estatura REAL,\n" +
+                        "obs_final TEXT,\n" +
+                        "distancia_percorrida REAL,\n" +
+                        "FOREIGN KEY(id_paciente) REFERENCES Pacientes(id));";
+
+
+        String sqlVelocidades =
+                "CREATE TABLE IF NOT EXISTS Velocidades ( id_velocidade INTEGER PRIMARY KEY,\n" +
+                        "id_teste INTEGER,\n" +
+                        "id_paciente INTEGER,\n" +
+                        "velocidade REAL,\n" +
+                        "tempo TEXT,\n" +
+                        "FOREIGN KEY(id_paciente) REFERENCES Testes(id_paciente),\n" +
+                        "FOREIGN KEY(id_teste) REFERENCES Testes(id_teste));";
+
         db.execSQL(sql);
+        db.execSQL(sqlVelocidades);
 
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         String sql = "DROP TABLE IF EXISTS Testes";
+        String sqlVelocidades = "DROP TABLE IF EXISTS Velocidades";
         db.execSQL(sql);
+        db.execSQL(sqlVelocidades);
+        onCreate(db);
+    }
+
+    @Override
+    public void onDowngrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+        String sql = "DROP TABLE IF EXISTS Testes";
+        String sqlVelocidades = "DROP TABLE IF EXISTS Velocidades";
+
+        db.execSQL(sql);
+        db.execSQL(sqlVelocidades);
+
         onCreate(db);
     }
 
     public void insere(Teste teste) {
         SQLiteDatabase db = getWritableDatabase();
-        ContentValues dados = getContentValuesTeste(teste);
-        db.insert("Testes", null, dados);
+        ContentValues dadosTeste = getContentValuesTeste(teste);
+        db.insert("Testes", null, dadosTeste);
+
+        //Pega o id do teste que acabou de ser inserido para inserir as velocidades
+        teste.setIdTeste(buscaIdUltimoTeste(teste.getPaciente()));
+
+        //Insere as velocidades
+        for (Velocidade velocidade : teste.getVelocidades()) {
+            velocidade.setIdTeste(teste.getIdTeste());
+            velocidade.setIdPaciente(teste.getIdPaciente());
+            ContentValues dadosVelocidade = getContentValuesVelocidade(velocidade);
+            db.insert("Velocidades", null, dadosVelocidade);
+            System.out.println("Iserido com sucesso" + teste.getIdTeste() + " " + teste.getIdPaciente());
+        }
     }
 
     @NonNull
@@ -131,6 +170,15 @@ public class TesteDAO extends SQLiteOpenHelper {
         return dados;
     }
 
+    @NonNull
+    private ContentValues getContentValuesVelocidade(Velocidade velocidade) {
+        ContentValues dados = new ContentValues();
+        dados.put("id_teste", velocidade.getIdTeste());
+        dados.put("id_paciente", velocidade.getIdPaciente());
+        dados.put("velocidade", velocidade.getVelocidade());
+        dados.put("tempo", velocidade.getTempo());
+        return dados;
+    }
 
     public List<Teste> buscaTestes(Paciente paciente) {
         String sql = "SELECT * FROM Testes WHERE id_paciente = " + paciente.getId() + ";";
@@ -186,6 +234,9 @@ public class TesteDAO extends SQLiteOpenHelper {
             teste.setObsFinal(c.getString(c.getColumnIndex("obs_final")));
             teste.setDistanciaPercorrida(c.getInt(c.getColumnIndex("distancia_percorrida")));
 
+            ArrayList<Velocidade> velocidades = buscaVelocidades(teste);
+            teste.setVelocidades(velocidades);
+
             testes.add(teste);
 
         }
@@ -194,15 +245,47 @@ public class TesteDAO extends SQLiteOpenHelper {
         return testes;
     }
 
+    public ArrayList<Velocidade> buscaVelocidades(Teste teste) {
+        String sql = "SELECT velocidade,tempo FROM Velocidades WHERE id_teste = " + teste.getIdTeste() + ";";
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor c = db.rawQuery(sql, null);
+
+        ArrayList<Velocidade> velocidades = new ArrayList<>();
+
+        while (c.moveToNext()) {
+            Velocidade velocidade =
+                    new Velocidade(c.getFloat(c.getColumnIndex("velocidade")),
+                    c.getString(c.getColumnIndex("tempo")));
+            velocidades.add(velocidade);
+        }
+        c.close();
+
+        return velocidades;
+    }
+
+    /**
+     * @param paciente último teste desse paciente que será pego o id
+     * @return id do último teste adicionado pelo paciente passado por parâmetro
+     */
+    public Long buscaIdUltimoTeste(Paciente paciente) {
+        String sql = "SELECT id_teste FROM Testes WHERE id_paciente = " + paciente.getId() + ";";
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor c = db.rawQuery(sql, null);
+        Long id = null;
+        if (c.moveToLast()) {
+            id = c.getLong(c.getColumnIndex("id_teste"));
+        }
+        c.close();
+        return id;
+    }
+
+
+
     public int contarTestesDoPaciente(Paciente paciente) {
         String sql = "SELECT * FROM Testes WHERE id_paciente = " + paciente.getId() + ";";
         SQLiteDatabase db = getReadableDatabase();
         Cursor c = db.rawQuery(sql, null);
-
-        int numeroTestes = 0;
-        if (c.moveToLast())
-            numeroTestes = c.getCount();//Move o cursor para a última posição e pega o valor
-
+        int numeroTestes = c.getCount();//Move o cursor para a última posição e pega o valor
         c.close();
 
         return numeroTestes;
@@ -212,11 +295,17 @@ public class TesteDAO extends SQLiteOpenHelper {
         SQLiteDatabase db = getWritableDatabase();
         String[] parametros = {paciente.getId().toString()};
         db.delete("Testes", "id_paciente = ?", parametros);
+        db.delete("Velocidades", "id_paciente = ?", parametros);
     }
 
     public void deleta(Teste teste) {
         SQLiteDatabase db = getWritableDatabase();
-        String[] parametros = {teste.getIdTeste().toString()};
-        db.delete("Testes", "id_teste = ?", parametros);
+        String[] parametrosTeste = {teste.getIdTeste().toString()};
+        db.delete("Testes", "id_teste = ?", parametrosTeste);
+        db.delete("Velocidades", "id_teste = ?", parametrosTeste);
+
+
+
+
     }
 }

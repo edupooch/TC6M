@@ -11,6 +11,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.Chronometer;
 import android.widget.EditText;
@@ -23,6 +24,7 @@ import com.mikhaellopez.circularprogressbar.CircularProgressBar;
 
 import br.edu.ufcspa.tc6m.R;
 import br.edu.ufcspa.tc6m.modelo.Teste;
+import br.edu.ufcspa.tc6m.modelo.Velocidade;
 
 public class CronometroActivity extends AppCompatActivity {
     //CRONOMETRO
@@ -69,6 +71,9 @@ public class CronometroActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cronometro);
 
+        //Não deixa a tela apagar durante o teste
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+
         Intent intent = getIntent();
         teste = (Teste) intent.getSerializableExtra("teste");
         helper = new TesteHelper(this, teste);
@@ -112,9 +117,14 @@ public class CronometroActivity extends AppCompatActivity {
 
                 int dpVoltas = Integer.parseInt(textDistancia.getText().toString());
                 teste.setDistanciaPercorrida(dpVoltas);
+                //.......................SALVA O TEMPO PARADO.......................................//
+                teste.setTempoParadas(cronometroParadas.getText().toString());
+
                 Intent intentVaiProValoresFinais = new Intent(CronometroActivity.this, ValoresFinaisActivity.class);
                 intentVaiProValoresFinais.putExtra("teste", teste);
                 startActivity(intentVaiProValoresFinais);
+
+
                 finish();
 
             }
@@ -131,14 +141,41 @@ public class CronometroActivity extends AppCompatActivity {
         textNome.setText(teste.getPaciente().getNome());
 
         textDistancia = (TextView) findViewById(R.id.textMetros);
+        teste.setUltimaVolta(System.currentTimeMillis());
         //BOTAO DA VOLTA
         FloatingActionButton btAdicionarVolta = (FloatingActionButton) findViewById(R.id.btAdicionarVolta);
         btAdicionarVolta.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                metros += volta;
-                textDistancia.setText(String.valueOf(metros));
-                teste.setVoltas(fase, teste.getVoltas(fase) + volta); //Salva metros percorridos separados por minuto
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        //Incrementa o valor da distancia percorrida total e roda na thread principal
+                        //a atualização do valor no campo textDistancia
+                        metros += volta;
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                textDistancia.setText(String.valueOf(metros));
+                            }
+                        });
+
+                        //Salva metros percorridos separados por minuto
+                        teste.setVoltas(fase, teste.getVoltas(fase) + volta);
+
+                        //Salva velocidade em m/s na lista de Velocidades
+                        float tempoDaVoltaSeg = (float) ((System.currentTimeMillis() - teste.getUltimaVolta()) / 1000);
+                        float velocidade = volta / tempoDaVoltaSeg;
+                        System.out.println("Velociddade" + velocidade + crono.getText().toString());
+
+
+                        //Adiciona na lista de velocidades a velocidade e o tempo atual no cronometro para fazer o gráfico
+                        teste.getVelocidades().add(new Velocidade(velocidade, crono.getText().toString()));
+                        //Marca valor do tempo da ultima volta
+                        teste.setUltimaVolta(System.currentTimeMillis());
+
+                    }
+                }).start();
 
             }
         });
@@ -182,43 +219,13 @@ public class CronometroActivity extends AppCompatActivity {
 
                     if (primeiraVez) {
                         primeiraVez = false;
-                        LinearLayout layoutCrParada = (LinearLayout) findViewById(R.id.layoutCronometroParadas);
-                        assert layoutCrParada != null;
-                        layoutCrParada.setVisibility(View.VISIBLE);
+                        findViewById(R.id.layoutCronometroParadas).setVisibility(View.VISIBLE);
                     }
                 }
 
             }
         });
 
-
-        //BOTAO FECHAR
-        ImageButton btFechar = (ImageButton) findViewById(R.id.btFechar);
-        assert btFechar != null;
-        btFechar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(getApplicationContext());
-                builder.setCancelable(false);
-                builder.setMessage(getString(R.string.dialog_abandonar_voltar));
-                builder.setPositiveButton(getString(R.string.dialog_yes), new DialogInterface.OnClickListener() {
-
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        finish();
-                    }
-                });
-                builder.setNegativeButton(getString(R.string.dialog_no), new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.cancel();
-                    }
-                });
-                AlertDialog alert = builder.create();
-                alert.show();
-
-            }
-        });
     }
 
     private void iniciaCronometro() {
@@ -283,8 +290,7 @@ public class CronometroActivity extends AppCompatActivity {
     }
 
     private void seisMinutos() {
-
-        //ALERTA DE MANDE O PACIENTE PARAR
+        //..........................ALERTA DE MANDE O PACIENTE PARAR..............................//
         final AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setCancelable(false);
         builder.setTitle(getString(R.string.concluido));
@@ -299,32 +305,29 @@ public class CronometroActivity extends AppCompatActivity {
 
         AlertDialog alert = builder.create();
         alert.show();
+        //.......................TROCA DE LAYOUT..................................................//
+        findViewById(R.id.layoutCronometro).setVisibility(View.GONE);
+        findViewById(R.id.layoutBotoes).setVisibility(View.GONE);
 
-        //TROCA DE LAYOUT
-        RelativeLayout layoutCronometro = (RelativeLayout) findViewById(R.id.layoutCronometro);
-        layoutCronometro.setVisibility(View.GONE);
-
-        RelativeLayout layoutBarraInferior = (RelativeLayout) findViewById(R.id.layoutBotoes);
-        layoutBarraInferior.setVisibility(View.GONE);
 
         Button btConfirma = (Button) findViewById(R.id.btConfirma);
         btConfirma.setVisibility(View.VISIBLE);
 
-        LinearLayout layoutDp = (LinearLayout) findViewById(R.id.layoutDp);
-        layoutDp.setVisibility(View.VISIBLE);
+        findViewById(R.id.layoutDp).setVisibility(View.VISIBLE);
 
         final TextView textDistanciaFinal = (TextView) findViewById(R.id.textDistanciaFinal);
         textDistanciaFinal.setText(textDistancia.getText().toString());
 
         final EditText edTextDistanciaRestante = (EditText) findViewById(R.id.edTextDistanciaRestante);
 
-        if(temAlgumValor) {
+        //.............................MOSTRA OS LAYOUTS DE DADOS DURANTE.........................//
+        if (temAlgumValor) { //Verifica se o usuário selecionou algum valor de "durante"
             for (int i = 0; i < 6; i++) {
                 layoutsDados[i].setVisibility(View.VISIBLE);
                 botoesSalvar[i].setVisibility(View.GONE);
             }
         }
-        //BOTAO FINALIZA ACTIVITY
+        //............................BOTAO QUE FINALIZA ACTIVITY.................................//
         btConfirma.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -333,9 +336,17 @@ public class CronometroActivity extends AppCompatActivity {
                 int dpRestante = 0;
                 if (!edTextDistanciaRestante.getText().toString().isEmpty()) {
                     dpRestante = Integer.parseInt(edTextDistanciaRestante.getText().toString()); //valor adicionado no final quando o paciente para
+                    teste.setVoltas(5, teste.getVoltas(5) + dpRestante); //salva o restante da ultima volta(onde o paciente parou)
+                    teste.setDistanciaPercorrida(dpVoltas + dpRestante);//salva a distancia percorrida total
+
+                    //Salva a velocidade caso tenha distancia restante
+                    float tempoDaVoltaSeg = (float) ((System.currentTimeMillis() - teste.getUltimaVolta()) / 1000);
+                    float velocidade = dpRestante / tempoDaVoltaSeg;
+                    teste.getVelocidades().add(new Velocidade(velocidade,crono.getText().toString()));
                 }
-                teste.setVoltas(5, teste.getVoltas(5) + dpRestante); //salva o restante da ultima volta(onde o paciente parou)
-                teste.setDistanciaPercorrida(dpVoltas + dpRestante);//salva a distancia percorrida total
+
+
+
 
                 Intent intentVaiProValoresFinais = new Intent(CronometroActivity.this, ValoresFinaisActivity.class);
                 intentVaiProValoresFinais.putExtra("teste", teste);
@@ -343,6 +354,10 @@ public class CronometroActivity extends AppCompatActivity {
                 finish();
             }
         });
+
+        //.......................SALVA O TEMPO PARADO.......................................//
+        teste.setTempoParadas(cronometroParadas.getText().toString());
+
 
     }
 
@@ -380,8 +395,6 @@ public class CronometroActivity extends AppCompatActivity {
                 }
             });
         }
-
-
     }
 
 
@@ -390,7 +403,7 @@ public class CronometroActivity extends AppCompatActivity {
     public void onBackPressed() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setCancelable(false);
-        builder.setTitle(R.string.atencao);
+        builder.setTitle(R.string.atencao_deletar);
         builder.setMessage(getString(R.string.dialog_abandonar_voltar));
         builder.setPositiveButton(getString(R.string.dialog_yes), new DialogInterface.OnClickListener() {
 

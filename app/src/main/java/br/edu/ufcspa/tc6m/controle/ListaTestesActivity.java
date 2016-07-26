@@ -1,26 +1,19 @@
 package br.edu.ufcspa.tc6m.controle;
 
-import android.content.DialogInterface;
+
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.ContextMenu;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-
 import java.util.Collections;
 import java.util.List;
-
 import br.edu.ufcspa.tc6m.R;
-import br.edu.ufcspa.tc6m.dao.PacienteDAO;
 import br.edu.ufcspa.tc6m.dao.TesteDAO;
 import br.edu.ufcspa.tc6m.modelo.Paciente;
 import br.edu.ufcspa.tc6m.modelo.Teste;
@@ -58,11 +51,11 @@ public class ListaTestesActivity extends AppCompatActivity {
 
         TesteDAO dao = new TesteDAO(this);
         List<Teste> testes = dao.buscaTestes(paciente);
-        
+
         Collections.reverse(testes);
 
         ArrayAdapter<Teste> adapter =
-                new ArrayAdapter<Teste>(this, android.R.layout.simple_list_item_1, testes);
+                new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, testes);
         listaTestes.setAdapter(adapter);
 
         listaTestes.setOnItemClickListener(new AdapterView.OnItemClickListener() {

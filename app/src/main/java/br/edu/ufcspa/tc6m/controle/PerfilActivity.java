@@ -6,13 +6,11 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutCompat;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.Locale;
@@ -128,7 +126,7 @@ public class PerfilActivity extends AppCompatActivity {
             case R.id.action_deletar:
                 AlertDialog.Builder builder = new AlertDialog.Builder(this);
                 builder.setCancelable(false);
-                builder.setTitle(getString(R.string.atencao));
+                builder.setTitle(getString(R.string.atencao_deletar));
                 builder.setMessage(getString(R.string.dialog_deletar));
                 builder.setPositiveButton(getString(R.string.dialog_yes), new DialogInterface.OnClickListener() {
 

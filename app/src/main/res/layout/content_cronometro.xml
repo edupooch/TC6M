@@ -28,36 +28,15 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-                <RelativeLayout
+
+                <TextView
+                    android:id="@+id/textNomePaciente"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-light"
+                    android:gravity="center"
+                    android:textColor="#FFFFFF" />
 
-                    <ImageButton
-                        android:contentDescription="@string/bot_o_fechar_teste"
-                        android:id="@+id/btFechar"
-                        android:layout_width="17dp"
-                        android:layout_height="17dp"
-                        android:background="@drawable/icon_fechar" />
-
-                    <TextView
-                        android:id="@+id/textNomePaciente"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentTop="true"
-                        android:layout_centerHorizontal="true"
-                        android:fontFamily="sans-serif-light"
-                        android:textColor="#FFFFFF" />
-
-                    <ImageView
-                        android:id="@+id/sublinhado"
-                        android:layout_width="wrap_content"
-                        android:layout_height="0.5dp"
-                        android:layout_below="@id/textNomePaciente"
-                        android:layout_centerHorizontal="true"
-                        android:layout_marginTop="1dp"
-                        android:background="#FFFFFF" />
-
-                </RelativeLayout> <!-- Layout Titulo e fechar -->
 
                 <RelativeLayout
                     android:id="@+id/layoutCronometro"
@@ -121,10 +100,10 @@
 
                         <LinearLayout
                             android:id="@+id/layoutCronometroParadas"
-                            android:visibility="gone"
                             android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
-                            android:layout_height="wrap_content">
+                            android:visibility="gone">
 
                             <TextView
                                 android:layout_width="wrap_content"
@@ -140,7 +119,6 @@
                                 android:fontFamily="sans-serif-light"
                                 android:textColor="#FFFFFFFF"
                                 android:textSize="12sp" />
-
 
 
                         </LinearLayout>
@@ -318,9 +296,9 @@
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center"
                                 android:layout_weight="1"
-                                android:inputType="number"
                                 android:ems="2"
-                                android:hint="@string/dist_ncia_restante" />
+                                android:hint="@string/dist_ncia_restante"
+                                android:inputType="number" />
 
                             <TextView
                                 android:layout_width="wrap_content"
