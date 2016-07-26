@@ -1,5 +1,6 @@
 package br.edu.ufcspa.tc6m.controle;
 
+import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -17,7 +18,6 @@ import android.widget.Chronometer;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.mikhaellopez.circularprogressbar.CircularProgressBar;
@@ -27,6 +27,7 @@ import br.edu.ufcspa.tc6m.modelo.Teste;
 import br.edu.ufcspa.tc6m.modelo.Velocidade;
 
 public class CronometroActivity extends AppCompatActivity {
+    public static final int DURATION_TOTAL = 360000;
     //CRONOMETRO
     private Chronometer crono;
     //LAYOUTS
@@ -56,6 +57,7 @@ public class CronometroActivity extends AppCompatActivity {
     private boolean primeiraVez;//que clicou em parar
     private long milis;
     private Chronometer cronometroParadas;
+    private int progresso;
 
     public CronometroActivity() {
         botoesSalvarXML = new int[]{R.id.btSalvarDados1, R.id.btSalvarDados2, R.id.btSalvarDados3, R.id.btSalvarDados4, R.id.btSalvarDados5, R.id.btSalvarDados6,};
@@ -84,6 +86,21 @@ public class CronometroActivity extends AppCompatActivity {
 
     }
 
+    private void barraDeProgresso(float progressoAtual) {
+        circularProgressBar = (CircularProgressBar) findViewById(R.id.progressoCirculo);
+        //Verificando o progresso atual, no caso de o método ser chamado após virar a tela
+        circularProgressBar.setProgress(progressoAtual);
+        float tempoPassado = (DURATION_TOTAL * progressoAtual / 100);
+
+        ObjectAnimator objectAnimator = ObjectAnimator.ofFloat(circularProgressBar, "progress", 100);
+        long duration = (long) (DURATION_TOTAL - tempoPassado);
+        objectAnimator.setDuration(duration);
+        //Interpolator null - animação linear
+        objectAnimator.setInterpolator(null);
+        objectAnimator.start();
+
+    }
+
     private void verificaValores() {
         new Thread(new Runnable() {
             @Override
@@ -104,10 +121,7 @@ public class CronometroActivity extends AppCompatActivity {
 
     private void iniciaComponentes() {
 
-        circularProgressBar = (CircularProgressBar) findViewById(R.id.progressoCirculo);
-        circularProgressBar.setProgressWithAnimation(17, 60000);
-        //Para a barra de progresso ir até o 17%, depois ela é manipulada dentro do método mostraCampos chamado a cada minuto.
-
+        barraDeProgresso(0);
         Button btConfirma = (Button) findViewById(R.id.btConfirma);
         //Essa declaração do botao é apenas para testes
         btConfirma.setVisibility(View.VISIBLE);
@@ -244,6 +258,8 @@ public class CronometroActivity extends AppCompatActivity {
             public void onChronometerTick(Chronometer chronometer) {
                 // miliseconds = SystemClock.elapsedRealtime() - crono.getBase();
                 tempo = Integer.parseInt(crono.getText().toString().replace(":", "")); //TRANSFORMA O RELÓGIO EM UM INTEIRO (01:32 = 132)
+
+
                 switch (tempo) {
                     case 100:
                         mostraCampos(0);
@@ -323,6 +339,7 @@ public class CronometroActivity extends AppCompatActivity {
         //.............................MOSTRA OS LAYOUTS DE DADOS DURANTE.........................//
         if (temAlgumValor) { //Verifica se o usuário selecionou algum valor de "durante"
             for (int i = 0; i < 6; i++) {
+                System.out.println("erro em + " + i);
                 layoutsDados[i].setVisibility(View.VISIBLE);
                 botoesSalvar[i].setVisibility(View.GONE);
             }
@@ -342,10 +359,8 @@ public class CronometroActivity extends AppCompatActivity {
                     //Salva a velocidade caso tenha distancia restante
                     float tempoDaVoltaSeg = (float) ((System.currentTimeMillis() - teste.getUltimaVolta()) / 1000);
                     float velocidade = dpRestante / tempoDaVoltaSeg;
-                    teste.getVelocidades().add(new Velocidade(velocidade,crono.getText().toString()));
+                    teste.getVelocidades().add(new Velocidade(velocidade, crono.getText().toString()));
                 }
-
-
 
 
                 Intent intentVaiProValoresFinais = new Intent(CronometroActivity.this, ValoresFinaisActivity.class);
@@ -375,8 +390,6 @@ public class CronometroActivity extends AppCompatActivity {
             layoutFrase.setVisibility(View.VISIBLE);
             textFrase.setText(frasesId[minuto]);
         }
-
-        circularProgressBar.setProgressWithAnimation((minuto + 2) * 17, 60000);
 
 
         //Só mostra o layout de valores caso pelo menos um deles esteja ativos nas preferências
@@ -422,5 +435,26 @@ public class CronometroActivity extends AppCompatActivity {
         alert.show();
     }
 
+
+    @Override
+    public void onSaveInstanceState(Bundle savedInstanceState) {
+        //Salvar o tempo no cronometro quando vira a tela
+        savedInstanceState.putLong("cronometro", crono.getBase());
+        //Salva o progresso atual da barra, para retornar de onde parou
+        savedInstanceState.putFloat("progresso", circularProgressBar.getProgress());
+
+        super.onSaveInstanceState(savedInstanceState);
+    }
+
+    //onRestoreInstanceState
+    @Override
+    public void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        //Recuperar as informações perdidas após virar a tela
+        crono.setBase(savedInstanceState.getLong("cronometro"));
+        barraDeProgresso(savedInstanceState.getFloat("progresso"));
+
+
+    }
 
 }
