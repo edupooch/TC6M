@@ -11,14 +11,13 @@
 
         <ImageView
             android:id="@+id/imagem_item"
-            android:layout_width="64dp"
-            android:layout_height="64dp"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
             android:layout_gravity="center_vertical"
-            android:layout_margin="4dp"
             android:contentDescription="@string/foto_do_paciente"
-            android:padding="5dp"
-            android:tint="#42a5f5"
-            android:src="@drawable/circulo_analise_teste" />
+            android:layout_margin="8dp"
+            android:background="#42a5f5"
+            android:src="@drawable/icon_moldura_redonda" />
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -27,13 +26,13 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/textNomePacienteLista"
+                android:id="@+id/titulo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif-light"
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
-                android:text="Teste 1 - 20/10/2014"
+                android:text="Teste do dia 20/10/2014"
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
@@ -44,35 +43,14 @@
                 android:paddingRight="10dp">
 
                 <TextView
-                    android:id="@+id/textNumeroTestesLista"
+                    android:id="@+id/subtitulo"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
                     android:layout_marginStart="5dp"
                     android:text="800" />
 
-                <TextView
-                    android:id="@+id/textTestesPluralLista"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="m " />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/divisor" />
-
-                <TextView
-                    android:id="@+id/textIdadeLista"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingLeft="5dp"
-                    android:paddingRight="5dp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="86%" />
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>

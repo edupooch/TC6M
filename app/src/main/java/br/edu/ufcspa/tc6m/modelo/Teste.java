@@ -276,7 +276,7 @@ public class Teste implements Serializable {
     @Override
     public String toString() {
         String[] data = getData().toString().split("-");
-        return "Teste do dia " + data[2] + "/" + data[1] + "/" + data[0];
+        return " "+data[2] + "/" + data[1] + "/" + data[0];
     }
 
     public ArrayList<Velocidade> getVelocidades() {

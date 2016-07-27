@@ -15,10 +15,10 @@
     tools:showIn="@layout/activity_valores_recuperacao">
 
     <ScrollView
-        android:visibility="gone"
         android:id="@+id/layoutDadosRecuperacao"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:visibility="gone">
 
         <TableLayout
             android:layout_width="match_parent"
@@ -353,65 +353,68 @@
         </TableLayout>
     </ScrollView>
 
-
-    <RelativeLayout
-        android:id="@+id/layoutAguarde"
-        android:layout_width="match_parent"
+    <ScrollView
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content">
 
         <RelativeLayout
-            android:id="@+id/layoutCronometroRecup"
+            android:id="@+id/layoutAguarde"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <Chronometer
-                android:id="@+id/cronometroRecuperacao"
+            <RelativeLayout
+                android:id="@+id/layoutCronometroRecup"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <Chronometer
+                    android:id="@+id/cronometroRecuperacao"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:fontFamily="sans-serif-thin"
+                    android:textColor="#FFFFFFFF"
+                    android:textSize="60sp"
+
+                    />
+
+                <com.mikhaellopez.circularprogressbar.CircularProgressBar
+                    android:id="@+id/progressoCirculo"
+                    android:layout_width="240dp"
+                    android:layout_height="240dp"
+                    android:layout_centerHorizontal="true"
+                    app:cpb_background_progressbar_color="#FFFFFF"
+                    app:cpb_background_progressbar_width="2dp"
+                    app:cpb_progressbar_color="@color/colorAccent"
+                    app:cpb_progressbar_width="5dp" />
+
+            </RelativeLayout> <!-- Layout Cronometro -->
+
+            <TextView
+                android:id="@+id/textAguarde"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_below="@id/layoutCronometroRecup"
                 android:layout_centerHorizontal="true"
-                android:layout_centerVertical="true"
-                android:fontFamily="sans-serif-thin"
-                android:textColor="#FFFFFFFF"
-                android:textSize="60sp"
+                android:layout_marginTop="35dp"
+                android:fontFamily="sans-serif-light"
+                android:gravity="center"
+                android:text="@string/aguarde_2min_para_registrar_os_valores_de_recupera_o"
+                android:textColor="#FFFFFF"
+                android:textSize="12sp" />
 
-                />
-
-
-            <ImageView
-                android:id="@+id/imgCirculo"
-                android:layout_width="250dp"
-                android:layout_height="250dp"
-                android:layout_alignParentTop="true"
+            <Button
+                android:id="@+id/btPularTempo"
+                android:layout_width="180dp"
+                android:layout_height="38dp"
+                android:layout_below="@id/layoutCronometroRecup"
                 android:layout_centerHorizontal="true"
-                android:background="@drawable/circulo3" />
-
-
-        </RelativeLayout> <!-- Layout Cronometro -->
-
-        <TextView
-            android:id="@+id/textAguarde"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/layoutCronometroRecup"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="35dp"
-            android:fontFamily="sans-serif-light"
-            android:gravity="center"
-            android:text="@string/aguarde_2min_para_registrar_os_valores_de_recupera_o"
-            android:textColor="#FFFFFF"
-            android:textSize="12sp" />
-
-        <Button
-            android:id="@+id/btPularTempo"
-            android:layout_width="180dp"
-            android:layout_height="38dp"
-            android:layout_below="@id/layoutCronometroRecup"
-            android:layout_centerHorizontal="true"
-            android:layout_gravity="center"
-            android:layout_marginTop="150dp"
-            android:background="@color/colorAccent"
-            android:text="@string/registrar_agora"
-            android:textColor="#d7ffffff" />
-    </RelativeLayout>
-
+                android:layout_gravity="center"
+                android:layout_marginTop="150dp"
+                android:background="@color/colorAccent"
+                android:text="@string/registrar_agora"
+                android:textColor="#d7ffffff" />
+        </RelativeLayout>
+    </ScrollView>
 </RelativeLayout>

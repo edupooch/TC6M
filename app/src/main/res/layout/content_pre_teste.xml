@@ -489,6 +489,15 @@
 
         </LinearLayout>
 
+        <Button
+            android:id="@+id/btOk"
+            android:layout_width="180dp"
+            android:layout_height="38dp"
+            android:layout_gravity="center"
+            android:layout_margin="25dp"
+            android:background="@color/corPrimariaEscura"
+            android:text="@string/continuar"
+            android:textColor="#d7ffffff" />
 
     </LinearLayout>
 

@@ -124,7 +124,7 @@ public class CronometroActivity extends AppCompatActivity {
         barraDeProgresso(0);
         Button btConfirma = (Button) findViewById(R.id.btConfirma);
         //Essa declaração do botao é apenas para testes
-        btConfirma.setVisibility(View.VISIBLE);
+        btConfirma.setVisibility(View.GONE);
         btConfirma.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -340,8 +340,10 @@ public class CronometroActivity extends AppCompatActivity {
         if (temAlgumValor) { //Verifica se o usuário selecionou algum valor de "durante"
             for (int i = 0; i < 6; i++) {
                 System.out.println("erro em + " + i);
-                layoutsDados[i].setVisibility(View.VISIBLE);
-                botoesSalvar[i].setVisibility(View.GONE);
+                findViewById(layoutsDadosXML[i]).setVisibility(View.VISIBLE);
+//                layoutsDados[i].setVisibility(View.VISIBLE);
+                findViewById(botoesSalvarXML[i]).setVisibility(View.GONE);
+                //botoesSalvar[i].setVisibility(View.GONE);
             }
         }
         //............................BOTAO QUE FINALIZA ACTIVITY.................................//
@@ -416,7 +418,7 @@ public class CronometroActivity extends AppCompatActivity {
     public void onBackPressed() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setCancelable(false);
-        builder.setTitle(R.string.atencao_deletar);
+        builder.setTitle(R.string.atencao_sair);
         builder.setMessage(getString(R.string.dialog_abandonar_voltar));
         builder.setPositiveButton(getString(R.string.dialog_yes), new DialogInterface.OnClickListener() {
 
@@ -443,6 +445,11 @@ public class CronometroActivity extends AppCompatActivity {
         //Salva o progresso atual da barra, para retornar de onde parou
         savedInstanceState.putFloat("progresso", circularProgressBar.getProgress());
 
+        savedInstanceState.putBoolean("ja_parou",cronometroParadas.getVisibility() == View.VISIBLE);
+        savedInstanceState.putString("distancia", textDistancia.getText().toString());
+        savedInstanceState.putString("paradas", textParadas.getText().toString());
+        savedInstanceState.putLong("tempo_parado", cronometroParadas.getBase());
+
         super.onSaveInstanceState(savedInstanceState);
     }
 
@@ -453,7 +460,14 @@ public class CronometroActivity extends AppCompatActivity {
         //Recuperar as informações perdidas após virar a tela
         crono.setBase(savedInstanceState.getLong("cronometro"));
         barraDeProgresso(savedInstanceState.getFloat("progresso"));
-
+        textDistancia.setText(savedInstanceState.getString("distancia"));
+        metros = Integer.parseInt(savedInstanceState.getString("distancia"));
+        if (savedInstanceState.getBoolean("ja_parou")) {
+            primeiraVez=false;
+            cronometroParadas.setVisibility(View.VISIBLE);
+            textParadas.setText(savedInstanceState.getString("paradas"));
+            cronometroParadas.setBase(savedInstanceState.getLong("tempo_parado"));
+        }
 
     }
 

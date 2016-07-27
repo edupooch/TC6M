@@ -97,7 +97,7 @@ public class AnaliseTesteActivity extends AppCompatActivity {
         }
 
         //Pega a última formula usada das preferências, e o default é a formula 0 (Britto 1)
-        SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
+        SharedPreferences sharedPref = getSharedPreferences("PREFERENCIAS",Context.MODE_PRIVATE);
         int ultimaFormula = sharedPref.getInt("ULTIMA_FORMULA", ListaFormulas.ID_BRITTO1);
         Formula formulaInicial = new ListaFormulas().getFormulas().get(ultimaFormula);
         atualizaFormula(formulaInicial);
@@ -329,7 +329,7 @@ public class AnaliseTesteActivity extends AppCompatActivity {
         textTituloEquacao.setText(formula.getAutores());
 
         //Salva nas preferências da activity a fórmula pedida como ultima formula usada
-        SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
+        SharedPreferences sharedPref = getSharedPreferences("PREFERENCIAS",MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPref.edit();
         editor.putInt("ULTIMA_FORMULA", formula.getIdFormula());
         editor.apply();

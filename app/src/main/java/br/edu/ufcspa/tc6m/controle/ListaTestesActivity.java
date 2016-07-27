@@ -14,6 +14,7 @@ import android.widget.ListView;
 import java.util.Collections;
 import java.util.List;
 import br.edu.ufcspa.tc6m.R;
+import br.edu.ufcspa.tc6m.adapter.TestesAdapter;
 import br.edu.ufcspa.tc6m.dao.TesteDAO;
 import br.edu.ufcspa.tc6m.modelo.Paciente;
 import br.edu.ufcspa.tc6m.modelo.Teste;
@@ -54,9 +55,10 @@ public class ListaTestesActivity extends AppCompatActivity {
 
         Collections.reverse(testes);
 
-        ArrayAdapter<Teste> adapter =
-                new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, testes);
-        listaTestes.setAdapter(adapter);
+//        ArrayAdapter<Teste> adapter =
+//                new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, testes);
+
+        listaTestes.setAdapter(new TestesAdapter(this,testes));
 
         listaTestes.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -92,4 +94,9 @@ public class ListaTestesActivity extends AppCompatActivity {
         });
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        carregaLista();
+    }
 }

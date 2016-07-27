@@ -11,8 +11,8 @@
     <string name="title_activity_valores_basais">Valores Basais</string>
 
 
-    <string name="dialog_abandonar">Deseja abandonar o teste? Todos os dados do teste serão perdidos.</string>
-    <string name="dialog_abandonar_voltar">Deseja abandonar o teste e voltar para redefinir os valores basais? Os dados do teste serão perdidos.</string>
+
+    <string name="dialog_abandonar_voltar">Deseja abandonar o teste? Todos os dados do teste serão perdidos.</string>
 
     <string name="dialog_yes">Sim</string>
     <string name="dialog_no">Não</string>
@@ -46,7 +46,7 @@
     <string name="title_activity_valores_finais">Valores Finais</string>
     <string name="title_activity_valores_recuperacao">Valores de Recuperação</string>
     <string name="numero_de_paradas">Paradas: </string>
-    <string name="title_activity_lista_testes">Teste do Paciente</string>
+    <string name="title_activity_lista_testes">Testes do Paciente</string>
     <string name="teste_singular">teste</string>
     <string name="text_inicial_vazio">Você ainda não tem pacientes cadastrados. Adicione um paciente novo no botão no canto inferior direito da tela</string>
     <string name="text_inicial">Selecione um paciente para realizar um novo teste ou verificar os resultados de testes anteriores</string>
@@ -127,6 +127,7 @@
     <string name="velocidade_tempo">Velocidade / Tempo</string>
     <string name="dist_ncia_minuto">Distância / Minuto</string>
     <string name="an_lise_do_teste">Análise do Teste</string>
+    <string name="continuar">Continuar</string>
 
 
 </resources>

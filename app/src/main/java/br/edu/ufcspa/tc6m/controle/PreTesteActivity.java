@@ -10,6 +10,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.Toast;
 
@@ -93,26 +94,16 @@ public class PreTesteActivity extends AppCompatActivity {
             });
         }
 
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu_preteste, menu);
-        return super.onCreateOptionsMenu(menu);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.check_preteste:
+        Button btOk = (Button) findViewById(R.id.btOk);
+        btOk.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
                 Intent intentVaiProValoresBasais = new Intent(PreTesteActivity.this, ValoresBasaisActivity.class);
                 intentVaiProValoresBasais.putExtra("paciente", paciente);
                 startActivity(intentVaiProValoresBasais);
                 finish();
-        }
-        return super.onOptionsItemSelected(item);
+            }
+        });
+
     }
-
-
 }
