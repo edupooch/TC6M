@@ -30,7 +30,20 @@ public class PreferenciasActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         sharedPref = getSharedPreferences("PREFERENCIAS",MODE_PRIVATE);
 
-        carregaLista();
+        findViewById(R.id.layout_selecionar_equacoes).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(findViewById(R.id.lista_formulas).getVisibility() == View.VISIBLE){
+                    findViewById(R.id.lista_formulas).setVisibility(View.GONE);
+                }else{
+                    carregaLista();
+                }
+
+            }
+        });
+
+
+
 
         com.shawnlin.numberpicker.NumberPicker numberPicker = (com.shawnlin.numberpicker.NumberPicker) findViewById(R.id.number_picker_tamanho_volta);
         numberPicker.setValue(sharedPref.getInt("TAMANHO_VOLTA", TAMANHO_MINIMO_VOLTA));
@@ -62,6 +75,7 @@ public class PreferenciasActivity extends AppCompatActivity {
 
     private void carregaLista() {
         ListView listaFormulas = (ListView) findViewById(R.id.lista_formulas);
+        listaFormulas.setVisibility(View.VISIBLE);
         FormulasAdapter adapter = new FormulasAdapter(this, new ListaFormulas().getFormulas(), sharedPref);
         listaFormulas.setAdapter(adapter);
 

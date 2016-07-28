@@ -82,6 +82,7 @@
                         android:background="@drawable/icon_fc" />
 
                     <EditText
+                        android:maxLength="3"
                         android:id="@+id/edTextFC7"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -136,6 +137,7 @@
                         android:background="@drawable/icon_pulmao" />
 
                     <EditText
+                        android:maxLength="5"
                         android:id="@+id/edTextDisp7"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -178,6 +180,7 @@
                         android:background="@drawable/icon_mmii" />
 
                     <EditText
+                        android:maxLength="5"
                         android:id="@+id/edTextFad7"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -234,6 +237,7 @@
 
                     <EditText
                         android:id="@+id/edTextPAS1"
+                        android:maxLength="3"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
@@ -275,6 +279,7 @@
                     <EditText
                         android:id="@+id/edTextPAD1"
                         android:layout_width="match_parent"
+                        android:maxLength="3"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_marginEnd="10dp"
@@ -328,6 +333,7 @@
 
                     <EditText
                         android:id="@+id/edTextGC1"
+                        android:maxLength="5"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"

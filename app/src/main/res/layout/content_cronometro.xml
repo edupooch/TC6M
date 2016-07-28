@@ -169,6 +169,7 @@
 
                                 <EditText
                                     android:id="@+id/edTextFC6"
+                                    android:maxLength="3"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="2"
@@ -185,6 +186,7 @@
 
                                 <EditText
                                     android:id="@+id/edTextSp6"
+                                    android:maxLength="3"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
@@ -200,6 +202,7 @@
                                     android:background="#a3a3a3" />
 
                                 <EditText
+                                    android:maxLength="5"
                                     android:id="@+id/edTextDisp6"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
@@ -216,6 +219,7 @@
                                     android:background="#a3a3a3" />
 
                                 <EditText
+                                    android:maxLength="5"
                                     android:id="@+id/edTextFad6"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
@@ -291,6 +295,7 @@
                                 android:textSize="18sp" />
 
                             <EditText
+                                android:maxLength="3"
                                 android:id="@+id/edTextDistanciaRestante"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
@@ -388,6 +393,7 @@
                                 android:layout_margin="5dp">
 
                                 <EditText
+                                    android:maxLength="3"
                                     android:id="@+id/edTextFC1"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
@@ -404,6 +410,7 @@
                                     android:background="#a3a3a3" />
 
                                 <EditText
+                                    android:maxLength="3"
                                     android:id="@+id/edTextSp1"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
@@ -420,6 +427,7 @@
                                     android:background="#a3a3a3" />
 
                                 <EditText
+                                    android:maxLength="5"
                                     android:id="@+id/edTextDisp1"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
@@ -437,6 +445,7 @@
 
                                 <EditText
                                     android:id="@+id/edTextFad1"
+                                    android:maxLength="5"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
@@ -500,6 +509,7 @@
                                 android:layout_margin="5dp">
 
                                 <EditText
+                                    android:maxLength="3"
                                     android:id="@+id/edTextFC2"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
@@ -517,6 +527,7 @@
 
                                 <EditText
                                     android:id="@+id/edTextSp2"
+                                    android:maxLength="3"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
@@ -533,6 +544,7 @@
 
                                 <EditText
                                     android:id="@+id/edTextDisp2"
+                                    android:maxLength="5"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
@@ -548,6 +560,7 @@
                                     android:background="#a3a3a3" />
 
                                 <EditText
+                                    android:maxLength="5"
                                     android:id="@+id/edTextFad2"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
@@ -612,6 +625,7 @@
                                 android:layout_margin="5dp">
 
                                 <EditText
+                                    android:maxLength="3"
                                     android:id="@+id/edTextFC3"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
@@ -628,6 +642,7 @@
                                     android:background="#a3a3a3" />
 
                                 <EditText
+                                    android:maxLength="3"
                                     android:id="@+id/edTextSp3"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
@@ -644,6 +659,7 @@
                                     android:background="#a3a3a3" />
 
                                 <EditText
+                                    android:maxLength="5"
                                     android:id="@+id/edTextDisp3"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
@@ -660,6 +676,7 @@
                                     android:background="#a3a3a3" />
 
                                 <EditText
+                                    android:maxLength="5"
                                     android:id="@+id/edTextFad3"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
@@ -724,6 +741,7 @@
                                 android:layout_margin="5dp">
 
                                 <EditText
+                                    android:maxLength="3"
                                     android:id="@+id/edTextFC4"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
@@ -740,6 +758,7 @@
                                     android:background="#a3a3a3" />
 
                                 <EditText
+                                    android:maxLength="3"
                                     android:id="@+id/edTextSp4"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
@@ -756,6 +775,7 @@
                                     android:background="#a3a3a3" />
 
                                 <EditText
+                                    android:maxLength="5"
                                     android:id="@+id/edTextDisp4"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
@@ -772,6 +792,7 @@
                                     android:background="#a3a3a3" />
 
                                 <EditText
+                                    android:maxLength="5"
                                     android:id="@+id/edTextFad4"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
@@ -836,6 +857,7 @@
                                 android:layout_margin="5dp">
 
                                 <EditText
+                                    android:maxLength="3"
                                     android:id="@+id/edTextFC5"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
@@ -852,6 +874,7 @@
                                     android:background="#a3a3a3" />
 
                                 <EditText
+                                    android:maxLength="3"
                                     android:id="@+id/edTextSp5"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
@@ -868,6 +891,7 @@
                                     android:background="#a3a3a3" />
 
                                 <EditText
+                                    android:maxLength="5"
                                     android:id="@+id/edTextDisp5"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
@@ -884,6 +908,7 @@
                                     android:background="#a3a3a3" />
 
                                 <EditText
+                                    android:maxLength="5"
                                     android:id="@+id/edTextFad5"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"

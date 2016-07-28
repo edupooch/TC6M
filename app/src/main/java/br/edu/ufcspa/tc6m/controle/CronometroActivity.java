@@ -124,7 +124,7 @@ public class CronometroActivity extends AppCompatActivity {
         barraDeProgresso(0);
         Button btConfirma = (Button) findViewById(R.id.btConfirma);
         //Essa declaração do botao é apenas para testes
-        btConfirma.setVisibility(View.GONE);
+        btConfirma.setVisibility(View.VISIBLE);
         btConfirma.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -142,10 +142,9 @@ public class CronometroActivity extends AppCompatActivity {
                 finish();
 
             }
-        }); //apagar depois
+        });
 
         iniciaCronometro();
-
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setVisibility(View.GONE);
@@ -258,8 +257,6 @@ public class CronometroActivity extends AppCompatActivity {
             public void onChronometerTick(Chronometer chronometer) {
                 // miliseconds = SystemClock.elapsedRealtime() - crono.getBase();
                 tempo = Integer.parseInt(crono.getText().toString().replace(":", "")); //TRANSFORMA O RELÓGIO EM UM INTEIRO (01:32 = 132)
-
-
                 switch (tempo) {
                     case 100:
                         mostraCampos(0);
@@ -445,15 +442,21 @@ public class CronometroActivity extends AppCompatActivity {
         //Salva o progresso atual da barra, para retornar de onde parou
         savedInstanceState.putFloat("progresso", circularProgressBar.getProgress());
 
-        savedInstanceState.putBoolean("ja_parou",cronometroParadas.getVisibility() == View.VISIBLE);
+        savedInstanceState.putBoolean("ja_parou", cronometroParadas.getVisibility() == View.VISIBLE);
         savedInstanceState.putString("distancia", textDistancia.getText().toString());
         savedInstanceState.putString("paradas", textParadas.getText().toString());
         savedInstanceState.putLong("tempo_parado", cronometroParadas.getBase());
+
+        for (int i = 0; i < 6; i++) {
+            savedInstanceState.putInt("dados" + i, findViewById(layoutsDadosXML[i]).getVisibility());
+        }
+
 
         super.onSaveInstanceState(savedInstanceState);
     }
 
     //onRestoreInstanceState
+    @SuppressWarnings("WrongConstant")
     @Override
     public void onRestoreInstanceState(Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
@@ -463,10 +466,26 @@ public class CronometroActivity extends AppCompatActivity {
         textDistancia.setText(savedInstanceState.getString("distancia"));
         metros = Integer.parseInt(savedInstanceState.getString("distancia"));
         if (savedInstanceState.getBoolean("ja_parou")) {
-            primeiraVez=false;
+            primeiraVez = false;
             cronometroParadas.setVisibility(View.VISIBLE);
             textParadas.setText(savedInstanceState.getString("paradas"));
             cronometroParadas.setBase(savedInstanceState.getLong("tempo_parado"));
+        }
+
+        for (int i = 0; i < 6; i++) {
+            if (savedInstanceState.getInt("dados" + i) == View.VISIBLE) {
+                layoutsDados[i] = (LinearLayout) findViewById(layoutsDadosXML[i]);
+                layoutsDados[i].setVisibility(savedInstanceState.getInt("dados" + i));
+                botoesSalvar[i] = (TextView) findViewById(botoesSalvarXML[i]);
+                final int finalI = i;
+                botoesSalvar[i].setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        teste = helper.pegaDadosFromFields(finalI + 1); //minuto 1 = 0 aqui e no helper é 1
+                        layoutsDados[finalI].setVisibility(View.GONE);
+                    }
+                });
+            }
         }
 
     }

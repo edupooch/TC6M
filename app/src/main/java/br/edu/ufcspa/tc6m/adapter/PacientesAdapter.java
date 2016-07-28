@@ -3,6 +3,7 @@ package br.edu.ufcspa.tc6m.adapter;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,7 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.io.FileOutputStream;
 import java.util.List;
 
 import br.edu.ufcspa.tc6m.R;
@@ -79,9 +81,24 @@ public class PacientesAdapter extends BaseAdapter {
         ImageView campoFoto = (ImageView) view.findViewById(R.id.imagem_item);
         String caminhoFoto = paciente.getCaminhoFoto();
         if (caminhoFoto != null) {
-            Bitmap bitmap = BitmapFactory.decodeFile(caminhoFoto);
-            bitmap = Bitmap.createScaledBitmap(bitmap, 150, 100, true);
-            campoFoto.setImageBitmap(bitmap);
+            final BitmapFactory.Options options = new BitmapFactory.Options();
+            options.inSampleSize = 8;
+            Bitmap bm = BitmapFactory.decodeFile(caminhoFoto, options);
+            if (bm.getWidth() > bm.getHeight()) {
+                bm = Bitmap.createScaledBitmap(bm, 150, 100, false);
+                //foto vertical
+                Matrix matrix = new Matrix();
+                matrix.postRotate(90);
+                bm = Bitmap.createBitmap(bm, 0, 0, bm.getWidth(), bm.getHeight(), matrix, true);
+                FileOutputStream out = null;
+
+            } else {
+                //horizontal
+                bm = Bitmap.createScaledBitmap(bm, 150, 100, false);
+            }
+
+
+            campoFoto.setImageBitmap(bm);
             campoFoto.setScaleType(ImageView.ScaleType.CENTER_CROP);
         }
 

@@ -9,6 +9,7 @@ import android.graphics.BitmapFactory;
 import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.PersistableBundle;
 import android.provider.MediaStore;
 import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
@@ -205,4 +206,19 @@ public class FormularioActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    @Override
+    public void onSaveInstanceState(Bundle savedInstanceState) {
+        savedInstanceState.putString("caminho_foto", caminhoFoto);
+        super.onSaveInstanceState(savedInstanceState);
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        caminhoFoto = savedInstanceState.getString("caminho_foto");
+        if (caminhoFoto != null) {
+            System.out.println("foto" + savedInstanceState.getString("caminho_foto"));
+            helper.carregaImagem(caminhoFoto);
+        }
+    }
 }

@@ -48,8 +48,6 @@ public class ListaTestesActivity extends AppCompatActivity {
 
     private void carregaLista() {
         listaTestes = (ListView) findViewById(R.id.lista_testes);
-
-
         TesteDAO dao = new TesteDAO(this);
         List<Teste> testes = dao.buscaTestes(paciente);
 

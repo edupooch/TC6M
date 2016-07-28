@@ -83,6 +83,7 @@
 
                     <EditText
                         android:id="@+id/edTextFC0"
+                        android:maxLength="3"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
@@ -124,6 +125,7 @@
                         android:background="@drawable/icon_spo2" />
 
                     <EditText
+                        android:maxLength="3"
                         android:id="@+id/edTextSp0"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -181,11 +183,12 @@
                         android:id="@+id/edTextDisp0"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:maxLength="5"
                         android:layout_gravity="center"
                         android:layout_marginEnd="10dp"
                         android:layout_marginRight="10dp"
                         android:background="#FFFFFF"
-                        android:inputType="number" />
+                        android:inputType="numberDecimal" />
                 </LinearLayout>
             </LinearLayout> <!-- Dispneia -->
 
@@ -221,13 +224,14 @@
 
                     <EditText
                         android:id="@+id/edTextFad0"
+                        android:maxLength="5"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_marginEnd="10dp"
                         android:layout_marginRight="10dp"
                         android:background="#FFFFFF"
-                        android:inputType="number" />
+                        android:inputType="numberDecimal" />
                 </LinearLayout>
             </LinearLayout>
 
@@ -280,6 +284,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_marginEnd="10dp"
+                        android:maxLength="3"
                         android:layout_marginRight="10dp"
                         android:background="#FFFFFF"
                         android:inputType="number" />
@@ -320,6 +325,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_marginEnd="10dp"
+                        android:maxLength="3"
                         android:layout_marginRight="10dp"
                         android:background="#FFFFFF"
                         android:inputType="number" />
@@ -374,9 +380,9 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_marginEnd="10dp"
+                        android:maxLength="3"
                         android:layout_marginRight="10dp"
                         android:background="#FFFFFF"
-
                         android:inputType="number" />
                 </LinearLayout>
             </LinearLayout> <!--GC-->
@@ -419,8 +425,8 @@
                         android:layout_marginEnd="10dp"
                         android:layout_marginRight="10dp"
                         android:background="#FFFFFF"
-
-                        android:inputType="number" />
+                        android:maxLength="3"
+                        android:inputType="numberDecimal" />
                 </LinearLayout>
             </LinearLayout> <!--o2 sup-->
 

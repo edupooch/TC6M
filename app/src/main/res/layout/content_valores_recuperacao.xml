@@ -89,6 +89,7 @@
 
                         <EditText
                             android:id="@+id/edTextFC8"
+                            android:maxLength="3"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
@@ -136,6 +137,7 @@
                             android:id="@+id/edTextGC3"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:maxLength="5"
                             android:layout_gravity="center"
                             android:layout_marginEnd="10dp"
                             android:layout_marginRight="10dp"
@@ -158,6 +160,7 @@
                 <LinearLayout
                     android:id="@+id/layout_dispneia"
                     android:layout_width="0dp"
+
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="5dp"
                     android:layout_marginRight="5dp"
@@ -234,6 +237,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
+                            android:maxLength="5"
                             android:layout_marginEnd="10dp"
                             android:layout_marginRight="10dp"
                             android:background="#FFFFFF"
@@ -286,6 +290,7 @@
 
                         <EditText
                             android:id="@+id/edTextPAS3"
+                            android:maxLength="3"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
@@ -307,7 +312,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="5dp"
-                        android:text="Pressão Diastólica"
+                        android:text="@string/press_o_diast_lica"
                         android:textColor="#96ffffff"
                         android:textSize="12sp" />
 
@@ -330,6 +335,7 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:layout_marginEnd="10dp"
+                            android:maxLength="3"
                             android:layout_marginRight="10dp"
                             android:background="#FFFFFF"
                             android:inputType="number" />

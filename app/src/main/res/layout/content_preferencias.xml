@@ -86,16 +86,17 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/layout_selecionar_equacoes"
+        android:clickable="true"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="3dp"
         android:background="#FFFFFF"
-        android:padding="10dp">
+        android:padding="11dp">
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:orientation="vertical">
 
 
@@ -103,6 +104,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/selecionar_equacoes"
+                android:layout_marginBottom="5dp"
                 android:textSize="20sp" />
 
             <TextView
@@ -111,14 +113,13 @@
                 android:text="@string/selecionar_equacoes_descricao" />
         </LinearLayout>
 
-        <View
-            android:layout_width="50dp"
-            android:layout_height="50dp" />
+
 
 
     </LinearLayout>
 
     <ListView
+        android:visibility="gone"
         android:layout_marginTop="2dp"
         android:id="@+id/lista_formulas"
         android:layout_width="match_parent"

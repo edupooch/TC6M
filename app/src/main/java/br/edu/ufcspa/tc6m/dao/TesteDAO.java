@@ -52,7 +52,7 @@ public class TesteDAO extends SQLiteOpenHelper {
     String[] strKeyVoltas = {"voltas_0", "voltas_1", "voltas_2", "voltas_3", "voltas_4", "voltas_5",};
 
     public TesteDAO(Context context) {
-        super(context, "Testes", null, 8);
+        super(context, "Testes", null, 1);
     }
 
     @Override

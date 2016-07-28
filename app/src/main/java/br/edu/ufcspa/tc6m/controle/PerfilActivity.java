@@ -7,23 +7,30 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.ContextMenu;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ListView;
 import android.widget.TextView;
 
+import java.util.Collections;
+import java.util.List;
 import java.util.Locale;
 
 import br.edu.ufcspa.tc6m.R;
+import br.edu.ufcspa.tc6m.adapter.TestesAdapter;
 import br.edu.ufcspa.tc6m.dao.PacienteDAO;
 import br.edu.ufcspa.tc6m.dao.TesteDAO;
 import br.edu.ufcspa.tc6m.modelo.Paciente;
+import br.edu.ufcspa.tc6m.modelo.Teste;
 
 public class PerfilActivity extends AppCompatActivity {
-    private FormularioHelper helper;
     private PerfilActivity activity = this;
     private Paciente paciente;
+    private ListView listaTestes;
 
 
     @Override
@@ -32,15 +39,15 @@ public class PerfilActivity extends AppCompatActivity {
         setContentView(R.layout.activity_perfil);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
         iniciaComponentes();
     }
 
     private void iniciaComponentes() {
         escreveDados();
+        carregaLista();
         ////////////////////////////////////////////////////////////////////////////////////////////
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.btnPlayTeste);
-        fab.setOnClickListener(new View.OnClickListener() {
+        FloatingActionButton btIniciarTeste = (FloatingActionButton) findViewById(R.id.btnPlayTeste);
+        btIniciarTeste.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intentVaiProPreTeste = new Intent(PerfilActivity.this, PreTesteActivity.class);
@@ -49,15 +56,6 @@ public class PerfilActivity extends AppCompatActivity {
             }
         });
 
-        FloatingActionButton fab2 = (FloatingActionButton) findViewById(R.id.btAntigos);
-        fab2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intentVaiProListaTestes = new Intent(PerfilActivity.this, ListaTestesActivity.class);
-                intentVaiProListaTestes.putExtra("paciente", paciente);
-                startActivity(intentVaiProListaTestes);
-            }
-        });
         ////////////////////////////////////////////////////////////////////////////////////////////
 
     }
@@ -97,8 +95,7 @@ public class PerfilActivity extends AppCompatActivity {
         if (paciente.getObs().isEmpty()) {
             findViewById(R.id.layout_observacoes).setVisibility(View.GONE);
         } else {
-            String obs = "Obs: " + paciente.getObs();
-            textoObs.setText(obs);
+            textoObs.setText(paciente.getObs());
         }
 
 //        String[] arrayData = paciente.getDataNascimento().toString().split("-");
@@ -154,5 +151,64 @@ public class PerfilActivity extends AppCompatActivity {
 
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    private void carregaLista() {
+        listaTestes = (ListView) findViewById(R.id.lista_testes);
+        TesteDAO dao = new TesteDAO(this);
+        List<Teste> testes = dao.buscaTestes(paciente);
+
+//        registerForContextMenu(listaTestes);
+        if (testes.size() == 0){
+            findViewById(R.id.text_nenhum_teste).setVisibility(View.VISIBLE);
+        } else{
+            findViewById(R.id.text_nenhum_teste).setVisibility(View.GONE);
+        }
+
+        Collections.reverse(testes);
+
+//        ArrayAdapter<Teste> adapter =
+//                new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, testes);
+
+        listaTestes.setAdapter(new TestesAdapter(this,testes));
+
+        listaTestes.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> lista, View item, int position, long id) {
+                Teste teste = (Teste) listaTestes.getItemAtPosition(position);
+                // teste clicado
+
+                Intent intentVaiPraAnalise = new Intent(PerfilActivity.this, AnaliseTesteActivity.class);
+                intentVaiPraAnalise.putExtra("teste", teste);
+                startActivity(intentVaiPraAnalise);
+            }
+        });
+
+        dao.close();
+    }
+//    @Override
+//    public void onCreateContextMenu(ContextMenu menu, View v, final ContextMenu.ContextMenuInfo menuInfo) {
+//        MenuItem deletar = menu.add("Deletar Teste");
+//        deletar.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+//            @Override
+//            public boolean onMenuItemClick(MenuItem item) {
+//
+//                AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) menuInfo;
+//                Teste teste  = (Teste) listaTestes.getItemAtPosition(info.position);
+//                TesteDAO dao = new TesteDAO(PerfilActivity.this);
+//
+//                dao.deleta(teste);
+//                dao.close();
+//
+//                carregaLista();
+//                return false;
+//            }
+//        });
+//    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        carregaLista();
     }
 }

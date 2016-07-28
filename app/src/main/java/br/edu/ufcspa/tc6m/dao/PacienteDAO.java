@@ -21,7 +21,7 @@ public class PacienteDAO extends SQLiteOpenHelper {
 
 
     public PacienteDAO(Context context) {
-        super(context, "Agenda", null, 3);
+        super(context, "Agenda", null, 1);
     }
 
     @Override
@@ -40,17 +40,18 @@ public class PacienteDAO extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        String sql = "";
+        String sql = "DROP TABLE IF EXISTS Pacientes";
         //Esquema para controle de versões do banco:
         switch (oldVersion) {
             case 2:
-                sql = "ALTER TABLE Agenda ADD COLUMN caminhoFoto TEXT";
-                db.execSQL(sql);
-//            case 3:
-//                sql = "DROP TABLE IF EXISTS Testes";
-//                db.execSQL(sql);
-//                onCreate(db);
+                //
         }
+        db.execSQL(sql);
+    }
+
+    @Override
+    public void onDowngrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+        String sql = "DROP TABLE IF EXISTS Pacientes";
         db.execSQL(sql);
     }
 

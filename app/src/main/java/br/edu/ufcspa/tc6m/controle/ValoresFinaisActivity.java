@@ -1,7 +1,9 @@
 package br.edu.ufcspa.tc6m.controle;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -13,17 +15,45 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import br.edu.ufcspa.tc6m.R;
+import br.edu.ufcspa.tc6m.dao.TesteDAO;
 import br.edu.ufcspa.tc6m.modelo.Teste;
 
 public class ValoresFinaisActivity extends AppCompatActivity {
 
     private TesteHelper helper;
     private Teste teste;
+    private boolean temAlgumValorDeRepouso;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_valores_finais2);
+        Intent intent = getIntent();
+
+        teste = (Teste) intent.getSerializableExtra("teste");
+        helper = new TesteHelper(this,teste);
+
+        verificaValores();
         iniciaComponentes();
+
+    }
+
+
+    private void verificaValores() {
+        new Thread(new Runnable() {
+            @Override
+            public synchronized void run() {
+                SharedPreferences sharedPreferences = getSharedPreferences("VARIAVEIS_DO_PACIENTE_" +
+                        teste.getPaciente().getId(), Context.MODE_PRIVATE);
+
+                boolean fcRepouso = sharedPreferences.getBoolean("repouso_fc", true);
+                boolean fadRepouso = sharedPreferences.getBoolean("repouso_fadiga", true);
+                boolean dispRepouso = sharedPreferences.getBoolean("repouso_dispneia", true);
+                boolean paRepouso = sharedPreferences.getBoolean("repouso_pa", true);
+                boolean gcRepouso = sharedPreferences.getBoolean("repouso_gc", true);
+                temAlgumValorDeRepouso = fcRepouso || dispRepouso || fadRepouso || paRepouso || gcRepouso;
+            }
+        }).start();
 
     }
 
@@ -31,9 +61,6 @@ public class ValoresFinaisActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        Intent intent = getIntent();
-        teste = (Teste) intent.getSerializableExtra("teste");
-        helper = new TesteHelper(this,teste);
         helper.preencheCamposFinais();
         TextView titulo = (TextView) findViewById(R.id.tituloFinais);
         titulo.setText(teste.getPaciente().getNome());
@@ -43,9 +70,21 @@ public class ValoresFinaisActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 teste = helper.pegaDadosFromFields(7);
-                Intent intentVaiProValoresRecuperacao = new Intent(ValoresFinaisActivity.this, ValoresRecuperacaoActivity.class);
-                intentVaiProValoresRecuperacao.putExtra("teste",teste);
-                startActivity(intentVaiProValoresRecuperacao);
+                //Verifica se mostra a tela para pegar valores de recuperação
+                if(temAlgumValorDeRepouso) {
+                    Intent intentVaiProValoresRecuperacao = new Intent(ValoresFinaisActivity.this, ValoresRecuperacaoActivity.class);
+                    intentVaiProValoresRecuperacao.putExtra("teste", teste);
+                    startActivity(intentVaiProValoresRecuperacao);
+
+                } else{//Pula a recuperação e vai direto pra análise
+                    TesteDAO dao = new TesteDAO(getApplicationContext());
+                    dao.insere(teste);
+                    dao.close();
+
+                    Intent intentVaiPraAnalise = new Intent(ValoresFinaisActivity.this, AnaliseTesteActivity.class);
+                    intentVaiPraAnalise.putExtra("teste", teste);
+                    startActivity(intentVaiPraAnalise);
+                }
                 finish();
             }
 

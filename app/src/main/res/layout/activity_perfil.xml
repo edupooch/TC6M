@@ -51,20 +51,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/fab_margin"
+        android:contentDescription="@string/iniciar_teste"
         android:src="@drawable/icon_play"
         app:backgroundTint="@color/colorAccent"
         app:layout_anchor="@id/app_bar_perfil"
         app:layout_anchorGravity="bottom|end" />
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/btAntigos"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginRight="80dp"
-        android:src="@drawable/icon_form"
-        app:backgroundTint="@color/colorAccent"
-        app:layout_anchor="@id/app_bar_perfil"
-        app:layout_anchorGravity="bottom|end" />
+
 
 
 </android.support.design.widget.CoordinatorLayout>

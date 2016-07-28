@@ -2,13 +2,18 @@ package br.edu.ufcspa.tc6m.controle;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
 import android.telephony.PhoneNumberFormattingTextWatcher;
+import android.util.Log;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.Toast;
 
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -122,9 +127,23 @@ public class FormularioHelper {
      */
     public void carregaImagem(String caminhoFoto) {
         if (caminhoFoto != null) {
-            Bitmap bitmap = BitmapFactory.decodeFile(caminhoFoto);
-            bitmap = Bitmap.createScaledBitmap(bitmap, 250, 200, true);
-            btFoto.setImageBitmap(bitmap);
+            final BitmapFactory.Options options = new BitmapFactory.Options();
+            options.inSampleSize = 8;
+            Bitmap bm = BitmapFactory.decodeFile(caminhoFoto, options);
+            if (bm.getWidth() > bm.getHeight()) {
+                bm = Bitmap.createScaledBitmap(bm, 250, 200, false);
+
+               //foto vertical
+                Matrix matrix = new Matrix();
+                matrix.postRotate(90);
+                bm = Bitmap.createBitmap(bm, 0, 0, bm.getWidth(), bm.getHeight(), matrix, true);
+                FileOutputStream out = null;
+
+            } else {
+                //horizontal
+                bm = Bitmap.createScaledBitmap(bm, 250, 200, false);
+            }
+            btFoto.setImageBitmap(bm);
             btFoto.setScaleType(ImageView.ScaleType.CENTER_CROP);
             btFoto.setTag(caminhoFoto);
         }

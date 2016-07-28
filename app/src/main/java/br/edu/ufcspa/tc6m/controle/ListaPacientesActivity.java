@@ -14,18 +14,15 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 
 import br.edu.ufcspa.tc6m.R;
 import br.edu.ufcspa.tc6m.adapter.PacientesAdapter;
 import br.edu.ufcspa.tc6m.dao.PacienteDAO;
-import br.edu.ufcspa.tc6m.dao.TesteDAO;
 import br.edu.ufcspa.tc6m.modelo.Paciente;
 
 public class ListaPacientesActivity extends AppCompatActivity {

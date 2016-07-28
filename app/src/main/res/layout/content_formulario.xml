@@ -149,6 +149,7 @@
                     android:background="@drawable/icon_altura" />
 
                 <EditText
+                    android:maxLength="3"
                     android:id="@+id/edTextAltura"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

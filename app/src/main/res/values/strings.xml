@@ -84,7 +84,9 @@
     <string name="editar">Editar</string>
     <string name="deletar">Deletar</string>
     <string name="dialog_deletar">Deseja deletar este paciente e todos os seus testes?</string>
+    <string name="dialog_deletar_teste">Deseja deletar este teste e todos os seus resultados?</string>
     <string name="atencao_deletar">Deletar Paciente</string>
+    <string name="atencao_deletar_teste">Deletar Teste</string>
     <string name="atencao_sair">Abandonar Teste</string>
 
     <string name="title_activity_splash_screen">SplashScreen</string>
@@ -113,7 +115,7 @@
     <string name="tamanho_da_volta">Tamanho da Volta</string>
     <string name="tamanho_da_volta_descricao">Defina qual o tamanho que o botão de adicionar uma volta terá (metros)</string>
     <string name="selecionar_equacoes">Selecionar Equações</string>
-    <string name="selecionar_equacoes_descricao">Selecione quais equações você deseja usar para calcular a distância prevista</string>
+    <string name="selecionar_equacoes_descricao">Selecione quais equações você deseja usar para calcular a distância prevista na análise do teste.</string>
     <string name="nome">Nome:</string>
     <string name="idade">Idade:</string>
     <string name="distancia_percorrida_analise">Distância Percorrida:</string>
@@ -128,6 +130,11 @@
     <string name="dist_ncia_minuto">Distância / Minuto</string>
     <string name="an_lise_do_teste">Análise do Teste</string>
     <string name="continuar">Continuar</string>
+    <string name="press_o_diast_lica">Pressão Diastólica</string>
+    <string name="testes_anteriores">TESTES ANTERIORES</string>
+    <string name="o_paciente_ainda_n_o_realizou_nenhum_teste">O paciente ainda não realizou nenhum teste</string>
+    <string name="iniciar_teste">Iniciar teste</string>
+    <string name="dados_do_paciente">DADOS DO PACIENTE</string>
 
 
 </resources>

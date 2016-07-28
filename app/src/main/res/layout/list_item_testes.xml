@@ -7,16 +7,17 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#FFFFFF">
+        android:background="#FFFFFF"
+        android:padding="3dp">
 
         <ImageView
             android:id="@+id/imagem_item"
-            android:layout_width="45dp"
-            android:layout_height="45dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:layout_gravity="center_vertical"
-            android:contentDescription="@string/foto_do_paciente"
             android:layout_margin="8dp"
             android:background="#42a5f5"
+            android:contentDescription="@string/foto_do_paciente"
             android:src="@drawable/icon_moldura_redonda" />
 
         <LinearLayout
@@ -32,7 +33,6 @@
                 android:fontFamily="sans-serif-light"
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
-                android:text="Teste do dia 20/10/2014"
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
@@ -47,8 +47,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
-                    android:layout_marginStart="5dp"
-                    android:text="800" />
+                    android:layout_marginStart="5dp" />
 
 
             </LinearLayout>

@@ -2,17 +2,22 @@ package br.edu.ufcspa.tc6m.controle;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.charts.LineChart;
@@ -30,6 +35,8 @@ import java.util.Locale;
 
 import br.edu.ufcspa.tc6m.R;
 import br.edu.ufcspa.tc6m.adapter.FormulasDialogAdapter;
+import br.edu.ufcspa.tc6m.dao.PacienteDAO;
+import br.edu.ufcspa.tc6m.dao.TesteDAO;
 import br.edu.ufcspa.tc6m.formulas.ListaFormulas;
 import br.edu.ufcspa.tc6m.modelo.Formula;
 import br.edu.ufcspa.tc6m.modelo.Teste;
@@ -393,5 +400,43 @@ public class AnaliseTesteActivity extends AppCompatActivity {
         graficoVelocidades.setScaleEnabled(true);
         graficoVelocidades.animateX(1000);
 
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        menu.add("Excluir Teste");
+
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getTitle() == "Excluir Teste"){
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setCancelable(false);
+            builder.setTitle(getString(R.string.atencao_deletar_teste));
+            builder.setMessage(getString(R.string.dialog_deletar_teste));
+            builder.setPositiveButton(getString(R.string.dialog_yes), new DialogInterface.OnClickListener() {
+
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    TesteDAO dao = new TesteDAO(AnaliseTesteActivity.this);
+                    dao.deleta(teste);
+                    dao.close();
+                    finish();
+                    Toast.makeText(AnaliseTesteActivity.this, "Teste excluído com sucesso", Toast.LENGTH_SHORT).show();
+                }
+            });
+            builder.setNegativeButton(getString(R.string.dialog_no), new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.cancel();
+                }
+            });
+            AlertDialog alert = builder.create();
+            alert.show();
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 }
