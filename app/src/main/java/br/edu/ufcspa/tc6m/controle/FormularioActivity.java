@@ -46,7 +46,6 @@ public class FormularioActivity extends AppCompatActivity {
     private FormularioHelper helper;
     private Long idPaciente;
     private EditText date;
-    private ImageButton btFoto;
     private String caminhoFoto;
 
 
@@ -60,6 +59,8 @@ public class FormularioActivity extends AppCompatActivity {
     private void iniciaComponentes() {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setDefaultDisplayHomeAsUpEnabled(true);
+
         idPaciente = null;
         helper = new FormularioHelper(this);
 
@@ -143,7 +144,7 @@ public class FormularioActivity extends AppCompatActivity {
         });
 
         //INICIA O BOTÃO DA CAMERA
-        btFoto = (ImageButton) findViewById(R.id.btFoto);
+        ImageButton btFoto = (ImageButton) findViewById(R.id.btFoto);
         btFoto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

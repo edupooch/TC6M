@@ -46,26 +46,26 @@ public class TesteHelper {
 
         edTextDisp[0] = (EditText) activity.findViewById(R.id.edTextDisp0);
 
-        if (!sharedPreferences.getBoolean("basal_dispneia", true)) {
+        if (!sharedPreferences.getBoolean("basal_dispneia", false)) {
             activity.findViewById(R.id.layout_dispneia).setVisibility(View.GONE);
         }
         edTextFad[0] = (EditText) activity.findViewById(R.id.edTextFad0);
-        if (!sharedPreferences.getBoolean("basal_fadiga", true)) {
+        if (!sharedPreferences.getBoolean("basal_fadiga", false)) {
             activity.findViewById(R.id.layout_fadiga).setVisibility(View.GONE);
         }
 
         edTextSp[0] = (EditText) activity.findViewById(R.id.edTextSp0);
-        if (!sharedPreferences.getBoolean("basal_spo2", true)) {
+        if (!sharedPreferences.getBoolean("basal_spo2", false)) {
             activity.findViewById(R.id.layout_spo2).setVisibility(View.GONE);
         }
         edTextGc[0] = (EditText) activity.findViewById(R.id.edTextGC0);
-        if (!sharedPreferences.getBoolean("basal_gc", true)) {
+        if (!sharedPreferences.getBoolean("basal_gc", false)) {
             activity.findViewById(R.id.layout_gc).setVisibility(View.GONE);
         }
 
         edTextPAs[0] = (EditText) activity.findViewById(R.id.editTextPAS0);
         edTextPAd[0] = (EditText) activity.findViewById(R.id.editTextPAD0);
-        if (!sharedPreferences.getBoolean("basal_pa", true)) {
+        if (!sharedPreferences.getBoolean("basal_pa", false)) {
             activity.findViewById(R.id.layout_pa).setVisibility(View.GONE);
         }
 
@@ -81,10 +81,10 @@ public class TesteHelper {
         SharedPreferences sharedPreferences = activity.getSharedPreferences("VARIAVEIS_DO_PACIENTE_" +
                 teste.getPaciente().getId(), Context.MODE_PRIVATE);
 
-        boolean fcDurante = sharedPreferences.getBoolean("durante_fc", true);
-        boolean spDurante = sharedPreferences.getBoolean("durante_spo2", true);
-        boolean fadDurante = sharedPreferences.getBoolean("durante_fadiga", true);
-        boolean dispDurante = sharedPreferences.getBoolean("durante_dispneia", true);
+        boolean fcDurante = sharedPreferences.getBoolean("durante_fc", false);
+        boolean spDurante = sharedPreferences.getBoolean("durante_spo2", false);
+        boolean fadDurante = sharedPreferences.getBoolean("durante_fadiga", false);
+        boolean dispDurante = sharedPreferences.getBoolean("durante_dispneia", false);
 
         edTextFc[1] = (EditText) activity.findViewById(R.id.edTextFC1);
         edTextFc[2] = (EditText) activity.findViewById(R.id.edTextFC2);
@@ -155,22 +155,22 @@ public class TesteHelper {
         edTextFc[7] = (EditText) activity.findViewById(R.id.edTextFC7);
 
         edTextDisp[7] = (EditText) activity.findViewById(R.id.edTextDisp7);
-        if (!sharedPreferences.getBoolean("final_dispneia", true)) {
+        if (!sharedPreferences.getBoolean("final_dispneia", false)) {
             activity.findViewById(R.id.layout_dispneia).setVisibility(View.GONE);
         }
         edTextFad[7] = (EditText) activity.findViewById(R.id.edTextFad7);
-        if (!sharedPreferences.getBoolean("final_fadiga", true)) {
+        if (!sharedPreferences.getBoolean("final_fadiga", false)) {
             activity.findViewById(R.id.layout_fadiga).setVisibility(View.GONE);
         }
 
         edTextGc[1] = (EditText) activity.findViewById(R.id.edTextGC1);
-        if (!sharedPreferences.getBoolean("final_gc", true)) {
+        if (!sharedPreferences.getBoolean("final_gc", false)) {
             activity.findViewById(R.id.layout_gc).setVisibility(View.GONE);
         }
 
         edTextPAs[1] = (EditText) activity.findViewById(R.id.edTextPAS1);
         edTextPAd[1] = (EditText) activity.findViewById(R.id.edTextPAD1);
-        if (!sharedPreferences.getBoolean("final_pa", true)) {
+        if (!sharedPreferences.getBoolean("final_pa", false)) {
             activity.findViewById(R.id.layout_pa).setVisibility(View.GONE);
         }
 
@@ -186,26 +186,26 @@ public class TesteHelper {
                 teste.getPaciente().getId(), Context.MODE_PRIVATE);
 
         edTextFc[8] = (EditText) activity.findViewById(R.id.edTextFC8);
-        if (!sharedPreferences.getBoolean("repouso_fc", true)) {
+        if (!sharedPreferences.getBoolean("repouso_fc", false)) {
             activity.findViewById(R.id.layout_fc).setVisibility(View.GONE);
         }
         edTextDisp[8] = (EditText) activity.findViewById(R.id.edTextDisp8);
-        if (!sharedPreferences.getBoolean("repouso_dispneia", true)) {
+        if (!sharedPreferences.getBoolean("repouso_dispneia", false)) {
             activity.findViewById(R.id.layout_dispneia).setVisibility(View.GONE);
         }
         edTextFad[8] = (EditText) activity.findViewById(R.id.edTextFad8);
-        if (!sharedPreferences.getBoolean("repouso_fadiga", true)) {
+        if (!sharedPreferences.getBoolean("repouso_fadiga", false)) {
             activity.findViewById(R.id.layout_fadiga).setVisibility(View.GONE);
         }
 
         edTextGc[2] = (EditText) activity.findViewById(R.id.edTextGC3);
-        if (!sharedPreferences.getBoolean("repouso_gc", true)) {
+        if (!sharedPreferences.getBoolean("repouso_gc", false)) {
             activity.findViewById(R.id.layout_gc).setVisibility(View.GONE);
         }
 
         edTextPAs[2] = (EditText) activity.findViewById(R.id.edTextPAS3);
         edTextPAd[2] = (EditText) activity.findViewById(R.id.edTextPAD3);
-        if (!sharedPreferences.getBoolean("repouso_pa", true)) {
+        if (!sharedPreferences.getBoolean("repouso_pa", false)) {
             activity.findViewById(R.id.layout_pa).setVisibility(View.GONE);
         }
 

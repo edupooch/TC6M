@@ -78,8 +78,7 @@ public class FormularioHelper {
         paciente.setCaminhoFoto((String) btFoto.getTag());
         if (btnMasculino.isChecked()) {
             paciente.setGenero(1);
-        }
-        if (btnFeminino.isChecked()) {
+        } else if (btnFeminino.isChecked()) {
             paciente.setGenero(0);
         }
         return paciente;
@@ -93,12 +92,12 @@ public class FormularioHelper {
         campoData.setFocusable(false);
         campoData.setEnabled(false);
         if (paciente.getGenero() == 0) {
-            btnMasculino.setChecked(true);
-        } else {
             btnFeminino.setChecked(true);
+        } else {
+            btnMasculino.setChecked(true);
         }
-        btnMasculino.setEnabled(false);
-        btnFeminino.setEnabled(false);
+       // btnMasculino.setEnabled(false);
+     //   btnFeminino.setEnabled(false);
         campoPeso.setText(String.valueOf(paciente.getMassa()));
         campoAltura.setText(String.valueOf(paciente.getEstatura()));
         campoTelefone.setText(paciente.getTelefone());
@@ -123,6 +122,7 @@ public class FormularioHelper {
 
     /**
      * Método que carrega a imagem no espaço do ícone
+     *
      * @param caminhoFoto
      */
     public void carregaImagem(String caminhoFoto) {
@@ -133,7 +133,7 @@ public class FormularioHelper {
             if (bm.getWidth() > bm.getHeight()) {
                 bm = Bitmap.createScaledBitmap(bm, 250, 200, false);
 
-               //foto vertical
+                //foto vertical
                 Matrix matrix = new Matrix();
                 matrix.postRotate(90);
                 bm = Bitmap.createBitmap(bm, 0, 0, bm.getWidth(), bm.getHeight(), matrix, true);

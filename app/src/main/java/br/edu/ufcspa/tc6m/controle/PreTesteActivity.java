@@ -32,7 +32,7 @@ public class PreTesteActivity extends AppCompatActivity {
         findViewById(R.id.bt_basal_fc).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(PreTesteActivity.this, "Valor obrigatório", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "Valor obrigatório", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -82,7 +82,7 @@ public class PreTesteActivity extends AppCompatActivity {
             final CheckBox checkbox = (CheckBox) findViewById(resId);
             //A key das sharedPreferences será o id do botao no layout, ex: durante_fc
             final String key = getResources().getResourceName(resId).replace("br.edu.ufcspa.tc6m:id/bt_", "");
-            checkbox.setChecked(sharedPreferences.getBoolean(key, true));
+            checkbox.setChecked(sharedPreferences.getBoolean(key, false));
 
             //Valor é alterado no banco no clique
             checkbox.setOnClickListener(new View.OnClickListener() {

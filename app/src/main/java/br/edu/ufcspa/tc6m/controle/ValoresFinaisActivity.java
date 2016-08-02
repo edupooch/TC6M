@@ -46,11 +46,11 @@ public class ValoresFinaisActivity extends AppCompatActivity {
                 SharedPreferences sharedPreferences = getSharedPreferences("VARIAVEIS_DO_PACIENTE_" +
                         teste.getPaciente().getId(), Context.MODE_PRIVATE);
 
-                boolean fcRepouso = sharedPreferences.getBoolean("repouso_fc", true);
-                boolean fadRepouso = sharedPreferences.getBoolean("repouso_fadiga", true);
-                boolean dispRepouso = sharedPreferences.getBoolean("repouso_dispneia", true);
-                boolean paRepouso = sharedPreferences.getBoolean("repouso_pa", true);
-                boolean gcRepouso = sharedPreferences.getBoolean("repouso_gc", true);
+                boolean fcRepouso = sharedPreferences.getBoolean("repouso_fc", false);
+                boolean fadRepouso = sharedPreferences.getBoolean("repouso_fadiga", false);
+                boolean dispRepouso = sharedPreferences.getBoolean("repouso_dispneia", false);
+                boolean paRepouso = sharedPreferences.getBoolean("repouso_pa", false);
+                boolean gcRepouso = sharedPreferences.getBoolean("repouso_gc", false);
                 temAlgumValorDeRepouso = fcRepouso || dispRepouso || fadRepouso || paRepouso || gcRepouso;
             }
         }).start();

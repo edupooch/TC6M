@@ -164,6 +164,9 @@ public class ListaPacientesActivity extends AppCompatActivity {
                 Intent intentVaiPrasPreferencias = new Intent(ListaPacientesActivity.this, PreferenciasActivity.class);
                 startActivity(intentVaiPrasPreferencias);
                 break;
+            case R.id.action_sobre:
+                startActivity(new Intent(ListaPacientesActivity.this, SobreActivity.class));
+                break;
         }
         return super.onOptionsItemSelected(item);
     }

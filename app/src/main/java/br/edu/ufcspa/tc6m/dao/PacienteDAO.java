@@ -21,7 +21,7 @@ public class PacienteDAO extends SQLiteOpenHelper {
 
 
     public PacienteDAO(Context context) {
-        super(context, "Agenda", null, 1);
+        super(context, "Agenda", null, 3);
     }
 
     @Override
@@ -34,26 +34,26 @@ public class PacienteDAO extends SQLiteOpenHelper {
                 "telefone TEXT, " +
                 "email TEXT, " +
                 "obs TEXT," +
+                "genero INTEGER," +
                 "caminhoFoto TEXT);";
         db.execSQL(sql);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        String sql = "DROP TABLE IF EXISTS Pacientes";
         //Esquema para controle de versões do banco:
+        String sql;
         switch (oldVersion) {
+            case 1:
+                sql = "ALTER TABLE Pacientes ADD COLUMN genero INTEGER;";
+                db.execSQL(sql);
             case 2:
-                //
+                sql = "ALTER TABLE Pacientes ADD COLUMN genero INTEGER;";
+                db.execSQL(sql);
         }
-        db.execSQL(sql);
+
     }
 
-    @Override
-    public void onDowngrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        String sql = "DROP TABLE IF EXISTS Pacientes";
-        db.execSQL(sql);
-    }
 
     public void insere(Paciente paciente) {
         SQLiteDatabase db = getWritableDatabase();
@@ -72,6 +72,7 @@ public class PacienteDAO extends SQLiteOpenHelper {
         dados.put("telefone", paciente.getTelefone());
         dados.put("email", paciente.getEmail());
         dados.put("obs", paciente.getObs());
+        dados.put("genero", paciente.getGenero());
         dados.put("caminhoFoto", paciente.getCaminhoFoto());
         return dados;
     }
@@ -95,6 +96,7 @@ public class PacienteDAO extends SQLiteOpenHelper {
             paciente.setTelefone(c.getString(c.getColumnIndex("telefone")));
             paciente.setEmail(c.getString(c.getColumnIndex("email")));
             paciente.setObs(c.getString(c.getColumnIndex("obs")));
+            paciente.setGenero(c.getInt(c.getColumnIndex("genero")));
             paciente.setCaminhoFoto(c.getString(c.getColumnIndex("caminhoFoto")));
             pacientes.add(paciente);
 

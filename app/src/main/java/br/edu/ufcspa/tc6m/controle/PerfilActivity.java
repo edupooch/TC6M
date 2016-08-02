@@ -39,6 +39,7 @@ public class PerfilActivity extends AppCompatActivity {
         setContentView(R.layout.activity_perfil);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setDefaultDisplayHomeAsUpEnabled(true);
         iniciaComponentes();
     }
 
@@ -71,6 +72,7 @@ public class PerfilActivity extends AppCompatActivity {
         TextView textoTelefone = (TextView) findViewById(R.id.text_telefone);
         TextView textoEmail = (TextView) findViewById(R.id.text_email);
         TextView textoIdade = (TextView) findViewById(R.id.text_idade);
+        TextView textoGenero = (TextView) findViewById(R.id.text_genero);
         TextView textoObs = (TextView) findViewById(R.id.text_obs);
 
         activity.setTitle(paciente.getNome());
@@ -88,9 +90,13 @@ public class PerfilActivity extends AppCompatActivity {
             textoEmail.setText(paciente.getEmail());
         }
 
-        int idade = Calcula.idade(paciente.getDataNascimento());
-        String strIdade = idade + " anos";
-        textoIdade.setText(strIdade);
+        textoIdade.setText(Calcula.idadeCompleta(paciente.getDataNascimento()));
+
+        if(paciente.getGenero() == 0){
+            textoGenero.setText(R.string.feminino);
+        }else{
+            textoGenero.setText(R.string.masculino);
+        }
 
         if (paciente.getObs().isEmpty()) {
             findViewById(R.id.layout_observacoes).setVisibility(View.GONE);

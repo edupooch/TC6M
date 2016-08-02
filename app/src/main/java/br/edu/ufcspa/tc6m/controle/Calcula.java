@@ -1,5 +1,14 @@
 package br.edu.ufcspa.tc6m.controle;
 
+import org.joda.time.DateTime;
+import org.joda.time.Days;
+import org.joda.time.Interval;
+import org.joda.time.LocalDate;
+import org.joda.time.Months;
+import org.joda.time.Period;
+import org.joda.time.PeriodType;
+import org.joda.time.Years;
+
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
@@ -13,32 +22,80 @@ import br.edu.ufcspa.tc6m.modelo.Formula;
 
 public class Calcula {
 
-     /*
-     * Calculo da idade do paciente com base no dia do nascimento e no dia de hoje
+    /**
+     * Calcula a idade em anos
+     * @param dataNasc recebe a data de nascimento de paciente.getData()
+     * @return idade em anos
      */
-
     public static int idade(java.util.Date dataNasc) {
 
-        Calendar calendarData = new GregorianCalendar();
-        calendarData.setTime(dataNasc);
+        Calendar calDataNascimento = new GregorianCalendar();
+        calDataNascimento.setTime(dataNasc);
         Calendar hoje = Calendar.getInstance();
 
-        int idade = hoje.get(Calendar.YEAR) - calendarData.get(Calendar.YEAR);
-        calendarData.add(Calendar.YEAR, idade);
-        if (hoje.before(calendarData)) idade--;
+        int idadeAnos = hoje.get(Calendar.YEAR) - calDataNascimento.get(Calendar.YEAR);
+        calDataNascimento.add(Calendar.YEAR, idadeAnos);
+        if (hoje.before(calDataNascimento)) idadeAnos--;
 
-        return idade;
+        return idadeAnos;
 
     }
 
-    /*
-     * Calculo do imc com base na massa em kg e estatura em cm
+    /**
+     * Retorna a idade em anos meses e dias como String para o perfil do paciente
+     * @param dataNasc data de nascimento
+     * @return Idade em anos meses e dias
+     */
+
+    public static String idadeCompleta(java.util.Date dataNasc) {
+
+        LocalDate birthdate = new LocalDate(dataNasc);
+        LocalDate now = new LocalDate();
+
+        Period period = new Period(birthdate, now, PeriodType.yearMonthDay());
+
+        String anos = period.getYears() + " anos, ";
+        if (period.getYears() == 1){
+            anos = period.getYears() + " ano, ";
+        }
+
+        String meses = period.getMonths() + " meses e ";
+        if (period.getMonths() == 1){
+            meses = period.getMonths() + "mês  ";
+        }
+
+        String dias = period.getDays() + " dias";
+        if (period.getDays() == 1){
+            dias = period.getDays() + " dia";
+        }
+
+        return anos + meses + dias;
+
+    }
+
+    /**
+     * Cálculo do imc do paciente
+     *
+     * @param massa em kg
+     * @param estatura em cm
+     * @return imc
      */
 
     public static double imc(double massa, double estatura) {
         return massa / Math.pow(estatura / 100, 2);
     }
 
+    /**
+     * Calcula as distâncias percorrida estimadas de acordo com cada fórmula
+     *
+     * @param formula objeto do tipo formula usado para identificar a equação usada
+     * @param idade em anos
+     * @param genero 0 feminino e 1 masculino
+     * @param massa em kg
+     * @param estatura em cm
+     * @param variacaoFc fc final - basal (7 - 0)
+     * @return dpEstimada em metros
+     */
     public static double dpEstimada(Formula formula, int idade, int genero, double massa, double estatura, int variacaoFc) {
         switch (formula.getIdFormula()) {
             /**
@@ -106,22 +163,16 @@ public class Calcula {
         return 0;
     }
 
-    public static double dpEstimadaBritto1(int idade, int genero, double massa, double estatura) {
-        return (890.46 - (6.11 * idade) + (0.0345 * idade * idade) + (48.87 * genero) - (4.87 * imc(massa, estatura)));
-    }
-
 
     public static double porcentagem(double distanciaPercorrida, double distanciaEstimada) {
         return (distanciaPercorrida / distanciaEstimada) * 100;
     }
 
     /**
-     * Calcula a velocidade média com base no tempo de 6 minutos(360s)
+     * Calcula a velocidade média com5 base no tempo de 6 minutos(360s)
      *
-     * @param distanciaPercorrida
-     * #Distância percorrida em metros no teste
-     * @return velocidadeMedia
-     * #Retorna a velocidade média em m/s
+     * @param distanciaPercorrida em metros no teste
+     * @return velocidadeMedia em m/s
      */
     public static double velocidadeMedia(int distanciaPercorrida) {
         return (double) distanciaPercorrida / 360;

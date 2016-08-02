@@ -3,6 +3,7 @@ package br.edu.ufcspa.tc6m.controle;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -28,7 +29,11 @@ public class PreferenciasActivity extends AppCompatActivity {
         setContentView(R.layout.activity_preferencias);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         sharedPref = getSharedPreferences("PREFERENCIAS",MODE_PRIVATE);
+
+
 
         findViewById(R.id.layout_selecionar_equacoes).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -81,19 +86,13 @@ public class PreferenciasActivity extends AppCompatActivity {
 
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu_preferencias, menu);
-        return super.onCreateOptionsMenu(menu);
-    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.salvar_preferencias:
-                finish();
-                break;
+            case android.R.id.home:
+                NavUtils.navigateUpFromSameTask(this);
+                return true;
         }
         return super.onOptionsItemSelected(item);
     }

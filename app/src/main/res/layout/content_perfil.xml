@@ -30,12 +30,36 @@
             />
 
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="1dp"
+            android:layout_marginRight="1dp"
+            android:layout_weight="1"
+android:layout_marginTop="10dp"
+            android:background="#FFFFFF">
 
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center"
+                android:layout_margin="10dp"
+                android:background="@drawable/icon_data" />
+
+            <TextView
+                android:layout_gravity="center"
+                android:id="@+id/text_idade"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="13 anos, 8 meses e 10 dias"
+                android:textSize="18sp" />
+
+        </LinearLayout>
         <LinearLayout
             android:baselineAligned="false"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp">
+            android:layout_marginTop="1dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -95,11 +119,10 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="1dp">
 
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="1dp"
-                android:layout_marginRight="1dp"
                 android:layout_weight="1"
                 android:background="#FFFFFF">
 
@@ -108,19 +131,18 @@
                     android:layout_height="30dp"
                     android:layout_gravity="center"
                     android:layout_margin="10dp"
-                    android:background="@drawable/icon_data" />
+                    android:background="@drawable/icon_genero" />
 
                 <TextView
-                    android:id="@+id/text_idade"
+                    android:id="@+id/text_genero"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:gravity="center"
-                    android:text="13 anos"
+                    android:text="Masculino"
                     android:textSize="18sp" />
 
             </LinearLayout>
-
 
             <LinearLayout
                 android:layout_width="match_parent"

@@ -40,6 +40,7 @@
 
 
                     <EditText
+                        android:maxLength="50"
                         android:id="@+id/edTextNomePaciente"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -106,7 +107,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="Masculino" />
+                        android:text="@string/masculino" />
 
                     <RadioButton
                         android:id="@+id/btnFeminino"
@@ -114,7 +115,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="Feminino" />
+                        android:text="@string/feminino" />
                 </info.hoang8f.android.segmented.SegmentedGroup>
             </LinearLayout>
 
@@ -130,6 +131,7 @@
                     android:background="@drawable/icon_peso" />
 
                 <EditText
+                    android:maxLength="5"
                     android:id="@+id/edTextPeso"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -205,6 +207,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginRight="5dp"
                     android:hint="Telefone"
+                    android:maxLength="15"
                     android:inputType="phone"
                     android:textStyle="italic" />
 
@@ -225,6 +228,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="E-mail"
+                    android:maxLength="50"
                     android:inputType="textEmailAddress"
                     android:textStyle="italic" />
 
