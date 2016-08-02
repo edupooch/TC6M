@@ -119,7 +119,7 @@
     <string name="idade">Idade:</string>
     <string name="distancia_percorrida_analise">Distância Percorrida:</string>
     <string name="velocidade_m_dia">Velocidade Média:</string>
-    <string name="repouso_min">Repouso</string>
+    <string name="repouso_min">Recup.</string>
     <string name="basal">Basal</string>
     <string name="observa_es">Observações</string>
     <string name="observa_es_sobre_o_teste">Observações sobre o teste</string>
@@ -139,6 +139,8 @@
     <string name="sobre">Sobre</string>
     <string name="masculino">Masculino</string>
     <string name="feminino">Feminino</string>
+    <string name="recupera_o">Recuperação</string>
+    <string name="frequ_ncia_respirat_ria">Frequência Respiratória</string>
 
 
 </resources>

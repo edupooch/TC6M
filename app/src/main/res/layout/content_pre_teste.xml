@@ -39,11 +39,11 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center">
+                android:gravity="left">
 
                 <ImageView
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
                     android:layout_gravity="center"
                     android:padding="5dp"
                     android:src="@drawable/icon_fc_verde" />
@@ -54,14 +54,27 @@
                     android:layout_margin="5dp"
                     android:text="@string/frequ_ncia_card_aca"
                     android:textColor="@color/corPrimaria"
-                    android:textSize="20sp" />
+                    android:textSize="18sp" />
+
+
 
 
             </LinearLayout>
 
+
+            <TextView
+                android:id="@+id/text_fc_obrigatorio"
+                android:layout_width="wrap_content"
+                android:text="Valores de FC basal e final são obrigatórios pois são utilizados em uma fórmula"
+                android:gravity="center"
+                android:textSize="12sp"
+                android:layout_marginBottom="5dp"
+                android:textColor="@color/colorAccent"
+                android:layout_height="wrap_content" />
+
             <info.hoang8f.android.segmented.SegmentedGroup xmlns:segmentedgroup="http://schemas.android.com/apk/res-auto"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="28dp"
                 android:layout_marginBottom="10dp"
                 android:orientation="horizontal"
                 segmentedgroup:sc_border_width="2dp"
@@ -84,7 +97,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:checked="true"
                     android:text="@string/durante" />
 
                 <CheckBox
@@ -102,10 +114,10 @@
                     android:id="@+id/bt_repouso_fc"
                     style="@style/RadioButton"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:checked="true"
-                    android:text="@string/repouso_min" />
+                    android:textSize="12sp"
+                    android:text="Recuperação" />
 
             </info.hoang8f.android.segmented.SegmentedGroup>
 
@@ -114,21 +126,21 @@
 
         <!--Layout Dispneia-->
         <LinearLayout
+            android:id="@+id/layout_dispneia"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="2dp"
             android:background="@drawable/round_edge"
             android:orientation="vertical"
             android:padding="5dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center">
+                android:layout_height="wrap_content">
 
                 <ImageView
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
                     android:layout_gravity="center"
                     android:padding="3dp"
                     android:src="@drawable/icon_pulmao_verde" />
@@ -139,14 +151,15 @@
                     android:layout_margin="5dp"
                     android:text="@string/dispneia"
                     android:textColor="@color/corPrimaria"
-                    android:textSize="20sp" />
+                    android:textSize="18sp" />
 
 
             </LinearLayout>
 
             <info.hoang8f.android.segmented.SegmentedGroup xmlns:segmentedgroup="http://schemas.android.com/apk/res-auto"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="28dp"
+
                 android:layout_marginBottom="10dp"
                 android:orientation="horizontal"
                 segmentedgroup:sc_border_width="2dp"
@@ -159,7 +172,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:checked="true"
                     android:text="@string/basal" />
 
                 <CheckBox
@@ -168,7 +180,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:checked="true"
                     android:text="@string/durante" />
 
                 <CheckBox
@@ -178,17 +189,16 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:checked="true"
                     android:text="@string/depois" />
 
                 <CheckBox
                     android:id="@+id/bt_repouso_dispneia"
                     style="@style/RadioButton"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:checked="true"
-                    android:text="@string/repouso_min" />
+                    android:textSize="12sp"
+                    android:text="@string/recupera_o" />
 
             </info.hoang8f.android.segmented.SegmentedGroup>
 
@@ -197,21 +207,21 @@
 
         <!--Layout Fad MMII-->
         <LinearLayout
+            android:id="@+id/layout_fadiga"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="2dp"
             android:background="@drawable/round_edge"
             android:orientation="vertical"
             android:padding="5dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center">
+                android:layout_height="wrap_content">
 
                 <ImageView
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
                     android:layout_gravity="center"
                     android:padding="3dp"
                     android:src="@drawable/icon_mmii_verde" />
@@ -222,14 +232,14 @@
                     android:layout_margin="5dp"
                     android:text="@string/fadiga_mmii"
                     android:textColor="@color/corPrimaria"
-                    android:textSize="20sp" />
+                    android:textSize="18sp" />
 
 
             </LinearLayout>
 
             <info.hoang8f.android.segmented.SegmentedGroup xmlns:segmentedgroup="http://schemas.android.com/apk/res-auto"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="28dp"
                 android:layout_marginBottom="10dp"
                 android:orientation="horizontal"
                 segmentedgroup:sc_border_width="2dp"
@@ -242,7 +252,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:checked="true"
 
                     android:text="@string/basal" />
 
@@ -252,7 +261,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:checked="true"
                     android:text="@string/durante" />
 
                 <CheckBox
@@ -261,17 +269,16 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:checked="true"
                     android:text="@string/depois" />
 
                 <CheckBox
                     android:id="@+id/bt_repouso_fadiga"
                     style="@style/RadioButton"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:checked="true"
-                    android:text="@string/repouso_min" />
+                    android:textSize="12sp"
+                    android:text="@string/recupera_o"  />
 
             </info.hoang8f.android.segmented.SegmentedGroup>
 
@@ -280,22 +287,22 @@
 
         <!--Layout SPo2-->
         <LinearLayout
+            android:id="@+id/layout_spo2"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="2dp"
             android:background="@drawable/round_edge"
             android:orientation="vertical"
             android:padding="5dp">
 
             <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
 
-                android:gravity="center">
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
                 <ImageView
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
                     android:layout_gravity="center"
                     android:padding="3dp"
                     android:src="@drawable/icon_spo2_verde" />
@@ -304,16 +311,16 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
-                    android:text="@string/spo2"
+                    android:text="@string/saturacao_de_pulso_de_o2"
                     android:textColor="@color/corPrimaria"
-                    android:textSize="20sp" />
+                    android:textSize="18sp" />
 
 
             </LinearLayout>
 
             <info.hoang8f.android.segmented.SegmentedGroup xmlns:segmentedgroup="http://schemas.android.com/apk/res-auto"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="28dp"
                 android:layout_marginBottom="10dp"
                 android:orientation="horizontal"
                 segmentedgroup:sc_border_width="2dp"
@@ -326,7 +333,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:checked="true"
                     android:text="@string/basal" />
 
                 <CheckBox
@@ -335,8 +341,22 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:checked="true"
                     android:text="@string/durante" />
+                <CheckBox
+                    android:id="@+id/bt_final_spo2"
+                    style="@style/RadioButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/depois" />
+                <CheckBox
+                    android:id="@+id/bt_repouso_spo2"
+                    style="@style/RadioButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:textSize="12sp"
+                    android:text="@string/recupera_o" />
 
 
             </info.hoang8f.android.segmented.SegmentedGroup>
@@ -346,21 +366,93 @@
 
         <!--Layout PA-->
         <LinearLayout
+            android:id="@+id/layout_fr"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="2dp"
             android:background="@drawable/round_edge"
             android:orientation="vertical"
             android:padding="5dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center">
+                android:layout_height="wrap_content">
 
                 <ImageView
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_gravity="center"
+                    android:padding="4dp"
+                    android:src="@drawable/icon_nariz_verde" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:text="@string/frequ_ncia_respirat_ria"
+                    android:textColor="@color/corPrimaria"
+                    android:textSize="18sp" />
+
+
+            </LinearLayout>
+
+            <info.hoang8f.android.segmented.SegmentedGroup xmlns:segmentedgroup="http://schemas.android.com/apk/res-auto"
+                android:layout_width="match_parent"
+                android:layout_height="28dp"
+                android:layout_marginBottom="10dp"
+                android:orientation="horizontal"
+                segmentedgroup:sc_border_width="2dp"
+                segmentedgroup:sc_corner_radius="10dp"
+                segmentedgroup:sc_tint_color="@color/corPrimaria">
+
+                <CheckBox
+                    android:id="@+id/bt_basal_fr"
+                    style="@style/RadioButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/basal" />
+
+                <CheckBox
+                    android:id="@+id/bt_final_fr"
+                    style="@style/RadioButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/depois" />
+
+                <CheckBox
+                    android:id="@+id/bt_repouso_fr"
+                    style="@style/RadioButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="@string/recupera_o"  />
+
+
+            </info.hoang8f.android.segmented.SegmentedGroup>
+
+
+        </LinearLayout>
+
+
+        <!--Layout PA-->
+        <LinearLayout
+            android:id="@+id/layout_pa"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="2dp"
+            android:background="@drawable/round_edge"
+            android:orientation="vertical"
+            android:padding="5dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
                     android:layout_gravity="center"
                     android:padding="3dp"
                     android:src="@drawable/icon_pa_verde" />
@@ -371,14 +463,14 @@
                     android:layout_margin="5dp"
                     android:text="@string/pressao_arterial"
                     android:textColor="@color/corPrimaria"
-                    android:textSize="20sp" />
+                    android:textSize="18sp" />
 
 
             </LinearLayout>
 
             <info.hoang8f.android.segmented.SegmentedGroup xmlns:segmentedgroup="http://schemas.android.com/apk/res-auto"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="28dp"
                 android:layout_marginBottom="10dp"
                 android:orientation="horizontal"
                 segmentedgroup:sc_border_width="2dp"
@@ -391,7 +483,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:checked="true"
                     android:text="@string/basal" />
 
                 <CheckBox
@@ -400,17 +491,15 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:checked="true"
                     android:text="@string/depois" />
 
                 <CheckBox
                     android:id="@+id/bt_repouso_pa"
                     style="@style/RadioButton"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:checked="true"
-                    android:text="@string/repouso_min" />
+                    android:text="@string/recupera_o"  />
 
 
             </info.hoang8f.android.segmented.SegmentedGroup>
@@ -420,21 +509,21 @@
 
         <!--Layout GC-->
         <LinearLayout
+            android:id="@+id/layout_gc"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="2dp"
             android:background="@drawable/round_edge"
             android:orientation="vertical"
             android:padding="5dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center">
+                android:layout_height="wrap_content">
 
                 <ImageView
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
                     android:layout_gravity="center"
                     android:padding="3dp"
                     android:src="@drawable/icon_sangue_verde" />
@@ -445,14 +534,14 @@
                     android:layout_margin="5dp"
                     android:text="@string/glicemia_capilar"
                     android:textColor="@color/corPrimaria"
-                    android:textSize="20sp" />
+                    android:textSize="18sp" />
 
 
             </LinearLayout>
 
             <info.hoang8f.android.segmented.SegmentedGroup xmlns:segmentedgroup="http://schemas.android.com/apk/res-auto"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="28dp"
                 android:layout_marginBottom="10dp"
                 android:orientation="horizontal"
                 segmentedgroup:sc_border_width="2dp"
@@ -479,9 +568,9 @@
                     android:id="@+id/bt_repouso_gc"
                     style="@style/RadioButton"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:text="@string/repouso_min" />
+                    android:text="@string/recupera_o"  />
 
 
             </info.hoang8f.android.segmented.SegmentedGroup>
@@ -495,7 +584,7 @@
             android:layout_height="38dp"
             android:layout_gravity="center"
             android:layout_margin="25dp"
-            android:background="@color/corPrimariaEscura"
+            android:background="@color/colorAccent"
             android:text="@string/continuar"
             android:textColor="#d7ffffff" />
 
