@@ -141,6 +141,7 @@
     <string name="feminino">Feminino</string>
     <string name="recupera_o">Recuperação</string>
     <string name="frequ_ncia_respirat_ria">Frequência Respiratória</string>
+    <string name="alerta_fc">Valores de FC basal e final são obrigatórios pois são utilizados em uma fórmula</string>
 
 
 </resources>

@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.transition.TransitionManager;
+import android.util.TypedValue;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -32,26 +33,26 @@ public class PreTesteActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_pre_teste);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
         paciente = (Paciente) getIntent().getSerializableExtra("paciente");
 
-        TextView textoFcObrigatorio = (TextView) findViewById(R.id.text_fc_obrigatorio);
-        findViewById(R.id.bt_basal_fc).setOnClickListener(new View.OnClickListener() {
+        //Checkbox obrigatórias true
+        CheckBox btBasalFc = (CheckBox) findViewById(R.id.bt_basal_fc);
+        CheckBox btFinalFc = (CheckBox) findViewById(R.id.bt_final_fc);
+        //Listener para aparecer alerta de que FC final e basal são obrigatórios
+        View.OnClickListener listenerAlertaFcObrigatorio = new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                Toast.makeText(getApplicationContext(), "Valor obrigatório", Toast.LENGTH_SHORT).show();
+                findViewById(R.id.text_fc_obrigatorio).setVisibility(View.VISIBLE);
+                ((CheckBox) v).setChecked(true);
             }
-        });
-
-        findViewById(R.id.bt_final_fc).setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                Toast.makeText(getApplicationContext(), "Valor obrigatório", Toast.LENGTH_SHORT).show();
-                return false;
-            }
-        });
+        };
+        btFinalFc.setOnClickListener(listenerAlertaFcObrigatorio);
+        btBasalFc.setOnClickListener(listenerAlertaFcObrigatorio);
 
         int[] checkBoxes = {
                 R.id.bt_durante_fc,
@@ -86,7 +87,6 @@ public class PreTesteActivity extends AppCompatActivity {
         };
 
         int[] layouts = {
-                R.id.layout_fc,
                 R.id.layout_dispneia,
                 R.id.layout_fadiga,
                 R.id.layout_spo2,
@@ -119,16 +119,23 @@ public class PreTesteActivity extends AppCompatActivity {
             });
         }
 
-        for (final int resId : layouts){
+        for (final int resId : layouts) {
             final LinearLayout layout = (LinearLayout) findViewById(resId);
             layout.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT)
                         TransitionManager.beginDelayedTransition(layout);
+
+                    if (layout.getLayoutParams().height == LinearLayout.LayoutParams.WRAP_CONTENT) {
+                        LinearLayout.LayoutParams posicao = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+                        int height = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 40, getResources().getDisplayMetrics());
+                        posicao.height = height;
+                        layout.setLayoutParams(posicao);
+                    } else {
+                        LinearLayout.LayoutParams posicao = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+                        layout.setLayoutParams(posicao);
                     }
-                    LinearLayout.LayoutParams posicao = new LinearLayout.LayoutParams(ActionBar.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-                    layout.setLayoutParams(posicao);
                 }
             });
 

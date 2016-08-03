@@ -63,10 +63,11 @@
 
 
             <TextView
+                android:visibility="gone"
                 android:id="@+id/text_fc_obrigatorio"
                 android:layout_width="wrap_content"
-                android:text="Valores de FC basal e final são obrigatórios pois são utilizados em uma fórmula"
-                android:gravity="center"
+                android:text="@string/alerta_fc"
+
                 android:textSize="12sp"
                 android:layout_marginBottom="5dp"
                 android:textColor="@color/colorAccent"
@@ -106,7 +107,6 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:checked="true"
-                    android:enabled="false"
                     android:text="@string/depois" />
 
 
@@ -117,7 +117,7 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:textSize="12sp"
-                    android:text="Recuperação" />
+                    android:text="@string/recupera_o" />
 
             </info.hoang8f.android.segmented.SegmentedGroup>
 
@@ -129,7 +129,7 @@
             android:id="@+id/layout_dispneia"
             android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:layout_marginTop="2dp"
+            android:layout_marginTop="5dp"
             android:background="@drawable/round_edge"
             android:orientation="vertical"
             android:padding="5dp">
@@ -210,7 +210,7 @@
             android:id="@+id/layout_fadiga"
             android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:layout_marginTop="2dp"
+            android:layout_marginTop="5dp"
             android:background="@drawable/round_edge"
             android:orientation="vertical"
             android:padding="5dp">
@@ -290,7 +290,7 @@
             android:id="@+id/layout_spo2"
             android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:layout_marginTop="2dp"
+            android:layout_marginTop="5dp"
             android:background="@drawable/round_edge"
             android:orientation="vertical"
             android:padding="5dp">
@@ -369,7 +369,7 @@
             android:id="@+id/layout_fr"
             android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:layout_marginTop="2dp"
+            android:layout_marginTop="5dp"
             android:background="@drawable/round_edge"
             android:orientation="vertical"
             android:padding="5dp">
@@ -441,7 +441,7 @@
             android:id="@+id/layout_pa"
             android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:layout_marginTop="2dp"
+            android:layout_marginTop="5dp"
             android:background="@drawable/round_edge"
             android:orientation="vertical"
             android:padding="5dp">
@@ -512,7 +512,7 @@
             android:id="@+id/layout_gc"
             android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:layout_marginTop="2dp"
+            android:layout_marginTop="5dp"
             android:background="@drawable/round_edge"
             android:orientation="vertical"
             android:padding="5dp">
@@ -583,7 +583,7 @@
             android:layout_width="180dp"
             android:layout_height="38dp"
             android:layout_gravity="center"
-            android:layout_margin="25dp"
+            android:layout_margin="40dp"
             android:background="@color/colorAccent"
             android:text="@string/continuar"
             android:textColor="#d7ffffff" />
