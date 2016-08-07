@@ -440,7 +440,7 @@
             android:layout_gravity="center"
             android:layout_margin="25dp"
             android:background="@color/colorAccent"
-            android:text="@string/comecar_teste"
+            android:text="@string/continuar"
             android:textColor="#d7ffffff" />
 
 

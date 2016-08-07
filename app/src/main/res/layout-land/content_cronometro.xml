@@ -950,7 +950,21 @@
     </LinearLayout>
 
 
+    <Button
+        android:id="@+id/btIniciar"
+        android:layout_width="match_parent"
+        android:layout_height="38dp"
+        android:layout_gravity="center"
+        android:layout_marginBottom="20dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        android:background="@color/colorAccent"
+        android:text="@string/iniciar_teste"
+        android:textColor="#d7ffffff" /> <!--BOTAO INICIAR -->
+
     <RelativeLayout
+        android:visibility="gone"
         android:id="@+id/layoutBotoes"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

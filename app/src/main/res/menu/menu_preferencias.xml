@@ -5,7 +5,7 @@
 
     <item android:id="@+id/salvar_preferencias"
         android:title="@string/salvar"
-        android:icon="@drawable/icon_check2"
+        android:icon="@drawable/icon_check"
         app:showAsAction="always">
 
     </item>

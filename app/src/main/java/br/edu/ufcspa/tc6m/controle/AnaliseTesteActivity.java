@@ -282,9 +282,9 @@ public class AnaliseTesteActivity extends AppCompatActivity {
         if (!temAlgumPa) findViewById(R.id.card_pa).setVisibility(View.GONE);
         if (!temAlgumGc) findViewById(R.id.card_gc).setVisibility(View.GONE);
 
-        if (teste.getO2Supl() != null) {
+        if (teste.getO2Supl(0) != null) {
             TextView textO2supl = (TextView) findViewById(R.id.resultado_o2_supl);
-            textO2supl.setText(String.valueOf(teste.getO2Supl()));
+            textO2supl.setText(String.valueOf(teste.getO2Supl(0)));
         } else {
             findViewById(R.id.card_o2supl).setVisibility(View.GONE);
         }

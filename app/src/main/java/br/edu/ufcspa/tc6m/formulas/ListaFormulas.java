@@ -46,7 +46,7 @@ public class ListaFormulas {
         Formula britto1 = new Formula(
                 ID_BRITTO1,
                 "Britto e cols., 2013",
-                "890.46 - (6.11 * idade) + (0.0345 * idade²) + (48.87 * genero) - (4.87 * imc)",
+                "890.46 - (6.11 * idade) + (0.0345 * idade²) + (48.87 * gênero) - (4.87 * IMC)",
                 0.46,
                 R.drawable.bandeira_brasil
         );
@@ -55,7 +55,7 @@ public class ListaFormulas {
         Formula britto2 = new Formula(
                 ID_BRITTO2,
                 "Britto e cols., 2013",
-                "356,658 - (2.303 * idade) + (36.648 * genero) - (1.704 * estatura) + (1.305 * variação de FC)",
+                "356,658 - (2.303 * idade) + (36.648 * gênero) - (1.704 * estatura) + (1.305 * variação de FC)",
                 0.62,
                 R.drawable.bandeira_brasil
         );
@@ -73,7 +73,7 @@ public class ListaFormulas {
    Formula soaresPereira = new Formula(
                 ID_SOARES_PEREIRA,
                 "Soares e Pereira, 2011",
-                "511 + (0.0066 * estatura²) - (0.030 * idade²) - (0.068 * imc²)",
+                "511 + (0.0066 * estatura²) - (0.030 * idade²) - (0.068 * IMC²)",
                 0.55,
                 R.drawable.bandeira_brasil
         );
@@ -82,7 +82,7 @@ public class ListaFormulas {
         Formula iwama = new Formula(
                 ID_IWAMA,
                 "Iwama e cols. 2009",
-                "511 + (0.0066 * estatura²) - (0.030 * idade²) - (0.068 * imc²)",
+                "511 + (0.0066 * estatura²) - (0.030 * idade²) - (0.068 * IMC²)",
                 0.55,
                 R.drawable.bandeira_brasil
         );

@@ -151,7 +151,7 @@ public class ListaPacientesActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
+        getMenuInflater().inflate(R.menu.menu_lista, menu);
 
         return super.onCreateOptionsMenu(menu);
     }
@@ -166,6 +166,8 @@ public class ListaPacientesActivity extends AppCompatActivity {
                 break;
             case R.id.action_sobre:
                 startActivity(new Intent(ListaPacientesActivity.this, SobreActivity.class));
+                break;
+            case R.id.action_referencias:
                 break;
         }
         return super.onOptionsItemSelected(item);

@@ -150,7 +150,7 @@ public class TesteDAO extends SQLiteOpenHelper {
         //FADIGA MMII
         for (int i = 0; i < 9; i++) dados.put(strKeyFad[i], teste.getFadiga(i));
         //O2 SUPLEMENTAR
-        dados.put("o2supl_0", teste.getO2Supl());
+        dados.put("o2supl_0", teste.getO2Supl(0));
         //PAs
         for (int i = 0; i < 3; i++) dados.put(strKeyPas[i], teste.getPAs(i));
         //PAd
@@ -209,7 +209,7 @@ public class TesteDAO extends SQLiteOpenHelper {
                     teste.setFadiga(i, c.getDouble(c.getColumnIndex(strKeyFad[i])));
             //O2 SUPLEMENTAR
             if (!c.isNull(c.getColumnIndex("o2supl_0")))
-                teste.setO2Supl(c.getDouble(c.getColumnIndex("o2supl_0")));
+                teste.setO2Supl(0,c.getDouble(c.getColumnIndex("o2supl_0")));
             //PAs
             for (int i = 0; i < 3; i++)
                 if (!c.isNull(c.getColumnIndex(strKeyPas[i])))

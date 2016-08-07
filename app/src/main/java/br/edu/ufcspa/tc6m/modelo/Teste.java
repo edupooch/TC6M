@@ -37,7 +37,8 @@ public class Teste implements Serializable {
 
     // SIGNIFICADO DOS ÍNDICES DOS ARRAYS COMENTADOS AO LADO DE CADA UM
 
-    private Integer[] fc = new Integer[9]; //0=BASAL, 1-6=MINUTOS, 7=FINAL, 8=RECUPERAÇÃO
+    private Integer[] fc = new Integer[10]; //0=BASAL, 1-6=MINUTOS, 7=FINAL, 8=RECUPERAÇÃO 1', 9= RECUPERAÇÃO
+
     private Double[] dispneia = new Double[9]; //0=BASAL, 1-6=MINUTOS, 7=FINAL, 8=RECUPERAÇÃO
     private Double[] fadiga = new Double[9]; //0=BASAL, 1-6=MINUTOS, 7=FINAL, 8=RECUPERAÇÃO
 
@@ -46,8 +47,9 @@ public class Teste implements Serializable {
     private Integer[] pas = new Integer[3]; //0=BASAL, 1=FINAL, 2=RECUPERAÇÃO
     private Integer[] pad = new Integer[3]; //0=BASAL, 1=FINAL, 2=RECUPERAÇÃO
     private Integer[] gc = new Integer[3]; //0=BASAL, 1=FINAL, 2=RECUPERAÇÃO
+    private Integer[] fr = new Integer[3]; //0=BASAL, 1=FINAL, 2=RECUPERAÇÃO
 
-    private Double o2Supl;//BASAL
+    private Double[] o2Supl = new Double[2]; //0 = BASAL, 1=FINAL
 
     private int[] voltas = new int[6]; //0-5=MINUTOS
 
@@ -64,10 +66,6 @@ public class Teste implements Serializable {
     private String obsFinal;
 
     private int distanciaPercorrida;
-    private double dpEstimada1;
-    private double dpEstimada2;
-    private double dpPorcento1;
-    private double dpPorcento2;
 
     public Teste(Paciente paciente) {
         this.paciente = paciente;
@@ -169,12 +167,12 @@ public class Teste implements Serializable {
         this.gc[i] = gc;
     }
 
-    public Double getO2Supl() {
-        return o2Supl;
+    public Double getO2Supl(int i) {
+        return o2Supl[i];
     }
 
-    public void setO2Supl(Double o2Supl) {
-        this.o2Supl = o2Supl;
+    public void setO2Supl(int i, Double o2Supl) {
+        this.o2Supl[i] = o2Supl;
     }
 
     public int getVoltas(int i) {
@@ -233,37 +231,14 @@ public class Teste implements Serializable {
         this.distanciaPercorrida = distanciaPercorrida;
     }
 
-    public double getDpEstimada1() {
-        return dpEstimada1;
+    public Integer getFr(int i) {
+        return fr[i];
     }
 
-    public void setDpEstimada1(double dpEstimada1) {
-        this.dpEstimada1 = dpEstimada1;
+    public void setFr(int i, Integer fr) {
+        this.fr[i] = fr;
     }
 
-    public double getDpEstimada2() {
-        return dpEstimada2;
-    }
-
-    public void setDpEstimada2(double dpEstimada2) {
-        this.dpEstimada2 = dpEstimada2;
-    }
-
-    public double getDpPorcento1() {
-        return dpPorcento1;
-    }
-
-    public void setDpPorcento1(double dpPorcento1) {
-        this.dpPorcento1 = dpPorcento1;
-    }
-
-    public double getDpPorcento2() {
-        return dpPorcento2;
-    }
-
-    public void setDpPorcento2(double dpPorcento2) {
-        this.dpPorcento2 = dpPorcento2;
-    }
 
     public String getObsFinal() {
         return obsFinal;

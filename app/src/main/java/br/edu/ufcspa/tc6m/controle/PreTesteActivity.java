@@ -44,7 +44,7 @@ public class PreTesteActivity extends AppCompatActivity {
         CheckBox btBasalFc = (CheckBox) findViewById(R.id.bt_basal_fc);
         CheckBox btFinalFc = (CheckBox) findViewById(R.id.bt_final_fc);
         //Listener para aparecer alerta de que FC final e basal são obrigatórios
-        View.OnClickListener listenerAlertaFcObrigatorio = new View.OnClickListener(){
+        View.OnClickListener listenerAlertaFcObrigatorio = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 findViewById(R.id.text_fc_obrigatorio).setVisibility(View.VISIBLE);
@@ -83,7 +83,11 @@ public class PreTesteActivity extends AppCompatActivity {
 
                 R.id.bt_basal_gc,
                 R.id.bt_final_gc,
-                R.id.bt_repouso_gc
+                R.id.bt_repouso_gc,
+
+                R.id.bt_basal_o2supl,
+                R.id.bt_final_o2_supl
+
         };
 
         int[] layouts = {
@@ -92,7 +96,8 @@ public class PreTesteActivity extends AppCompatActivity {
                 R.id.layout_spo2,
                 R.id.layout_fr,
                 R.id.layout_pa,
-                R.id.layout_gc
+                R.id.layout_gc,
+                R.id.layout_o2supl
         };
 
         //Preferencias são diferentes para cada paciente
@@ -119,6 +124,7 @@ public class PreTesteActivity extends AppCompatActivity {
             });
         }
 
+        //-------------listener para aumentar e diminuir o layout clicado-------------------------//
         for (final int resId : layouts) {
             final LinearLayout layout = (LinearLayout) findViewById(resId);
             layout.setOnClickListener(new View.OnClickListener() {
@@ -129,8 +135,7 @@ public class PreTesteActivity extends AppCompatActivity {
 
                     if (layout.getLayoutParams().height == LinearLayout.LayoutParams.WRAP_CONTENT) {
                         LinearLayout.LayoutParams posicao = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-                        int height = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 40, getResources().getDisplayMetrics());
-                        posicao.height = height;
+                        posicao.height = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 40, getResources().getDisplayMetrics());
                         layout.setLayoutParams(posicao);
                     } else {
                         LinearLayout.LayoutParams posicao = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
@@ -138,9 +143,66 @@ public class PreTesteActivity extends AppCompatActivity {
                     }
                 }
             });
-
+            //-------lógica para abrir os layouts de variáveis já selecionadas anteriormente------//
+            if (layout.getLayoutParams().height != LinearLayout.LayoutParams.WRAP_CONTENT) {
+                //apenas faz o switch nos que já nao estão abertos
+                switch (resId) {
+                    case R.id.layout_dispneia:
+                        if (sharedPreferences.getBoolean("basal_dispneia", false) ||
+                                sharedPreferences.getBoolean("durante_dispneia", false) ||
+                                sharedPreferences.getBoolean("final_dispneia", false) ||
+                                sharedPreferences.getBoolean("repouso_dispneia", false)) {
+                            abreLayout(layout);
+                        }
+                        break;
+                    case R.id.layout_fadiga:
+                        if (sharedPreferences.getBoolean("basal_fadiga", false) ||
+                                sharedPreferences.getBoolean("durante_fadiga", false) ||
+                                sharedPreferences.getBoolean("final_fadiga", false) ||
+                                sharedPreferences.getBoolean("repouso_fadiga", false)) {
+                            abreLayout(layout);
+                        }
+                        break;
+                    case R.id.layout_spo2:
+                        if (sharedPreferences.getBoolean("basal_spo2", false) ||
+                                sharedPreferences.getBoolean("durante_spo2", false) ||
+                                sharedPreferences.getBoolean("final_spo2", false) ||
+                                sharedPreferences.getBoolean("repouso_spo2", false)) {
+                            abreLayout(layout);
+                        }
+                        break;
+                    case R.id.layout_fr:
+                        if (sharedPreferences.getBoolean("basal_fr", false) ||
+                                sharedPreferences.getBoolean("final_fr", false) ||
+                                sharedPreferences.getBoolean("repouso_fr", false)) {
+                            abreLayout(layout);
+                        }
+                        break;
+                    case R.id.layout_pa:
+                        if (sharedPreferences.getBoolean("basal_pa", false) ||
+                                sharedPreferences.getBoolean("final_pa", false) ||
+                                sharedPreferences.getBoolean("repouso_pa", false)) {
+                            abreLayout(layout);
+                        }
+                        break;
+                    case R.id.layout_gc:
+                        if (sharedPreferences.getBoolean("basal_gc", false) ||
+                                sharedPreferences.getBoolean("final_gc", false) ||
+                                sharedPreferences.getBoolean("repouso_gc", false)) {
+                            abreLayout(layout);
+                        }
+                        break;
+                    case R.id.layout_o2supl:
+                        if (sharedPreferences.getBoolean("basal_o2supl", false) ||
+                                sharedPreferences.getBoolean("final_o2supl", false)) {
+                            abreLayout(layout);
+                        }
+                        break;
+                }
+            }
         }
 
+        //-------------botao para passar para a próxima tela -------------------------------------//
         Button btOk = (Button) findViewById(R.id.btOk);
         btOk.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -152,5 +214,13 @@ public class PreTesteActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    private void abreLayout(LinearLayout layout) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT)
+            TransitionManager.beginDelayedTransition(layout);
+
+        LinearLayout.LayoutParams posicao = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        layout.setLayoutParams(posicao);
     }
 }

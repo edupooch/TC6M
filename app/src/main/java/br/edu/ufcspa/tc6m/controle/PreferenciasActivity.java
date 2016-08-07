@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.ListView;
 import android.widget.NumberPicker;
 import android.widget.TextView;
+
 import br.edu.ufcspa.tc6m.R;
 import br.edu.ufcspa.tc6m.adapter.FormulasAdapter;
 import br.edu.ufcspa.tc6m.formulas.ListaFormulas;
@@ -31,23 +32,20 @@ public class PreferenciasActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        sharedPref = getSharedPreferences("PREFERENCIAS",MODE_PRIVATE);
-
+        sharedPref = getSharedPreferences("PREFERENCIAS", MODE_PRIVATE);
 
 
         findViewById(R.id.layout_selecionar_equacoes).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(findViewById(R.id.lista_formulas).getVisibility() == View.VISIBLE){
+                if (findViewById(R.id.lista_formulas).getVisibility() == View.VISIBLE) {
                     findViewById(R.id.lista_formulas).setVisibility(View.GONE);
-                }else{
+                } else {
                     carregaLista();
                 }
 
             }
         });
-
-
 
 
         com.shawnlin.numberpicker.NumberPicker numberPicker = (com.shawnlin.numberpicker.NumberPicker) findViewById(R.id.number_picker_tamanho_volta);
@@ -86,14 +84,18 @@ public class PreferenciasActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_preferencias, menu);
+
+        return super.onCreateOptionsMenu(menu);
+    }
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                NavUtils.navigateUpFromSameTask(this);
-                return true;
-        }
+        NavUtils.navigateUpFromSameTask(this);
         return super.onOptionsItemSelected(item);
     }
 

@@ -70,6 +70,9 @@ public class TesteHelper {
         }
 
         edTextO2Supl = (EditText) activity.findViewById(R.id.edTextO2Supl);
+        if (!sharedPreferences.getBoolean("basal_o2supl", false)) {
+            activity.findViewById(R.id.layout_o2supl).setVisibility(View.GONE);
+        }
 
         //edTextFc[0].addTextChangedListener(new FcWatcher());
 
@@ -173,8 +176,9 @@ public class TesteHelper {
         if (!sharedPreferences.getBoolean("final_pa", false)) {
             activity.findViewById(R.id.layout_pa).setVisibility(View.GONE);
         }
-
         edTextObsFinal = (EditText) activity.findViewById(R.id.edTextObsFinal);
+
+
 
 
     }
@@ -249,7 +253,7 @@ public class TesteHelper {
             // O O2 SUPLEMENTAR É APENAS UM VALOR BASAL
             if (minuto == 0) {
                 if (!edTextO2Supl.getText().toString().isEmpty())
-                    teste.setO2Supl(Double.valueOf(edTextO2Supl.getText().toString()));
+                    teste.setO2Supl(minuto,Double.valueOf(edTextO2Supl.getText().toString()));
             }
 
             //mudando o valor de 7 e 8 para 1 e 2 para se adequar aos índices declarados DE GC E PA
