@@ -58,7 +58,7 @@ public class ValoresRecuperacaoActivity extends AppCompatActivity {
         titulo.setText(teste.getPaciente().getNome());
 
         crono = (Chronometer) findViewById(R.id.cronometroRecuperacao);
-        crono.setBase(SystemClock.elapsedRealtime());
+        crono.setBase(teste.getBaseCronometroRec());
         crono.start();
 
         crono.setOnChronometerTickListener(new Chronometer.OnChronometerTickListener() {

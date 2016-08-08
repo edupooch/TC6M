@@ -56,6 +56,8 @@ public class Teste implements Serializable {
     private ArrayList<Velocidade> velocidades = new ArrayList<>();
     Long ultimaVolta;
 
+    private long baseCronometroRec;
+
     private int nParadas;
     private String tempoParadas;
     private String motivoParadas;
@@ -260,5 +262,13 @@ public class Teste implements Serializable {
 
     public void setVelocidades(ArrayList<Velocidade> velocidades) {
         this.velocidades = velocidades;
+    }
+
+    public long getBaseCronometroRec() {
+        return baseCronometroRec;
+    }
+
+    public void setBaseCronometroRec(long baseCronometroRec) {
+        this.baseCronometroRec = baseCronometroRec;
     }
 }
