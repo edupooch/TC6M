@@ -53,6 +53,8 @@ public class Teste implements Serializable {
 
     private int[] voltas = new int[6]; //0-5=MINUTOS
 
+    private int tamanhoVolta;
+
     private ArrayList<Velocidade> velocidades = new ArrayList<>();
     Long ultimaVolta;
 
@@ -88,6 +90,14 @@ public class Teste implements Serializable {
 
     public void setIdade(int idade) {
         this.idade = idade;
+    }
+
+    public int getTamanhoVolta() {
+        return tamanhoVolta;
+    }
+
+    public void setTamanhoVolta(int tamanhoVolta) {
+        this.tamanhoVolta = tamanhoVolta;
     }
 
     public Long getIdTeste() {

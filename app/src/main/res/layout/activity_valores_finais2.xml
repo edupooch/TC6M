@@ -21,20 +21,24 @@
             app:popupTheme="@style/AppTheme.PopupOverlay">
 
             <Chronometer
-                android:visibility="gone"
                 android:id="@+id/cronometro_finais"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="sans-serif-light"
-                android:textColor="#FFFFFFFF"
                 android:layout_gravity="end"
                 android:layout_margin="10dp"
-                android:textSize="25sp" />
+                android:fontFamily="sans-serif-light"
+                android:textColor="#FFFFFFFF"
+                android:textSize="25sp"
+                android:visibility="gone" />
+
 
         </android.support.v7.widget.Toolbar>
 
     </android.support.design.widget.AppBarLayout>
 
-    <include layout="@layout/content_valores_finais2" />
+
+
+    <include
+        layout="@layout/content_valores_finais2" />
 
 </android.support.design.widget.CoordinatorLayout>

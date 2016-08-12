@@ -14,13 +14,17 @@
     tools:context="br.edu.ufcspa.tc6m.controle.ValoresFinaisActivity"
     tools:showIn="@layout/activity_valores_finais2">
 
+
     <TableLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:stretchColumns="0,1">
 
-
+        <ProgressBar
+            android:layout_width="match_parent"
+            android:layout_height="10dp"
+            android:progress="45" />
 
 
         <TableRow
@@ -45,6 +49,77 @@
                 android:textSize="18sp" />
 
         </TableRow> <!-- TITULO -->
+
+
+        <LinearLayout
+            android:id="@+id/layoutDp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="2dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginStart="10dp"
+                android:text="@string/dist_ncia_percorrida"
+                android:textColor="#96ffffff"
+                android:textSize="16sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/round_edge"
+                android:padding="5dp">
+
+                <TextView
+                    android:id="@+id/textDistanciaFinal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginStart="20dp"
+                    android:textColor="#424242"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginRight="10dp"
+                    android:text="m  +"
+                    android:textColor="#424242"
+                    android:textSize="18sp" />
+
+                <EditText
+                    android:id="@+id/edTextDistanciaRestante"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:ems="2"
+                    android:hint="@string/dist_ncia_restante"
+                    android:inputType="number"
+                    android:maxLength="3" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:layout_marginBottom="2dp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginRight="20dp"
+                    android:text="@string/metros"
+                    android:textColor="#616161"
+                    android:textSize="15sp" />
+
+            </LinearLayout>
+        </LinearLayout> <!-- Layout da DP(exibido só no final) -->
 
 
         <TableRow
@@ -85,7 +160,6 @@
                         android:background="@drawable/icon_fc" />
 
                     <EditText
-                        android:maxLength="3"
                         android:id="@+id/edTextFC7"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -93,12 +167,13 @@
                         android:layout_marginEnd="10dp"
                         android:layout_marginRight="10dp"
                         android:background="#FFFFFF"
-                        android:inputType="number" />
+                        android:inputType="number"
+                        android:maxLength="3" />
                 </LinearLayout>
             </LinearLayout> <!-- FC -->
 
             <LinearLayout
-                android:id="@+id/layout_gc"
+                android:id="@+id/layout_spo2"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="5dp"
@@ -107,13 +182,12 @@
                 android:orientation="vertical">
 
                 <TextView
-
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="5dp"
                     android:layout_marginLeft="10dp"
                     android:layout_marginStart="10dp"
-                    android:text="@string/glicemia_capilar"
+                    android:text="@string/spo2"
                     android:textColor="#96ffffff"
                     android:textSize="12sp" />
 
@@ -128,21 +202,20 @@
                         android:layout_height="30dp"
                         android:layout_gravity="center"
                         android:layout_margin="10dp"
-                        android:background="@drawable/icon_sangue" />
+                        android:background="@drawable/icon_spo2" />
 
                     <EditText
-                        android:id="@+id/edTextGC1"
-                        android:maxLength="3"
+                        android:id="@+id/edTextSp7"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_marginEnd="10dp"
                         android:layout_marginRight="10dp"
                         android:background="#FFFFFF"
-                        android:inputType="number" />
+                        android:inputType="number"
+                        android:maxLength="5" />
                 </LinearLayout>
-            </LinearLayout> <!--GC-->
-
+            </LinearLayout> <!-- spo2 -->
 
         </TableRow> <!--FC E spo2-->
 
@@ -186,7 +259,6 @@
                         android:background="@drawable/icon_pulmao" />
 
                     <EditText
-                        android:maxLength="5"
                         android:id="@+id/edTextDisp7"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -194,7 +266,8 @@
                         android:layout_marginEnd="10dp"
                         android:layout_marginRight="10dp"
                         android:background="#FFFFFF"
-                        android:inputType="number" />
+                        android:inputType="number"
+                        android:maxLength="5" />
                 </LinearLayout>
             </LinearLayout> <!-- Dispneia -->
 
@@ -229,7 +302,6 @@
                         android:background="@drawable/icon_mmii" />
 
                     <EditText
-                        android:maxLength="5"
                         android:id="@+id/edTextFad7"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -237,7 +309,8 @@
                         android:layout_marginEnd="10dp"
                         android:layout_marginRight="10dp"
                         android:background="#FFFFFF"
-                        android:inputType="number" />
+                        android:inputType="number"
+                        android:maxLength="5" />
                 </LinearLayout>
             </LinearLayout>
 
@@ -286,14 +359,14 @@
 
                     <EditText
                         android:id="@+id/edTextPAS1"
-                        android:maxLength="3"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_marginEnd="10dp"
                         android:layout_marginRight="10dp"
                         android:background="#FFFFFF"
-                        android:inputType="number" />
+                        android:inputType="number"
+                        android:maxLength="3" />
                 </LinearLayout>
             </LinearLayout> <!-- PA -->
 
@@ -328,13 +401,13 @@
                     <EditText
                         android:id="@+id/edTextPAD1"
                         android:layout_width="match_parent"
-                        android:maxLength="3"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_marginEnd="10dp"
                         android:layout_marginRight="10dp"
                         android:background="#FFFFFF"
-                        android:inputType="number" />
+                        android:inputType="number"
+                        android:maxLength="3" />
                 </LinearLayout>
             </LinearLayout> <!-- PA -->
 
@@ -352,8 +425,8 @@
                 android:id="@+id/layout_o2supl"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:layout_marginRight="5dp"
+                android:layout_weight="1"
                 android:orientation="vertical">
 
                 <TextView
@@ -387,24 +460,25 @@
                         android:layout_marginEnd="10dp"
                         android:layout_marginRight="10dp"
                         android:background="#FFFFFF"
-                        android:maxLength="3"
-                        android:inputType="numberDecimal" />
+                        android:inputType="numberDecimal"
+                        android:maxLength="3" />
                 </LinearLayout>
             </LinearLayout> <!--o2 sup-->
-
             <LinearLayout
+                android:id="@+id/layout_gc"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:orientation="vertical">
 
                 <TextView
+
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="5dp"
                     android:layout_marginLeft="10dp"
                     android:layout_marginStart="10dp"
-                    android:text="@string/observa_es"
+                    android:text="@string/glicemia_capilar"
                     android:textColor="#96ffffff"
                     android:textSize="12sp" />
 
@@ -419,24 +493,65 @@
                         android:layout_height="30dp"
                         android:layout_gravity="center"
                         android:layout_margin="10dp"
-                        android:background="@drawable/icon_obs" />
+                        android:background="@drawable/icon_sangue" />
 
                     <EditText
-                        android:id="@+id/edTextObsFinal"
+                        android:id="@+id/edTextGC1"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_marginEnd="10dp"
                         android:layout_marginRight="10dp"
                         android:background="#FFFFFF"
-                        android:inputType="textCapSentences" />
+                        android:inputType="number"
+                        android:maxLength="3" />
                 </LinearLayout>
-
-            </LinearLayout>
+            </LinearLayout> <!--GC-->
 
 
         </TableRow> <!--SP e o2supl-->
 
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginStart="10dp"
+                android:text="@string/observa_es"
+                android:textColor="#96ffffff"
+                android:textSize="12sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/round_edge"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_gravity="center"
+                    android:layout_margin="10dp"
+                    android:background="@drawable/icon_obs" />
+
+                <EditText
+                    android:id="@+id/edTextObsFinal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginRight="10dp"
+                    android:background="#FFFFFF" />
+            </LinearLayout>
+
+        </LinearLayout>
 
         <Button
             android:id="@+id/btSalvarFinal"

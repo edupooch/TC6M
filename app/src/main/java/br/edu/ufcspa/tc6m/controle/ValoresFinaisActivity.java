@@ -14,11 +14,13 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Chronometer;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import br.edu.ufcspa.tc6m.R;
 import br.edu.ufcspa.tc6m.dao.TesteDAO;
 import br.edu.ufcspa.tc6m.modelo.Teste;
+import br.edu.ufcspa.tc6m.modelo.Velocidade;
 
 public class ValoresFinaisActivity extends AppCompatActivity {
 
@@ -41,7 +43,6 @@ public class ValoresFinaisActivity extends AppCompatActivity {
 
     }
 
-
     private void verificaValores() {
 
         SharedPreferences sharedPreferences = getSharedPreferences("VARIAVEIS_DO_PACIENTE_" +
@@ -58,18 +59,58 @@ public class ValoresFinaisActivity extends AppCompatActivity {
     }
 
     private void iniciaComponentes() {
+        //..........................ALERTA DE MANDE O PACIENTE PARAR..............................//
+        //exibido no começo da activity
+        final AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setCancelable(false);
+        builder.setTitle(getString(R.string.concluido));
+        builder.setMessage(getString(R.string.dialog_parar));
+        builder.setPositiveButton(getString(R.string.dialog_ok), new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+
+        });
+
+        AlertDialog alert = builder.create();
+        alert.show();
+        ////////////////////////////////////////////////////////////////////////////////////////////
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
 
         helper.preencheCamposFinais();
         TextView titulo = (TextView) findViewById(R.id.tituloFinais);
         titulo.setText(teste.getPaciente().getNome());
+
+        ////////////////////////////////////////////////////////////////////////////////////////////
+        //declarar edTextDist restante
 
         Button btSalvar = (Button) findViewById(R.id.btSalvarFinal);
         btSalvar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 teste = helper.pegaDadosFromFields(7);
+
+
+                EditText edTextDistanciaRestante = (EditText)findViewById(R.id.edTextDistanciaRestante);
+
+                if (!edTextDistanciaRestante.getText().toString().isEmpty()) {
+                    int dpRestante = Integer.parseInt(edTextDistanciaRestante.getText().toString()); //valor adicionado no final quando o paciente para
+                    teste.setVoltas(5, teste.getVoltas(5) + dpRestante); //salva o restante da ultima volta(onde o paciente parou)
+                    teste.setDistanciaPercorrida(teste.getDistanciaPercorrida() + dpRestante);//salva a distancia percorrida total
+
+                    //Salva a velocidade caso tenha distancia restante
+                    float tempoDaVoltaSeg = (float) ((System.currentTimeMillis() - teste.getUltimaVolta()) / 1000);
+                    float velocidade = dpRestante / tempoDaVoltaSeg;
+                    teste.getVelocidades().add(new Velocidade(velocidade, "06:00"));
+                }
+
+
+
+
                 //Verifica se mostra a tela para pegar valores de recuperação
                 if (temAlgumValorDeRepouso) {
                     teste.setBaseCronometroRec(cronometro.getBase());
