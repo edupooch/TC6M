@@ -5,13 +5,11 @@
 
     <item
         android:id="@+id/action_referencias"
-        android:icon="@drawable/icon_referencias"
         android:orderInCategory="1"
         android:title="@string/referencias"
         app:showAsAction="never" />
     <item
         android:id="@+id/action_sobre"
-        android:icon="@drawable/icon_sobre"
         android:orderInCategory="2"
         android:title="@string/sobre"
         app:showAsAction="never" />

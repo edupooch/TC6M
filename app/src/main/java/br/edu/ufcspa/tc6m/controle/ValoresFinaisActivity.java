@@ -80,8 +80,6 @@ public class ValoresFinaisActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-
-        helper.preencheCamposFinais();
         TextView titulo = (TextView) findViewById(R.id.tituloFinais);
         titulo.setText(teste.getPaciente().getNome());
 

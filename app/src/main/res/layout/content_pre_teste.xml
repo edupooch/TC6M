@@ -468,7 +468,7 @@
                     android:layout_height="25dp"
                     android:layout_gravity="center"
                     android:padding="4dp"
-                    android:src="@drawable/icon_nariz_verde" />
+                    android:src="@drawable/icon_pulmao_verde" />
 
                 <TextView
                     android:layout_width="wrap_content"

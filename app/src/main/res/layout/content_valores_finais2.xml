@@ -160,7 +160,7 @@
                         android:background="@drawable/icon_fc" />
 
                     <EditText
-                        android:id="@+id/edTextFC7"
+                        android:id="@+id/edTextFC6"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
@@ -259,7 +259,7 @@
                         android:background="@drawable/icon_pulmao" />
 
                     <EditText
-                        android:id="@+id/edTextDisp7"
+                        android:id="@+id/edTextDisp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
@@ -302,7 +302,7 @@
                         android:background="@drawable/icon_mmii" />
 
                     <EditText
-                        android:id="@+id/edTextFad7"
+                        android:id="@+id/edTextFad6"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"

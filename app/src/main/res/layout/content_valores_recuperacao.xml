@@ -134,7 +134,7 @@
                             android:background="@drawable/icon_sangue" />
 
                         <EditText
-                            android:id="@+id/edTextGC3"
+                            android:id="@+id/edTextGC2"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:maxLength="3"
@@ -191,7 +191,7 @@
                             android:background="@drawable/icon_pulmao" />
 
                         <EditText
-                            android:id="@+id/edTextDisp8"
+                            android:id="@+id/edTextDisp7"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
@@ -233,7 +233,7 @@
                             android:background="@drawable/icon_mmii" />
 
                         <EditText
-                            android:id="@+id/edTextFad8"
+                            android:id="@+id/edTextFad7"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
@@ -289,7 +289,7 @@
                             android:background="@drawable/icon_pa" />
 
                         <EditText
-                            android:id="@+id/edTextPAS3"
+                            android:id="@+id/edTextPAS2"
                             android:maxLength="3"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -330,7 +330,7 @@
                             android:background="@drawable/icon_pa" />
 
                         <EditText
-                            android:id="@+id/edTextPAD3"
+                            android:id="@+id/edTextPAD2"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
@@ -396,6 +396,52 @@
                     app:cpb_progressbar_width="5dp" />
 
             </RelativeLayout> <!-- Layout Cronometro -->
+
+            <LinearLayout
+                android:id="@+id/layout_fc_recup_1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="5dp"
+                android:layout_marginRight="5dp"
+                android:visibility="gone"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginStart="10dp"
+                    android:text="@string/frequencia_cardiaca_1"
+                    android:textColor="#96ffffff"
+                    android:textSize="12sp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/round_edge"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_gravity="center"
+                        android:layout_margin="10dp"
+                        android:background="@drawable/icon_fc" />
+
+                    <EditText
+                        android:id="@+id/edTextFC7"
+                        android:maxLength="3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginEnd="10dp"
+                        android:layout_marginRight="10dp"
+                        android:background="#FFFFFF"
+                        android:inputType="number" />
+                </LinearLayout>
+            </LinearLayout> <!-- FC -->
 
             <TextView
                 android:id="@+id/textAguarde"

@@ -52,7 +52,7 @@
     <string name="title_activity_analise_teste">Análise do Teste</string>
     <string name="bpm">bpm</string>
     <string name="inicial">INICIAL</string>
-    <string name="repouso">REPOUSO</string>
+    <string name="RECUP">RECUP.</string>
     <string name="_1_minuto">1º min</string>
     <string name="_2_minuto">2º min</string>
     <string name="_3_minuto">3º min</string>
@@ -126,8 +126,7 @@
     <string name="observa_es_sobre_o_teste">Observações sobre o teste</string>
     <string name="paradas">Paradas:</string>
     <string name="tempo_parado">Tempo Parado:</string>
-    <string name="velocidade_tempo">Velocidade / Tempo</string>
-    <string name="dist_ncia_minuto">Distância / Minuto</string>
+    <string name="velocidade_volta">Velocidade por Volta </string>
     <string name="an_lise_do_teste">Análise do Teste</string>
     <string name="continuar">Continuar</string>
     <string name="press_o_diast_lica">Pressão Diastólica</string>
@@ -150,6 +149,8 @@
     <string name="o">O</string>
     <string name="_2">2</string>
     <string name="cronometro_de_recuperacao">Cronômetro de Recuperação</string>
+    <string name="tamanho_volta_resultados">Tamanho da Volta:</string>
+    <string name="frequencia_cardiaca_1">Frequência Cardíaca (1\')</string>
 
 
 </resources>

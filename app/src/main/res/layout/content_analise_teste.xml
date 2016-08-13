@@ -159,23 +159,36 @@
                             android:textStyle="bold" />
 
                         <TextView
-                            android:visibility="gone"
                             android:id="@+id/text_titulo_tempo_parado"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="5dp"
                             android:fontFamily="sans-serif-light"
                             android:text="@string/tempo_parado"
-                            android:textSize="12sp" />
+                            android:textSize="12sp"
+                            android:visibility="gone" />
 
                         <TextView
-                            android:visibility="gone"
                             android:id="@+id/text_tempo_paradas"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="0:00"
-                            android:textStyle="bold" />
+                            android:textStyle="bold"
+                            android:visibility="gone" />
 
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:fontFamily="sans-serif-light"
+                            android:text="@string/tamanho_volta_resultados"
+                            android:textSize="12sp" />
+
+                        <TextView
+                            android:id="@+id/text_tamanho_volta"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textStyle="bold" />
 
                     </LinearLayout>
 
@@ -183,9 +196,9 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="center"
                         android:layout_marginTop="5dp"
                         android:gravity="center"
-                        android:layout_gravity="center"
                         android:orientation="vertical">
 
                         <RelativeLayout
@@ -268,37 +281,18 @@
                 android:background="#8b949494" />
 
 
-
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/velocidade_tempo"
-                android:gravity="center"
                 android:layout_marginBottom="10dp"
                 android:fontFamily="sans-serif-light"
-                />
+                android:gravity="center"
+                android:text="@string/velocidade_volta" />
 
             <com.github.mikephil.charting.charts.LineChart
                 android:id="@+id/grafico_velocidades"
                 android:layout_width="match_parent"
                 android:layout_height="300dp" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/dist_ncia_minuto"
-                android:gravity="center"
-                android:layout_marginBottom="10dp"
-                android:fontFamily="sans-serif-light"
-                />
-
-
-            <com.github.mikephil.charting.charts.BarChart
-                android:id="@+id/grafico_voltas_minuto"
-                android:layout_width="match_parent"
-                android:layout_height="300dp" />
-
-
 
 
         </LinearLayout>
@@ -338,6 +332,14 @@
                     android:textSize="20sp"
                     android:textStyle="bold" />
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginStart="5dp"
+                    android:text="(bpm)"
+                    android:textColor="@color/corPrimariaEscura"
+                    android:textSize="12sp" />
 
             </LinearLayout>
 
@@ -370,21 +372,14 @@
                         android:text="@string/inicial"
                         android:textStyle="bold" />
 
-                    <LinearLayout
+              
+                    <TextView
+                        android:id="@+id/resultado_fc_inicial"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:textSize="30sp" />
 
-                        <TextView
-                            android:id="@+id/resultado_fc_inicial"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textSize="30sp" />
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/bpm" />
-                    </LinearLayout>
                 </LinearLayout>
 
                 <LinearLayout
@@ -402,21 +397,12 @@
                         android:text="@string/_final"
                         android:textStyle="bold" />
 
-                    <LinearLayout
+
+                    <TextView
+                        android:id="@+id/resultado_fc_final"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
-
-                        <TextView
-                            android:id="@+id/resultado_fc_final"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textSize="30sp" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/bpm" />
-                    </LinearLayout>
+                        android:layout_height="wrap_content"
+                        android:textSize="30sp" />
 
 
                 </LinearLayout>
@@ -433,25 +419,18 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/repouso"
+                        android:text="@string/RECUP"
                         android:textSize="13sp"
                         android:textStyle="bold" />
+                    >
 
-                    <LinearLayout
+                    <TextView
+                        android:id="@+id/resultado_fc_recup"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:textSize="30sp" />
 
-                        <TextView
-                            android:id="@+id/resultado_fc_recup"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textSize="30sp" />
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/bpm" />
-                    </LinearLayout>
                 </LinearLayout>
 
             </LinearLayout>
@@ -493,12 +472,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="22sp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/bpm"
-                        android:textSize="10sp" />
+               
 
                 </LinearLayout>
 
@@ -524,11 +498,7 @@
                         android:layout_height="wrap_content"
                         android:textSize="22sp" />
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/bpm"
-                        android:textSize="10sp" />
+          
                 </LinearLayout>
 
                 <LinearLayout
@@ -553,11 +523,6 @@
                         android:layout_height="wrap_content"
                         android:textSize="22sp" />
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/bpm"
-                        android:textSize="10sp" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -582,11 +547,6 @@
                         android:layout_height="wrap_content"
                         android:textSize="22sp" />
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/bpm"
-                        android:textSize="10sp" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -611,42 +571,7 @@
                         android:layout_height="wrap_content"
                         android:textSize="22sp" />
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/bpm"
-                        android:textSize="10sp" />
-
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginStart="10dp"
-                    android:gravity="center"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/_6_minuto"
-                        android:textSize="12sp"
-                        android:textStyle="bold" />
-
-
-                    <TextView
-                        android:id="@+id/ressultado_fc_6_minuto"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="22sp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/bpm"
-                        android:textSize="10sp" />
+         
 
 
                 </LinearLayout>
@@ -736,7 +661,7 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:id="@+id/layout_sp_durante_6"
+                    android:id="@+id/layout_sp_final"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="30dp"
@@ -747,7 +672,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/_6_minuto"
+                        android:text="@string/_final"
                         android:textStyle="bold" />
 
 
@@ -757,6 +682,31 @@
                         android:layout_height="wrap_content"
                         android:textSize="30sp" />
 
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/layout_spo2_repouso"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginStart="30dp"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/RECUP"
+                        android:textSize="13sp"
+                        android:textStyle="bold" />
+
+
+                    <TextView
+                        android:id="@+id/resultado_spo2_recup"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="30sp" />
 
                 </LinearLayout>
 
@@ -1033,7 +983,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/repouso"
+                        android:text="@string/RECUP"
                         android:textSize="13sp"
                         android:textStyle="bold" />
 
@@ -1236,38 +1186,7 @@
                     </LinearLayout>
                 </LinearLayout>
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginStart="10dp"
-                    android:gravity="center"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/_6_minuto"
-                        android:textSize="12sp"
-                        android:textStyle="bold" />
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
-
-                        <TextView
-                            android:id="@+id/resultado_disp_6_minuto"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textSize="20sp" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/_disp_unidade"
-                            android:textSize="12sp" />
-                    </LinearLayout>
-                </LinearLayout>
+               
             </LinearLayout>
 
 
@@ -1325,9 +1244,9 @@
 
             <TableRow
                 android:layout_width="match_parent"
-                android:gravity="center"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp">
+                android:layout_marginBottom="10dp"
+                android:gravity="center">
 
                 <LinearLayout
                     android:id="@+id/layout_fadiga_inicial"
@@ -1405,7 +1324,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/repouso"
+                        android:text="@string/RECUP"
                         android:textSize="13sp"
                         android:textStyle="bold" />
 
@@ -1608,38 +1527,6 @@
                     </LinearLayout>
                 </LinearLayout>
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginStart="10dp"
-                    android:gravity="center"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/_6_minuto"
-                        android:textSize="12sp"
-                        android:textStyle="bold" />
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
-
-                        <TextView
-                            android:id="@+id/resultado_fad_6_minuto"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textSize="20sp" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/_fad_unidade"
-                            android:textSize="12sp" />
-                    </LinearLayout>
-                </LinearLayout>
 
 
             </LinearLayout>
@@ -1772,7 +1659,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/repouso"
+                        android:text="@string/RECUP"
                         android:textSize="13sp"
                         android:textStyle="bold" />
 
@@ -1916,7 +1803,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@string/repouso"
+                            android:text="@string/RECUP"
                             android:textSize="13sp"
                             android:textStyle="bold" />
 
