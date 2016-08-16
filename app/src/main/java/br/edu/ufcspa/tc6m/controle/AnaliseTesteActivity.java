@@ -21,6 +21,7 @@ import android.widget.Toast;
 
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.charts.LineChart;
+import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
@@ -35,7 +36,6 @@ import java.util.Locale;
 
 import br.edu.ufcspa.tc6m.R;
 import br.edu.ufcspa.tc6m.adapter.FormulasDialogAdapter;
-import br.edu.ufcspa.tc6m.dao.PacienteDAO;
 import br.edu.ufcspa.tc6m.dao.TesteDAO;
 import br.edu.ufcspa.tc6m.formulas.ListaFormulas;
 import br.edu.ufcspa.tc6m.modelo.Formula;
@@ -50,9 +50,9 @@ public class AnaliseTesteActivity extends AppCompatActivity {
 
     //0=BASAL, 1-6=MINUTOS, 7=FINAL, 8=RECUPERAÇÃO
     private TextView[] textFc = new TextView[9];
-    private TextView[] textDisp = new TextView[9];
-    private TextView[] textFad = new TextView[9];
-    private TextView[] textSp = new TextView[7];
+    private TextView[] textDisp = new TextView[8];
+    private TextView[] textFad = new TextView[8];
+    private TextView[] textSp = new TextView[8];
     //0=BASAL, 1=FINAL, 2=RECUPERAÇÃO
     private TextView[] textPa = new TextView[3];
     private TextView[] textGc = new TextView[3];
@@ -75,7 +75,6 @@ public class AnaliseTesteActivity extends AppCompatActivity {
 
     private void iniciaComponentes() {
 
-        iniciaGraficoVoltasMinuto();
         iniciaGraficoVelocidades();
 
         TextView textNomePaciente = (TextView) findViewById(R.id.text_nome_paciente_resultados);
@@ -89,9 +88,31 @@ public class AnaliseTesteActivity extends AppCompatActivity {
         String strDp = teste.getDistanciaPercorrida() + "m";
         textDistanciaPercorrida.setText(strDp);
 
-        TextView textVelocidadeMedia = (TextView) findViewById(R.id.text_velocidade_media);
-        String strVelocidadeMedia = String.format(Locale.getDefault(), "%.2f m/s", Calcula.velocidadeMedia(teste.getDistanciaPercorrida()));
-        textVelocidadeMedia.setText(strVelocidadeMedia);
+        final TextView textVelocidadeMedia = (TextView) findViewById(R.id.text_velocidade_media);
+        final double vmMetrosSegundo = Calcula.velocidadeMedia(teste.getDistanciaPercorrida());
+        final double vmKmHora = vmMetrosSegundo * 3.6;
+        final double vmMetrosMin = vmMetrosSegundo * 60;
+
+        final String strVmMetrosSegundo = String.format(Locale.getDefault(), "%.2f m/s", vmMetrosSegundo);
+        textVelocidadeMedia.setText(strVmMetrosSegundo);
+        textVelocidadeMedia.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (textVelocidadeMedia.getText().toString().contains("m/s")) {
+                    String strVmKmHora = String.format(Locale.getDefault(), "%.2f km/h", vmKmHora);
+                    textVelocidadeMedia.setText(strVmKmHora);
+                } else if (textVelocidadeMedia.getText().toString().contains("km/h")) {
+                    String strVmMetrosMin = String.format(Locale.getDefault(), "%.2f m/min", vmMetrosMin);
+                    textVelocidadeMedia.setText(strVmMetrosMin);
+                } else if (textVelocidadeMedia.getText().toString().contains("m/min")) {
+                    textVelocidadeMedia.setText(strVmMetrosSegundo);
+                }
+            }
+        });
+
+        TextView textTamanhoVolta = (TextView) findViewById(R.id.text_tamanho_volta);
+        String strTamanhoVolta = teste.getTamanhoVolta() + "m";
+        textTamanhoVolta.setText(strTamanhoVolta);
 
         TextView textNParadas = (TextView) findViewById(R.id.text_paradas);
         textNParadas.setText(String.valueOf(teste.getnParadas()));
@@ -104,7 +125,7 @@ public class AnaliseTesteActivity extends AppCompatActivity {
         }
 
         //Pega a última formula usada das preferências, e o default é a formula 0 (Britto 1)
-        SharedPreferences sharedPref = getSharedPreferences("PREFERENCIAS",Context.MODE_PRIVATE);
+        SharedPreferences sharedPref = getSharedPreferences("PREFERENCIAS", Context.MODE_PRIVATE);
         int ultimaFormula = sharedPref.getInt("ULTIMA_FORMULA", ListaFormulas.ID_BRITTO1);
         Formula formulaInicial = new ListaFormulas().getFormulas().get(ultimaFormula);
         atualizaFormula(formulaInicial);
@@ -142,10 +163,10 @@ public class AnaliseTesteActivity extends AppCompatActivity {
         //.............................VALORES DOS SINAIS.........................................//
 
         //Arrays com Resource IDs de textViews para agilizar os setTexts em um for loop
-        int[] fcValoresResId = new int[]{R.id.resultado_fc_inicial, R.id.resultado_fc_1_minuto, R.id.resultado_fc_2_minuto, R.id.resultado_fc_3_minuto, R.id.resultado_fc_4_minuto, R.id.resultado_fc_5_minuto, R.id.ressultado_fc_6_minuto, R.id.resultado_fc_final, R.id.resultado_fc_recup};
-        int[] spValoresResId = new int[]{R.id.resultado_sp_inicial, R.id.resultado_sp_1_minuto, R.id.resultado_sp_2_minuto, R.id.resultado_sp_3_minuto, R.id.resultado_sp_4_minuto, R.id.resultado_sp_5_minuto, R.id.resultado_sp_6_minuto};
-        int[] dispValoresResId = new int[]{R.id.resultado_disp_inicial, R.id.resultado_disp_1_minuto, R.id.resultado_disp_2_minuto, R.id.resultado_disp_3_minuto, R.id.resultado_disp_4_minuto, R.id.resultado_disp_5_minuto, R.id.resultado_disp_6_minuto, R.id.resultado_disp_final, R.id.resultado_disp_recup};
-        int[] fadValoresResId = new int[]{R.id.resultado_fad_inicial, R.id.resultado_fad_1_minuto, R.id.resultado_fad_2_minuto, R.id.resultado_fad_3_minuto, R.id.resultado_fad_4_minuto, R.id.resultado_fad_5_minuto, R.id.resultado_fad_6_minuto, R.id.resultado_fad_final, R.id.resultado_fad_recup};
+        int[] fcValoresResId = new int[]{R.id.resultado_fc_inicial, R.id.resultado_fc_1_minuto, R.id.resultado_fc_2_minuto, R.id.resultado_fc_3_minuto, R.id.resultado_fc_4_minuto, R.id.resultado_fc_5_minuto, R.id.resultado_fc_final,R.id.resultado_fc_recup , R.id.resultado_fc_recup};
+        int[] spValoresResId = new int[]{R.id.resultado_sp_inicial, R.id.resultado_sp_1_minuto, R.id.resultado_sp_2_minuto, R.id.resultado_sp_3_minuto, R.id.resultado_sp_4_minuto, R.id.resultado_sp_5_minuto, R.id.resultado_sp_final, R.id.resultado_sp_recup};
+        int[] dispValoresResId = new int[]{R.id.resultado_disp_inicial, R.id.resultado_disp_1_minuto, R.id.resultado_disp_2_minuto, R.id.resultado_disp_3_minuto, R.id.resultado_disp_4_minuto, R.id.resultado_disp_5_minuto, R.id.resultado_disp_final, R.id.resultado_disp_recup};
+        int[] fadValoresResId = new int[]{R.id.resultado_fad_inicial, R.id.resultado_fad_1_minuto, R.id.resultado_fad_2_minuto, R.id.resultado_fad_3_minuto, R.id.resultado_fad_4_minuto, R.id.resultado_fad_5_minuto, R.id.resultado_fad_final, R.id.resultado_fad_recup};
         int[] paValoresResId = new int[]{R.id.resultado_pa_inicial, R.id.resultado_pa_final, R.id.resultado_pa_recup};
         int[] gcValoresResId = new int[]{R.id.resultado_gc_inicial, R.id.resultado_gc_final, R.id.resultado_gc_recup};
 
@@ -172,50 +193,49 @@ public class AnaliseTesteActivity extends AppCompatActivity {
                         break;
                 }
             }
+            if (i < 8) {
 
-
-            if (teste.getDispneia(i) != null) {
-                textDisp[i] = (TextView) findViewById(dispValoresResId[i]);
-                textDisp[i].setText(String.valueOf(teste.getDispneia(i)));
-                temAlgumDispeneia = true;
-            } else {
-                switch (i) {
-                    case 0://VALORES BASAIS
-                        findViewById(R.id.layout_dispneia_inicial).setVisibility(View.GONE);
-                        break;
-                    case 1://VALORES DURANTE O TESTE 1-6
-                        findViewById(R.id.layout_dispneia_durante).setVisibility(View.GONE);
-                        break;
-                    case 7: //VALORES FINAIS
-                        findViewById(R.id.layout_dispneia_final).setVisibility(View.GONE);
-                        break;
-                    case 8: //VALORES DEPOIS DA RECUPERAÇÃO
-                        findViewById(R.id.layout_dispneia_repouso).setVisibility(View.GONE);
-                        break;
+                if (teste.getDispneia(i) != null) {
+                    textDisp[i] = (TextView) findViewById(dispValoresResId[i]);
+                    textDisp[i].setText(String.valueOf(teste.getDispneia(i)));
+                    temAlgumDispeneia = true;
+                } else {
+                    switch (i) {
+                        case 0://VALORES BASAIS
+                            findViewById(R.id.layout_dispneia_inicial).setVisibility(View.GONE);
+                            break;
+                        case 1://VALORES DURANTE O TESTE 1-6
+                            findViewById(R.id.layout_dispneia_durante).setVisibility(View.GONE);
+                            break;
+                        case 6: //VALORES FINAIS
+                            findViewById(R.id.layout_dispneia_final).setVisibility(View.GONE);
+                            break;
+                        case 7: //VALORES DEPOIS DA RECUPERAÇÃO
+                            findViewById(R.id.layout_dispneia_repouso).setVisibility(View.GONE);
+                            break;
+                    }
                 }
-            }
-            if (teste.getFadiga(i) != null) {
-                textFad[i] = (TextView) findViewById(fadValoresResId[i]);
-                textFad[i].setText(String.valueOf(teste.getFadiga(i)));
-                temAlgumFadiga = true;
-            } else {
-                switch (i) {
-                    case 0://VALORES BASAIS
-                        findViewById(R.id.layout_fadiga_inicial).setVisibility(View.GONE);
-                        break;
-                    case 1://VALORES DURANTE O TESTE 1-6
-                        findViewById(R.id.layout_fadiga_durante).setVisibility(View.GONE);
-                        break;
-                    case 7: //VALORES FINAIS
-                        findViewById(R.id.layout_fadiga_final).setVisibility(View.GONE);
-                        break;
-                    case 8: //VALORES DEPOIS DA RECUPERAÇÃO
-                        findViewById(R.id.layout_fadiga_repouso).setVisibility(View.GONE);
-                        break;
+                if (teste.getFadiga(i) != null) {
+                    textFad[i] = (TextView) findViewById(fadValoresResId[i]);
+                    textFad[i].setText(String.valueOf(teste.getFadiga(i)));
+                    temAlgumFadiga = true;
+                } else {
+                    switch (i) {
+                        case 0://VALORES BASAIS
+                            findViewById(R.id.layout_fadiga_inicial).setVisibility(View.GONE);
+                            break;
+                        case 1://VALORES DURANTE O TESTE 1-5
+                            findViewById(R.id.layout_fadiga_durante).setVisibility(View.GONE);
+                            break;
+                        case 7: //VALORES FINAIS
+                            findViewById(R.id.layout_fadiga_final).setVisibility(View.GONE);
+                            break;
+                        case 8: //VALORES DEPOIS DA RECUPERAÇÃO
+                            findViewById(R.id.layout_fadiga_repouso).setVisibility(View.GONE);
+                            break;
+                    }
                 }
-            }
 
-            if (i < 7) {
                 if (teste.getSpO2(i) != null) {
                     textSp[i] = (TextView) findViewById(spValoresResId[i]);
                     String strSp = teste.getSpO2(i) + "%";
@@ -226,11 +246,9 @@ public class AnaliseTesteActivity extends AppCompatActivity {
                         case 0://VALORES BASAIS
                             findViewById(R.id.layout_sp_inicial).setVisibility(View.GONE);
                             break;
-                        case 1://VALORES DURANTE O TESTE 1-6
+                        case 1://VALORES DURANTE O TESTE 1-5
                             //layout dos minutos 1-5
                             findViewById(R.id.layout_sp_durante).setVisibility(View.GONE);
-                            //layout do minuto 6 está separado
-                            findViewById(R.id.layout_sp_durante_6).setVisibility(View.GONE);
                             break;
                     }
                 }
@@ -272,6 +290,7 @@ public class AnaliseTesteActivity extends AppCompatActivity {
                     }
                 }
             }
+
         }
 
         //.............................ESCONDE CARDS..........................................//
@@ -336,63 +355,69 @@ public class AnaliseTesteActivity extends AppCompatActivity {
         textTituloEquacao.setText(formula.getAutores());
 
         //Salva nas preferências da activity a fórmula pedida como ultima formula usada
-        SharedPreferences sharedPref = getSharedPreferences("PREFERENCIAS",MODE_PRIVATE);
+        SharedPreferences sharedPref = getSharedPreferences("PREFERENCIAS", MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPref.edit();
         editor.putInt("ULTIMA_FORMULA", formula.getIdFormula());
         editor.apply();
     }
 
-    private void iniciaGraficoVoltasMinuto() {
-        BarChart graficoDistanciasPercorridas = (BarChart) findViewById(R.id.grafico_voltas_minuto);
-
-        ArrayList<BarEntry> barEntries = new ArrayList<>();
-        for (int i = 0; i < 6; i++) {
-            barEntries.add(new BarEntry(teste.getVoltas(i), i));
-        }
-        BarDataSet barDataSet = new BarDataSet(barEntries, "Distância Percorrida");
-        barDataSet.setColors(new int[]{Color.rgb(83, 186, 131), Color.rgb(58, 150, 101)});
-
-        ArrayList<String> stringsMinutos = new ArrayList<>();
-        for (int i = 1; i <= 6; i++) {
-            stringsMinutos.add(i + "º min");
-        }
-        graficoDistanciasPercorridas.setDrawGridBackground(false);
-        BarData dados = new BarData(stringsMinutos, barDataSet);
-        graficoDistanciasPercorridas.setData(dados);
-        graficoDistanciasPercorridas.setDescription("");
-        graficoDistanciasPercorridas.setPinchZoom(true);
-        graficoDistanciasPercorridas.setDragEnabled(true);
-        graficoDistanciasPercorridas.setScaleEnabled(true);
-        graficoDistanciasPercorridas.animateY(1000);
-
-    }
+//    private void iniciaGraficoVoltasMinuto() {
+//        BarChart graficoDistanciasPercorridas = (BarChart) findViewById(R.id.grafico_voltas_minuto);
+//
+//        ArrayList<BarEntry> barEntries = new ArrayList<>();
+//        for (int i = 0; i < 6; i++) {
+//            barEntries.add(new BarEntry(teste.getVoltas(i), i));
+//        }
+//        BarDataSet barDataSet = new BarDataSet(barEntries, "Distância Percorrida");
+//        barDataSet.setColors(new int[]{Color.rgb(83, 186, 131), Color.rgb(58, 150, 101)});
+//
+//        ArrayList<String> stringsMinutos = new ArrayList<>();
+//        for (int i = 1; i <= 6; i++) {
+//            stringsMinutos.add(i + "º min");
+//        }
+//        graficoDistanciasPercorridas.setDrawGridBackground(false);
+//        BarData dados = new BarData(stringsMinutos, barDataSet);
+//        graficoDistanciasPercorridas.setData(dados);
+//        graficoDistanciasPercorridas.setDescription("");
+//        graficoDistanciasPercorridas.setPinchZoom(true);
+//        graficoDistanciasPercorridas.setDragEnabled(true);
+//        graficoDistanciasPercorridas.setScaleEnabled(true);
+//        graficoDistanciasPercorridas.animateY(1000);
+//
+//    }
 
     private void iniciaGraficoVelocidades() {
         LineChart graficoVelocidades = (LineChart) findViewById(R.id.grafico_velocidades);
         ArrayList<String> xVals = new ArrayList<>();
+        xVals.add("00:00");
         for (Velocidade velocidade : teste.getVelocidades()) {
             xVals.add(velocidade.getTempo());
         }
+        xVals.add("06:00");
         ArrayList<Entry> yVals = new ArrayList<>();
 
         ArrayList<Velocidade> velocidades = teste.getVelocidades();
-        for (int i = 0; i < velocidades.size(); i++) {
+        for (int i = 1; i < velocidades.size(); i++) {
             Velocidade velocidade = velocidades.get(i);
-            yVals.add(new Entry(velocidade.getVelocidade(),i));
+            yVals.add(new Entry(velocidade.getVelocidade(), i));
         }
 
-        LineDataSet set = new LineDataSet(yVals,"Velocidade");
+        LineDataSet set = new LineDataSet(yVals, "Velocidade");
         //Gráfico cúbico
         set.setMode(LineDataSet.Mode.CUBIC_BEZIER);
         int COR_PRIMARIA = Color.rgb(83, 186, 131);
         set.setFillColor(COR_PRIMARIA);
+//        set.setFillAlpha(100);
+
 
         set.setDrawFilled(true);
         set.setColor(COR_PRIMARIA);
 
-        LineData dados = new LineData(xVals,set);
+        LineData dados = new LineData(xVals, set);
         graficoVelocidades.setData(dados);
 
+        graficoVelocidades.getAxisRight().setEnabled(false);
+        graficoVelocidades.getXAxis().setPosition(XAxis.XAxisPosition.BOTTOM);
         graficoVelocidades.setDrawGridBackground(false);
         graficoVelocidades.setPinchZoom(true);
         graficoVelocidades.setDescription("");
@@ -411,7 +436,7 @@ public class AnaliseTesteActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getTitle() == "Excluir Teste"){
+        if (item.getTitle() == "Excluir Teste") {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setCancelable(false);
             builder.setTitle(getString(R.string.atencao_deletar_teste));

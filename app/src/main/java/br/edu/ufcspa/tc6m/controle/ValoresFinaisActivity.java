@@ -84,20 +84,20 @@ public class ValoresFinaisActivity extends AppCompatActivity {
         titulo.setText(teste.getPaciente().getNome());
 
         ////////////////////////////////////////////////////////////////////////////////////////////
-        //declarar edTextDist restante
+        TextView textDistanciaVoltasCompletas = (TextView) findViewById(R.id.textDistanciaVoltasCompletas);
+        String strVoltasCompletas = teste.getDistanciaPercorrida() + " m  +";
+        textDistanciaVoltasCompletas.setText(strVoltasCompletas);
 
         Button btSalvar = (Button) findViewById(R.id.btSalvarFinal);
         btSalvar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                teste = helper.pegaDadosFromFields(7);
-
-
-                EditText edTextDistanciaRestante = (EditText)findViewById(R.id.edTextDistanciaRestante);
+                teste = helper.pegaDadosFromFields(6);
+                EditText edTextDistanciaRestante = (EditText) findViewById(R.id.edTextDistanciaRestante);
 
                 if (!edTextDistanciaRestante.getText().toString().isEmpty()) {
                     int dpRestante = Integer.parseInt(edTextDistanciaRestante.getText().toString()); //valor adicionado no final quando o paciente para
-                    teste.setVoltas(5, teste.getVoltas(5) + dpRestante); //salva o restante da ultima volta(onde o paciente parou)
+//                    teste.setVoltas(5, teste.getVoltas(5) + dpRestante);
                     teste.setDistanciaPercorrida(teste.getDistanciaPercorrida() + dpRestante);//salva a distancia percorrida total
 
                     //Salva a velocidade caso tenha distancia restante
@@ -105,9 +105,6 @@ public class ValoresFinaisActivity extends AppCompatActivity {
                     float velocidade = dpRestante / tempoDaVoltaSeg;
                     teste.getVelocidades().add(new Velocidade(velocidade, "06:00"));
                 }
-
-
-
 
                 //Verifica se mostra a tela para pegar valores de recuperação
                 if (temAlgumValorDeRepouso) {
@@ -144,7 +141,7 @@ public class ValoresFinaisActivity extends AppCompatActivity {
                 public void onChronometerTick(Chronometer chronometer) {
                     int tempo = Integer.parseInt(cronometro.getText().toString().replace(":", "")); //TRANSFORMA O RELÓGIO EM UM INTEIRO (01:32 = 132)
                     if (tempo >= 140) {
-                        cronometro.setTextColor(Color.rgb(217, 80, 66));//Collor accent
+                        cronometro.setTextColor(Color.rgb(217, 80, 66));// colorAccent(vermelho)
                     }
                 }
             });

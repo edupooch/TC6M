@@ -193,7 +193,6 @@ public class TesteHelper {
         edTextFc[7] = (EditText) activity.findViewById(R.id.edTextFC7);
         if (!sharedPreferences.getBoolean("repouso_fc", false)) {
             activity.findViewById(R.id.layout_fc).setVisibility(View.GONE);
-            activity.findViewById(R.id.layout_fc_recup_1).setVisibility(View.GONE);
         }
         edTextDisp[7] = (EditText) activity.findViewById(R.id.edTextDisp7);
         if (!sharedPreferences.getBoolean("repouso_dispneia", false)) {
@@ -234,6 +233,8 @@ public class TesteHelper {
         //fc, disp e fad são coletadas em todas as fases
         if (!edTextFc[minuto].getText().toString().isEmpty()) {
             teste.setFc(minuto, Integer.parseInt(edTextFc[minuto].getText().toString()));
+            if (minuto == 7) // pegar o valor de recuperação 1' e 2'(fc[8])
+                teste.setFc(minuto +1, Integer.parseInt(edTextFc[minuto+1].getText().toString()));
         }
 
         if (!edTextDisp[minuto].getText().toString().isEmpty())
@@ -242,17 +243,17 @@ public class TesteHelper {
             teste.setFadiga(minuto, Double.valueOf(edTextFad[minuto].getText().toString()));
 
         //SPO2 VAI DE VALORES BASAIS ATÉ O MINUTO 6
-        if (minuto < 7 && !edTextSp[minuto].getText().toString().isEmpty())
+        if (minuto < 6 && !edTextSp[minuto].getText().toString().isEmpty())
             teste.setSpO2(minuto, Integer.parseInt(edTextSp[minuto].getText().toString()));
 
-        if (minuto == 0 || minuto == 7 || minuto == 8) {
+        if (minuto == 0 || minuto == 6 || minuto == 7) {
 
-            if ((minuto == 7) && !edTextObsFinal.getText().toString().isEmpty())
+            if ((minuto == 6) && !edTextObsFinal.getText().toString().isEmpty())
                 teste.setObsFinal(edTextObsFinal.getText().toString());
 
             //mudando o valor de 7 e 8 para 1 e 2 para se adequar aos índices declarados DE GC E PA
-            if (minuto == 7 || minuto == 8)
-                minuto -= 6;
+            if (minuto == 6 || minuto == 7)
+                minuto -= 5;
             // O O2 SUPLEMENTAR É APENAS BASAL e FINAL =1| SEM VALOR DE RECUPERAÇÃO = 2
             if (minuto !=2) {
                 if (!edTextO2Supl[minuto].getText().toString().isEmpty())

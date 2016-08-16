@@ -77,22 +77,12 @@
                 android:padding="5dp">
 
                 <TextView
-                    android:id="@+id/textDistanciaFinal"
+                    android:id="@+id/textDistanciaVoltasCompletas"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginLeft="20dp"
                     android:layout_marginStart="20dp"
-                    android:textColor="#424242"
-                    android:textSize="18sp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginEnd="10dp"
-                    android:layout_marginRight="10dp"
-                    android:text="m  +"
                     android:textColor="#424242"
                     android:textSize="18sp" />
 
@@ -529,6 +519,7 @@
                 android:textSize="12sp" />
 
             <LinearLayout
+                android:padding="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/round_edge"
@@ -538,8 +529,9 @@
                     android:layout_width="30dp"
                     android:layout_height="30dp"
                     android:layout_gravity="center"
-                    android:layout_margin="10dp"
-                    android:background="@drawable/icon_obs" />
+                    android:layout_marginEnd="10dp"
+                    android:background="@drawable/icon_obs"
+                    android:layout_marginRight="10dp" />
 
                 <EditText
                     android:id="@+id/edTextObsFinal"

@@ -43,7 +43,6 @@ public class CronometroActivity extends AppCompatActivity {
     private int[] botoesSalvarXML;
     private TextView[] botoesSalvar;
     //VALORES
-    private int volta;
     private int tempo;
     private boolean parado;
     boolean temAlgumValor;
@@ -56,11 +55,11 @@ public class CronometroActivity extends AppCompatActivity {
     private Chronometer cronometroParadas;
 
     public CronometroActivity() {
-        botoesSalvarXML = new int[]{R.id.btSalvarDados1, R.id.btSalvarDados2, R.id.btSalvarDados3, R.id.btSalvarDados4, R.id.btSalvarDados5, R.id.btSalvarDados6,};
+        botoesSalvarXML = new int[]{R.id.btSalvarDados1, R.id.btSalvarDados2, R.id.btSalvarDados3, R.id.btSalvarDados4, R.id.btSalvarDados5};
         frasesId = new int[]{R.string.frase1, R.string.frase2, R.string.frase3, R.string.frase4, R.string.frase5};
-        layoutsDadosXML = new int[]{R.id.layoutDados1, R.id.layoutDados2, R.id.layoutDados3, R.id.layoutDados4, R.id.layoutDados5, R.id.layoutDados6};
-        layoutsDados = new LinearLayout[6];
-        botoesSalvar = new TextView[6];
+        layoutsDadosXML = new int[]{R.id.layoutDados1, R.id.layoutDados2, R.id.layoutDados3, R.id.layoutDados4, R.id.layoutDados5};
+        layoutsDados = new LinearLayout[5];
+        botoesSalvar = new TextView[5];
 
     }
 
@@ -121,7 +120,8 @@ public class CronometroActivity extends AppCompatActivity {
 
         //Pega o valor definido nas preferências para o tamanho da volta, default = 30m
         SharedPreferences sharedPref = getSharedPreferences("PREFERENCIAS", MODE_PRIVATE);
-        volta = sharedPref.getInt("TAMANHO_VOLTA", PreferenciasActivity.TAMANHO_MINIMO_VOLTA);
+        int volta = sharedPref.getInt("TAMANHO_VOLTA", PreferenciasActivity.TAMANHO_MINIMO_VOLTA);
+        teste.setTamanhoVolta(volta);
 
         //Botão que dá a partida no cronometro e mostra o layout de adicionar volta
         Button btIniciar = (Button) findViewById(R.id.btIniciar);
@@ -177,7 +177,7 @@ public class CronometroActivity extends AppCompatActivity {
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
-                                teste.setDistanciaPercorrida(teste.getDistanciaPercorrida() + volta);
+                                teste.setDistanciaPercorrida(teste.getDistanciaPercorrida() + teste.getTamanhoVolta());
                                 textDistancia.setText(String.valueOf(teste.getDistanciaPercorrida()));
                             }
                         });
@@ -188,7 +188,7 @@ public class CronometroActivity extends AppCompatActivity {
 
                         //Salva velocidade em m/s na lista de Velocidades
                         float tempoDaVoltaSeg = (float) ((System.currentTimeMillis() - teste.getUltimaVolta()) / 1000);
-                        float velocidade = volta / tempoDaVoltaSeg;
+                        float velocidade = teste.getTamanhoVolta() / tempoDaVoltaSeg;
                         System.out.println("Velociddade" + velocidade + crono.getText().toString());
 
                         //Adiciona na lista de velocidades a velocidade e o tempo atual no cronometro para fazer o gráfico

@@ -8,6 +8,8 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -21,16 +23,16 @@ public class SplashScreenActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
 
-        new Timer().schedule(new TimerTask() {
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
+        new Timer().schedule(new TimerTask() {
             @Override
             public void run() {
-                finish();
-
                 Intent intent = new Intent();
                 intent.setClass(SplashScreenActivity.this, ListaPacientesActivity.class);
                 startActivity(intent);
+                finish();
             }
-        }, 6000);
+        }, 3000);
     }
 }

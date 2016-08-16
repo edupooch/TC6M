@@ -21,6 +21,8 @@ import android.widget.Toast;
 
 import com.mikhaellopez.circularprogressbar.CircularProgressBar;
 
+import org.w3c.dom.Text;
+
 import br.edu.ufcspa.tc6m.R;
 import br.edu.ufcspa.tc6m.dao.TesteDAO;
 import br.edu.ufcspa.tc6m.modelo.Teste;
@@ -35,6 +37,7 @@ public class ValoresRecuperacaoActivity extends AppCompatActivity {
 
     private Chronometer crono;
     private CircularProgressBar circularProgressBar;
+    private boolean jaApareceuFC1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,12 +48,12 @@ public class ValoresRecuperacaoActivity extends AppCompatActivity {
 
     private void iniciaComponentes() {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-
         setSupportActionBar(toolbar);
 
         Intent intent = getIntent();
         teste = (Teste) intent.getSerializableExtra("teste");
         helper = new TesteHelper(this, teste);
+        jaApareceuFC1 = false;
 
         barraDeProgresso(0);
 
@@ -66,12 +69,25 @@ public class ValoresRecuperacaoActivity extends AppCompatActivity {
             public void onChronometerTick(Chronometer chronometer) {
 
                 int tempo = Integer.parseInt(crono.getText().toString().replace(":", "")); //TRANSFORMA O RELÓGIO EM UM INTEIRO (01:32 = 132)
+
+                if (tempo >= 100 && !jaApareceuFC1) {
+                    findViewById(R.id.layout_fc_recup_1).setVisibility(View.VISIBLE);
+                    jaApareceuFC1 = true;
+                }
+
                 if (tempo >= 200) {
                     escondeCronometro();
                 }
             }
         });
 
+        TextView btSalvarFC = (TextView) findViewById(R.id.btSalvarFC1);
+        btSalvarFC.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                findViewById(R.id.layout_fc_recup_1).setVisibility(View.GONE);
+            }
+        });
         Button btPular = (Button) findViewById(R.id.btPularTempo);
         btPular.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -85,7 +101,7 @@ public class ValoresRecuperacaoActivity extends AppCompatActivity {
         btSalvar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                teste = helper.pegaDadosFromFields(8);
+                teste = helper.pegaDadosFromFields(7);
 
                 TesteDAO dao = new TesteDAO(getApplicationContext());
                 dao.insere(teste);
@@ -105,6 +121,7 @@ public class ValoresRecuperacaoActivity extends AppCompatActivity {
         crono.stop();
         findViewById(R.id.layoutAguarde).setVisibility(View.GONE);
         findViewById(R.id.layoutDadosRecuperacao).setVisibility(View.VISIBLE);
+        findViewById(R.id.btSalvarFC1).setVisibility(View.GONE);
     }
 
     @Override
@@ -113,6 +130,7 @@ public class ValoresRecuperacaoActivity extends AppCompatActivity {
         savedInstanceState.putLong("cronometro", crono.getBase());
         //Salva o progresso atual da barra, para retornar de onde parou
         savedInstanceState.putFloat("progresso", circularProgressBar.getProgress());
+        savedInstanceState.putBoolean("jaApareceuFC1", jaApareceuFC1);
 
         super.onSaveInstanceState(savedInstanceState);
     }
@@ -124,6 +142,7 @@ public class ValoresRecuperacaoActivity extends AppCompatActivity {
         //Recuperar as informações perdidas após virar a tela
         crono.setBase(savedInstanceState.getLong("cronometro"));
         barraDeProgresso(savedInstanceState.getFloat("progresso"));
+        jaApareceuFC1 = savedInstanceState.getBoolean("jaApareceuFC1");
 
 
     }

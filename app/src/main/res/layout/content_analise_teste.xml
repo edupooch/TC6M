@@ -677,7 +677,7 @@
 
 
                     <TextView
-                        android:id="@+id/resultado_sp_6_minuto"
+                        android:id="@+id/resultado_sp_final"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="30sp" />
@@ -703,7 +703,7 @@
 
 
                     <TextView
-                        android:id="@+id/resultado_spo2_recup"
+                        android:id="@+id/resultado_sp_recup"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="30sp" />

@@ -37,12 +37,12 @@ public class Teste implements Serializable {
 
     // SIGNIFICADO DOS ÍNDICES DOS ARRAYS COMENTADOS AO LADO DE CADA UM
 
-    private Integer[] fc = new Integer[10]; //0=BASAL, 1-6=MINUTOS, 7=FINAL, 8=RECUPERAÇÃO 1', 9= RECUPERAÇÃO
+    private Integer[] fc = new Integer[9]; //0=BASAL, 1-5=MINUTOS, 7=FINAL, 8=RECUPERAÇÃO 1', 9= RECUPERAÇÃO
 
-    private Double[] dispneia = new Double[9]; //0=BASAL, 1-6=MINUTOS, 7=FINAL, 8=RECUPERAÇÃO
-    private Double[] fadiga = new Double[9]; //0=BASAL, 1-6=MINUTOS, 7=FINAL, 8=RECUPERAÇÃO
+    private Double[] dispneia = new Double[8]; //0=BASAL, 1-5=MINUTOS, 7=FINAL, 8=RECUPERAÇÃO
+    private Double[] fadiga = new Double[8]; //0=BASAL, 1-5=MINUTOS, 7=FINAL, 8=RECUPERAÇÃO
 
-    private Integer[] spO2 = new Integer[7]; //0=BASAL, 1-6=MINUTOS
+    private Integer[] spO2 = new Integer[8]; //0=BASAL, 1-5=MINUTOS
 
     private Integer[] pas = new Integer[3]; //0=BASAL, 1=FINAL, 2=RECUPERAÇÃO
     private Integer[] pad = new Integer[3]; //0=BASAL, 1=FINAL, 2=RECUPERAÇÃO

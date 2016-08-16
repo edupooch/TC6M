@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -14,398 +14,78 @@
     tools:context="br.edu.ufcspa.tc6m.controle.ValoresRecuperacaoActivity"
     tools:showIn="@layout/activity_valores_recuperacao">
 
-    <ScrollView
-        android:id="@+id/layoutDadosRecuperacao"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:visibility="gone">
 
-        <TableLayout
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2">
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:stretchColumns="0,1">
+            android:orientation="vertical">
 
-            <TableRow
+            <LinearLayout
+                android:id="@+id/layoutAguarde"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="15dp"
-                android:background="@drawable/round_edge"
-                android:gravity="center">
+                android:gravity="center"
+                android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/tituloRecuperacao"
+                    android:id="@+id/textAguarde"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginBottom="10dp"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
+                    android:layout_marginBottom="20dp"
                     android:layout_marginTop="10dp"
-                    android:background="@drawable/round_edge"
+                    android:fontFamily="sans-serif-light"
                     android:gravity="center"
-                    android:textColor="#424242"
-                    android:textSize="18sp" />
+                    android:text="@string/aguarde_2min_para_registrar_os_valores_de_recupera_o"
+                    android:textColor="#FFFFFF"
+                    android:textSize="14sp" />
 
-            </TableRow> <!-- TITULO -->
+                <RelativeLayout
+                    android:id="@+id/layoutCronometroRecup"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
 
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <LinearLayout
-                    android:id="@+id/layout_fc"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="5dp"
-                    android:layout_marginRight="5dp"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
-
-                    <TextView
+                    <Chronometer
+                        android:id="@+id/cronometroRecuperacao"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="5dp"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginStart="10dp"
-                        android:text="@string/frequ_ncia_card_aca"
-                        android:textColor="#96ffffff"
-                        android:textSize="12sp" />
+                        android:layout_centerHorizontal="true"
+                        android:layout_centerVertical="true"
+                        android:fontFamily="sans-serif-thin"
+                        android:textColor="#FFFFFFFF"
+                        android:textSize="60sp"
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/round_edge"
-                        android:orientation="horizontal">
+                        />
 
-                        <ImageView
-                            android:layout_width="30dp"
-                            android:layout_height="30dp"
-                            android:layout_gravity="center"
-                            android:layout_margin="10dp"
-                            android:background="@drawable/icon_fc" />
+                    <com.mikhaellopez.circularprogressbar.CircularProgressBar
+                        android:id="@+id/progressoCirculo"
+                        android:layout_width="240dp"
+                        android:layout_height="240dp"
+                        android:layout_centerHorizontal="true"
+                        app:cpb_background_progressbar_color="#FFFFFF"
+                        app:cpb_background_progressbar_width="2dp"
+                        app:cpb_progressbar_color="@color/colorAccent"
+                        app:cpb_progressbar_width="5dp" />
 
-                        <EditText
-                            android:id="@+id/edTextFC8"
-                            android:maxLength="3"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:layout_marginEnd="10dp"
-                            android:layout_marginRight="10dp"
-                            android:background="#FFFFFF"
-                            android:inputType="number" />
-                    </LinearLayout>
-                </LinearLayout> <!-- FC -->
-
-                <LinearLayout
-                    android:id="@+id/layout_gc"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="5dp"
-                    android:layout_marginRight="5dp"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
-
-                    <TextView
-
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="5dp"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginStart="10dp"
-                        android:text="@string/glicemia_capilar"
-                        android:textColor="#96ffffff"
-                        android:textSize="12sp" />
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/round_edge"
-                        android:orientation="horizontal">
-
-                        <ImageView
-                            android:layout_width="30dp"
-                            android:layout_height="30dp"
-                            android:layout_gravity="center"
-                            android:layout_margin="10dp"
-                            android:background="@drawable/icon_sangue" />
-
-                        <EditText
-                            android:id="@+id/edTextGC2"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:maxLength="3"
-                            android:layout_gravity="center"
-                            android:layout_marginEnd="10dp"
-                            android:layout_marginRight="10dp"
-                            android:background="#FFFFFF"
-
-                            android:inputType="number" />
-                    </LinearLayout>
-                </LinearLayout> <!--GC-->
+                </RelativeLayout> <!-- Layout Cronometro -->
 
 
-            </TableRow> <!--FC E spo2-->
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:orientation="horizontal">
-
-
-                <LinearLayout
-                    android:id="@+id/layout_dispneia"
-                    android:layout_width="0dp"
-
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="5dp"
-                    android:layout_marginRight="5dp"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="5dp"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginStart="10dp"
-                        android:text="@string/dispneia"
-                        android:textColor="#96ffffff"
-                        android:textSize="12sp" />
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/round_edge"
-                        android:orientation="horizontal">
-
-                        <ImageView
-                            android:layout_width="30dp"
-                            android:layout_height="30dp"
-                            android:layout_gravity="center"
-                            android:layout_margin="10dp"
-                            android:background="@drawable/icon_pulmao" />
-
-                        <EditText
-                            android:id="@+id/edTextDisp7"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:layout_marginEnd="10dp"
-                            android:layout_marginRight="10dp"
-                            android:background="#FFFFFF"
-                            android:inputType="number" />
-                    </LinearLayout>
-                </LinearLayout> <!-- Dispneia -->
-
-                <LinearLayout
-                    android:id="@+id/layout_fadiga"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="5dp"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginStart="10dp"
-                        android:text="Fadiga MMII"
-                        android:textColor="#96ffffff"
-                        android:textSize="12sp" />
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/round_edge"
-                        android:orientation="horizontal">
-
-                        <ImageView
-                            android:layout_width="30dp"
-                            android:layout_height="30dp"
-                            android:layout_gravity="center"
-                            android:layout_margin="10dp"
-                            android:background="@drawable/icon_mmii" />
-
-                        <EditText
-                            android:id="@+id/edTextFad7"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:maxLength="5"
-                            android:layout_marginEnd="10dp"
-                            android:layout_marginRight="10dp"
-                            android:background="#FFFFFF"
-                            android:inputType="number" />
-                    </LinearLayout>
-                </LinearLayout>
-
-
-            </TableRow> <!--Disp e FAD -->
-
-
-            <TableRow
-                android:id="@+id/layout_pa"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:orientation="horizontal">
-
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="5dp"
-                    android:layout_marginRight="5dp"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="5dp"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginStart="10dp"
-                        android:text="Pressão Sistólica"
-                        android:textColor="#96ffffff"
-                        android:textSize="12sp" />
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/round_edge"
-                        android:orientation="horizontal">
-
-                        <ImageView
-                            android:layout_width="30dp"
-                            android:layout_height="30dp"
-                            android:layout_gravity="center"
-                            android:layout_margin="10dp"
-                            android:background="@drawable/icon_pa" />
-
-                        <EditText
-                            android:id="@+id/edTextPAS2"
-                            android:maxLength="3"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:layout_marginEnd="10dp"
-                            android:layout_marginRight="10dp"
-                            android:background="#FFFFFF"
-                            android:inputType="number" />
-                    </LinearLayout>
-                </LinearLayout> <!-- PA -->
-
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="5dp"
-                        android:text="@string/press_o_diast_lica"
-                        android:textColor="#96ffffff"
-                        android:textSize="12sp" />
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/round_edge"
-                        android:orientation="horizontal">
-
-                        <ImageView
-                            android:layout_width="30dp"
-                            android:layout_height="30dp"
-                            android:layout_gravity="center"
-                            android:layout_margin="10dp"
-                            android:background="@drawable/icon_pa" />
-
-                        <EditText
-                            android:id="@+id/edTextPAD2"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:layout_marginEnd="10dp"
-                            android:maxLength="3"
-                            android:layout_marginRight="10dp"
-                            android:background="#FFFFFF"
-                            android:inputType="number" />
-                    </LinearLayout>
-                </LinearLayout> <!-- PA -->
-
-
-            </TableRow> <!--PA s e D -->
-
-            <Button
-                android:id="@+id/btSalvarRecuperacao"
-                android:layout_width="180dp"
-                android:layout_height="38dp"
-                android:layout_gravity="center"
-                android:layout_margin="25dp"
-                android:background="@color/colorAccent"
-                android:text="@string/finalizar_teste"
-                android:textColor="#d7ffffff" />
-
-
-        </TableLayout>
-    </ScrollView>
-
-    <ScrollView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-
-        <RelativeLayout
-            android:id="@+id/layoutAguarde"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <RelativeLayout
-                android:id="@+id/layoutCronometroRecup"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <Chronometer
-                    android:id="@+id/cronometroRecuperacao"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
-                    android:layout_centerVertical="true"
-                    android:fontFamily="sans-serif-thin"
-                    android:textColor="#FFFFFFFF"
-                    android:textSize="60sp"
-
-                    />
-
-                <com.mikhaellopez.circularprogressbar.CircularProgressBar
-                    android:id="@+id/progressoCirculo"
-                    android:layout_width="240dp"
-                    android:layout_height="240dp"
-                    android:layout_centerHorizontal="true"
-                    app:cpb_background_progressbar_color="#FFFFFF"
-                    app:cpb_background_progressbar_width="2dp"
-                    app:cpb_progressbar_color="@color/colorAccent"
-                    app:cpb_progressbar_width="5dp" />
-
-            </RelativeLayout> <!-- Layout Cronometro -->
+            </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/layout_fc_recup_1"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="5dp"
-                android:layout_marginRight="5dp"
-                android:visibility="gone"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginBottom="15dp"
+                android:layout_marginTop="10dp"
                 android:layout_weight="1"
-                android:orientation="vertical">
+                android:orientation="vertical"
+
+                >
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -432,41 +112,382 @@
 
                     <EditText
                         android:id="@+id/edTextFC7"
-                        android:maxLength="3"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_marginEnd="10dp"
                         android:layout_marginRight="10dp"
                         android:background="#FFFFFF"
-                        android:inputType="number" />
+                        android:inputType="number"
+                        android:maxLength="3" />
                 </LinearLayout>
+
+                <TextView
+                    android:id="@+id/btSalvarFC1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="2dp"
+                    android:fontFamily="sans-serif-condensed"
+                    android:text="@string/salvar"
+                    android:textStyle="bold" />
             </LinearLayout> <!-- FC -->
 
-            <TextView
-                android:id="@+id/textAguarde"
-                android:layout_width="wrap_content"
+            <TableLayout
+                android:id="@+id/layoutDadosRecuperacao"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/layoutCronometroRecup"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="35dp"
-                android:fontFamily="sans-serif-light"
-                android:gravity="center"
-                android:text="@string/aguarde_2min_para_registrar_os_valores_de_recupera_o"
-                android:textColor="#FFFFFF"
-                android:textSize="12sp" />
+                android:orientation="vertical"
+                android:stretchColumns="0,1"
+                android:visibility="gone">
 
-            <Button
-                android:id="@+id/btPularTempo"
-                android:layout_width="180dp"
-                android:layout_height="38dp"
-                android:layout_below="@id/layoutCronometroRecup"
-                android:layout_centerHorizontal="true"
-                android:layout_gravity="center"
-                android:layout_marginTop="150dp"
-                android:background="@color/colorAccent"
-                android:text="@string/registrar_agora"
-                android:textColor="#d7ffffff" />
-        </RelativeLayout>
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="15dp"
+                    android:background="@drawable/round_edge"
+                    android:gravity="center">
+
+                    <TextView
+                        android:id="@+id/tituloRecuperacao"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginBottom="13dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginRight="20dp"
+                        android:layout_marginTop="13dp"
+                        android:background="@drawable/round_edge"
+                        android:gravity="center"
+                        android:textColor="#424242"
+                        android:textSize="18sp" />
+
+                </TableRow> <!-- TITULO -->
+
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:id="@+id/layout_fc"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="5dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="5dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginStart="10dp"
+                            android:text="@string/frequ_ncia_card_aca"
+                            android:textColor="#96ffffff"
+                            android:textSize="12sp" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/round_edge"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:layout_width="30dp"
+                                android:layout_height="30dp"
+                                android:layout_gravity="center"
+                                android:layout_margin="10dp"
+                                android:background="@drawable/icon_fc" />
+
+                            <EditText
+                                android:id="@+id/edTextFC8"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_marginEnd="10dp"
+                                android:layout_marginRight="10dp"
+                                android:background="#FFFFFF"
+                                android:inputType="number"
+                                android:maxLength="3" />
+                        </LinearLayout>
+                    </LinearLayout> <!-- FC -->
+
+
+                    <LinearLayout
+                        android:id="@+id/layout_gc"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="5dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="5dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginStart="10dp"
+                            android:text="@string/glicemia_capilar"
+                            android:textColor="#96ffffff"
+                            android:textSize="12sp" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/round_edge"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:layout_width="30dp"
+                                android:layout_height="30dp"
+                                android:layout_gravity="center"
+                                android:layout_margin="10dp"
+                                android:background="@drawable/icon_sangue" />
+
+                            <EditText
+                                android:id="@+id/edTextGC2"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_marginEnd="10dp"
+                                android:layout_marginRight="10dp"
+                                android:background="#FFFFFF"
+                                android:inputType="number"
+
+                                android:maxLength="3" />
+                        </LinearLayout>
+                    </LinearLayout> <!--GC-->
+
+
+                </TableRow> <!--FC E spo2-->
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal">
+
+
+                    <LinearLayout
+                        android:id="@+id/layout_dispneia"
+                        android:layout_width="0dp"
+
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="5dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="5dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginStart="10dp"
+                            android:text="@string/dispneia"
+                            android:textColor="#96ffffff"
+                            android:textSize="12sp" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/round_edge"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:layout_width="30dp"
+                                android:layout_height="30dp"
+                                android:layout_gravity="center"
+                                android:layout_margin="10dp"
+                                android:background="@drawable/icon_pulmao" />
+
+                            <EditText
+                                android:id="@+id/edTextDisp7"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_marginEnd="10dp"
+                                android:layout_marginRight="10dp"
+                                android:background="#FFFFFF"
+                                android:inputType="number" />
+                        </LinearLayout>
+                    </LinearLayout> <!-- Dispneia -->
+
+                    <LinearLayout
+                        android:id="@+id/layout_fadiga"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="5dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginStart="10dp"
+                            android:text="Fadiga MMII"
+                            android:textColor="#96ffffff"
+                            android:textSize="12sp" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/round_edge"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:layout_width="30dp"
+                                android:layout_height="30dp"
+                                android:layout_gravity="center"
+                                android:layout_margin="10dp"
+                                android:background="@drawable/icon_mmii" />
+
+                            <EditText
+                                android:id="@+id/edTextFad7"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_marginEnd="10dp"
+                                android:layout_marginRight="10dp"
+                                android:background="#FFFFFF"
+                                android:inputType="number"
+                                android:maxLength="5" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+
+                </TableRow> <!--Disp e FAD -->
+
+
+                <TableRow
+                    android:id="@+id/layout_pa"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal">
+
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="5dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="5dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginStart="10dp"
+                            android:text="Pressão Sistólica"
+                            android:textColor="#96ffffff"
+                            android:textSize="12sp" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/round_edge"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:layout_width="30dp"
+                                android:layout_height="30dp"
+                                android:layout_gravity="center"
+                                android:layout_margin="10dp"
+                                android:background="@drawable/icon_pa" />
+
+                            <EditText
+                                android:id="@+id/edTextPAS2"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_marginEnd="10dp"
+                                android:layout_marginRight="10dp"
+                                android:background="#FFFFFF"
+                                android:inputType="number"
+                                android:maxLength="3" />
+                        </LinearLayout>
+                    </LinearLayout> <!-- PA -->
+
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="5dp"
+                            android:text="@string/press_o_diast_lica"
+                            android:textColor="#96ffffff"
+                            android:textSize="12sp" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/round_edge"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:layout_width="30dp"
+                                android:layout_height="30dp"
+                                android:layout_gravity="center"
+                                android:layout_margin="10dp"
+                                android:background="@drawable/icon_pa" />
+
+                            <EditText
+                                android:id="@+id/edTextPAD2"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_marginEnd="10dp"
+                                android:layout_marginRight="10dp"
+                                android:background="#FFFFFF"
+                                android:inputType="number"
+                                android:maxLength="3" />
+                        </LinearLayout>
+                    </LinearLayout> <!-- PA -->
+
+
+                </TableRow> <!--PA s e D -->
+
+                <Button
+                    android:id="@+id/btSalvarRecuperacao"
+                    android:layout_width="180dp"
+                    android:layout_height="38dp"
+                    android:layout_gravity="center"
+                    android:layout_margin="25dp"
+                    android:background="@color/colorAccent"
+                    android:text="@string/finalizar_teste"
+                    android:textColor="#d7ffffff" />
+
+
+            </TableLayout>
+
+
+        </LinearLayout>
     </ScrollView>
-</RelativeLayout>
+
+    <Button
+        android:id="@+id/btPularTempo"
+        android:layout_width="180dp"
+        android:layout_height="38dp"
+        android:layout_gravity="center"
+        android:layout_marginBottom="25dp"
+        android:background="@color/colorAccent"
+        android:text="@string/registrar_agora"
+        android:textColor="#d7ffffff" />
+
+</LinearLayout>
