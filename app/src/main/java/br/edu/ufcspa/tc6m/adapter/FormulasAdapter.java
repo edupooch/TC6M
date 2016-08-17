@@ -14,6 +14,7 @@ import android.widget.TextView;
 import java.util.List;
 import java.util.Locale;
 
+
 import br.edu.ufcspa.tc6m.R;
 import br.edu.ufcspa.tc6m.modelo.Formula;
 

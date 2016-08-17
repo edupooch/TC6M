@@ -36,7 +36,6 @@ public class TesteHelper {
 
 
     public TesteHelper(ValoresBasaisActivity activity, Paciente paciente) {
-
         teste = new Teste(paciente);
 
         SharedPreferences sharedPreferences = activity.getSharedPreferences("VARIAVEIS_DO_PACIENTE_" +
@@ -91,6 +90,7 @@ public class TesteHelper {
         boolean fadDurante = sharedPreferences.getBoolean("durante_fadiga", false);
         boolean dispDurante = sharedPreferences.getBoolean("durante_dispneia", false);
 
+        //// TODO: 16/08/2016 Colocar dentro do for
         edTextFc[1] = (EditText) activity.findViewById(R.id.edTextFC1);
         edTextFc[2] = (EditText) activity.findViewById(R.id.edTextFC2);
         edTextFc[3] = (EditText) activity.findViewById(R.id.edTextFC3);
@@ -155,7 +155,12 @@ public class TesteHelper {
         //FC final obrigatório
         edTextFc[6] = (EditText) activity.findViewById(R.id.edTextFC6);
 
-        edTextDisp[6] = (EditText) activity.findViewById(R.id.edTextDisp);
+        edTextSp[6] = (EditText) activity.findViewById(R.id.edTextSp6);
+        if (!sharedPreferences.getBoolean("final_spo2", false)) {
+            activity.findViewById(R.id.layout_spo2).setVisibility(View.GONE);
+        }
+
+        edTextDisp[6] = (EditText) activity.findViewById(R.id.edTextDisp6);
         if (!sharedPreferences.getBoolean("final_dispneia", false)) {
             activity.findViewById(R.id.layout_dispneia).setVisibility(View.GONE);
         }
@@ -174,8 +179,11 @@ public class TesteHelper {
         if (!sharedPreferences.getBoolean("final_pa", false)) {
             activity.findViewById(R.id.layout_pa).setVisibility(View.GONE);
         }
-        
+
         edTextO2Supl[1] = (EditText) activity.findViewById(R.id.edTextO2Supl);
+        if (!sharedPreferences.getBoolean("final_o2supl", false)) {
+            activity.findViewById(R.id.layout_o2supl).setVisibility(View.GONE);
+        }
         edTextObsFinal = (EditText) activity.findViewById(R.id.edTextObsFinal);
 
 
@@ -188,11 +196,14 @@ public class TesteHelper {
                 teste.getPaciente().getId(), Context.MODE_PRIVATE);
 
 
-
         edTextFc[8] = (EditText) activity.findViewById(R.id.edTextFC8);
         edTextFc[7] = (EditText) activity.findViewById(R.id.edTextFC7);
         if (!sharedPreferences.getBoolean("repouso_fc", false)) {
             activity.findViewById(R.id.layout_fc).setVisibility(View.GONE);
+        }
+        edTextSp[7] = (EditText) activity.findViewById(R.id.edTextSp7);
+        if (!sharedPreferences.getBoolean("repouso_spo2", false)) {
+            activity.findViewById(R.id.layout_spo2).setVisibility(View.GONE);
         }
         edTextDisp[7] = (EditText) activity.findViewById(R.id.edTextDisp7);
         if (!sharedPreferences.getBoolean("repouso_dispneia", false)) {
@@ -230,20 +241,17 @@ public class TesteHelper {
         * 7 - VALORES RECUPERAÇÃO ACTIVITY
         */
 
-        //fc, disp e fad são coletadas em todas as fases
+        //fc, spo2, disp e fad são coletadas em todas as fases
         if (!edTextFc[minuto].getText().toString().isEmpty()) {
             teste.setFc(minuto, Integer.parseInt(edTextFc[minuto].getText().toString()));
             if (minuto == 7) // pegar o valor de recuperação 1' e 2'(fc[8])
-                teste.setFc(minuto +1, Integer.parseInt(edTextFc[minuto+1].getText().toString()));
+                teste.setFc(minuto + 1, Integer.parseInt(edTextFc[minuto + 1].getText().toString()));
         }
-
         if (!edTextDisp[minuto].getText().toString().isEmpty())
             teste.setDispneia(minuto, Double.valueOf(edTextDisp[minuto].getText().toString()));
         if (!(edTextFad[minuto].getText().toString()).isEmpty())
             teste.setFadiga(minuto, Double.valueOf(edTextFad[minuto].getText().toString()));
-
-        //SPO2 VAI DE VALORES BASAIS ATÉ O MINUTO 6
-        if (minuto < 6 && !edTextSp[minuto].getText().toString().isEmpty())
+        if (!edTextSp[minuto].getText().toString().isEmpty())
             teste.setSpO2(minuto, Integer.parseInt(edTextSp[minuto].getText().toString()));
 
         if (minuto == 0 || minuto == 6 || minuto == 7) {
@@ -255,7 +263,7 @@ public class TesteHelper {
             if (minuto == 6 || minuto == 7)
                 minuto -= 5;
             // O O2 SUPLEMENTAR É APENAS BASAL e FINAL =1| SEM VALOR DE RECUPERAÇÃO = 2
-            if (minuto !=2) {
+            if (minuto != 2) {
                 if (!edTextO2Supl[minuto].getText().toString().isEmpty())
                     teste.setO2Supl(minuto, Double.valueOf(edTextO2Supl[minuto].getText().toString()));
             }

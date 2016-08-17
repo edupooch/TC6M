@@ -19,12 +19,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.XAxis;
-import com.github.mikephil.charting.data.BarData;
-import com.github.mikephil.charting.data.BarDataSet;
-import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
@@ -163,7 +159,7 @@ public class AnaliseTesteActivity extends AppCompatActivity {
         //.............................VALORES DOS SINAIS.........................................//
 
         //Arrays com Resource IDs de textViews para agilizar os setTexts em um for loop
-        int[] fcValoresResId = new int[]{R.id.resultado_fc_inicial, R.id.resultado_fc_1_minuto, R.id.resultado_fc_2_minuto, R.id.resultado_fc_3_minuto, R.id.resultado_fc_4_minuto, R.id.resultado_fc_5_minuto, R.id.resultado_fc_final,R.id.resultado_fc_recup , R.id.resultado_fc_recup};
+        int[] fcValoresResId = new int[]{R.id.resultado_fc_inicial, R.id.resultado_fc_1_minuto, R.id.resultado_fc_2_minuto, R.id.resultado_fc_3_minuto, R.id.resultado_fc_4_minuto, R.id.resultado_fc_5_minuto, R.id.resultado_fc_final, R.id.resultado_fc_rec2, R.id.resultado_fc_rec2};
         int[] spValoresResId = new int[]{R.id.resultado_sp_inicial, R.id.resultado_sp_1_minuto, R.id.resultado_sp_2_minuto, R.id.resultado_sp_3_minuto, R.id.resultado_sp_4_minuto, R.id.resultado_sp_5_minuto, R.id.resultado_sp_final, R.id.resultado_sp_recup};
         int[] dispValoresResId = new int[]{R.id.resultado_disp_inicial, R.id.resultado_disp_1_minuto, R.id.resultado_disp_2_minuto, R.id.resultado_disp_3_minuto, R.id.resultado_disp_4_minuto, R.id.resultado_disp_5_minuto, R.id.resultado_disp_final, R.id.resultado_disp_recup};
         int[] fadValoresResId = new int[]{R.id.resultado_fad_inicial, R.id.resultado_fad_1_minuto, R.id.resultado_fad_2_minuto, R.id.resultado_fad_3_minuto, R.id.resultado_fad_4_minuto, R.id.resultado_fad_5_minuto, R.id.resultado_fad_final, R.id.resultado_fad_recup};
@@ -188,8 +184,11 @@ public class AnaliseTesteActivity extends AppCompatActivity {
                     case 1:
                         findViewById(R.id.layout_fc_durante).setVisibility(View.GONE);
                         break;
-                    case 8:
-                        findViewById(R.id.layout_fc_repouso).setVisibility(View.GONE);
+                    case 8://valores de recup
+                        findViewById(R.id.layout_fc_rec2).setVisibility(View.GONE);
+                        findViewById(R.id.layout_fc_rec1).setVisibility(View.GONE);
+                        findViewById(R.id.layout_var_final_rec1).setVisibility(View.GONE);
+                        findViewById(R.id.layout_var_final_rec2).setVisibility(View.GONE);
                         break;
                 }
             }
@@ -211,7 +210,7 @@ public class AnaliseTesteActivity extends AppCompatActivity {
                             findViewById(R.id.layout_dispneia_final).setVisibility(View.GONE);
                             break;
                         case 7: //VALORES DEPOIS DA RECUPERAÇÃO
-                            findViewById(R.id.layout_dispneia_repouso).setVisibility(View.GONE);
+                            findViewById(R.id.layout_dispneia_recup).setVisibility(View.GONE);
                             break;
                     }
                 }
@@ -231,7 +230,7 @@ public class AnaliseTesteActivity extends AppCompatActivity {
                             findViewById(R.id.layout_fadiga_final).setVisibility(View.GONE);
                             break;
                         case 8: //VALORES DEPOIS DA RECUPERAÇÃO
-                            findViewById(R.id.layout_fadiga_repouso).setVisibility(View.GONE);
+                            findViewById(R.id.layout_fadiga_recup).setVisibility(View.GONE);
                             break;
                     }
                 }
@@ -249,6 +248,12 @@ public class AnaliseTesteActivity extends AppCompatActivity {
                         case 1://VALORES DURANTE O TESTE 1-5
                             //layout dos minutos 1-5
                             findViewById(R.id.layout_sp_durante).setVisibility(View.GONE);
+                            break;
+                        case 6:
+                            findViewById(R.id.layout_sp_final).setVisibility(View.GONE);
+                            break;
+                        case 7:
+                            findViewById(R.id.layout_sp_recup).setVisibility(View.GONE);
                             break;
                     }
                 }
@@ -291,6 +296,19 @@ public class AnaliseTesteActivity extends AppCompatActivity {
                 }
             }
 
+        }
+        /////////////////////////VARIAÇÕES//////////////////////////////////////////////////////////
+        TextView varFinalBasal = (TextView) findViewById(R.id.resultado_var_final_basal);
+        TextView varFinalRec1 = (TextView) findViewById(R.id.resultado_var_final_rec1);
+        TextView varFinalRec2 = (TextView) findViewById(R.id.resultado_var_final_rec2);
+
+        if (teste.getFc(6) != null) {
+            if (teste.getFc(0) != null)
+                varFinalBasal.setText(String.valueOf(teste.getFc(6) - teste.getFc(0)));
+            if (teste.getFc(7) != null)
+                varFinalRec1.setText(String.valueOf(teste.getFc(6) - teste.getFc(7)));
+            if (teste.getFc(8) != null)
+                varFinalRec2.setText(String.valueOf(teste.getFc(6) - teste.getFc(8)));
         }
 
         //.............................ESCONDE CARDS..........................................//

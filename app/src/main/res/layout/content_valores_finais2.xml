@@ -195,7 +195,7 @@
                         android:background="@drawable/icon_spo2" />
 
                     <EditText
-                        android:id="@+id/edTextSp7"
+                        android:id="@+id/edTextSp6"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
@@ -249,7 +249,7 @@
                         android:background="@drawable/icon_pulmao" />
 
                     <EditText
-                        android:id="@+id/edTextDisp"
+                        android:id="@+id/edTextDisp6"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"

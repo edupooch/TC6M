@@ -51,13 +51,13 @@
     <string name="text_inicial">Selecione um paciente para realizar um novo teste ou verificar os resultados de testes anteriores</string>
     <string name="title_activity_analise_teste">Análise do Teste</string>
     <string name="bpm">bpm</string>
-    <string name="inicial">INICIAL</string>
+    <string name="BASAL">BASAL</string>
     <string name="RECUP">RECUP.</string>
-    <string name="_1_minuto">1º min</string>
-    <string name="_2_minuto">2º min</string>
-    <string name="_3_minuto">3º min</string>
-    <string name="_4_minuto">4º min</string>
-    <string name="_5_minuto">5º min</string>
+    <string name="_1_minuto">1\'</string>
+    <string name="_2_minuto">2\'</string>
+    <string name="_3_minuto">3\'</string>
+    <string name="_4_minuto">4\'</string>
+    <string name="_5_minuto">5\'</string>
     <string name="_final">FINAL</string>
     <string name="_sp_unidade">%</string>
     <string name="_disp_unidade" />
@@ -151,6 +151,10 @@
     <string name="cronometro_de_recuperacao">Cronômetro de Recuperação</string>
     <string name="tamanho_volta_resultados">Tamanho da Volta:</string>
     <string name="frequencia_cardiaca_1">Frequência Cardíaca (1\')</string>
+    <string name="final_rec_1">Δ(F - R1)</string>
+    <string name="final_rec_2">Δ(F - R2)</string>
+    <string name="final_basal">Δ(F - B)</string>
+    <string name="frequ_ncia_card_aca_2">Frequência Cardíaca (2\')</string>
 
 
 </resources>

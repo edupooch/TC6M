@@ -353,31 +353,167 @@
                 android:layout_marginStart="5dp"
                 android:background="#8b949494" />
 
-            <LinearLayout
+
+            <TableRow
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginBottom="10dp">
+                android:layout_marginBottom="10dp"
+                android:gravity="center">
 
                 <LinearLayout
                     android:id="@+id/layout_fc_inicial"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center"
+
                     android:orientation="vertical">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/inicial"
+                        android:text="@string/BASAL"
+                        android:textSize="12sp"
                         android:textStyle="bold" />
 
-              
+
                     <TextView
                         android:id="@+id/resultado_fc_inicial"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="30sp" />
+                        android:textSize="20sp" />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/layout_fc_durante"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginStart="10dp"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/_1_minuto"
+                            android:textSize="12sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/resultado_fc_1_minuto"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="20sp" />
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginStart="10dp"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/_2_minuto"
+                            android:textSize="12sp"
+                            android:textStyle="bold" />
+
+
+                        <TextView
+                            android:id="@+id/resultado_fc_2_minuto"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="20sp" />
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginStart="10dp"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/_3_minuto"
+                            android:textSize="12sp"
+                            android:textStyle="bold" />
+
+
+                        <TextView
+                            android:id="@+id/resultado_fc_3_minuto"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="20sp" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginStart="10dp"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/_4_minuto"
+                            android:textSize="12sp"
+                            android:textStyle="bold" />
+
+
+                        <TextView
+                            android:id="@+id/resultado_fc_4_minuto"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="20sp" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginStart="10dp"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/_5_minuto"
+                            android:textSize="12sp"
+                            android:textStyle="bold" />
+
+
+                        <TextView
+                            android:id="@+id/resultado_fc_5_minuto"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="20sp" />
+
+
+                    </LinearLayout>
 
 
                 </LinearLayout>
@@ -386,8 +522,8 @@
                     android:id="@+id/layout_fc_final"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="30dp"
-                    android:layout_marginStart="30dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginStart="10dp"
                     android:gravity="center"
                     android:orientation="vertical">
 
@@ -395,6 +531,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/_final"
+                        android:textSize="12sp"
                         android:textStyle="bold" />
 
 
@@ -402,38 +539,62 @@
                         android:id="@+id/resultado_fc_final"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="30sp" />
+                        android:textSize="20sp" />
 
 
                 </LinearLayout>
 
                 <LinearLayout
-                    android:id="@+id/layout_fc_repouso"
+                    android:id="@+id/layout_fc_rec1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="30dp"
-                    android:layout_marginStart="30dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginStart="10dp"
                     android:gravity="center"
                     android:orientation="vertical">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/RECUP"
-                        android:textSize="13sp"
+                        android:text="REC 1"
+                        android:textSize="12sp"
                         android:textStyle="bold" />
-                    >
 
                     <TextView
-                        android:id="@+id/resultado_fc_recup"
+                        android:id="@+id/resultado_fc_rec1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="30sp" />
+                        android:textSize="20sp" />
 
 
                 </LinearLayout>
 
-            </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/layout_fc_rec2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginStart="10dp"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="REC 2"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/resultado_fc_rec2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="20sp" />
+
+
+                </LinearLayout>
+
+            </TableRow>
 
             <View
                 android:layout_width="wrap_content"
@@ -446,79 +607,27 @@
                 android:background="#8b949494" />
 
             <LinearLayout
-                android:id="@+id/layout_fc_durante"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="5dp"
-                android:gravity="center">
+                android:layout_gravity="center"
+                android:layout_marginBottom="10dp">
 
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginStart="10dp"
                     android:gravity="center"
                     android:orientation="vertical">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/_1_minuto"
-                        android:textSize="12sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/resultado_fc_1_minuto"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="22sp" />
-               
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginStart="10dp"
-                    android:gravity="center"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/_2_minuto"
+                        android:text="@string/final_basal"
                         android:textSize="12sp"
                         android:textStyle="bold" />
 
 
                     <TextView
-                        android:id="@+id/resultado_fc_2_minuto"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="22sp" />
-
-          
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginStart="10dp"
-                    android:gravity="center"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/_3_minuto"
-                        android:textSize="12sp"
-                        android:textStyle="bold" />
-
-
-                    <TextView
-                        android:id="@+id/resultado_fc_3_minuto"
+                        android:id="@+id/resultado_var_final_basal"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="22sp" />
@@ -526,53 +635,53 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/layout_var_final_rec1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginStart="10dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginStart="15dp"
                     android:gravity="center"
                     android:orientation="vertical">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/_4_minuto"
+                        android:text="@string/final_rec_1"
                         android:textSize="12sp"
                         android:textStyle="bold" />
 
 
                     <TextView
-                        android:id="@+id/resultado_fc_4_minuto"
+                        android:id="@+id/resultado_var_final_rec1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="22sp" />
+
 
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/layout_var_final_rec2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginStart="10dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginStart="15dp"
                     android:gravity="center"
                     android:orientation="vertical">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/_5_minuto"
+                        android:text="@string/final_rec_2"
                         android:textSize="12sp"
                         android:textStyle="bold" />
 
 
                     <TextView
-                        android:id="@+id/resultado_fc_5_minuto"
+                        android:id="@+id/resultado_var_final_rec2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="22sp" />
-
-         
-
 
                 </LinearLayout>
 
@@ -648,7 +757,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/inicial"
+                        android:text="@string/BASAL"
                         android:textStyle="bold" />
 
 
@@ -686,7 +795,7 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:id="@+id/layout_spo2_repouso"
+                    android:id="@+id/layout_sp_recup"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="30dp"
@@ -917,7 +1026,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/inicial"
+                        android:text="@string/BASAL"
                         android:textStyle="bold" />
 
                     <LinearLayout
@@ -972,7 +1081,7 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:id="@+id/layout_dispneia_repouso"
+                    android:id="@+id/layout_dispneia_recup"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="30dp"
@@ -1186,7 +1295,7 @@
                     </LinearLayout>
                 </LinearLayout>
 
-               
+
             </LinearLayout>
 
 
@@ -1258,7 +1367,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/inicial"
+                        android:text="@string/BASAL"
                         android:textStyle="bold" />
 
                     <LinearLayout
@@ -1313,7 +1422,7 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:id="@+id/layout_fadiga_repouso"
+                    android:id="@+id/layout_fadiga_recup"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="30dp"
@@ -1528,7 +1637,6 @@
                 </LinearLayout>
 
 
-
             </LinearLayout>
 
 
@@ -1601,7 +1709,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/inicial"
+                        android:text="@string/BASAL"
                         android:textStyle="bold" />
 
                     <TextView
@@ -1749,7 +1857,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@string/inicial"
+                            android:text="@string/BASAL"
                             android:textStyle="bold" />
 
                         <TextView
@@ -1827,90 +1935,97 @@
 
 
         <LinearLayout
+            android:id="@+id/card_o2supl"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:layout_weight="1">
+            android:layout_weight="1"
+            android:background="@drawable/round_edge"
+            android:orientation="vertical"
+            android:padding="10dp">
 
             <LinearLayout
-                android:id="@+id/card_o2supl"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_marginEnd="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_weight="1"
-                android:background="@drawable/round_edge"
-                android:orientation="vertical"
-                android:padding="10dp">
-
+                android:layout_marginLeft="10dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:layout_gravity="center_vertical"
+                     />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/o2_supl"
                     android:textColor="@color/corPrimaria"
-                    android:textSize="17sp"
-                    android:textStyle="bold" />
-
-                <View
-                    android:layout_width="100dp"
-                    android:layout_height="0.5dp"
-                    android:layout_marginBottom="10dp"
-                    android:layout_marginEnd="5dp"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginRight="5dp"
+                    android:textSize="20sp"
                     android:layout_marginStart="5dp"
-                    android:background="#8b949494" />
-
-                <TextView
-                    android:id="@+id/resultado_o2_supl"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:textSize="30sp" />
-
+                    android:textStyle="bold"
+                    android:layout_marginLeft="5dp" />
             </LinearLayout>
 
-            <LinearLayout
+            <View
+                android:layout_width="100dp"
+                android:layout_height="0.5dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginStart="5dp"
+                android:background="#8b949494" />
+
+            <TextView
+                android:id="@+id/resultado_o2_supl"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:background="@drawable/round_edge"
-                android:orientation="vertical"
-                android:padding="10dp">
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:textSize="30sp" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/observa_es"
-                    android:textColor="@color/corPrimaria"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
+        </LinearLayout>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_weight="1"
+            android:background="@drawable/round_edge"
+            android:orientation="vertical"
+            android:padding="10dp">
 
-                <View
-                    android:layout_width="100dp"
-                    android:layout_height="0.5dp"
-                    android:layout_marginBottom="10dp"
-                    android:layout_marginEnd="5dp"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginRight="5dp"
-                    android:layout_marginStart="5dp"
-                    android:background="#8b949494" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/observa_es"
+                android:textColor="@color/corPrimaria"
+                android:textSize="18sp"
+                android:textStyle="bold" />
 
 
-                <TextView
-                    android:id="@+id/resultado_obs"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="@string/observa_es_sobre_o_teste"
-                    android:textSize="15sp" />
+            <View
+                android:layout_width="100dp"
+                android:layout_height="0.5dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginStart="5dp"
+                android:background="#8b949494" />
 
 
-            </LinearLayout>
+            <TextView
+                android:id="@+id/resultado_obs"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/observa_es_sobre_o_teste"
+                android:textSize="15sp" />
 
 
         </LinearLayout>
+
+
         <!-- Comentario e o2supl-->
 
         <Button

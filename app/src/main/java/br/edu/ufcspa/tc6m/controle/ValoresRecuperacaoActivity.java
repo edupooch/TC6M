@@ -92,6 +92,8 @@ public class ValoresRecuperacaoActivity extends AppCompatActivity {
         btPular.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                findViewById(R.id.layout_fc_recup_1).setVisibility(View.VISIBLE);
                 escondeCronometro();
             }
         });
@@ -122,6 +124,7 @@ public class ValoresRecuperacaoActivity extends AppCompatActivity {
         findViewById(R.id.layoutAguarde).setVisibility(View.GONE);
         findViewById(R.id.layoutDadosRecuperacao).setVisibility(View.VISIBLE);
         findViewById(R.id.btSalvarFC1).setVisibility(View.GONE);
+        findViewById(R.id.btPularTempo).setVisibility(View.GONE);
     }
 
     @Override
@@ -131,6 +134,7 @@ public class ValoresRecuperacaoActivity extends AppCompatActivity {
         //Salva o progresso atual da barra, para retornar de onde parou
         savedInstanceState.putFloat("progresso", circularProgressBar.getProgress());
         savedInstanceState.putBoolean("jaApareceuFC1", jaApareceuFC1);
+        savedInstanceState.putBoolean("cronometro_visible",findViewById(R.id.layoutAguarde).getVisibility() == View.VISIBLE);;
 
         super.onSaveInstanceState(savedInstanceState);
     }
@@ -143,6 +147,9 @@ public class ValoresRecuperacaoActivity extends AppCompatActivity {
         crono.setBase(savedInstanceState.getLong("cronometro"));
         barraDeProgresso(savedInstanceState.getFloat("progresso"));
         jaApareceuFC1 = savedInstanceState.getBoolean("jaApareceuFC1");
+        if (!savedInstanceState.getBoolean("cronometro_visible")){
+            escondeCronometro();
+        }
 
 
     }
