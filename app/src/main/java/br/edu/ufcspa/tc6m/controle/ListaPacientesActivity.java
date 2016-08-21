@@ -167,8 +167,6 @@ public class ListaPacientesActivity extends AppCompatActivity {
             case R.id.action_sobre:
                 startActivity(new Intent(ListaPacientesActivity.this, SobreActivity.class));
                 break;
-            case R.id.action_referencias:
-                break;
         }
         return super.onOptionsItemSelected(item);
     }

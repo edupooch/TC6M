@@ -1,10 +1,13 @@
 package br.edu.ufcspa.tc6m.controle;
 
+import android.app.DatePickerDialog;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
 import android.telephony.PhoneNumberFormattingTextWatcher;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -16,6 +19,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 import br.edu.ufcspa.tc6m.R;
@@ -25,6 +29,7 @@ import br.edu.ufcspa.tc6m.modelo.Paciente;
  * Created by edupooch on 17/02/16.
  */
 public class FormularioHelper {
+
 
     private Paciente paciente;
     private final EditText campoNome;
@@ -38,9 +43,9 @@ public class FormularioHelper {
     private RadioButton btnMasculino;
     private RadioButton btnFeminino;
 
-    public FormularioHelper(FormularioActivity activity) {
+    public FormularioHelper(final FormularioActivity activity) {
 
-        paciente = new Paciente();
+        Paciente paciente = new Paciente();
 
         campoNome = (EditText) activity.findViewById(R.id.edTextNomePaciente);
         campoData = (EditText) activity.findViewById(R.id.edTextDataNascimento);
@@ -55,7 +60,10 @@ public class FormularioHelper {
         btFoto = (ImageButton) activity.findViewById(R.id.btFoto);
 
 
+
     }
+
+
 
     public Paciente pegaPacienteFromFields(Long id) {
         Paciente paciente = new Paciente();
@@ -113,6 +121,9 @@ public class FormularioHelper {
 
         return (!campoNome.getText().toString().isEmpty() &&
                 !campoData.getText().toString().isEmpty() &&
+                !campoData.getText().toString().contains("M")&&
+                !campoData.getText().toString().contains("D")&&
+                !campoData.getText().toString().contains("A")&&
                 !campoPeso.getText().toString().isEmpty() &&
                 !campoAltura.getText().toString().isEmpty() &&
                 btnFeminino.isChecked() ^ btnMasculino.isChecked()
@@ -135,7 +146,7 @@ public class FormularioHelper {
 
                 //foto vertical
                 Matrix matrix = new Matrix();
-                matrix.postRotate(90);
+                matrix.postRotate(180);
                 bm = Bitmap.createBitmap(bm, 0, 0, bm.getWidth(), bm.getHeight(), matrix, true);
                 FileOutputStream out = null;
 

@@ -16,6 +16,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -39,7 +40,7 @@ import br.edu.ufcspa.tc6m.dao.PacienteDAO;
 import br.edu.ufcspa.tc6m.modelo.Paciente;
 import br.edu.ufcspa.tc6m.R;
 
-public class FormularioActivity extends AppCompatActivity {
+public class FormularioActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
 
 
     public static final int REQUEST_CODE_CAMERA = 123;
@@ -139,6 +140,12 @@ public class FormularioActivity extends AppCompatActivity {
         btData.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Calendar now = Calendar.getInstance();
+                DatePickerDialog dpd = new DatePickerDialog(FormularioActivity.this, FormularioActivity.this, now.get(Calendar.YEAR),
+                        now.get(Calendar.MONTH),
+                        now.get(Calendar.DAY_OF_MONTH));
+
+                dpd.show();
 
             }
         });
@@ -166,8 +173,6 @@ public class FormularioActivity extends AppCompatActivity {
                 helper.carregaImagem(caminhoFoto);
             }
         }
-
-
     }
 
     @Override
@@ -221,5 +226,16 @@ public class FormularioActivity extends AppCompatActivity {
             System.out.println("foto" + savedInstanceState.getString("caminho_foto"));
             helper.carregaImagem(caminhoFoto);
         }
+    }
+
+
+    @Override
+    public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+        EditText edTextData = (EditText) findViewById(R.id.edTextDataNascimento);
+        String strData = String.format(Locale.getDefault(), "%02d", dayOfMonth) +
+                "/" + String.format(Locale.getDefault(), "%02d", monthOfYear + 1) +
+                "/" + String.format(Locale.getDefault(), "%04d", year);
+
+        edTextData.setText(strData);
     }
 }

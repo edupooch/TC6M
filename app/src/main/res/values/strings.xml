@@ -134,7 +134,7 @@
     <string name="o_paciente_ainda_n_o_realizou_nenhum_teste">Não há testes cadastrados</string>
     <string name="iniciar_teste">Iniciar teste</string>
     <string name="dados_do_paciente">DADOS CADASTRAIS</string>
-    <string name="projeto_desenvolvido"><![CDATA[Desenvolvido com apoio do CNPq como parte do projeto de pesquisa \"Valores de referência para o Teste de Caminhada de Seis Minutos em crianças saudáveis no Brasil\"]]></string>
+    <string name="projeto_desenvolvido"><![CDATA[Desenvolvido com apoio do CNPq como parte do projeto de pesquisa \"Valores de referência para o Teste de Caminhada de Seis Minutos em crianças saudáveis no Brasil\".]]></string>
     <string name="aplica_o_desenvolvida_por_eduardo_h_p_pooch">Aplicação desenvolvida por Eduardo H. P. Pooch, aluno do curso de graduação de Informática Biomédica da Universidade Federal de Ciências da Saúde de Porto Alegre (UFCSPA), com orientação dos professores Cecilia Dias Flores e Marlus Karsten.</string>
     <string name="sobre">Sobre</string>
     <string name="masculino">Masculino</string>
@@ -155,6 +155,13 @@
     <string name="final_rec_2">Δ(F - R2)</string>
     <string name="final_basal">Δ(F - B)</string>
     <string name="frequ_ncia_card_aca_2">Frequência Cardíaca (2\')</string>
+    <string name="referencia_1">1) Britto RR, Probst VS, Andrade AF, Samora GA, Hernandes NA, Marinho PE, et al. Reference equations for the six–minute walk distance based on a Brazilian multicenter study. Braz J Phys Ther. 2013 Nov–Dec;17(6):556–63.</string>
+    <string name="referencia_2">2) Dourado VZ, Vidotto MC, Guerra RL. Equações de referência para os testes de caminhada de campo em adultos saudáveis. J.Bras Pneumol 2011;37(5):607–14.</string>
+    <string name="referencia_3">3) Soares MR, Pereira CAC. Six–minute walk test: reference values for healthy adults in Brazil. J Bras Pneu–mol. 2011 Sep–Oct;37(5):576–83.</string>
+    <string name="referencia_4">4) Iwama AM, Andrade GN, Shima P, Tanni SE, Godoy I, Dourado VZ. The six–minute walk test and body weight–walk distance product in healthy Brazilian subjects. Braz J Med Biol Res. 2009 Nov;42(11):1080–5.</string>
+    <string name="referencia_5">5) Hernandes NA, Karsten M. Testes clínicos de campo, com emprego de caminhada/marcha: teste de caminhada de seis minutos e 4–meter gait speed. In: Associação Brasileira de Fisioterapia Cardiorrespiratória e Fisioterapia em Terapia Intensiva; Martins JA, Karsten M, Dal Corso S, organizadores. PROFISIO Programa de Atualização em Fisioterapia Cardiovascular e Respiratória: Ciclo 1. Porto Alegre: Artmed Panamericana; 2014. p. 115–37. (Sistema de Educação Continuada a Distância, v. 1).</string>
+    <string name="refer_ncias">REFERÊNCIAS BIBLIOGRÁFICAS</string>
+    <string name="bibliotecas">BIBLIOTECAS</string>
 
 
 </resources>

@@ -12,33 +12,26 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
-
         <activity
             android:name=".controle.ListaPacientesActivity"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar">
-
-        </activity>
+            android:theme="@style/AppTheme.NoActionBar"/>
 
         <activity
             android:name=".controle.SplashScreenActivity"
-            android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_splash_screen"
             android:theme="@style/AppTheme.NoActionBar">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-    </activity>
-
+        </activity>
         <activity
             android:name=".controle.FormularioActivity"
             android:label="@string/title_activity_formulario"
             android:parentActivityName=".controle.ListaPacientesActivity"
-            android:theme="@style/AppTheme.NoActionBar"/>
-
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".controle.PerfilActivity"
             android:label="@string/title_activity_perfil"
@@ -48,7 +41,6 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="br.edu.ufcspa.tc6m.controle.ListaPacientesActivity" />
         </activity>
-
         <activity
             android:name=".controle.CronometroActivity"
             android:label="@string/title_activity_cronometro"
@@ -56,20 +48,15 @@
         <activity
             android:name=".controle.ValoresBasaisActivity"
             android:label="@string/title_activity_valores_basais"
-            android:theme="@style/AppTheme.NoActionBar">
-        </activity>
-
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity
             android:name=".controle.ValoresFinaisActivity"
             android:label="@string/title_activity_valores_finais"
             android:theme="@style/AppTheme.NoActionBar" />
-
         <activity
             android:name=".controle.ValoresRecuperacaoActivity"
             android:label="@string/title_activity_valores_recuperacao"
             android:theme="@style/AppTheme.NoActionBar" />
-
-
         <activity
             android:name=".controle.AnaliseTesteActivity"
             android:label="@string/title_activity_analise_teste"
@@ -79,9 +66,6 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="br.edu.ufcspa.tc6m.controle.ListaTestesActivity" />
         </activity>
-
-
-
         <activity
             android:name=".controle.PreferenciasActivity"
             android:label="@string/title_activity_preferencias"
@@ -91,12 +75,10 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="br.edu.ufcspa.tc6m.controle.ListaPacientesActivity" />
         </activity>
-
         <activity
             android:name=".controle.PreTesteActivity"
             android:label="@string/title_activity_pre_teste"
             android:theme="@style/AppTheme.NoActionBar" />
-
         <activity
             android:name=".controle.SobreActivity"
             android:label="Sobre"
@@ -106,8 +88,6 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="br.edu.ufcspa.tc6m.controle.ListaPacientesActivity" />
         </activity>
-
-
     </application>
 
 </manifest>

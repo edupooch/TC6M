@@ -126,10 +126,10 @@ public class AnaliseTesteActivity extends AppCompatActivity {
         Formula formulaInicial = new ListaFormulas().getFormulas().get(ultimaFormula);
         atualizaFormula(formulaInicial);
 
-        //Cria o listener de clique longo no circulo para trocar a fórmula de interpretação
-        circuloPercDp1.setOnLongClickListener(new View.OnLongClickListener() {
+        //Cria o listener de clique no circulo para trocar a fórmula de interpretação
+        View.OnClickListener clickListener = new View.OnClickListener() {
             @Override
-            public boolean onLongClick(View v) {
+            public void onClick(View v) {
                 //Abrirá um dialog com uma listView de fórmulas para escolher
                 final Dialog dialog = new Dialog(AnaliseTesteActivity.this);
                 View view = getLayoutInflater().inflate(R.layout.dialog_formulas, null);
@@ -151,9 +151,11 @@ public class AnaliseTesteActivity extends AppCompatActivity {
                 });
                 dialog.setContentView(view);
                 dialog.show();
-                return false;
             }
-        });
+        };
+
+        circuloPercDp1.setOnClickListener(clickListener);
+        findViewById(R.id.layout_circulo_dp_estimada_1).setOnClickListener(clickListener);
 
 
         //.............................VALORES DOS SINAIS.........................................//

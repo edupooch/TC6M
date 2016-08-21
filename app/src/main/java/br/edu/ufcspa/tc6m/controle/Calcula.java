@@ -53,7 +53,6 @@ public class Calcula {
         LocalDate now = new LocalDate();
 
         Period period = new Period(birthdate, now, PeriodType.yearMonthDay());
-
         String anos = period.getYears() + " anos, ";
         if (period.getYears() == 1){
             anos = period.getYears() + " ano, ";

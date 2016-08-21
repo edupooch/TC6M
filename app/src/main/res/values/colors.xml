@@ -13,6 +13,8 @@
     <color name="corPrimariaEscura">#3a9665</color>
     <color name="colorAccent">#d95042</color>
     <color name="branco">#FFFFFF</color>
+    <color name="azul">#22517A</color>
+    <color name="azulEscuro">#193b59</color>
 
     <color name="black_overlay">#66000000</color>
 
