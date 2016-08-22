@@ -9,11 +9,15 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.TypedValue;
 import android.view.ContextMenu;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.AbsListView;
 import android.widget.AdapterView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -71,6 +75,7 @@ public class ListaPacientesActivity extends AppCompatActivity {
         listaPacientes = (ListView) findViewById(R.id.lista_pacientes);
 
 
+
         PacienteDAO dao = new PacienteDAO(this);
         List<Paciente> pacientes = dao.buscaPacientes();
         Collections.sort(pacientes);
@@ -85,8 +90,12 @@ public class ListaPacientesActivity extends AppCompatActivity {
         } else {
             textInicial.setText(R.string.text_inicial);
         }
-
         dao.close();
+
+        //Coloca o tamanho da lista em dp de acordo com o numero de pacientes (75dp por paciente)
+        LinearLayout.LayoutParams lp = (LinearLayout.LayoutParams) listaPacientes.getLayoutParams();
+        lp.height = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 75 * pacientes.size(), getResources().getDisplayMetrics());;
+        listaPacientes.setLayoutParams(lp);
     }
 
     @Override

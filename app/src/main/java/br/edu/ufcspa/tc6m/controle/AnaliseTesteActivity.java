@@ -161,7 +161,7 @@ public class AnaliseTesteActivity extends AppCompatActivity {
         //.............................VALORES DOS SINAIS.........................................//
 
         //Arrays com Resource IDs de textViews para agilizar os setTexts em um for loop
-        int[] fcValoresResId = new int[]{R.id.resultado_fc_inicial, R.id.resultado_fc_1_minuto, R.id.resultado_fc_2_minuto, R.id.resultado_fc_3_minuto, R.id.resultado_fc_4_minuto, R.id.resultado_fc_5_minuto, R.id.resultado_fc_final, R.id.resultado_fc_rec2, R.id.resultado_fc_rec2};
+        int[] fcValoresResId = new int[]{R.id.resultado_fc_inicial, R.id.resultado_fc_1_minuto, R.id.resultado_fc_2_minuto, R.id.resultado_fc_3_minuto, R.id.resultado_fc_4_minuto, R.id.resultado_fc_5_minuto, R.id.resultado_fc_final, R.id.resultado_fc_rec1, R.id.resultado_fc_rec2};
         int[] spValoresResId = new int[]{R.id.resultado_sp_inicial, R.id.resultado_sp_1_minuto, R.id.resultado_sp_2_minuto, R.id.resultado_sp_3_minuto, R.id.resultado_sp_4_minuto, R.id.resultado_sp_5_minuto, R.id.resultado_sp_final, R.id.resultado_sp_recup};
         int[] dispValoresResId = new int[]{R.id.resultado_disp_inicial, R.id.resultado_disp_1_minuto, R.id.resultado_disp_2_minuto, R.id.resultado_disp_3_minuto, R.id.resultado_disp_4_minuto, R.id.resultado_disp_5_minuto, R.id.resultado_disp_final, R.id.resultado_disp_recup};
         int[] fadValoresResId = new int[]{R.id.resultado_fad_inicial, R.id.resultado_fad_1_minuto, R.id.resultado_fad_2_minuto, R.id.resultado_fad_3_minuto, R.id.resultado_fad_4_minuto, R.id.resultado_fad_5_minuto, R.id.resultado_fad_final, R.id.resultado_fad_recup};
@@ -300,10 +300,10 @@ public class AnaliseTesteActivity extends AppCompatActivity {
 
         }
         /////////////////////////VARIAÇÕES//////////////////////////////////////////////////////////
+        //FC
         TextView varFinalBasal = (TextView) findViewById(R.id.resultado_var_final_basal);
         TextView varFinalRec1 = (TextView) findViewById(R.id.resultado_var_final_rec1);
         TextView varFinalRec2 = (TextView) findViewById(R.id.resultado_var_final_rec2);
-
         if (teste.getFc(6) != null) {
             if (teste.getFc(0) != null)
                 varFinalBasal.setText(String.valueOf(teste.getFc(6) - teste.getFc(0)));
@@ -311,6 +311,15 @@ public class AnaliseTesteActivity extends AppCompatActivity {
                 varFinalRec1.setText(String.valueOf(teste.getFc(6) - teste.getFc(7)));
             if (teste.getFc(8) != null)
                 varFinalRec2.setText(String.valueOf(teste.getFc(6) - teste.getFc(8)));
+        }
+
+        //SPO2
+        if (teste.getSpO2(6) != null && teste.getSpO2(0) != null) {
+            TextView varSpo2 = (TextView) findViewById(R.id.resultado_var_final_basal_spo2);
+            String strVarSp = String.valueOf(teste.getSpO2(6) - teste.getSpO2(0)) + "%";
+            varSpo2.setText(strVarSp);
+        } else {
+            findViewById(R.id.layout_var_spo2).setVisibility(View.GONE);
         }
 
         //.............................ESCONDE CARDS..........................................//

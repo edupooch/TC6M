@@ -134,8 +134,8 @@
     <string name="o_paciente_ainda_n_o_realizou_nenhum_teste">Não há testes cadastrados</string>
     <string name="iniciar_teste">Iniciar teste</string>
     <string name="dados_do_paciente">DADOS CADASTRAIS</string>
-    <string name="projeto_desenvolvido"><![CDATA[Desenvolvido com apoio do CNPq como parte do projeto de pesquisa \"Valores de referência para o Teste de Caminhada de Seis Minutos em crianças saudáveis no Brasil\".]]></string>
-    <string name="aplica_o_desenvolvida_por_eduardo_h_p_pooch">Aplicação desenvolvida por Eduardo H. P. Pooch, aluno do curso de graduação de Informática Biomédica da Universidade Federal de Ciências da Saúde de Porto Alegre (UFCSPA), com orientação dos professores Cecilia Dias Flores e Marlus Karsten.</string>
+    <string name="projeto_desenvolvido"><![CDATA[\u0009Desenvolvido com apoio do CNPq como parte do projeto de pesquisa \"Valores de referência para o Teste de Caminhada de Seis Minutos em crianças saudáveis no Brasil\".]]></string>
+    <string name="aplica_o_desenvolvida_por_eduardo_h_p_pooch">\u0009Aplicação desenvolvida por Eduardo H. P. Pooch, aluno do curso de graduação de Informática Biomédica da Universidade Federal de Ciências da Saúde de Porto Alegre (UFCSPA), com orientação dos professores Cecilia Dias Flores e Marlus Karsten.</string>
     <string name="sobre">Sobre</string>
     <string name="masculino">Masculino</string>
     <string name="feminino">Feminino</string>

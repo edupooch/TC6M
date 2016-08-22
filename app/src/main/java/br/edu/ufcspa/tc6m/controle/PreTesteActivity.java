@@ -136,9 +136,13 @@ public class PreTesteActivity extends AppCompatActivity {
                     if (layout.getLayoutParams().height == LinearLayout.LayoutParams.WRAP_CONTENT) {
                         LinearLayout.LayoutParams posicao = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
                         posicao.height = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 40, getResources().getDisplayMetrics());
+                        int marginTop = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 5, getResources().getDisplayMetrics());
+                        posicao.setMargins(0,marginTop,0,0);
                         layout.setLayoutParams(posicao);
                     } else {
                         LinearLayout.LayoutParams posicao = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+                        int marginTop = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 5, getResources().getDisplayMetrics());
+                        posicao.setMargins(0,marginTop,0,0);
                         layout.setLayoutParams(posicao);
                     }
                 }
@@ -221,6 +225,8 @@ public class PreTesteActivity extends AppCompatActivity {
             TransitionManager.beginDelayedTransition(layout);
 
         LinearLayout.LayoutParams posicao = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        int marginTop = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 5, getResources().getDisplayMetrics());
+        posicao.setMargins(0,marginTop,0,0);
         layout.setLayoutParams(posicao);
     }
 }

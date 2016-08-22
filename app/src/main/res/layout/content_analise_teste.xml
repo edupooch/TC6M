@@ -778,7 +778,7 @@
                         android:id="@+id/resultado_sp_inicial"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="30sp" />
+                        android:textSize="22sp" />
 
                 </LinearLayout>
 
@@ -802,7 +802,7 @@
                         android:id="@+id/resultado_sp_final"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="30sp" />
+                        android:textSize="22sp" />
 
 
                 </LinearLayout>
@@ -828,10 +828,34 @@
                         android:id="@+id/resultado_sp_recup"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="30sp" />
+                        android:textSize="22sp" />
 
                 </LinearLayout>
 
+                <LinearLayout
+                    android:id="@+id/layout_var_spo2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_marginStart="15dp"
+                    android:orientation="vertical"
+                    android:layout_marginLeft="10dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/final_basal"
+                        android:textSize="13sp"
+                        android:textStyle="bold" />
+
+
+                    <TextView
+                        android:id="@+id/resultado_var_final_basal_spo2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="22sp" />
+
+                </LinearLayout>
 
             </LinearLayout>
 
