@@ -2,7 +2,16 @@ package br.edu.ufcspa.tc6m.controle;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.Matrix;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
+import android.media.ThumbnailUtils;
 import android.os.Bundle;
+import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -12,10 +21,13 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import java.io.FileOutputStream;
 import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
@@ -56,8 +68,50 @@ public class PerfilActivity extends AppCompatActivity {
                 startActivity(intentVaiProPreTeste);
             }
         });
-
         ////////////////////////////////////////////////////////////////////////////////////////////
+//        CollapsingToolbarLayout toolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.toolbar_layout);
+//        paciente.getCaminhoFoto();
+//
+//
+//        String caminhoFoto = paciente.getCaminhoFoto();
+//        if (caminhoFoto != null) {
+//            final BitmapFactory.Options options = new BitmapFactory.Options();
+//            options.inSampleSize = 8;
+//            Bitmap bm = BitmapFactory.decodeFile(caminhoFoto, options);
+//
+//            int dimension = Math.min(bm.getWidth(), bm.getHeight());
+//            bm = ThumbnailUtils.extractThumbnail(bm, dimension, dimension);
+//
+//            Drawable d = new BitmapDrawable(getResources(), bm);
+//            toolbarLayout.setBackground(d);
+//
+//        }
+//
+
+        ImageView campoFoto = (ImageView) findViewById(R.id.foto_paciente);
+        String caminhoFoto = paciente.getCaminhoFoto();
+        if (caminhoFoto != null) {
+            findViewById(R.id.icone_user).setVisibility(View.GONE);
+            final BitmapFactory.Options options = new BitmapFactory.Options();
+            options.inSampleSize = 8;
+            Bitmap bm = BitmapFactory.decodeFile(caminhoFoto, options);
+            if (bm.getWidth() > bm.getHeight()) {
+                bm = Bitmap.createScaledBitmap(bm, 400, 250, false);
+                //foto vertical
+                Matrix matrix = new Matrix();
+                matrix.postRotate(90);
+                bm = Bitmap.createBitmap(bm, 0, 0, bm.getWidth(), bm.getHeight(), matrix, true);
+                FileOutputStream out = null;
+
+            } else {
+                //horizontal
+                bm = Bitmap.createScaledBitmap(bm,400, 250, false);
+            }
+
+
+            campoFoto.setImageBitmap(bm);
+            campoFoto.setScaleType(ImageView.ScaleType.CENTER_CROP);
+        }
 
     }
 
@@ -80,6 +134,10 @@ public class PerfilActivity extends AppCompatActivity {
         textoAltura.setText(String.format(Locale.US, "%.0f cm", paciente.getEstatura()));
         textoIMC.setText(String.format(Locale.US, "IMC %.2f", Calcula.imc(paciente.getMassa(), paciente.getEstatura())));
         if (paciente.getTelefone().isEmpty()) {
+            if (paciente.getEmail().isEmpty()) {//tirar o titulo contato se não tem telefone nem email
+                findViewById(R.id.titulo_contato).setVisibility(View.GONE);
+                findViewById(R.id.titulo_contato_sublinhado).setVisibility(View.GONE);
+            }
             findViewById(R.id.layout_telefone).setVisibility(View.GONE);
         } else {
             textoTelefone.setText(paciente.getTelefone());
