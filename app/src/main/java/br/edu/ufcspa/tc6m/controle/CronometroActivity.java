@@ -260,25 +260,25 @@ public class CronometroActivity extends AppCompatActivity {
                     case 100:
                         mostraCampos(0);
                         break;
-                    case 110:
+                    case 120:
                         someFrase();
                         break;
                     case 200:
                         mostraCampos(1);
                         break;
-                    case 210:
+                    case 220:
                         someFrase();
                         break;
                     case 300:
                         mostraCampos(2);
                         break;
-                    case 310:
+                    case 320:
                         someFrase();
                         break;
                     case 400:
                         mostraCampos(3);
                         break;
-                    case 410:
+                    case 420:
                         someFrase();
                         break;
                     case 500:

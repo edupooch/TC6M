@@ -662,7 +662,7 @@
                     android:text="@string/basal" />
 
                 <CheckBox
-                    android:id="@+id/bt_final_o2_supl"
+                    android:id="@+id/bt_final_o2supl"
                     style="@style/RadioButton"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

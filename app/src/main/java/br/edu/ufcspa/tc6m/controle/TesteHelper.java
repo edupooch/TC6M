@@ -244,7 +244,7 @@ public class TesteHelper {
         //fc, spo2, disp e fad são coletadas em todas as fases
         if (!edTextFc[minuto].getText().toString().isEmpty()) {
             teste.setFc(minuto, Integer.parseInt(edTextFc[minuto].getText().toString()));
-            if (minuto == 7) // pegar o valor de recuperação 1' e 2'(fc[8])
+            if (minuto == 7 && !edTextFc[minuto+1].getText().toString().isEmpty()) // pegar o valor de recuperação 1' e 2'(fc[8])
                 teste.setFc(minuto + 1, Integer.parseInt(edTextFc[minuto + 1].getText().toString()));
         }
         if (!edTextDisp[minuto].getText().toString().isEmpty())

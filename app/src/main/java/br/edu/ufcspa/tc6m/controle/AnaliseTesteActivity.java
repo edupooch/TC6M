@@ -331,7 +331,7 @@ public class AnaliseTesteActivity extends AppCompatActivity {
         if (!temAlgumGc) findViewById(R.id.card_gc).setVisibility(View.GONE);
 
         if (teste.getO2Supl(0) != null) {
-            TextView textO2supl = (TextView) findViewById(R.id.resultado_o2_supl);
+            TextView textO2supl = (TextView) findViewById(R.id.resultado_o2_supl_basal);
             textO2supl.setText(String.valueOf(teste.getO2Supl(0)));
         } else {
             findViewById(R.id.card_o2supl).setVisibility(View.GONE);
@@ -429,6 +429,7 @@ public class AnaliseTesteActivity extends AppCompatActivity {
         for (int i = 1; i < velocidades.size(); i++) {
             Velocidade velocidade = velocidades.get(i);
             yVals.add(new Entry(velocidade.getVelocidade(), i));
+
         }
 
         LineDataSet set = new LineDataSet(yVals, "Velocidade");

@@ -836,10 +836,10 @@
                     android:id="@+id/layout_var_spo2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:gravity="center"
+                    android:layout_marginLeft="10dp"
                     android:layout_marginStart="15dp"
-                    android:orientation="vertical"
-                    android:layout_marginLeft="10dp">
+                    android:gravity="center"
+                    android:orientation="vertical">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -1991,6 +1991,8 @@
                 <ImageView
                     android:layout_width="18dp"
                     android:layout_height="18dp"
+                    android:src="@drawable/icon_o2"
+                    android:tint="@color/corPrimaria"
                     android:layout_gravity="center_vertical" />
 
                 <TextView
@@ -2014,13 +2016,58 @@
                 android:layout_marginStart="5dp"
                 android:background="#8b949494" />
 
-            <TextView
-                android:id="@+id/resultado_o2_supl"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:textSize="30sp" />
+                android:gravity="center">
 
+                <LinearLayout
+                    android:id="@+id/layout_o2_supl_basal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/BASAL"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/resultado_o2_supl_basal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="30sp" />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/layout_o2_supl_final"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginStart="30dp"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/_final"
+                        android:textStyle="bold" />
+
+
+                    <TextView
+                        android:id="@+id/resultado_o2_supl_final"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="30sp" />
+
+
+                </LinearLayout>
+            </LinearLayout>
         </LinearLayout>
 
         <LinearLayout

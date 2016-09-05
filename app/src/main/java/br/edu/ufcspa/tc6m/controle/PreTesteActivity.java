@@ -1,6 +1,5 @@
 package br.edu.ufcspa.tc6m.controle;
 
-import android.app.ActionBar;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Build;
@@ -9,19 +8,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.transition.TransitionManager;
 import android.util.TypedValue;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
-import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.LinearLayout;
-import android.widget.TextView;
-import android.widget.Toast;
-
-import org.w3c.dom.Text;
 
 import br.edu.ufcspa.tc6m.R;
 import br.edu.ufcspa.tc6m.modelo.Paciente;
@@ -86,7 +76,7 @@ public class PreTesteActivity extends AppCompatActivity {
                 R.id.bt_repouso_gc,
 
                 R.id.bt_basal_o2supl,
-                R.id.bt_final_o2_supl
+                R.id.bt_final_o2supl
 
         };
 

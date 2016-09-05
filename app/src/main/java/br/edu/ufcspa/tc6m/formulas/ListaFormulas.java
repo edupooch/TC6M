@@ -82,7 +82,7 @@ public class ListaFormulas {
         Formula iwama = new Formula(
                 ID_IWAMA,
                 "Iwama e cols. 2009",
-                "511 + (0.0066 * estatura²) - (0.030 * idade²) - (0.068 * IMC²)",
+                "622.461 - (1.846 * idade) + (61.503 * gênero)",
                 0.55,
                 R.drawable.bandeira_brasil
         );
