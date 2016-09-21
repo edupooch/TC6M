@@ -67,6 +67,7 @@ public class Teste implements Serializable {
     private double massa;
     private double estatura;
 
+    private String obsTeste;
     private String obsFinal;
 
     private int distanciaPercorrida;
@@ -74,6 +75,14 @@ public class Teste implements Serializable {
     public Teste(Paciente paciente) {
         this.paciente = paciente;
         this.idPaciente = paciente.getId();
+    }
+
+    public String getObsTeste() {
+        return obsTeste;
+    }
+
+    public void setObsTeste(String obsTeste) {
+        this.obsTeste = obsTeste;
     }
 
     public Long getUltimaVolta() {

@@ -1,16 +1,19 @@
 package br.edu.ufcspa.tc6m.controle;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.TypedValue;
+import android.view.ContextMenu;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.NumberPicker;
@@ -18,7 +21,9 @@ import android.widget.TextView;
 
 import br.edu.ufcspa.tc6m.R;
 import br.edu.ufcspa.tc6m.adapter.FormulasAdapter;
+import br.edu.ufcspa.tc6m.dao.TesteDAO;
 import br.edu.ufcspa.tc6m.formulas.ListaFormulas;
+import br.edu.ufcspa.tc6m.modelo.Teste;
 
 public class PreferenciasActivity extends AppCompatActivity {
 

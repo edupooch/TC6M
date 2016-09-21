@@ -1,13 +1,20 @@
 package br.edu.ufcspa.tc6m.adapter;
 
+import android.app.Dialog;
+import android.app.DialogFragment;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.CompoundButton;
+import android.widget.ListView;
 import android.widget.Switch;
 import android.widget.TextView;
 
@@ -16,6 +23,8 @@ import java.util.Locale;
 
 
 import br.edu.ufcspa.tc6m.R;
+import br.edu.ufcspa.tc6m.controle.ReferenciasActivity;
+import br.edu.ufcspa.tc6m.formulas.ListaFormulas;
 import br.edu.ufcspa.tc6m.modelo.Formula;
 
 /**
@@ -56,8 +65,8 @@ public class FormulasAdapter extends BaseAdapter {
 
 
     @Override
-    public View getView(final int position, View convertView, ViewGroup parent) {
-        Formula formula = formulas.get(position);
+    public View getView(final int position, final View convertView, ViewGroup parent) {
+        final Formula formula = formulas.get(position);
         LayoutInflater inflater = LayoutInflater.from(context);
 
         View view = convertView;
@@ -70,6 +79,23 @@ public class FormulasAdapter extends BaseAdapter {
 
         TextView textAutores = (TextView) view.findViewById(R.id.text_autores_formula);
         textAutores.setText(formula.getAutores());
+        textAutores.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                builder.setMessage(formula.getReferencia())
+                        .setCancelable(false)
+                        .setTitle("Referência:")
+                        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                dialog.dismiss();
+                            }
+                        });
+                AlertDialog alert = builder.create();
+                alert.show();
+            }
+        });
+
 
         TextView textCoeficiente = (TextView) view.findViewById(R.id.text_coeficiente);
         double coeficiente = formula.getCoeficienteExplicacao();

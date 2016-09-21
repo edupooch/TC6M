@@ -14,16 +14,18 @@ public class Formula implements Serializable {
     private int idFormula;
     private int ativada;
     private String autores;
+    private String referencia;
     private String formula;
     private double coeficienteExplicacao;
     private int bandeiraPaisDeOrigem;
 
-    public Formula(int idFormula, String autores, String formula, double coeficienteExplicacao, int bandeiraPaisDeOrigem) {
+    public Formula(int idFormula, String autores, String formula, double coeficienteExplicacao, int bandeiraPaisDeOrigem, String referencia) {
         this.idFormula = idFormula;
         this.autores = autores;
         this.formula = formula;
         this.coeficienteExplicacao = coeficienteExplicacao;
         this.bandeiraPaisDeOrigem = bandeiraPaisDeOrigem;
+        this.referencia = referencia;
     }
 
     public int getIdFormula() {
@@ -40,6 +42,14 @@ public class Formula implements Serializable {
 
     public void setAtivada(int ativada) {
         this.ativada = ativada;
+    }
+
+    public String getReferencia() {
+        return referencia;
+    }
+
+    public void setReferencia(String referencia) {
+        this.referencia = referencia;
     }
 
     public String getAutores() {

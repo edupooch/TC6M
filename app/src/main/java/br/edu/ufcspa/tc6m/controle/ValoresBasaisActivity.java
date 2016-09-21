@@ -51,7 +51,7 @@ public class ValoresBasaisActivity extends AppCompatActivity { //implementar com
                 teste.setMassa(paciente.getMassa());
                 teste.setEstatura(paciente.getEstatura());
                 teste.setIdade(Calcula.idade(paciente.getDataNascimento()));
-                Intent intentVaiProCronometro = new Intent(ValoresBasaisActivity.this, CronometroActivity.class);
+                Intent intentVaiProCronometro = new Intent(ValoresBasaisActivity.this, TesteActivity.class);
                 intentVaiProCronometro.putExtra("teste", teste);
                 startActivity(intentVaiProCronometro);
                 finish();

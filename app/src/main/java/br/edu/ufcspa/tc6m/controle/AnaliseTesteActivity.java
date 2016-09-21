@@ -1,12 +1,23 @@
 package br.edu.ufcspa.tc6m.controle;
 
+import android.annotation.TargetApi;
+import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
+import android.graphics.pdf.PdfDocument;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
+import android.print.PrintAttributes;
+import android.print.pdf.PrintedPdfDocument;
+import android.provider.MediaStore;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -15,7 +26,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.HorizontalScrollView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -24,8 +38,13 @@ import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
+import com.github.mikephil.charting.formatter.ValueFormatter;
+import com.github.mikephil.charting.utils.ViewPortHandler;
 import com.mikhaellopez.circularprogressbar.CircularProgressBar;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -53,6 +72,7 @@ public class AnaliseTesteActivity extends AppCompatActivity {
     private TextView[] textPa = new TextView[3];
     private TextView[] textGc = new TextView[3];
     private CircularProgressBar circuloPercDp1;
+    private View view;
     //VALORES
 
 
@@ -67,6 +87,24 @@ public class AnaliseTesteActivity extends AppCompatActivity {
         teste = (Teste) intent.getSerializableExtra("teste");
 
         iniciaComponentes();
+    }
+
+
+    private void gerarImagem() {
+
+        view = findViewById(R.id.pagina_analise);
+        view.setDrawingCacheEnabled(true);
+
+        Bitmap b = view.getDrawingCache();
+        String caminhoFoto = getExternalFilesDir(null) + "/" + System.currentTimeMillis() + ".jpg";
+        try {
+            b.compress(Bitmap.CompressFormat.JPEG, 95, new FileOutputStream(getExternalFilesDir(null) + "/" + System.currentTimeMillis() + ".jpg"));
+            Toast.makeText(this,"Imagem salva com sucesso!", Toast.LENGTH_LONG).show();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+            Toast.makeText(this,"Erro", Toast.LENGTH_LONG).show();
+        }
+
     }
 
     private void iniciaComponentes() {
@@ -89,16 +127,16 @@ public class AnaliseTesteActivity extends AppCompatActivity {
         final double vmKmHora = vmMetrosSegundo * 3.6;
         final double vmMetrosMin = vmMetrosSegundo * 60;
 
-        final String strVmMetrosSegundo = String.format(Locale.getDefault(), "%.2f m/s", vmMetrosSegundo);
+        final String strVmMetrosSegundo = String.format(Locale.getDefault(), "%.2f m/s", vmMetrosSegundo).replace(".", ",");
         textVelocidadeMedia.setText(strVmMetrosSegundo);
         textVelocidadeMedia.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (textVelocidadeMedia.getText().toString().contains("m/s")) {
-                    String strVmKmHora = String.format(Locale.getDefault(), "%.2f km/h", vmKmHora);
+                    String strVmKmHora = String.format(Locale.getDefault(), "%.2f km/h", vmKmHora).replace(".", ",");
                     textVelocidadeMedia.setText(strVmKmHora);
                 } else if (textVelocidadeMedia.getText().toString().contains("km/h")) {
-                    String strVmMetrosMin = String.format(Locale.getDefault(), "%.2f m/min", vmMetrosMin);
+                    String strVmMetrosMin = String.format(Locale.getDefault(), "%.2f m/min", vmMetrosMin).replace(".", ",");
                     textVelocidadeMedia.setText(strVmMetrosMin);
                 } else if (textVelocidadeMedia.getText().toString().contains("m/min")) {
                     textVelocidadeMedia.setText(strVmMetrosSegundo);
@@ -336,9 +374,12 @@ public class AnaliseTesteActivity extends AppCompatActivity {
         } else {
             findViewById(R.id.card_o2supl).setVisibility(View.GONE);
         }
-
+        if (teste.getObsTeste() != null) {
+            TextView textObsTeste = (TextView) findViewById(R.id.resultado_obs_teste);
+            textObsTeste.setText(teste.getObsTeste());
+        }
         if (teste.getObsFinal() != null) {
-            TextView textObsFinal = (TextView) findViewById(R.id.resultado_obs);
+            TextView textObsFinal = (TextView) findViewById(R.id.resultado_obs_final);
             textObsFinal.setText(teste.getObsFinal());
         }
 
@@ -370,11 +411,11 @@ public class AnaliseTesteActivity extends AppCompatActivity {
             variacaoFc = teste.getFc(ID_FC_FINAL) - teste.getFc(ID_FC_INICIAL);
         }
         double dbDpEstimada1 = Calcula.dpEstimada(formula, teste.getIdade(), teste.getPaciente().getGenero(), teste.getMassa(), teste.getEstatura(), variacaoFc);
-        String strDpEstimada1 = String.format(Locale.getDefault(), "de %.2fm", dbDpEstimada1);
+        String strDpEstimada1 = String.format(Locale.getDefault(), "de %.2fm", dbDpEstimada1).replace(".", ",");
         dpEstimada.setText(strDpEstimada1);
 
         double dbPercentDpEstimada1 = Calcula.porcentagem(teste.getDistanciaPercorrida(), dbDpEstimada1);
-        String strPercDpEstimada1 = String.format(Locale.getDefault(), "%.1f", dbPercentDpEstimada1);
+        String strPercDpEstimada1 = String.format(Locale.getDefault(), "%.1f", dbPercentDpEstimada1).replace(".", ",");
         percDpEstimada.setText(strPercDpEstimada1);
 
         circuloPercDp1 = (CircularProgressBar) findViewById(R.id.circulo_porcento_1);
@@ -428,11 +469,20 @@ public class AnaliseTesteActivity extends AppCompatActivity {
         ArrayList<Velocidade> velocidades = teste.getVelocidades();
         for (int i = 1; i < velocidades.size(); i++) {
             Velocidade velocidade = velocidades.get(i);
+
             yVals.add(new Entry(velocidade.getVelocidade(), i));
 
         }
+        //Formatar velocidade do gráfico para duas casas depois da virgula
+        ValueFormatter duasCasas = new ValueFormatter() {
+            @Override
+            public String getFormattedValue(float value, Entry entry, int dataSetIndex, ViewPortHandler viewPortHandler) {
+                return String.format(Locale.getDefault(), "%.2f", value).replace(".", ",");
+            }
+        };
 
         LineDataSet set = new LineDataSet(yVals, "Velocidade");
+        set.setValueFormatter(duasCasas);
         //Gráfico cúbico
         set.setMode(LineDataSet.Mode.CUBIC_BEZIER);
         int COR_PRIMARIA = Color.rgb(83, 186, 131);
@@ -444,6 +494,7 @@ public class AnaliseTesteActivity extends AppCompatActivity {
         set.setColor(COR_PRIMARIA);
 
         LineData dados = new LineData(xVals, set);
+
         graficoVelocidades.setData(dados);
 
         graficoVelocidades.getAxisRight().setEnabled(false);
@@ -459,14 +510,18 @@ public class AnaliseTesteActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        menu.add("Excluir Teste");
+        menu.add("Exportar Imagem");
+        menu.add("Deletar Teste");
 
         return super.onCreateOptionsMenu(menu);
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getTitle() == "Excluir Teste") {
+        if (item.getTitle() == "Exportar Imagem") {
+          gerarImagem();
+        }
+        if (item.getTitle() == "Deletar Teste") {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setCancelable(false);
             builder.setTitle(getString(R.string.atencao_deletar_teste));
@@ -494,4 +549,8 @@ public class AnaliseTesteActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+
+
+
 }

@@ -11,9 +11,16 @@
         app:showAsAction="ifRoom" />
 
     <item
+        android:id="@+id/action_referencias"
+        android:orderInCategory="2"
+        android:title="@string/referencias"
+        android:icon="@drawable/icon_referencias"
+        app:showAsAction="ifRoom" />
+
+    <item
         android:id="@+id/action_config"
         android:icon="@drawable/icon_config"
-        android:orderInCategory="2"
+        android:orderInCategory="3"
         android:title="@string/configura_es"
         app:showAsAction="ifRoom" />
 

@@ -142,28 +142,7 @@
                 android:stretchColumns="0,1"
                 android:visibility="gone">
 
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="15dp"
-                    android:background="@drawable/round_edge"
-                    android:gravity="center">
 
-                    <TextView
-                        android:id="@+id/tituloRecuperacao"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_marginBottom="13dp"
-                        android:layout_marginLeft="20dp"
-                        android:layout_marginRight="20dp"
-                        android:layout_marginTop="13dp"
-                        android:background="@drawable/round_edge"
-                        android:gravity="center"
-                        android:textColor="#424242"
-                        android:textSize="18sp" />
-
-                </TableRow> <!-- TITULO -->
 
 
                 <TableRow

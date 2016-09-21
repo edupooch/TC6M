@@ -52,7 +52,7 @@ public class TesteDAO extends SQLiteOpenHelper {
     String[] strKeyO2Supl = {"o2supl_0", "o2supl_1"};
 
     public TesteDAO(Context context) {
-        super(context, "Testes", null, 3);
+        super(context, "Testes", null, 4);
     }
 
     @Override
@@ -78,6 +78,7 @@ public class TesteDAO extends SQLiteOpenHelper {
                         "obs_final TEXT,\n" +
                         "distancia_percorrida REAL,\n" +
                         "tamanho_volta INTEGER,\n" +
+                        "obs_teste TEXT,\n" +
                         "FOREIGN KEY(id_paciente) REFERENCES Pacientes(id));";
 
 
@@ -166,6 +167,7 @@ public class TesteDAO extends SQLiteOpenHelper {
         dados.put("obs_final", teste.getObsFinal());
         dados.put("distancia_percorrida", teste.getDistanciaPercorrida());
         dados.put("tamanho_volta", teste.getTamanhoVolta());
+        dados.put("obs_teste",teste.getObsTeste());
         return dados;
     }
 
@@ -231,6 +233,7 @@ public class TesteDAO extends SQLiteOpenHelper {
             teste.setObsFinal(c.getString(c.getColumnIndex("obs_final")));
             teste.setDistanciaPercorrida(c.getInt(c.getColumnIndex("distancia_percorrida")));
             teste.setTamanhoVolta(c.getInt(c.getColumnIndex("tamanho_volta")));
+            teste.setObsTeste(c.getString(c.getColumnIndex("obs_teste")));
 
             ArrayList<Velocidade> velocidades = buscaVelocidades(teste);
             teste.setVelocidades(velocidades);

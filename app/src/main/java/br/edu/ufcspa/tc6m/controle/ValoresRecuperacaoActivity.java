@@ -55,14 +55,16 @@ public class ValoresRecuperacaoActivity extends AppCompatActivity {
         helper = new TesteHelper(this, teste);
         jaApareceuFC1 = false;
 
-        barraDeProgresso(0);
-
-        TextView titulo = (TextView) findViewById(R.id.tituloRecuperacao);
-        titulo.setText(teste.getPaciente().getNome());
 
         crono = (Chronometer) findViewById(R.id.cronometroRecuperacao);
         crono.setBase(teste.getBaseCronometroRec());
         crono.start();
+
+        long tempoCorrido = SystemClock.elapsedRealtime() - teste.getBaseCronometroRec();
+        System.out.println("Tempo Corrido" + tempoCorrido);
+        float progresso = (float) tempoCorrido / 1200;
+        System.out.println("Progresso" + progresso);
+        barraDeProgresso(progresso);
 
         crono.setOnChronometerTickListener(new Chronometer.OnChronometerTickListener() {
             @Override

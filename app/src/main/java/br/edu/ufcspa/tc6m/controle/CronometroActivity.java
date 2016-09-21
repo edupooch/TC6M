@@ -257,34 +257,49 @@ public class CronometroActivity extends AppCompatActivity {
                 // miliseconds = SystemClock.elapsedRealtime() - crono.getBase();
                 tempo = Integer.parseInt(crono.getText().toString().replace(":", "")); //TRANSFORMA O RELÓGIO EM UM INTEIRO (01:32 = 132)
                 switch (tempo) {
+                    case 55:
+                        mostraFrase(0);
+                        break;
                     case 100:
                         mostraCampos(0);
                         break;
-                    case 120:
+                    case 115:
                         someFrase();
+                        break;
+                    case 155:
+                        mostraFrase(1);
                         break;
                     case 200:
                         mostraCampos(1);
                         break;
-                    case 220:
+                    case 215:
                         someFrase();
+                        break;
+                    case 255:
+                        mostraFrase(2);
                         break;
                     case 300:
                         mostraCampos(2);
                         break;
-                    case 320:
+                    case 315:
                         someFrase();
+                        break;
+                    case 355:
+                        mostraFrase(3);
                         break;
                     case 400:
                         mostraCampos(3);
                         break;
-                    case 420:
+                    case 415:
                         someFrase();
+                        break;
+                    case 455:
+                        mostraFrase(4);
                         break;
                     case 500:
                         mostraCampos(4);
                         break;
-                    case 510:
+                    case 515:
                         someFrase();
                         break;
                     case 600:
@@ -359,16 +374,15 @@ public class CronometroActivity extends AppCompatActivity {
         layoutFrase.setVisibility(View.GONE);
     }
 
+    private void mostraFrase(int minuto) {
+        layoutFrase.setVisibility(View.VISIBLE);
+        textFrase.setText(frasesId[minuto]);
+    }
 
     private void mostraCampos(final int minuto) {
 //        if (minuto < 6) {
 //            fase = minuto + 1; // fase é usado para o setVoltas
 //        }
-
-
-        layoutFrase.setVisibility(View.VISIBLE);
-        textFrase.setText(frasesId[minuto]);
-
 
         //Só mostra o layout de valores caso pelo menos um deles esteja ativo nas preferências
         System.out.println("Tem algum valor:" + temAlgumValor);
@@ -423,8 +437,9 @@ public class CronometroActivity extends AppCompatActivity {
         savedInstanceState.putString("paradas", textParadas.getText().toString());
         savedInstanceState.putBoolean("parado", parado);
         savedInstanceState.putLong("tempo_parado", cronometroParadas.getBase());
+        savedInstanceState.putString("distancia", textDistancia.getText().toString());
 
-        for (int i = 0; i < 6; i++) {
+        for (int i = 0; i < 5; i++) {
             savedInstanceState.putInt("dados" + i, findViewById(layoutsDadosXML[i]).getVisibility());
         }
         super.onSaveInstanceState(savedInstanceState);
@@ -455,7 +470,7 @@ public class CronometroActivity extends AppCompatActivity {
             }
         }
 
-        for (int i = 0; i < 6; i++) {
+        for (int i = 0; i < 5; i++) {
             if (savedInstanceState.getInt("dados" + i) == View.VISIBLE) {
                 layoutsDados[i] = (LinearLayout) findViewById(layoutsDadosXML[i]);
                 layoutsDados[i].setVisibility(savedInstanceState.getInt("dados" + i));

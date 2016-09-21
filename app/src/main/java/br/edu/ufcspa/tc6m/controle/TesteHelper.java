@@ -147,6 +147,75 @@ public class TesteHelper {
 
     }
 
+    public TesteHelper(TesteActivity.CronometroFragment fragment, Teste teste) {
+        this.teste = teste;
+
+        SharedPreferences sharedPreferences = fragment.getActivity().getSharedPreferences("VARIAVEIS_DO_PACIENTE_" +
+                teste.getPaciente().getId(), Context.MODE_PRIVATE);
+
+        boolean fcDurante = sharedPreferences.getBoolean("durante_fc", false);
+        boolean spDurante = sharedPreferences.getBoolean("durante_spo2", false);
+        boolean fadDurante = sharedPreferences.getBoolean("durante_fadiga", false);
+        boolean dispDurante = sharedPreferences.getBoolean("durante_dispneia", false);
+
+        //// TODO: 16/08/2016 Colocar dentro do for
+
+        edTextFc[1] = (EditText) fragment.getCronometroFragmentView().findViewById(R.id.edTextFC1);
+        edTextFc[2] = (EditText) fragment.getCronometroFragmentView().findViewById(R.id.edTextFC2);
+        edTextFc[3] = (EditText) fragment.getCronometroFragmentView().findViewById(R.id.edTextFC3);
+        edTextFc[4] = (EditText) fragment.getCronometroFragmentView().findViewById(R.id.edTextFC4);
+        edTextFc[5] = (EditText) fragment.getCronometroFragmentView().findViewById(R.id.edTextFC5);
+
+        edTextSp[1] = (EditText) fragment.getCronometroFragmentView().findViewById(R.id.edTextSp1);
+        edTextSp[2] = (EditText) fragment.getCronometroFragmentView().findViewById(R.id.edTextSp2);
+        edTextSp[3] = (EditText) fragment.getCronometroFragmentView().findViewById(R.id.edTextSp3);
+        edTextSp[4] = (EditText) fragment.getCronometroFragmentView().findViewById(R.id.edTextSp4);
+        edTextSp[5] = (EditText) fragment.getCronometroFragmentView().findViewById(R.id.edTextSp5);
+
+        edTextDisp[1] = (EditText) fragment.getCronometroFragmentView().findViewById(R.id.edTextDisp1);
+        edTextDisp[2] = (EditText) fragment.getCronometroFragmentView().findViewById(R.id.edTextDisp2);
+        edTextDisp[3] = (EditText) fragment.getCronometroFragmentView().findViewById(R.id.edTextDisp3);
+        edTextDisp[4] = (EditText) fragment.getCronometroFragmentView().findViewById(R.id.edTextDisp4);
+        edTextDisp[5] = (EditText) fragment.getCronometroFragmentView().findViewById(R.id.edTextDisp5);
+
+        edTextFad[1] = (EditText) fragment.getCronometroFragmentView().findViewById(R.id.edTextFad1);
+        edTextFad[2] = (EditText) fragment.getCronometroFragmentView().findViewById(R.id.edTextFad2);
+        edTextFad[3] = (EditText) fragment.getCronometroFragmentView().findViewById(R.id.edTextFad3);
+        edTextFad[4] = (EditText) fragment.getCronometroFragmentView().findViewById(R.id.edTextFad4);
+        edTextFad[5] = (EditText) fragment.getCronometroFragmentView().findViewById(R.id.edTextFad5);
+
+
+        for (int i = 1; i < 6; i++) {
+            if (!fcDurante) {
+                edTextFc[i].setVisibility(View.GONE);
+            } else {
+                break;
+            }
+        }
+        for (int i = 1; i < 6; i++) {
+            if (!spDurante) {
+                edTextSp[i].setVisibility(View.GONE);
+            } else {
+                break;
+            }
+        }
+        for (int i = 1; i < 6; i++) {
+            if (!fadDurante) {
+                edTextFad[i].setVisibility(View.GONE);
+            } else {
+                break;
+            }
+        }
+        for (int i = 1; i < 6; i++) {
+            if (!dispDurante) {
+                edTextDisp[i].setVisibility(View.GONE);
+            } else {
+                break;
+            }
+        }
+
+    }
+
     public TesteHelper(ValoresFinaisActivity activity, Teste teste) {
         this.teste = teste;
         SharedPreferences sharedPreferences = activity.getSharedPreferences("VARIAVEIS_DO_PACIENTE_" +
@@ -244,7 +313,7 @@ public class TesteHelper {
         //fc, spo2, disp e fad são coletadas em todas as fases
         if (!edTextFc[minuto].getText().toString().isEmpty()) {
             teste.setFc(minuto, Integer.parseInt(edTextFc[minuto].getText().toString()));
-            if (minuto == 7 && !edTextFc[minuto+1].getText().toString().isEmpty()) // pegar o valor de recuperação 1' e 2'(fc[8])
+            if (minuto == 7 && !edTextFc[minuto + 1].getText().toString().isEmpty()) // pegar o valor de recuperação 1' e 2'(fc[8])
                 teste.setFc(minuto + 1, Integer.parseInt(edTextFc[minuto + 1].getText().toString()));
         }
         if (!edTextDisp[minuto].getText().toString().isEmpty())
