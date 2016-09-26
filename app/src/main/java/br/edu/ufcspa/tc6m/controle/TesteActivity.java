@@ -184,20 +184,20 @@ public class TesteActivity extends AppCompatActivity {
             });
 
             //Essa declaração do botao é apenas para testes
-            Button btConfirma = (Button) view.findViewById(R.id.btConfirma);
-            btConfirma.setVisibility(View.VISIBLE);
-            btConfirma.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    //.......................SALVA O TEMPO PARADO.......................................//
-                    teste.setTempoParadas(cronometroParadas.getText().toString());
-
-                    Intent intentVaiProValoresFinais = new Intent(getActivity(), ValoresFinaisActivity.class);
-                    intentVaiProValoresFinais.putExtra("teste", teste);
-                    startActivity(intentVaiProValoresFinais);
-                    getActivity().finish();
-                }
-            });
+//            Button btConfirma = (Button) view.findViewById(R.id.btConfirma);
+//            btConfirma.setVisibility(View.VISIBLE);
+//            btConfirma.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//                    //.......................SALVA O TEMPO PARADO.......................................//
+//                    teste.setTempoParadas(cronometroParadas.getText().toString());
+//
+//                    Intent intentVaiProValoresFinais = new Intent(getActivity(), ValoresFinaisActivity.class);
+//                    intentVaiProValoresFinais.putExtra("teste", teste);
+//                    startActivity(intentVaiProValoresFinais);
+//                    getActivity().finish();
+//                }
+//            });
 
 
             TextView textNome = (TextView) view.findViewById(R.id.textNomePaciente);

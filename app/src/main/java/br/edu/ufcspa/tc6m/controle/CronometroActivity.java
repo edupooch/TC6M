@@ -138,21 +138,21 @@ public class CronometroActivity extends AppCompatActivity {
         });
 
         //Essa declaração do botao é apenas para testes
-        Button btConfirma = (Button) findViewById(R.id.btConfirma);
-        btConfirma.setVisibility(View.VISIBLE);
-        btConfirma.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //.......................SALVA O TEMPO PARADO.......................................//
-                teste.setTempoParadas(cronometroParadas.getText().toString());
-
-                Intent intentVaiProValoresFinais = new Intent(CronometroActivity.this, ValoresFinaisActivity.class);
-                intentVaiProValoresFinais.putExtra("teste", teste);
-                startActivity(intentVaiProValoresFinais);
-
-                finish();
-            }
-        });
+//        Button btConfirma = (Button) findViewById(R.id.btConfirma);
+//        btConfirma.setVisibility(View.VISIBLE);
+//        btConfirma.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                //.......................SALVA O TEMPO PARADO.......................................//
+//                teste.setTempoParadas(cronometroParadas.getText().toString());
+//
+//                Intent intentVaiProValoresFinais = new Intent(CronometroActivity.this, ValoresFinaisActivity.class);
+//                intentVaiProValoresFinais.putExtra("teste", teste);
+//                startActivity(intentVaiProValoresFinais);
+//
+//                finish();
+//            }
+//        });
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setVisibility(View.GONE);

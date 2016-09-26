@@ -510,7 +510,7 @@ public class AnaliseTesteActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        menu.add("Exportar Imagem");
+       // menu.add("Exportar Imagem");
         menu.add("Deletar Teste");
 
         return super.onCreateOptionsMenu(menu);
@@ -521,6 +521,7 @@ public class AnaliseTesteActivity extends AppCompatActivity {
         if (item.getTitle() == "Exportar Imagem") {
           gerarImagem();
         }
+
         if (item.getTitle() == "Deletar Teste") {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setCancelable(false);

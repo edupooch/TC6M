@@ -16,6 +16,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.TypedValue;
 import android.view.ContextMenu;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -24,6 +25,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -221,6 +223,11 @@ public class PerfilActivity extends AppCompatActivity {
         listaTestes = (ListView) findViewById(R.id.lista_testes);
         TesteDAO dao = new TesteDAO(this);
         List<Teste> testes = dao.buscaTestes(paciente);
+
+        //Coloca o tamanho da lista em dp de acordo com o numero de pacientes (75dp por paciente)
+        LinearLayout.LayoutParams lp = (LinearLayout.LayoutParams) listaTestes.getLayoutParams();
+        lp.height = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 75 * testes.size(), getResources().getDisplayMetrics());;
+        listaTestes.setLayoutParams(lp);
 
 //        registerForContextMenu(listaTestes);
         if (testes.size() == 0){

@@ -782,7 +782,7 @@
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="10dp"
             android:scaleType="centerCrop"
-            android:src="@drawable/icon_caminhar" /> <!--BOTAO ADD VOLTA -->
+            android:src="@drawable/icon_caminhar" /> <!--BOTAO ADICIONAR VOLTA -->
 
         <LinearLayout
             android:layout_width="match_parent"
